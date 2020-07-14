@@ -1,13 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="837f1363-2ae6-4bd8-adc5-121864e3bd7d" name="Default Changelist" comment="" />
+    <list default="true" id="837f1363-2ae6-4bd8-adc5-121864e3bd7d" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/B3. Mo ta thuat toan bang Pseudo code &amp; Flowchart/Bai_Tap/01. Tinh diem TB.png" beforeDir="false" afterPath="$PROJECT_DIR$/B3. Mo ta thuat toan bang Pseudo code &amp; Flowchart/Bai_Tap/01. Tinh diem TB.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/B3. Mo ta thuat toan bang Pseudo code &amp; Flowchart/Bai_Tap/04. Tim so lon nhat trong day so.png" beforeDir="false" afterPath="$PROJECT_DIR$/B3. Mo ta thuat toan bang Pseudo code &amp; Flowchart/Bai_Tap/04. Tim so lon nhat trong day so.png" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
   <component name="ProjectId" id="1eJR7BIebGKulIz150ABziwEExR" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -16,6 +24,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/B4. Git &amp; HTML/Bai_Tap" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -29,10 +38,17 @@
       <updated>1594037540302</updated>
       <workItem from="1594037542825" duration="153000" />
       <workItem from="1594037715754" duration="680000" />
+      <workItem from="1594645116323" duration="37000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="463" y="118" key="FileChooserDialogImpl" timestamp="1594645154972">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="463" y="118" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1594645154972" />
   </component>
 </project>
