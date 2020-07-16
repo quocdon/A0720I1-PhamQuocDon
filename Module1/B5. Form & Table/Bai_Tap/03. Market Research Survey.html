@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Market Research Survey</title>
+    <style>
+        .questions{
+            font-family: "Arial Narrow";
+            font-weight: bold;
+        }
+        .answers{
+            font-family: "Arial Narrow";
+            font-weight: normal;
+            font-size: large;
+        }
+        .select-options{
+            font-family: "Arial Narrow";
+            font-weight: normal;
+            font-size: large;
+            width: 500px;
+        }
+        .table-of-statement{
+            border: 1px solid dimgrey;
+            border-collapse: collapse;
+        }
+        .cells-of-statement{
+            border: 1px solid dimgrey;
+            border-collapse: collapse;
+            font-family: "Arial Narrow";
+            font-weight: normal;
+            font-size: medium;
+            padding: 10px;
+            text-align: center
+        }
+        .questonscells-of-statement{
+            border: 1px solid dimgrey;
+            border-collapse: collapse;
+            font-family: "Arial Narrow";
+            font-weight: bold;
+            font-size: medium;
+            padding: 10px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <h2>Market Research Survey</h2>
+    <h5 style="font-weight: normal">Please take few moments to complete this satisfaction survey</h5>
+    <hr>
+    <form action="google.com.vn" method="post">
+        <p class="questions">What is your range?</p>
+        <select class="select-options">
+            <option name="age" value="17-24">17-24</option>
+            <option name="age" value="25-34">25-34</option>
+            <option name="age" value="35-50">35-50</option>
+            <option name="age" value="50+">50+</option>
+        </select>
+        <p class="questions">What is your yearly income range?</p>
+        <select class="select-options">
+            <option name="income" value="0-25000">$0-$25.000</option>
+            <option name="income" value="25001-50000">$25.001-$50.000</option>
+            <option name="income" value="50001-100000">$50.001-$100.000</option>
+            <option name="income" value="100000+">$100.000+</option>
+        </select>
+        <p class="questions">Gender indentify</p>
+        <input class="answers" type="radio" name="gender" value="Male">Male <br>
+        <input class="answers" type="radio" name="gender" value="Female">Female <br>
+        <input class="answers" type="radio" name="gender" value="Nonbinary">Nonbinary <br>
+        <input class="answers" type="radio" name="gender">Other
+        <input class="answers" type="text" maxlength="250" placeholder="Max 250 characters">
+        <br>
+        <p class="questions">Which of the following products have your purchased in the last 2 months. Please check all that apply.</p>
+        <input class="answers" type="checkbox" name="product" value="product1">Product 1<br>
+        <input class="answers" type="checkbox" name="product" value="product2">Product 2<br>
+        <input class="answers" type="checkbox" name="product" value="product2">Product 3<br>
+        <p class="questions">How often would you use our new product?</p>
+        <input class="answers" type="radio" name="frequency" value="Daily">Daily <br>
+        <input class="answers" type="radio" name="frequency" value="Weekly">Weekly <br>
+        <input class="answers" type="radio" name="frequency" value="Monthly">Monthly <br>
+        <p class="questions">What would you pay for the new product?</p>
+        <table>
+            <tr>
+                <td><p>$</p></td>
+                <td><input type="text" value size="10" name="budget.dollars"></td>
+                <td><p>.</p></td>
+                <td><input type="text"  value size="2" name="budget.cents"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>Dollars</td>
+                <td></td>
+                <td>Cents</td>
+            </tr>
+        </table>
+        <p class="questions">What features would you like to see in the new product.</p>
+        <textarea cols="70" rows="10" name="features">
+        </textarea>
+        <p class="questions">Please rate your level of agreement with the following statements.</p>
+        <table class="table-of-statement">
+            <tr>
+                <th class="cells-of-statement" width="400px"></th>
+                <th class="cells-of-statement" width="100px">Strongly Disagree</th>
+                <th class="cells-of-statement" width="100px">Disagree</th>
+                <th class="cells-of-statement" width="100px">Agree</th>
+                <th class="cells-of-statement" width="100px">Strongly agree</th>
+            </tr>
+            <tr>
+                <td class="questonscells-of-statement">Our products are priced fairly.</td>
+                <td class="cells-of-statement">
+                    <input class="answers" type="radio" name="question1" value="1"><br>1
+                </td>
+                 <td class="cells-of-statement">
+                    <input class="answers" type="radio" name="question1" value="2"><br>2
+                </td>
+                <td class="cells-of-statement">
+                    <input class="answers" type="radio" name="question1" value="3"><br>3
+                </td>
+                 <td class="cells-of-statement">
+                    <input class="answers" type="radio" name="question1" value="4"><br>4
+                 </td>
+            </tr>
+            <tr>
+                <td class="questonscells-of-statement">Our products are high quality.</td>
+                <td class="cells-of-statement">
+                    <input class="answers" type="radio" name="question2" value="1"><br>1
+                </td>
+                <td class="cells-of-statement">
+                    <input class="answers" type="radio" name="question2" value="2"><br>2
+                </td>
+                <td class="cells-of-statement">
+                    <input class="answers" type="radio" name="question2" value="3"><br>3
+                </td>
+                <td class="cells-of-statement">
+                    <input class="answers" type="radio" name="question2" value="4"><br>4
+                </td>
+            </tr>
+            <tr>
+                <td class="questonscells-of-statement">You would recommend our products to a friend or coworker.</td>
+                <td class="cells-of-statement">
+                    <input class="answers" type="radio" name="question3" value="1"><br>1
+                </td>
+                <td class="cells-of-statement">
+                    <input class="answers" type="radio" name="question3" value="2"><br>2
+                </td>
+                <td class="cells-of-statement">
+                    <input class="answers" type="radio" name="question3" value="3"><br>3
+                </td>
+                <td class="cells-of-statement">
+                    <input class="answers" type="radio" name="question3" value="4"><br>4
+                </td>
+            </tr>
+        </table>
+        <br>
+        <Br>
+       <input type="submit" value="Submit" style="font-size: 20px">
+    </form>
+</body>
+</html>
