@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Page style option</title>
+    <style>
+        #option-windows{
+            width: 100%;
+            height: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            }
+        .header{
+            background-color: maroon;
+            color: white;
+            font-family: Arial;
+            font-weight: bold;
+            font-size: 15px;
+            height: 30px;
+            display: flex;
+        }
+        .aglign-center{
+            margin-top: auto;
+            margin-bottom: auto;
+        }
+        .info-text{
+            font-family: Cambria;
+            font-size: 13px;
+            font-weight: normal;
+            margin-top: 2px;
+            text-align: justify;
+        }
+        .Whole-table{
+            border-top: 1px solid black;
+            border-bottom: 1px solid black;
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .table-header{
+            height: 50px;
+            margin-top: auto;
+            margin-bottom: auto;
+            text-align: left;
+            font-family: Arial;
+            font-weight: bold;
+            font-size: 12px;
+            background-color: beige;
+            border-top: 1px solid black;
+            border-bottom: 1px solid black;
+            border-collapse: collapse;
+        }
+        .table-row{
+            height: 50px;
+            margin-top: auto;
+            margin-bottom: auto;
+            text-align: left;
+            font-family: Arial;
+            font-weight: normal;
+            font-size: 11px;
+            border-top: 1px solid black;
+            border-bottom: 1px solid black;
+            border-collapse: collapse;
+        }
+        .select-style{
+            background-color: beige;
+                        }
+    </style>
+</head>
+<body>
+    <div id="option-windows">
+        <div class="header">
+           <p class="aglign-center">Page: Style options</p>
+        </div>
+        <p class="info-text">Place fields into columns; you may combine multiple fields into the same column.
+            If you do, the separator in the column specified will be used to separate the fields.
+            Check the sortable box to make that column click sortable, and then check the default sort radio to determine
+            which column will be sorted by default, if any. You may control column order and field labels in the fields
+            section.
+        </p>
+    <table class="Whole-table">
+        <tr class="table-header">
+            <td width="10%">FIELD</td>
+            <td width="25%">COLUMN</td>
+            <td width="8%">ALIGN</td>
+            <td width="8%">SEPARATOR</td>
+            <td width="8%">SORTABLE</td>
+            <td width="8%">DEFAULT ORDER</td>
+            <td width="8%">DEFAULT SORT</td>
+            <td width="8%">ROW HEADER</td>
+            <td width="8%">HIDE EMPTY COLUMN</td>
+            <td>RESPONSIVE</td>
+        </tr>
+        <tr class="table-row">
+            <td>Content: Node operations bulk form</td>
+            <td>
+                <select class="select-style">
+                    <option value="Node1">Content: Node operations bulk form</option>
+                    <option value="Node2">Content: Node operations fill form</option>
+                    <option value="Node3">Content: Node operations axy form</option>
+                </select>
+            </td>
+            <td>
+                <select class="select-style">
+                    <option value="align-none">None</option>
+                    <option value="align-left">Left</option>
+                    <option value="align-right">Right</option>
+                    <option value="align-center">Center</option>
+                    <option value="align-justified">Justified</option>
+                </select>
+            </td>
+            <td>
+                <input style="width: 80%" class="select-style" type="text" name="separator">
+            </td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+                <input class="select-style" type="radio" name="rowheader" value="yes">
+            </td>
+            <td>
+                <input class="select-style" type="checkbox"></td>
+            </td>
+            <td>
+                <select class="select-style">
+                    <option value="high">High</option>
+                    <option value="medium">Medium</option>
+                    <option value="low">Low</option>
+                </select>
+            </td>
+        </tr>
+        <tr class="table-row">
+            <td>Title</td>
+            <td>
+                <select class="select-style">
+                    <option value="Title">Title</option>
+                    <option value="Title2">Content: Node operations bulk form</option>
+                </select>
+            </td>
+            <td>
+                <select class="select-style">
+                    <option value="align-none">None</option>
+                    <option value="align-left">Left</option>
+                    <option value="align-right">Right</option>
+                    <option value="align-center">Center</option>
+                    <option value="align-justified">Justified</option>
+                </select>
+            </td>
+            <td>
+                <input style="width: 80%" class="select-style" type="text" name="separator">
+            </td>
+            <td><input class="select-style" type="checkbox"></td>
+            <td>
+                <select class="select-style">
+                    <option value="ascending">Ascending</option>
+                    <option value="descending">Descending</option>
+                </select>
+            </td>
+            <td>
+                <input class="select-style" type="radio" name="sort" value="yes">
+            </td>
+            <td>
+                <input class="select-style" type="radio" name="rowheader" value="yes">
+            </td>
+            <td>
+                <input class="select-style" type="checkbox"></td>
+            </td>
+            <td>
+                <select class="select-style">
+                    <option value="high">High</option>
+                    <option value="medium">Medium</option>
+                    <option value="low">Low</option>
+                </select>
+            </td>
+        </tr>
+        <tr class="table-row">
+            <td>Content type</td>
+            <td>
+                <select class="select-style">
+                    <option value="Node1">Content type</option>
+                    <option value="Node2">Content: Node operations bulk form</option>
+                    <option value="Node3">Content: Node operations axy form</option>
+                </select>
+            </td>
+            <td>
+                <select class="select-style">
+                    <option value="align-none">None</option>
+                    <option value="align-left">Left</option>
+                    <option value="align-right">Right</option>
+                    <option value="align-center">Center</option>
+                    <option value="align-justified">Justified</option>
+                </select>
+            </td>
+            <td>
+                <input style="width: 80%" class="select-style" type="text" name="separator">
+            </td>
+            <td><input class="select-style" type="checkbox"></td>
+            <td>
+                <select class="select-style">
+                    <option value="ascending">Ascending</option>
+                    <option value="descending">Descending</option>
+                </select>
+            </td>
+            <td>
+                <input class="select-style" type="radio" name="sort" value="yes">
+            </td>
+            <td>
+                <input class="select-style" type="radio" name="rowheader" value="yes">
+            </td>
+            <td>
+                <input class="select-style" type="checkbox"></td>
+            </td>
+            <td>
+                <select class="select-style">
+                    <option value="high">High</option>
+                    <option value="medium">Medium</option>
+                    <option value="low">Low</option>
+                </select>
+            </td>
+        </tr>
+        <tr class="table-row">
+            <td>Author</td>
+            <td>
+                <select class="select-style">
+                    <option value="Node1">(author) Author</option>
+                    <option value="Node2">Content: Node operations fill form</option>
+                </select>
+            </td>
+            <td>
+                <select class="select-style">
+                    <option value="align-none">None</option>
+                    <option value="align-left">Left</option>
+                    <option value="align-right">Right</option>
+                    <option value="align-center">Center</option>
+                    <option value="align-justified">Justified</option>
+                </select>
+            </td>
+            <td>
+                <input style="width: 80%" class="select-style" type="text" name="separator">
+            </td>
+            <td><input class="select-style" type="checkbox"></td>
+            <td>
+            </td>
+            <td>
+                <input class="select-style" type="radio" name="sort" value="yes">
+            </td>
+            <td>
+                <input class="select-style" type="radio" name="rowheader" value="yes">
+            </td>
+            <td>
+                <input class="select-style" type="checkbox"></td>
+            </td>
+            <td>
+                <select class="select-style">
+                    <option value="high">High</option>
+                    <option value="medium">Medium</option>
+                    <option value="low">Low</option>
+                </select>
+            </td>
+        </tr>
+        <tr class="table-row">
+            <td>Status</td>
+            <td>
+                <select class="select-style">
+                    <option value="Node1">Status</option>
+                    <option value="Node2">Content: Node operations fill form</option>
+                    <option value="Node3">Content: Node operations axy form</option>
+                </select>
+            </td>
+            <td>
+                <select class="select-style">
+                    <option value="align-none">None</option>
+                    <option value="align-left">Left</option>
+                    <option value="align-right">Right</option>
+                    <option value="align-center">Center</option>
+                    <option value="align-justified">Justified</option>
+                </select>
+            </td>
+            <td>
+                <input style="width: 80%" class="select-style" type="text" name="separator">
+            </td>
+            <td><input class="select-style" type="checkbox"></td>
+            <td>
+                <select class="select-style">
+                    <option value="ascending">Ascending</option>
+                    <option value="descending">Descending</option>
+                </select>
+            </td>
+            <td>
+                <input class="select-style" type="radio" name="sort" value="yes">
+            </td>
+            <td>
+                <input class="select-style" type="radio" name="rowheader" value="yes">
+            </td>
+            <td>
+                <input class="select-style" type="checkbox"></td>
+            </td>
+            <td>
+                <select class="select-style">
+                    <option value="high">High</option>
+                    <option value="medium">Medium</option>
+                    <option value="low">Low</option>
+                </select>
+            </td>
+        </tr>
+        <tr class="table-row">
+            <td>Updated</td>
+            <td>
+                <select class="select-style">
+                    <option value="Node1">Updated</option>
+                    <option value="Node2">Content: Node operations fill form</option>
+                    <option value="Node3">Content: Node operations axy form</option>
+                </select>
+            </td>
+            <td>
+                <select class="select-style">
+                    <option value="align-none">None</option>
+                    <option value="align-left">Left</option>
+                    <option value="align-right">Right</option>
+                    <option value="align-center">Center</option>
+                    <option value="align-justified">Justified</option>
+                </select>
+            </td>
+            <td>
+                <input style="width: 80%" class="select-style" type="text" name="separator">
+            </td>
+            <td><input class="select-style" type="checkbox"></td>
+            <td>
+                <select class="select-style">
+                    <option value="ascending">Ascending</option>
+                    <option value="descending">Descending</option>
+                </select>
+            </td>
+            <td>
+                <input class="select-style" type="radio" name="sort" value="yes">
+            </td>
+            <td>
+                <input class="select-style" type="radio" name="rowheader" value="yes">
+            </td>
+            <td>
+                <input class="select-style" type="checkbox"></td>
+            </td>
+            <td>
+                <select class="select-style">
+                    <option value="high">High</option>
+                    <option value="medium">Medium</option>
+                    <option value="low">Low</option>
+                </select>
+            </td>
+        </tr>
+        <tr class="table-row">
+            <td>Operations</td>
+            <td>
+                <select class="select-style">
+                    <option value="Node1">Operations</option>
+                    <option value="Node2">Content: Node operations fill form</option>
+                    <option value="Node3">Content: Node operations axy form</option>
+                </select>
+            </td>
+            <td>
+                <select class="select-style">
+                    <option value="align-none">None</option>
+                    <option value="align-left">Left</option>
+                    <option value="align-right">Right</option>
+                    <option value="align-center">Center</option>
+                    <option value="align-justified">Justified</option>
+                </select>
+            </td>
+            <td>
+                <input style="width: 80%" class="select-style" type="text" name="separator">
+            </td>
+            <td><input class="select-style" type="checkbox"></td>
+            <td></td>
+            <td></td>
+            <td>
+                <input class="select-style" type="radio" name="rowheader" value="yes">
+            </td>
+            <td>
+                <input class="select-style" type="checkbox"></td>
+            </td>
+            <td>
+                <select class="select-style">
+                    <option value="high">High</option>
+                    <option value="medium">Medium</option>
+                    <option value="low">Low</option>
+                </select>
+            </td>
+        </tr>
+        <tr class="table-row">
+            <td>None</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+                <input class="select-style" type="radio" name="sort" value="yes">
+            </td>
+            <td>
+                <input class="select-style" type="radio" name="rowheader" value="yes">
+            </td>
+            <td></td>
+            <td>
+                <select class="select-style">
+                    <option value="high">High</option>
+                    <option value="medium">Medium</option>
+                    <option value="low">Low</option>
+                </select>
+            </td>
+        </tr>
+    </table>
+    <h5 style="margin-bottom: 1px">Grouping field Nr.1</h5>
+    <select style="margin: 2px">
+        <option value="none">- None -</option>
+        <option value="yes">- Yes -</option>
+    </select>
+    </div>
+
+</body>
+</html>
