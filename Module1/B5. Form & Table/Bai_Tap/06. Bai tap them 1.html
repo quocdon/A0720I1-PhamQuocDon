@@ -77,6 +77,7 @@
             which column will be sorted by default, if any. You may control column order and field labels in the fields
             section.
         </p>
+    <form action="gooogle.com" method="post">
     <table class="Whole-table">
         <tr class="table-header">
             <td width="10%">FIELD</td>
@@ -413,7 +414,19 @@
         <option value="none">- None -</option>
         <option value="yes">- Yes -</option>
     </select>
+    <p class="info-text" style="margin-bottom: 4px">You may optionaly specify a field by which to group the records. Leave blank to not group</p>
+    <h5 style="margin-bottom: 2px">Row class</h5>
+        <input type="text" name="rowclass" style="margin-top: 2px">
+    <p class="info-text" style="margin-top: 2px">The class to provide on each row. You may use field tokens from as per the "Replacement partterns" use in "Rewrite the output
+    of this field" for all fields</p>
+        <input type="checkbox" name="addview" value="yes"><label class="info-text" style="font-weight: bold">The view row classes</label>
+        <p class="info-text" style="margin-left: 20px">Add the default row classes like views-row to the output. You can use this to quickly reduce the amount of markup the view provides by default, at the cost
+        of making it more difficult to apply CSS</p>
+        <br>
+        <input style="background-color:  dodgerblue;font-size: 15px;font-weight: bold;color: white":  type="submit" value="Apply">
+        <input style="font-size: 15px;font-weight: bold" type="reset" value="Cancel">
     </div>
+    </form>
 
 </body>
 </html>
