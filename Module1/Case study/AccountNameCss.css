@@ -1,12 +1,36 @@
 .header{
-    font-family: "Century Gothic";
-    font-size: 40px;
+    font-family: "Arial Narrow";
+    font-size: 30px;
     font-weight: bold;
     text-align: center;
+    margin-bottom: 3px;
+    margin-top: 3px;
 }
-.guest.table{
-    font-family: "Century Gothic";
-    font-size: 16px;
-    font
+.guest-table{
+    font-family: "Arial Narrow";
+    font-size: 18px;
+    font-weight: bold;
+    width: 700px;
+    margin-left: auto;
+    margin-right: auto;
 }
+.gueststyle{
+    font-family: "Arial Narrow";
+    font-weight: bold;
+}
+.inputstyle{
+    width: 100%;
+    font-family: "Arial Narrow";
+    font-size: 18px;
+}
+.divstyle{
+    font-family: Arial;
+    font-size: 25px;
+    font-weight: bold;
+    width: 800px;
+    color: blue;
+    background-color: #ffcb00;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
 }
