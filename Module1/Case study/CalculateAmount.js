@@ -30,11 +30,11 @@ function totalamount() {
             "<td>" + guestid.value + "</td>"+
         "</tr>"+
         "<tr>"+
-            "<td>Ngày sinh: </td>"+
+            "<td>Ngày sinh/ Date of birth: </td>"+
             "<td>" + guestdob.value + "</td>"+
         "</tr>"+
         "<tr>"+
-            "<td>Địa chỉ: </td>"+
+            "<td>Địa chỉ/ Address: </td>"+
             "<td>" + address.value + "</td>"+
         "</tr>"+
         "<tr>"+
