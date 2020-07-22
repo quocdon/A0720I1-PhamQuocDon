@@ -26,12 +26,12 @@
 }
 .divstyle{
     font-family: Arial;
-    font-size: 25px;
+    font-size: 18px;
     font-weight: bold;
     width: 800px;
-    color: blue;
-    background-color: #ffcb00;
-    text-align: center;
+    color: chocolate;
+    background-color: bisque;
+    text-align: justify;
     margin-left: auto;
     margin-right: auto;
 }

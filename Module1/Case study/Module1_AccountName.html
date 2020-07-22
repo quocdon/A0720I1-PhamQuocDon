@@ -9,14 +9,14 @@
     <p CLASS="header">THÔNG TIN ĐẶT PHÒNG</p>
     <p CLASS="header">BOOKING INFORMATION</p>
     <br><br>
-    <form action="guest.info.html" method="post">
+    <form action="guest.info.html" method="post" id="guestinfo">
         <table class="guest-table">
             <tr>
                 <td>
                     <label>Tên khách hàng/Guest name<label>
                 </td>
                 <td>
-                    <input class="inputstyle" type="text" name="guestname">
+                    <input class="inputstyle" type="text" id="guestname">
                 </td>
             </tr>
             <tr>
@@ -24,7 +24,7 @@
                     <label>Số CMND/ID number:</label>
                 </td>
                 <td>
-                    <input class="inputstyle" type="text" name="guestid">
+                    <input class="inputstyle" type="text" id="guestid">
                 </td>
             </tr>
             <tr>
@@ -32,7 +32,7 @@
                     <label>Ngày sinh/Date of birth</label>
                 </td>
                 <td>
-                    <input class="inputstyle" type="date" name="guestbod">
+                    <input class="inputstyle" type="date" id="guestdob">
                 </td>
             </tr>
             <tr>
@@ -40,23 +40,23 @@
                     <label>Địa chỉ/Address:</label>
                 </td>
                 <td>
-                    <select class="inputstyle" name="address">
-                        <option value="danang">Đà Nẵng</option>
-                        <option value="hue">Thừa Thiên Huế</option>
-                        <option value="quangnam">Quảng Nam</option>
-                        <option value="other">Tỉnh khác</option>
+                    <select class="inputstyle" id="address">
+                        <option>Đà Nẵng</option>
+                        <option>Thừa Thiên Huế</option>
+                        <option>Quảng Nam</option>
+                        <option>Tỉnh khác</option>
                     </select>
                 </td>
             </tr>
             <tr>
                 <td>Hạng khách hàng/Customer Class:</td>
                 <td>
-                    <select class="inputstyle" name="guestclass">
-                        <option value="Diamond">Diamond</option>
-                        <option value="Platinum">Platinum</option>
-                        <option value="Gold">Gold</option>
-                        <option value="Silver">Silver</option>
-                        <option value="Member">Member</option>
+                    <select class="inputstyle" id="guestclass">
+                        <option>Diamond</option>
+                        <option>Platinum</option>
+                        <option>Gold</option>
+                        <option>Silver</option>
+                        <option>Member</option>
                     </select>
                 </td>
             </tr>
@@ -67,26 +67,26 @@
             <tr>
                 <td>Số ngày thuê/rentdays</td>
                 <td>
-                    <input class="inputstyle" type="text" name="rentdays">
+                    <input class="inputstyle" type="text" id="rentdays">
                 </td>
             </tr>
             <tr>
                 <td>Loại dịch vụ/ Services</td>
                 <td>
-                    <select class="inputstyle" name="services">
-                        <option value="Villa">Villa</option>
-                        <option value="House">House</option>
-                        <option value="Room">Room</option>
+                    <select class="inputstyle" id="services">
+                        <option>Villa</option>
+                        <option>House</option>
+                        <option>Room</option>
                     </select>
                 </td>
             </tr>
             <tr>
                 <td>Loại phòng/Room type</td>
                 <td>
-                    <select class="inputstyle" name="roomtype">
-                        <option value="Vip">Vip</option>
-                        <option value="Bussiness">Bussiness</option>
-                        <option value="Normal">Normal</option>
+                    <select class="inputstyle" id="roomtype">
+                        <option>Vip</option>
+                        <option>Bussiness</option>
+                        <option>Normal</option>
                     </select>
                 </td>
             </tr>
@@ -99,24 +99,8 @@
             </tr>
         </table>
     </form>
-
     <p class=divstyle id="ketqua"></p>
-    <script>
-        function totalamount() {
-            let rentdays = document.forms["guestinfo"]["rentdays"].value;
-            let services = document.forms["guestinfo"]["services"].value;
-            let price;
-            if (services=="Villa"){price=500}
-            else{
-                if(services=="House"){price=300}
-                else price=100
-            }
-            amount = rentdays * price *(1-10/100);
-            document.getElementById("ketqua").innerHTML = "Tổng số tiền phải thanh toán là " + amount + "$ cho "+ rentdays +" đêm nghỉ ở " + services +" với mức giảm giá 10%"
-        }
+    <script src="CalculateAmount.js">
     </script>
-
-
-
 </body>
 </html>
