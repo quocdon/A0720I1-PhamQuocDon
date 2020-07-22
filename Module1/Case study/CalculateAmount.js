@@ -1,5 +1,5 @@
 function totalamount() {
-    let guestname = document.forms["guestinfo"]["guestname"];
+    let guestname = document.forms["guestinfo"]["guestname"];                   /*Get data from input form*/
     let guestid = document.forms["guestinfo"]["guestid"];
     let guestdob = document.forms["guestinfo"]["guestdob"];
     let address = document.forms["guestinfo"]["address"];
@@ -10,13 +10,14 @@ function totalamount() {
     let price;
     let amount;
     let discountprice;
-    if (services.value=="Villa"){price=500}
+    if (services.value=="Villa"){price=500}                                     /*Get the price based on services*/
     else{
         if(services.value=="House"){price=300}
         else price=100
     }
-    discountprice = price*(1-10/100)
+    discountprice = price*(1-10/100)                                            /*Calculate discount price*/
     amount = rentdays.value * discountprice;
+                                                                                /*Display booking confirmation with total amount to screen*/
     document.getElementById("ketqua").innerHTML = "<table class='confirmationTable'>" +
         "<tr>" +
             "<td colspan='2' style='text-align: center'>XÁC NHẬN ĐẶT PHÒNG/ BOOKING CONFIRMATION</td>"+
@@ -62,22 +63,4 @@ function totalamount() {
             "<td style='color: red'>" + amount + "  USD</td>"+
         "</tr>"+
         "</table>"
-
-
-
-
-
-
-
-    /*"<p class='gueststyle'>XÁC NHẬN ĐẶT PHÒNG/ BOOKING CONFIRMATION</p>"+ "<br>"+
-        "Tên khách hàng: "+ guestname.value +"<br>" +
-        "Số CMND: " + guestid.value +"<br>"+
-        "Ngày Sinh: " + guestdob.value +"<br>"+
-        "Địa chỉ: " + address.value + "<br>"+
-        "Hạng khách hàng: " + guestclass.value + "<br>"+
-        "Số ngày thuê: " + rentdays.value +"<br>"+
-        "Dịch vụ thuê: " + services.value +"<br>"+
-        "Loại phòng: " + roomtype.value + "<br>"+
-        "Giá tiền: " + amount +"VND";*/
-
 }
