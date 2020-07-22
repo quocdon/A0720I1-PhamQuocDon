@@ -1,3 +1,8 @@
+body{
+    background-image: url("https://lh3.googleusercontent.com/pw/ACtC-3exfJZj7Jdl3RaGLuyoCDsG7J76IN9OWCUVvHqvyUe8yvKOeyz8Xmxfoce_bMSgGDd1_wMvNqMXQ4_SWt1GEpZK-OJGRbNg-ZPO2lpx0ZNuW1_soT7ZxVc5X8l4OEqIrBADKTbhgGLfDqucL-92QO6o=w1472-h920-no?authuser=0");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
 .header{
     font-family: Arial;
     font-size: 30px;
@@ -18,20 +23,36 @@
 .gueststyle{
     font-family: Arial;
     font-weight: bold;
+    text-align: center;
 }
 .inputstyle{
-    width: 100%;
+    width: 350px;
     font-family: Arial;
     font-size: 18px;
+    margin: 2px;
+    padding: 2px;
 }
 .divstyle{
     font-family: Arial;
     font-size: 18px;
     font-weight: bold;
-    width: 800px;
-    color: chocolate;
-    background-color: bisque;
-    text-align: justify;
+    width: 700px;
+    color: midnightblue;
     margin-left: auto;
     margin-right: auto;
+    opacity: 80%;
+    border-width: 1px;
+    border-style: solid;
+    border-color: black;
+    border-radius: 10px;
+    padding: 10px;
+}
+.confirmationTable{
+    font-family: Arial;
+    font-size: 18px;
+    font-weight: bold;
+    width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
 }
