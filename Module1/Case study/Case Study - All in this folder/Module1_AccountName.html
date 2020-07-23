@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="AccountNameCss.css">
 </head>
 <body>
-
+    <br>
     <p CLASS="header">THÔNG TIN ĐẶT PHÒNG</p>
     <p CLASS="header">BOOKING INFORMATION</p>
     <br><br>
@@ -41,7 +41,7 @@
                     <label>Địa chỉ/Address:</label>
                 </td>
                 <td>
-                    <select class="inputstyle" id="address">
+                    <select class="selectstyled" id="address">
                         <option>Đà Nẵng</option>
                         <option>Thừa Thiên Huế</option>
                         <option>Quảng Nam</option>
@@ -52,7 +52,7 @@
             <tr>
                 <td>Hạng khách hàng/Customer Class:</td>
                 <td>
-                    <select class="inputstyle" id="guestclass">
+                    <select class="selectstyled" id="guestclass">
                         <option>Diamond</option>
                         <option>Platinum</option>
                         <option>Gold</option>
@@ -63,7 +63,7 @@
             </tr>
             <tr>
                 <td>Giảm giá/Discount:</td>
-                <td>10%</td>
+                <td><input class="inputstyle" value="10%" disabled></td>
             </tr>
             <tr>
                 <td>Số ngày thuê/rentdays</td>
@@ -74,7 +74,7 @@
             <tr>
                 <td>Loại dịch vụ/ Services</td>
                 <td>
-                    <select class="inputstyle" id="services">
+                    <select class="selectstyled" id="services">
                         <option>Villa</option>
                         <option>House</option>
                         <option>Room</option>
@@ -84,7 +84,7 @@
             <tr>
                 <td>Loại phòng/Room type</td>
                 <td>
-                    <select class="inputstyle" id="roomtype">
+                    <select class="selectstyled" id="roomtype">
                         <option>Vip</option>
                         <option>Bussiness</option>
                         <option>Normal</option>
@@ -94,8 +94,9 @@
             <tr>
                 <td></td>
                 <td><br>
-                   <input type="button" value="Submit" onclick="totalamount()">
-                    <input type="reset" value="Reset">
+                    <input type="button" class="buttonstyle" value="Submit" onclick="totalamount()">
+                    &#160 &#160 &#160 &#160
+                    <input type="reset" class="buttonstyle" value="Reset">
                 </td>
             </tr>
         </table>

@@ -60,7 +60,7 @@ function totalamount() {
         "</tr>"+
         "<tr>"+
             "<td>Thành tiền/ Total Amount: </td>"+
-            "<td style='color: red'>" + amount + "  USD</td>"+
+            "<td class='amountstyle''>" + amount + "  USD</td>"+
         "</tr>"+
         "</table>"
 }
