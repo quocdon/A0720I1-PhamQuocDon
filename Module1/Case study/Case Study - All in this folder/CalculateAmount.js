@@ -20,7 +20,7 @@ function totalamount() {
                                                                                 /*Display booking confirmation with total amount to screen*/
     document.getElementById("ketqua").innerHTML = "<table class='confirmationTable'>" +
         "<tr>" +
-            "<td colspan='2' style='text-align: center'>XÁC NHẬN ĐẶT PHÒNG/ BOOKING CONFIRMATION</td>"+
+            "<td colspan='2' class='confirmationHeader'>XÁC NHẬN ĐẶT PHÒNG/ BOOKING CONFIRMATION</td>"+
         "</tr>"+
         "<tr>" +
             "<td>Tên khách hàng/ Guest name: </td>"+

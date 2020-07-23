@@ -63,6 +63,12 @@ body{
 .amountstyle{
     color: #b52a09;
 }
+.confirmationHeader{
+    text-align: center;
+    color: #b52a09;
+    padding-bottom: 15px;
+    font-size: 20px;
+}
 
 .selectstyled{
     flex: 1;
