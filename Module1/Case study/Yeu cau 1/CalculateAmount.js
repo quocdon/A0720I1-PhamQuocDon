@@ -64,3 +64,19 @@ function totalamount() {
         "</tr>"+
         "</table>"
 }
+function Smouseover() {
+    document.getElementById("submitButton").style.color="white";
+    document.getElementById("submitButton").style.background="#a0a0a0";
+}
+function Smouseout() {
+    document.getElementById("submitButton").style.color="black"
+    document.getElementById("submitButton").style.background="white"
+}
+function Rmouseover() {
+    document.getElementById("resetButton").style.color="white";
+    document.getElementById("resetButton").style.background="#a0a0a0";
+}
+function Rmouseout() {
+    document.getElementById("resetButton").style.color="Black"
+    document.getElementById("resetButton").style.background="white"
+}
