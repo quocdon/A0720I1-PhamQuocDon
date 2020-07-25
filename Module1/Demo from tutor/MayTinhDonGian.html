@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table>
+    <tr>
+        <td colspan="4"><input type="text" id="ketQua"></td>
+    </tr>
+    <tr>
+        <td><button onclick="nhap('1')">1</button></td>
+        <td><button onclick="nhap('2')">2</button></td>
+        <td><button onclick="nhap('3')">3</button></td>
+        <td><button onclick="nhap('+')">+</button></td>
+    </tr>
+    <tr>
+        <td><button onclick="nhap('4')">4</button></td>
+        <td><button onclick="nhap('5')">5</button></td>
+        <td><button onclick="nhap('6')">6</button></td>
+        <td><button onclick="nhap('-')">-</button></td>
+    </tr>
+    <tr>
+        <td><button onclick="nhap('7')">7</button></td>
+        <td><button onclick="nhap('8')">8</button></td>
+        <td><button onclick="nhap('9')">9</button></td>
+        <td><button onclick="nhap('*')">*</button></td>
+    </tr>
+    <tr>
+        <td><button onclick="xoaGiaTri()">C</button></td>
+        <td><button onclick="nhap('0')">0</button></td>
+        <td><button onclick="tinhToan()">=</button></td>
+        <td><button onclick="nhap('/')">/</button></td>
+    </tr>
+</table>
+<script>
+    let ketQua = document.getElementById("ketQua");
+    function nhap(so) {
+        ketQua.value = ketQua.value + so;
+    }
+    function tinhToan() {
+        ketQua.value = eval(ketQua.value);
+    }
+    function xoaGiaTri() {
+        ketQua.value = "";
+    }
+</script>
+</body>
+</html>
