@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Body Mass Index</title>
+</head>
+<body>
+    <h2>BODY MASS INDEX</h2>
+    <label>Chiều cao (m): </label>
+    <input type="text" id="height">
+    <br>
+    <label>Cân nặng (kg): </label>
+    <input type="text" id="weight">
+    <br>
+    <button onclick="BMI()">Chỉ số BMI</button>
+    <script>
+        function BMI() {
+            let height = document.getElementById("height");
+            let  weight = document.getElementById("weight");
+            let index = parseFloat(weight.value) / (parseFloat(height.value)^2)
+            if (index < 18.5) {
+                alert("UnderWeight")
+            }
+            else {
+                if (index < 25) {
+                    alert("Normal")
+                }
+                else {
+                    if (index<30) {
+                        alert("OverWeight")
+                    }
+                    else {alert("Obese")}
+                }
+            }
+        }
+    </script>
+
+</body>
+</html>

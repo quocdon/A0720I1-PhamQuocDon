@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculator</title>
+</head>
+<body>
+    <h2>Calculator</h2>
+    <input type="text" id="numberA">
+    <input type="text" id="numberB">
+    <br>
+    <button onclick="calculate('+')">Addition (+)</button>
+    <button onclick="calculate('-')">Subtraction (-)</button>
+    <button onclick="calculate('*')">Multiple (*)</button>
+    <button onclick="calculate('/')">Division (-)</button>
+    <script>
+        let result = 0;
+        let numberA = document.getElementById("numberA");
+        let numberB = document.getElementById("numberB");
+        function calculate(operator){
+            switch (operator) {
+                case '+': {
+                    result = parseFloat(numberA.value) + parseFloat(numberB.value);
+                    break;
+                }
+                case '-': {
+                    result = parseFloat(numberA.value) - parseFloat(numberB.value);
+                    break;
+                }
+                case '*': {
+                    result = parseFloat(numberA.value) * parseFloat(numberB.value);
+                    break;
+                }
+                case '/': {
+                    result = parseFloat(numberA.value) / parseFloat(numberB.value);
+                    break;
+                }
+            }
+            alert(result);
+        }
+    </script>
+</body>
+</html>

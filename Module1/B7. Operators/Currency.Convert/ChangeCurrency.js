@@ -8,12 +8,12 @@ function convertMoney(){
         result = "Số tiền nhập vào phải là số dương"
     }
     else{
-        if (fromCurrency=="USD" && toCurrency=="VND") {
+        if (fromCurrency.value==="USD" && toCurrency.value==="VND") {
             convertedAmount = amount.value * 23000;
             result = convertedAmount + toCurrency.value;
         }
         else {
-            if (fromCurrency == "VND" && toCurrency == "USD") {
+            if (fromCurrency.value === "VND" && toCurrency.value === "USD") {
                 convertedAmount = amount.value / 23000;
                 result = convertedAmount + toCurrency.value;
             }
