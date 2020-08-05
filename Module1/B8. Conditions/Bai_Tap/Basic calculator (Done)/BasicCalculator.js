@@ -7,7 +7,9 @@ function inpNumber(number) {                                                    
 }
 
 function inpOperator(operator) {                                                                                        //Nhập toán tử vào công thức tính toán
-    if (((operator === "*")||(operator === "/"))&&((formula.value === "+")||(formula.value === "-")||(formula.value.substr(formula.value.length - 1, 1) === "("))) {    //Fix lỗi trong trường hợp nhập 2 toán tử liên tục khiến phép tính bắt đầu bằng dấu nhân và chia và lỗi nhập dấu nhân chia sau dấu mở ngoặc
+    if (((operator === "*")||(operator === "/"))&&
+        ((formula.value === "+")||(formula.value === "-")||(formula.value.substr(formula.value.length - 1, 1) === "(")
+            ||(formula.value.substr(formula.value.length - 2, 2) === "(+")||(formula.value.substr(formula.value.length - 2, 2) === "(-"))) {    //Fix lỗi trong trường hợp nhập 2 toán tử liên tục khiến phép tính bắt đầu bằng dấu nhân và chia và lỗi nhập dấu nhân chia sau dấu mở ngoặc
     }else {
         if (((operator === "*") || (operator === "/") || (operator === "+") || (operator === "-")) &&                   //Trường hợp nhập liên tục 2 toán tử thì công thức tự động thay bằng toán tử nhập sau
             ((formula.value.substr(formula.value.length - 1, 1) === "+")
