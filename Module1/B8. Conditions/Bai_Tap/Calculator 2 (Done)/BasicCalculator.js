@@ -7,7 +7,7 @@ function inpNumber(number) {                                                    
 }
 
 function inpOperator(operator) {                                                                                        //Nhập toán tử vào công thức tính toán
-    if (((operator === "*")||(operator === "/"))&&((formula.value === "+")||(formula.value === "-"))) {                 //Fix lỗi trong trường hợp nhập 2 toán tử liên tục khiến phép tính bắt đầu bằng dấu nhân và chia
+    if (((operator === "*")||(operator === "/"))&&((formula.value === "+")||(formula.value === "-")||(formula.value.substr(formula.value.length - 1, 1) === "("))) {    //Fix lỗi trong trường hợp nhập 2 toán tử liên tục khiến phép tính bắt đầu bằng dấu nhân và chia và lỗi nhập dấu nhân chia sau dấu mở ngoặc
     }else {
         if (((operator === "*") || (operator === "/") || (operator === "+") || (operator === "-")) &&                   //Trường hợp nhập liên tục 2 toán tử thì công thức tự động thay bằng toán tử nhập sau
             ((formula.value.substr(formula.value.length - 1, 1) === "+")
@@ -15,7 +15,7 @@ function inpOperator(operator) {                                                
                 || (formula.value.substr(formula.value.length - 1, 1) === "*")
                 || (formula.value.substr(formula.value.length - 1, 1) === "/"))) {
             formula.value = formula.value.substr(0, formula.value.length - 1) + operator;
-        } else if (((formula.value.substr(formula.value.length - 1, 1) === ""))                            // Tự động thêm số 0 phía trước nếu công thức bắt đầu bằng dấu nhân và chia
+        } else if (((formula.value.substr(formula.value.length - 1, 1) === "")) //Nhân và chia khi bắt đầu công thức hoặc trong ngoặc thì tự động thêm số 0 phía trước
             && ((operator === "*") || (operator === "/"))) {
             formula.value = "0" + operator;
         } else formula.value = formula.value + operator;
