@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Do You Love Me?</title>
+</head>
+<body>
+<h2>Do you love me?</h2>
+<button id="btyes" onclick="btyes()">Yes</button>
+<button id="btno" onmouseover="btno()" style="position: absolute">No</button>
+<script>
+    function btyes() {
+        alert("You are right!")
+    }
+    function btno() {
+        let x = Math.floor(Math.random() * 100);
+        let y = Math.floor(Math.random() * 100);
+        document.getElementById("btno").style.left = x + "%";
+        document.getElementById("btno").style.top = y + "%";
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Đếm số nguyên tố</title>
+</head>
+<body>
+<script>
+    let numOfprime;
+    while (isNaN(numOfprime) || parseInt(numOfprime) < 1){
+        numOfprime = prompt("Nhập số lượng số nguyên tố cần in ra");
+    }
+    let count;
+    let number = 3;
+    let prime;
+    document.writeln(2);
+    count = 1;
+    while (count < parseInt(numOfprime)){
+        prime = true;
+        for (let i = 2 ; i < (Math.floor(number/2)+1) ; i++){
+            if ((number % i) === 0){
+                prime = false;
+            }
+        }
+        if (prime) {
+            document.writeln(number);
+            count++;
+        }
+        number++;
+    }
+</script>
+</body>
+</html>

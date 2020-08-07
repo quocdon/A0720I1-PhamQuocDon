@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bài 3</title>
+</head>
+<body>
+<script>
+    let n1 = 1;
+    let n2 = 1;
+    let num;
+    let sum = n1 + n2;
+    document.writeln(n1);
+    document.writeln(n2)
+    let count = 2;
+    while (count < 20){
+        num = n1 + n2;
+        n1 = n2;
+        n2 = num;
+        sum += num;
+        document.writeln(num);
+        count++;
+    }
+    document.writeln("<br>" + "Tổng 20 số đầu tiên trong dãy Fibonaci là " + sum);
+</script>
+</body>
+</html>

@@ -9,7 +9,8 @@ function inpNumber(number) {                                                    
 function inpOperator(operator) {                                                                                        //Nhập toán tử vào công thức tính toán
     if (((operator === "*")||(operator === "/"))&&
         ((formula.value === "+")||(formula.value === "-")||(formula.value.substr(formula.value.length - 1, 1) === "(")
-            ||(formula.value.substr(formula.value.length - 2, 2) === "(+")||(formula.value.substr(formula.value.length - 2, 2) === "(-"))) {    //Fix lỗi trong trường hợp nhập 2 toán tử liên tục khiến phép tính bắt đầu bằng dấu nhân và chia và lỗi nhập dấu nhân chia sau dấu mở ngoặc
+            ||(formula.value.substr(formula.value.length - 2, 2) === "(+")
+            ||(formula.value.substr(formula.value.length - 2, 2) === "(-"))) {                              //Fix lỗi trong trường hợp nhập 2 toán tử liên tục khiến phép tính bắt đầu bằng dấu nhân và chia và lỗi nhập dấu nhân chia sau dấu mở ngoặc
     }else {
         if (((operator === "*") || (operator === "/") || (operator === "+") || (operator === "-")) &&                   //Trường hợp nhập liên tục 2 toán tử thì công thức tự động thay bằng toán tử nhập sau
             ((formula.value.substr(formula.value.length - 1, 1) === "+")
@@ -17,7 +18,7 @@ function inpOperator(operator) {                                                
                 || (formula.value.substr(formula.value.length - 1, 1) === "*")
                 || (formula.value.substr(formula.value.length - 1, 1) === "/"))) {
             formula.value = formula.value.substr(0, formula.value.length - 1) + operator;
-        } else if (((formula.value.substr(formula.value.length - 1, 1) === "")) //Nhân và chia khi bắt đầu công thức hoặc trong ngoặc thì tự động thêm số 0 phía trước
+        } else if (((formula.value.substr(formula.value.length - 1, 1) === ""))                             //Nhân và chia khi bắt đầu công thức hoặc trong ngoặc thì tự động thêm số 0 phía trước
             && ((operator === "*") || (operator === "/"))) {
             formula.value = "0" + operator;
         } else formula.value = formula.value + operator;
@@ -42,17 +43,18 @@ function rightBracket(){                                                        
 
 }
 function calculate() {
-    if (formula.value.substr(formula.value.length - 1, 1) !== "("){
-        if (leftBrkt - rightBrkt > 0) {                                                                                 //Trong trường hợp chưa đóng hết ngoặc thì công thức tự điền đóng ngoặc rồi mới tính toán
-            for (i = 1; i <= (leftBrkt - rightBrkt); i++) {
-                formula.value += ")";
-            }
-        }
-    }
+
     if (((formula.value.substr(formula.value.length - 1, 1)) === ")") ||
         ((parseInt(formula.value.substr(formula.value.length - 1, 1)) >= 0)                               //Chỉ tính toán khi công thức kết thúc là dấu đóng ngoặc hoặc toán hạng
             && (parseInt(formula.value.substr(formula.value.length - 1, 1)) <= 9))) {
-                formula.value = eval(formula.value);
+        if (formula.value.substr(formula.value.length - 1, 1) !== "("){
+            if (leftBrkt - rightBrkt > 0) {                                                                             //Trong trường hợp chưa đóng hết ngoặc thì công thức tự điền đóng ngoặc rồi mới tính toán
+                for (i = 1; i <= (leftBrkt - rightBrkt); i++) {
+                    formula.value += ")";
+                }
+            }
+        }
+        formula.value = eval(formula.value);
         leftBrkt = 0;                                                                                                   //Sau khi tính toán thì gán lại số dấu mở ngoặc, đóng ngoặc về 0
         rightBrkt = 0;
     }

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kiểm tra a chia hết cho b</title>
+</head>
+<body>
+<script>
+    let a;
+    let b;
+    while (isNaN(a) || parseInt(a)<0){
+        a = prompt("Nhập số a");
+    }
+    while (isNaN(b) || parseInt(b)<0){
+        b = prompt("Nhập số b");
+    }
+    let result = (((a % b) === 0) ? (a + " chia hết cho " + b) : (a + " không chia hết cho " + b));
+    alert(result)
+</script>
+</body>
+</html>

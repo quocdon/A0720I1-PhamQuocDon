@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bài 3</title>
+</head>
+<body>
+<script>
+    let n1 = 1;
+    let n2 = 1;
+    let num = 1;
+    while (num % 5 !== 0){
+        num = n1 + n2;
+        n1 = n2;
+        n2 = num;
+    }
+    document.writeln("Số đầu tiên trong dãy Fibonaci chia hết cho 5 là: " + num);
+
+</script>
+</body>
+</html>

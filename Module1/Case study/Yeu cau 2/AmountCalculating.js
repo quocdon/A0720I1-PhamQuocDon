@@ -88,8 +88,7 @@ function totalamount() {
 
     }
     discount = addDiscount + stayDiscount + classDiscount;
-    discountprice = price - discount;
-    amount = discountprice * parseInt(rentdays.value);
+    amount = price * parseInt(rentdays.value) - discount;
 
     /*Display booking confirmation with total amount to screen*/
     document.getElementById("ketqua").innerHTML = "<table class='confirmationTable'>" +
@@ -134,7 +133,7 @@ function totalamount() {
         "</tr>"+
         "<tr>"+
             "<td>Giảm giá/ Discount: </td>"+
-            "<td>"+ discount + " USD/Đêm (Add: " + addDiscount + " - Rdd: " + stayDiscount + " - Cls: " + classDiscount + ")" + "</td>" +
+            "<td>"+ discount + " USD (Add: " + addDiscount + " - Rdd: " + stayDiscount + " - Cls: " + classDiscount + ")" + "</td>" +
         "</tr>"+
         "<tr>"+
             "<td>Thành tiền/ Total Amount: </td>"+

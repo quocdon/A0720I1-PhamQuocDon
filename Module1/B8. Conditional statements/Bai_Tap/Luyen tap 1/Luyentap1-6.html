@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bài 6 - Tính hoa hồng bán hàng</title>
+</head>
+<body>
+<script>
+    let revenue;
+    while (isNaN(revenue) || parseInt(revenue) < 0){
+        revenue = prompt("Nhập doanh số bán");
+    }
+    let commission;
+    if (parseInt(revenue) <= 10000000){
+        commission = parseInt(revenue)*0.02;
+    } else {
+        if (revenue <= 50000000){
+            commission = 10000000 * 0.02 + (revenue - 10000000)*0.05;
+        } else {
+            if (revenue <= 100000000){
+                commission = 10000000*0.02 + 40000000*0.05 + (revenue - 50000000)*0.1;
+            } else commission = 10000000*0.02 + 40000000*0.05 + 50000000*0.1 + (revenue - 100000000)*0.2;
+        }
+    }
+    alert("Số tiền hoa hồng là: " + commission);
+</script>
+</body>
+</html>

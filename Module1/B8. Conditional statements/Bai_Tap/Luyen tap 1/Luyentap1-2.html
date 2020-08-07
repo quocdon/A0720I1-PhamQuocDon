@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bài 2</title>
+</head>
+<body>
+<script>
+    let tuoi;
+    while (isNaN(tuoi) || parseInt(tuoi)<= 0 || tuoi > 120){
+        if (tuoi != null){alert("Tuổi phải là số dương và nhỏ hơn 120")}
+        tuoi = prompt("Nhập số tuổi của học sinh:")
+    }
+    let result = (tuoi >= 15) ? "Đủ điều kiện vào lớp 10" : "Không đủ điều kiện vào lớp 10";
+    alert(result)
+</script>
+</body>
+</html>

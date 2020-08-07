@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bài 7 - Tính cước viễn thông</title>
+</head>
+<body>
+<h3>Nhập thời gian gọi</h3>
+<input id = minutes type="text"> Phút
+<input id = seconds type="text"> Giây
+<br>
+<br>
+<button onclick="tinhcuoc()">Tính cước</button>
+<p id = "tinhcuoc"></p>
+<script>
+    function tinhcuoc(){
+        let minutes = document.getElementById("minutes");
+        let seconds = document.getElementById("seconds");
+        if (isNaN(minutes.value) || parseInt(minutes.value)< 0 || isNaN(seconds.value) || parseInt(seconds.value) < 0){
+            alert("Bạn nhập không đúng thời gian gọi")
+        } else {
+            let time = parseInt(minutes.value)*60 + parseInt(seconds.value);
+            let fee;
+            if (time <= 6){ fee = 80
+            }else fee = 80 + (time - 6)*13.33;
+            document.getElementById("tinhcuoc").innerHTML = "Cước gọi là: " + fee + " VND"
+        }
+
+    }
+
+</script>
+</body>
+</html>

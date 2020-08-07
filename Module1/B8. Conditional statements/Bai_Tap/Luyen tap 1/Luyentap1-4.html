@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bài 4</title>
+</head>
+<body>
+<script>
+    let a;
+    let b;
+    let c;
+    while (isNaN(a)){
+        a = prompt("Nhập số a");
+    }
+    while (isNaN(b)){
+        b = prompt("Nhập số b");
+    }
+    while (isNaN(c)){
+        c = prompt("Nhập số c");
+    }
+    let max = (a > b) ? (a > c) ? a : c : (b > c) ? b : c;
+    alert("Số lớn nhất là: " + max)
+</script>
+</body>
+</html>

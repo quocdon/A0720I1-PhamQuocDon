@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bài 5</title>
+</head>
+<body>
+<script>
+    let kiemtra;
+    let giuaky;
+    let cuoiky;
+    while (isNaN(kiemtra) || parseFloat(kiemtra) < 0 || parseFloat(kiemtra) > 10){
+        kiemtra = prompt("Nhập điểm bài kiểm tra");
+    }
+    while (isNaN(giuaky) || parseFloat(giuaky) < 0 || parseFloat(giuaky) > 10){
+        giuaky = prompt("Nhập điểm giữa kỳ");
+    }
+    while (isNaN(cuoiky) || parseFloat(cuoiky) < 0 || parseFloat(cuoiky) > 10){
+        cuoiky = prompt("Nhập điểm cuối kỳ");
+    }
+    let trungbinh = (parseFloat(kiemtra) + parseFloat(giuaky)*2 + parseFloat(cuoiky)*3)/6;
+    let xeploai;
+    if (trungbinh >= 8){
+        xeploai = "Giỏi";
+    }else {
+        if (trungbinh >= 7) {
+            xeploai = "Khá";
+        }else {
+            if (trungbinh >= 6){
+                xeploai = "Trung bình";
+            } else {
+                if (trungbinh >= 5 ){
+                    xeploai = "Yếu";
+                } else xeploai = "Không đạt"
+
+            }
+        }
+    }
+    alert("Xếp loại: " + xeploai);
+</script>
+
+</body>
+</html>
