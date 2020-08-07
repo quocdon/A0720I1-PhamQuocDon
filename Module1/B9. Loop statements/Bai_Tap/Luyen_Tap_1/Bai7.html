@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+Nhập Min: <input type="text" id="min">
+<br>
+Nhập Max: <input type="text" id="max">
+<br>
+<button id="submit" onclick="bingo()">Chọn số May mắn</button>
+<br>
+Nhập số bạn chọn: <input type="text" id="yournumber">
+<button id="check" onclick="checkbingo()">Chơi</button>
+<br>
+<p id = "result"></p>
+
+<script>
+    let bingonumber;
+    let count;
+    let min = document.getElementById("min");
+    let max = document.getElementById("max");
+    function bingo() {
+        bingonumber = Math.floor(Math.random()*(parseInt(max.value) - parseInt(min.value) + 1)) + parseInt(min.value);
+        count = 0;
+    }
+    let yournumber = document.getElementById("yournumber");
+    function checkbingo() {
+        if (parseInt(yournumber.value) === bingonumber){
+            document.getElementById("result").innerHTML = "Bạn đã chiến thắng";
+        } else document.getElementById("result").innerHTML = "Rất tiếc, bạn chọn sai rồi";
+        count++;
+        if (count > 3){
+            document.getElementById("result").innerHTML = "Bạn đã đoán 3 lần. <br> Con số may mắn lần chơi này là: " + bingonumber     + "<br> Vui lòng nhập Min, Max và chọn số may mắn trước khi chơi lại"
+        }
+    }
+</script>
+</body>
+</html>
