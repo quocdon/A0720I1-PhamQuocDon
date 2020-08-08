@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dãy Fibonacci</title>
+</head>
+<body>
+<script>
+    let numOfFibonacci;
+    let count = 1;
+    let n1 = 0;
+    let n2 = 1;
+    let nextNumber;
+    let fibonacci="";
+    while (isNaN(numOfFibonacci) || parseInt(numOfFibonacci) <= 0) {
+        numOfFibonacci = prompt("Nhập số lượng số trong dãy Fibonacci cần in ra: ");
+    }
+    while (count <= parseInt(numOfFibonacci)){
+        fibonacci = fibonacci + n2 + "<br>";
+        nextNumber = n1 + n2;
+        n1 = n2;
+        n2 = nextNumber;
+        count++;
+    }
+    document.writeln(fibonacci)
+
+</script>
+
+</body>
+</html>

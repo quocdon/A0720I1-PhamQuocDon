@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chương trình tính lãi ngân hàng</title>
+</head>
+<body>
+<script>
+    let loan;
+    let interest;
+    let numOfMonth;
+    while (isNaN(loan) || parseFloat(loan) <= 0){
+        loan = prompt("Nhập số tiền vay: ");
+    }
+    while (Number.isInteger(parseFloat(numOfMonth)) === false || parseFloat(numOfMonth) < 0){
+        numOfMonth = prompt("Nhập số tháng vay: ")
+    }
+    while (isNaN(interest) || parseFloat(interest) < 0){
+        interest = prompt("Nhập lãi suất (đvt %): ")
+    }
+    for (let i = 1 ; i <= numOfMonth ; i++){
+        loan = parseFloat(loan) + (parseFloat(loan)*parseFloat(interest)/100);
+    }
+    alert("Tổng số tiền phải trả là: " + loan);
+</script>
+
+
+</body>
+</html>
