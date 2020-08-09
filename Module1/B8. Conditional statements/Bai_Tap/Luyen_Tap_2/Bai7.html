@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Giải phương trình bậc 2</title>
+</head>
+<body>
+<script>
+    let a;
+    let b;
+    let c;
+    let delta;
+    let x1;
+    let x2;
+    while (isNaN(a)){
+        a = prompt("Nhập hệ số a trong phương trình aX^2 + bX + c = 0");
+    }
+    while (isNaN(b)){
+        b = prompt("Nhập hệ số b trong phương trình aX^2 + bX + c = 0");
+    }
+    while (isNaN(c)){
+        c = prompt("Nhập hệ số c trong phương trình aX^2 + bX + c = 0");
+    }
+    delta = Math.pow(parseFloat(b), 2) - 4*parseFloat(a)*parseFloat(c);
+    if (delta < 0){
+        alert("Phương trình vô nghiệm")
+    } else if (delta === 0){
+        alert("Phương trình có 1 nghiệm là X = " + (-parseFloat(b)/(2*parseFloat(b))))
+    } else {
+        x1 = (-parseFloat(b) + Math.sqrt(delta))/(2*parseFloat(a));
+        x2 = (-parseFloat(b) - Math.sqrt(delta))/(2*parseFloat(a));
+        alert("Phương trình có 2 nghiệm: X1 = " + x1 + " và X2 = " + x2);
+    }
+</script>
+</body>
+</html>

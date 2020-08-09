@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tính toán công tơ điện</title>
+</head>
+<body>
+<script>
+    /* Bảng giá bán lẻ điện sinh hoạt:
+    bậc 1: từ 0-50kWh : 1.678đ
+    bậc 2: từ 51-100kWh : 1.734đ
+    bậc 3: từ 101-200kWh : 2.014đ
+    bậc 4: từ 201-300kWh : 2.536đ
+    bậc 5: từ 301-400kWh : 2.834đ
+    bậc 6: từ 401kWh trở lên : 2.927đ
+     */
+    let tieuthu;
+    let thanhtien;
+    while (isNaN(tieuthu) || parseFloat(tieuthu) <= 0 || tieuthu === ""){
+        if (tieuthu !== undefined){
+            alert("Chỉ được nhập số dương");
+        }
+        tieuthu = prompt("Nhập lượng điện tiêu thụ (Đvt: kWh): ")
+    }
+    if (parseFloat(tieuthu)<=50){
+        thanhtien = parseFloat(tieuthu)*1678;
+    } else if (parseFloat(tieuthu) <= 100){
+        thanhtien = 50*1678 + (parseFloat(tieuthu) - 50)*1734;
+    } else if (parseFloat(tieuthu) <= 200){
+        thanhtien = 50*1678 + 50*1734 + (parseFloat(tieuthu) - 100)*2014;
+    } else if (parseFloat(tieuthu) <= 300){
+        thanhtien = 50*1678 + 50*1734 + 100*2014 + (parseFloat(tieuthu) - 200)*2536;
+    } else if (parseFloat(tieuthu) <= 400){
+        thanhtien = 50*1678 + 50*1734 + 100*2014 + 100*2536 + (parseFloat(tieuthu) - 300)*2834;
+    } else thanhtien = 50*1678 + 50*1734 + 100*2014 + 100*2536 + 100*2834 + (parseFloat(tieuthu) - 400)*2927;
+    alert("Số tiền phải trả là: " + thanhtien)
+</script>
+</body>
+</html>

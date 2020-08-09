@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kiểm tra cạnh tam giác</title>
+</head>
+<body>
+<script>
+    let a;
+    let b;
+    let c;
+    while (isNaN(a) || a === ''){
+        if (a !== undefined){ alert("Chỉ được nhập số")}
+        a = prompt("Nhập số a")
+    }
+    while (isNaN(b) || b === ''){
+        if (b !== undefined){ alert("Chỉ được nhập số")}
+        b = prompt("Nhập số b")
+    }
+    while (isNaN(c) || c === ''){
+        if (c !== undefined){ alert("Chỉ được nhập số")}
+        c = prompt("Nhập số c")
+    }
+    if (parseFloat(a)> 0 && parseFloat(b) > 0 && parseFloat(c) > 0 && parseFloat(a) + parseFloat(b) > parseFloat(c)
+    && parseFloat(b) + parseFloat(c) > parseFloat(a) && parseFloat(c) + parseFloat(a) > parseFloat(b)){
+        alert(a + " ; " + b + " ; " + c + " là 3 cạnh của 1 tam giác")
+    } else { alert(a + " ; " + b + " ; " + c + " không phải là 3 cạnh của 1 tam giác") }
+</script>
+</body>
+</html>

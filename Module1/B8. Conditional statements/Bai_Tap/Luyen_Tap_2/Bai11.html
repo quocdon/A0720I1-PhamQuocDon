@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tính thuế Thu nhập cá nhân</title>
+</head>
+<body>
+<script>
+    /* Chương trình tính thuế TNCN áp dung theo thông tư 954/2020/UBTVQH14 có hiệu lực từ 01/07/2020
+    với mức giảm trừ bản thân là 11.000.000 VNĐ/tháng và giảm trừ cho mỗi người phụ thuộc là 4.400.000 VND/tháng
+     */
+    let pit;
+    let income;
+    let dependent;
+    let asbIncome;
+    while (isNaN(income) || parseFloat(income) < 0 || income === ""){
+        if (income !== undefined){alert("Chỉ được nhập số dương")}
+        income = prompt("Nhập thu nhập của bạn (đvt: VND/tháng)");
+    }
+    while (isNaN(dependent) || parseFloat(dependent) < 0 || Number.isInteger(parseFloat(dependent)) === false){
+        if (dependent !== undefined){alert("Chỉ được nhập số nguyên dương")}
+        dependent = prompt("Nhập số người phụ thuộc \n (Trường hợp không có người phụ thuộc hãy nhập số 0)");
+    }
+    asbIncome = parseFloat(income) - 11000000 - 4400000*parseInt(dependent);
+    if (asbIncome <= 0){
+        pit = 0;
+    } else if (asbIncome <= 5000000){
+        pit = asbIncome * 0.05;
+    } else if (asbIncome <= 10000000){
+        pit = 0.1*asbIncome - 250000;
+    } else if (asbIncome <= 18000000){
+        pit = 0.15*asbIncome - 750000;
+    } else if (asbIncome <= 32000000){
+        pit = 0.2*asbIncome - 1650000;
+    } else if (asbIncome <= 52000000){
+        pit = 0.25*asbIncome - 3250000;
+    } else if (asbIncome <= 80000000){
+        pit = 0.3*asbIncome - 5850000;
+    } else pit = 0.35*asbIncome - 9850000;
+    alert("Thuế TNCN là: " + pit + " VND")
+</script>
+</body>
+</html>

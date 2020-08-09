@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Giải Phương trình bậc nhất</title>
+</head>
+<body>
+<script>
+    let a;
+    let b;
+    while (isNaN(a)){
+        a = prompt("Nhập hệ số a trong phương trình aX + b = 0");
+    }
+    while (isNaN(b)){
+        b = prompt("Nhập hệ số b trong phương trình aX + b = 0");
+    }
+    if (parseFloat(a) === 0){
+        if (parseFloat(b) === 0){
+            alert("Phương trình có vô số nghiệm");
+        } else {
+            alert("Phương trình vô nghiệm")
+        }
+    } else { alert("Phương trình có nghiệm là X = " + (-b/a))}
+</script>
+
+</body>
+</html>

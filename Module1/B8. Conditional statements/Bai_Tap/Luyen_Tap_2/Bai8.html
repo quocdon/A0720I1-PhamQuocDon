@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kiểm tra tuổi</title>
+</head>
+<body>
+<script>
+    let tuoi;
+    while (isNaN(tuoi) || Number.isInteger(parseFloat(tuoi)) === false){
+        if (tuoi !== undefined) {alert("Chỉ được nhập số nguyên")}
+        tuoi = prompt("Nhập số tuổi: ");
+    }
+    if (tuoi > 0 && tuoi < 120){
+        alert(tuoi + " là tuổi của người");
+    } else alert(tuoi + " không phải là tuổi của người")
+</script>
+</body>
+</html>
