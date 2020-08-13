@@ -12,7 +12,7 @@
     while (isNaN(loan) || parseFloat(loan) <= 0){
         loan = prompt("Nhập số tiền vay: ");
     }
-    while (Number.isInteger(parseFloat(numOfMonth)) === false || parseFloat(numOfMonth) < 0){
+    while (!Number.isInteger(parseFloat(numOfMonth)) || parseFloat(numOfMonth) < 0){
         numOfMonth = prompt("Nhập số tháng vay: ")
     }
     while (isNaN(interest) || parseFloat(interest) < 0){

@@ -8,7 +8,7 @@
 <script>
     let number;
     let giaithua = 1;
-    while (Number.isInteger(parseFloat(number)) === false || parseInt(number) <= 0){
+    while (!Number.isInteger(parseFloat(number)) || parseInt(number) <= 0){
         number = prompt("Nhập một số để tính giai thừa: ");
     }
     for (let i = 1 ; i <= number ; i++ ){
