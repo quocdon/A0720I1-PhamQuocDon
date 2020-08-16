@@ -430,7 +430,7 @@ function checkinfo(){
 //Check guestID format
     if (guestid.value === ""){
         messageAlert += "Số CMND: Chưa nhập thông tin \n"
-    } else if (guestid.value.length !== 8 || !Number.isInteger(parseInt(guestid.value) || parseInt(guestid.value) < 0)){
+    } else if (guestid.value.length !== 8 || isNaN(guestid.value) || !Number.isInteger(parseFloat(guestid.value)) || parseFloat(guestid.value) < 0){
         messageAlert += "Số CMND: Phải là dãy số có 8 chữ số \n";
     }
 // Check DoB format
