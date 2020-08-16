@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Luyen tap 1-1</title>
+</head>
+<body>
+<script>
+    let count = 0;
+    let arr = new Array(10);
+    for (let i = 0; i < arr.length; i++){
+        arr[i] = prompt("Nhập phần tử thứ " + (i+1))
+    }
+    for (let i = 1; i < arr.length; i++){
+        if (parseInt(arr[i]) > 10){
+            count++;
+        }
+    }
+    alert("Số lương phần tử lớn hơn 10 là " + count);
+</script>
+
+</body>
+</html>

@@ -236,18 +236,18 @@ function editguestinfo() {
             "            </tr>" +
             "        </table>" +
             "    </form>";
-        let temp1 = listOfGuest[index][4];
-        let mySelect1 = document.getElementById("address");
-        for (let i, j = 0; i = mySelect1.options[j]; j++) {
-            if (i.value == temp1) {
-                mySelect1.selectedIndex = j;
+        let temp = listOfGuest[index][4];
+        let mySelect = document.getElementById("address");
+        for (let i, j = 0; i = mySelect.options[j]; j++) {
+            if (i.value === temp) {
+                mySelect.selectedIndex = j;
                 break;
             }
         }
         temp = listOfGuest[index][5];
         mySelect = document.getElementById("guestclass");
         for (let i, j = 0; i = mySelect.options[j]; j++) {
-            if (i.value == temp) {
+            if (i.value === temp) {
                 mySelect.selectedIndex = j;
                 break;
             }
@@ -255,7 +255,7 @@ function editguestinfo() {
         temp = listOfGuest[index][8];
         mySelect = document.getElementById("services");
         for (let i, j = 0; i = mySelect.options[j]; j++) {
-            if (i.value == temp) {
+            if (i.value === temp) {
                 mySelect.selectedIndex = j;
                 break;
             }
@@ -263,7 +263,7 @@ function editguestinfo() {
         temp = listOfGuest[index][9];
         mySelect = document.getElementById("roomtype");
         for (let i, j = 0; i = mySelect.options[j]; j++) {
-            if (i.value == temp) {
+            if (i.value === temp) {
                 mySelect.selectedIndex = j;
                 break;
             }
