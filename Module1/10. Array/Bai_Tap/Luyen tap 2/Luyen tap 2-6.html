@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Thay thế ký tự -</title>
+</head>
+<body>
+<script>
+    let inputString = prompt("Nhập chuỗi ký tự");
+    let outputString="";
+    for (let i = 0; i < inputString.length; i++){
+        if (inputString[i] === "-"){
+            outputString += "_";
+        } else {
+            outputString += inputString[i]
+        }
+    }
+    alert(outputString);
+</script>
+</body>
+</html>

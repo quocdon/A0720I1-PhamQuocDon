@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tìm V và xóa đi trong mảng số nguyên </title>
+</head>
+<body>
+<script>
+    let arr = new Array();
+    let numOfElement;
+    let count = 0;
+    while (isNaN(numOfElement) || parseFloat(numOfElement) < 0 || !Number.isInteger(parseFloat(numOfElement))){
+        numOfElement = prompt("Nhập số lượng phần tử: ");
+    }
+
+    for (let i = 0; i < numOfElement; i++){
+        while (isNaN(arr[i])) {
+            arr[i] = prompt("Nhập phần tử thứ " + (i+1))
+        }
+    }
+    let findElement = prompt("Nhập phần tử V cần tìm trong mảng");
+    let index = 0;
+    while (index < arr.length){
+        if (findElement === arr[index]){
+            break;
+        } else index++;
+    }
+    if (index === arr.length){
+        alert("V is not in the array")
+    } else {
+        for (let i = index; i < arr.length - 1; i++ ){
+            arr[i] = arr[i+1];
+        }
+        arr[arr.length - 1] = 0;
+        alert(arr);
+    }
+</script>
+</body>
+</html>

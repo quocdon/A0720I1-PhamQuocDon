@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>So sánh 2 chuỗi</title>
+</head>
+<body>
+<script>
+    let stringA = prompt("Nhập chuỗi A");
+    let stringB = prompt("Nhập chuỗi B");
+    let index;
+    if (stringA.length !== stringB.length){
+        alert("Chuỗi A và B khác nhau");
+    }else {
+        for (index = 0; index < stringA.length; index++){
+            if (stringA[index] !== stringB[index]){
+                break;
+            }
+        }
+        if (index === stringA.length){
+            alert("Chuỗi A và B giống nhau")
+        } else alert("Chuỗi A và B khác nhau");
+    }
+</script>
+</body>
+</html>

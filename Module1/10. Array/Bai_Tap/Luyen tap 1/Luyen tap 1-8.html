@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Săp xếp mảng giảm dần</title>
+</head>
+<body>
+<script>
+    let arr = new Array(10);
+    let temp;
+    for (let i = 0; i < arr.length; i++){
+        while (isNaN(arr[i]) || arr[i] === "" ) {
+            arr[i] = prompt("Nhập phần tử thứ " + (i+1))
+        }
+    }
+    for (let i = 0; i < arr.length - 1; i++){
+        for (let j = i+1; j < arr.length; j++){
+            if (parseFloat(arr[i]) < parseFloat(arr[j])){
+                temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+            }
+        }
+    }
+    alert(arr);
+</script>
+</body>
+</html>

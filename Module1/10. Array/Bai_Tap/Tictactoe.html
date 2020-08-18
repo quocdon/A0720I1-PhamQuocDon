@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tictactoe</title>
+</head>
+<body>
+
+<script>
+    let arrayOfCaro = new Array();
+    let isPersonX = true;
+    function init() {
+        for (let i = 0; i < 5; i++){
+            arrayOfCaro[i] = new Array()
+            for (let j = 0; j < 5; j++){
+                arrayOfCaro[i][j] = " ";
+            }
+        }
+    }
+    function displayArrayOfCaro() {
+        let temp = "<table border='1' cellpadding='30px'>";
+        for (let i = 0; i < 5; i++){
+            temp += "<tr>";
+            for (let j = 0; j < 5; j++){
+                temp += "<td onclick='caroTurn("+ i + "," + j +")'>" + arrayOfCaro[i][j] + "</td>"
+            }
+            temp += "</tr>"
+        }
+        temp += "</table>";
+        document.write(temp);
+    }
+    function caroTurn(x,y) {
+        if (arrayOfCaro[x][y] === "X" || arrayOfCaro[x][y]==="O"){
+            alert("Ô đã được chọn")
+        }else {
+            if (isPersonX){
+                arrayOfCaro[x][y] = "X";
+                winnerChecking("X");
+                isPersonX = false;
+            } else {
+                arrayOfCaro[x][y] = "O";
+                winnerChecking("O");
+                isPersonX = true;
+            }
+        }
+        document.body.innerHTML="";
+        displayArrayOfCaro();
+    }
+    function winnerChecking(temp) {
+        for (let i = 0; i < 5; i++) {
+            for (let j = 0; j < 3; j++) {
+                if (arrayOfCaro[i][j] === temp && arrayOfCaro[i][j + 1] === temp && arrayOfCaro[i][j + 2] === temp) {
+                    alert(temp + " win");
+                    init();
+                    displayArrayOfCaro();
+                }
+            }
+        }
+        for (let i = 0; i < 3; i++) {
+            for (let j = 0; j < 5; j++) {
+                if (arrayOfCaro[i][j] === temp && arrayOfCaro[i + 1][j] === temp && arrayOfCaro[i + 2][j] === temp){
+                    alert(temp + " win")
+                    init();
+                    displayArrayOfCaro();
+                }
+            }
+        }
+        for (let i = 0; i < 3; i++){
+            for (let j = 0; j < 3; j++){
+                if (arrayOfCaro[i][j] === temp && arrayOfCaro[i + 1][j+1] === temp && arrayOfCaro[i + 2][j+2] === temp){
+                    alert(temp + " win")
+                    init();
+                    displayArrayOfCaro();
+                }
+            }
+        }
+        for (let i = 0; i < 3; i++) {
+            for (let j = 2; j < 5; j++) {
+                if (arrayOfCaro[i][j] === temp && arrayOfCaro[i + 1][j-1] === temp && arrayOfCaro[i + 2][j-2] === temp) {
+                    alert(temp + " win")
+                    init();
+                    displayArrayOfCaro();
+                }
+            }
+        }
+    }
+    init();
+    displayArrayOfCaro();
+</script>
+
+</body>
+</html>

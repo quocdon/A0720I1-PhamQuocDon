@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Đếm số từ trong chuỗi</title>
+</head>
+<body>
+<script>
+    let inputString = prompt("Nhập chuỗi bất kỳ:");
+    let temp = "";
+    let countSpace = 0;
+    inputString = inputString.trim();
+    if (inputString.length === 0){
+        alert("Số từ trong chuỗi: 0");
+    }else {
+        for (let i = 0; i < inputString.length; i++){
+            if (inputString[i] === " " && inputString[i+1] === " "){
+                continue;
+            }
+            temp += inputString[i];
+        }
+        for (let i = 0; i < temp.length; i++){
+            if (temp[i] === " "){
+                countSpace++;
+            }
+        }
+        alert("Số từ trong chuỗi : " + (countSpace + 1));
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tìm số lớn nhất trong mảng</title>
+</head>
+<body>
+<script>
+    let arr = new Array();
+    let numOfElement;
+    while (isNaN(numOfElement) || parseFloat(numOfElement) < 0 || !Number.isInteger(parseFloat(numOfElement))){
+        numOfElement = prompt("Nhập số lượng phần tử: ");
+    }
+
+    for (let i = 0; i < numOfElement; i++){
+        while (isNaN(arr[i])) {
+            arr[i] = prompt("Nhập phần tử thứ " + (i+1))
+        }
+    }
+    let maxElement = parseFloat(arr[0]);
+    let sum = parseFloat(arr[0]);
+
+    for (let i = 1; i < arr.length; i++){
+        if (maxElement < parseFloat(arr[i])){
+            maxElement = parseFloat(arr[i])
+            sum += parseFloat(arr[i]);
+        }
+    }
+    let everage = sum / numOfElement;
+    alert("Giá trị lớn nhất trong mảng là " + maxElement + "\n Giá trị TB các phần tử là " + everage );
+
+
+</script>
+</body>
+</html>

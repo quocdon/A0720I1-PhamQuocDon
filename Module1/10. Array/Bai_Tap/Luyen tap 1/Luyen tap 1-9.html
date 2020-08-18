@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Nối mảng A+B=C</title>
+</head>
+<body>
+<script>
+    let arrA = new Array(10);
+    let arrB = new Array(10);
+    let arrC = new Array();
+    for (let i = 0; i < arrA.length; i++){
+        while (isNaN(arrA[i]) || arrA[i] === "" ) {
+            arrA[i] = prompt("Mảng A: Nhập phần tử thứ " + (i+1))
+        }
+        arrC.push(arrA[i]);
+    }
+    for (let i = 0; i < arrB.length; i++){
+        while (isNaN(arrB[i]) || arrB[i] === "" ) {
+            arrB[i] = prompt("Mảng B: Nhập phần tử thứ " + (i+1))
+        }
+        arrC.push(arrB[i]);
+    }
+    alert(arrC);
+</script>
+</body>
+</html>

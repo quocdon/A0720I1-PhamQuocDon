@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Đếm số nguyên âm</title>
+</head>
+<body>
+<script>
+    let arr = new Array();
+    let numOfElement;
+    let count = 0;
+    while (isNaN(numOfElement) || parseFloat(numOfElement) < 0 || !Number.isInteger(parseFloat(numOfElement))){
+        numOfElement = prompt("Nhập số lượng phần tử: ");
+    }
+
+    for (let i = 0; i < numOfElement; i++){
+        while (isNaN(arr[i])) {
+            arr[i] = prompt("Nhập phần tử thứ " + (i+1))
+        }
+    }
+    for (let i = 0; i < numOfElement; i++){
+        if (parseFloat(arr[i]) < 0){
+            count++;
+        }
+    }
+    alert("Số lượng số nguyên âm trong mảng là: " + count);
+</script>
+</body>
+</html>
