@@ -18,6 +18,18 @@ let messageAlert;
 let arrGuestAccount = new Array();
 let listOfGuest = new Array();
 let index;
+//------------- Load main menu -------------------
+function mainMenu() {
+    document.getElementById("showinformation").innerHTML="";
+    document.getElementById("mainMenu").innerHTML = "<ul>"+
+        "<li><p onclick='inputguestinfo()'>Add new guest account</p></li>"+
+        "<li><p onclick='editguestinfo()'>Edit Guest account</p></li>"+
+        "<li><p onclick='deleteguestinfo()'>Delete guest account</p></li>"+
+        "<li><p onclick='showguestinfo()'>Display list of guest account</p></li>"+
+        "<li><p onclick='confirmation()'>Show Booking confirmation</p></li>"+
+        "<li><p onclick='mainMenu()'>Exit</p></li>"+
+        "</ul>"
+}
 
 //----------- Show input form -------------------
 function inputguestinfo(){
@@ -593,14 +605,4 @@ function Rmouseout() {
     document.getElementById("resetButton").style.color="Black";
     document.getElementById("resetButton").style.background="white";
 }
-function mainMenu() {
-    document.getElementById("showinformation").innerHTML="";
-    document.getElementById("mainMenu").innerHTML = "<ul>"+
-    "<li><p onclick='inputguestinfo()'>Add new guest account</p></li>"+
-    "<li><p onclick='editguestinfo()'>Edit Guest account</p></li>"+
-    "<li><p onclick='deleteguestinfo()'>Delete guest account</p></li>"+
-    "<li><p onclick='showguestinfo()'>Display list of guest account</p></li>"+
-    "<li><p onclick='confirmation()'>Show Booking confirmation</p></li>"+
-    "<li><p onclick='mainMenu()'>Exit</p></li>"+
-    "</ul>"
-}
+
