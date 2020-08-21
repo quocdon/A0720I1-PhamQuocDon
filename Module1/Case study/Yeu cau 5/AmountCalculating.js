@@ -33,7 +33,7 @@ function mainMenu() {
 
 //----------- Show input form -------------------
 function inputguestinfo(){
-    document.getElementById("showinformation").innerHTML = "<p CLASS=\"header\">THÔNG TIN ĐẶT PHÒNG <br>" +
+    document.getElementById("showinformation").innerHTML = "<p class='header'>THÔNG TIN ĐẶT PHÒNG <br>" +
         "        BOOKING INFORMATION" +
         "    </p><br><br><br><br><br><br>" +
         "<form action='guest.info.html' method='post' id='guestinfo'>" +
@@ -394,8 +394,8 @@ function submitbutton() {
         listOfGuest.push(arrGuestAccount);
         alert("Thông tin được nhập thành công");
         document.getElementById("guestinfo").reset();
+        mainMenu();
     } else {alert(messageAlert)}
-    mainMenu();
 }
 
 //---------- Update button event ----------------
