@@ -27,6 +27,7 @@
         }
         catch(prey){
             if (this.speed > prey.speed){
+                prey.speed = 0;
                 return true
             } else {
                 return false
@@ -36,6 +37,7 @@
             if (this.catch(prey) && prey.alive){
                 this.weight += prey.weight;
                 prey.alive = false;
+                prey.weight = 0;
                 return true;
             } else {
                 return false
