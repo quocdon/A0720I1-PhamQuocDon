@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tom & Jerry</title>
+</head>
+<body>
+<script>
+    class Animal {
+        constructor(name, weight, speed, alive){
+            this.name = name;
+            this.weight = weight;
+            this.speed = speed;
+            this.alive = alive;
+        }
+        sound(){
+        }
+    }
+    class Mouse extends Animal{
+        sound() {
+            return "chit chit"
+        }
+    }
+    class Cat extends Animal {
+        sound() {
+            return "meo meo"
+        }
+        catch(prey){
+            if (this.speed > prey.speed){
+                return true
+            } else {
+                return false
+            }
+        }
+        eat(prey){
+            if (this.catch(prey) && prey.alive){
+                this.weight += prey.weight;
+                prey.alive = false;
+                return true;
+            } else {
+                return false
+            }
+        }
+    }
+    let tom = new Cat("Tom", 5, 20, true);
+    let jerry = new Mouse("Jerry", 0.5, 10, true);
+    let motherOfJerry = new Mouse("mother of Jerry", 1, 40, true);
+    console.log("Tom bắt được Jerry? " + tom.catch(jerry));
+    console.log("Tom ăn Jerry? " + tom.eat(jerry));
+    console.log("Jerry sống? " + jerry.alive);
+    console.log("Cân nặng của Tom? " + tom.weight);
+    console.log("Tom bắt được mẹ Jerry? " + tom.catch(motherOfJerry));
+    console.log("Mẹ Jerry còn sống? " + motherOfJerry.alive)
+</script>
+</body>
+</html>
