@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chuyển đổi giữa Feet và Meter</title>
+</head>
+<body>
+    <input type="text" id="inputNumber">
+    <button onclick="feetToMeter()">Feet to Meter</button>
+    <button onclick="meterToFeet()">Meter to Feet</button>
+<script>
+    let inputNumber = document.getElementById("inputNumber");
+    let convertedNumber;
+    function feetToMeter() {
+        if (isNaN(inputNumber.value) || parseFloat(inputNumber.value) < 0){
+            alert("Chỉ được nhập số dương")
+        } else {
+            convertedNumber = 0.305 * parseFloat(inputNumber.value);
+            alert(inputNumber.value + " feet = " + convertedNumber + " meter")
+        }
+    }
+    function meterToFeet() {
+        if (isNaN(inputNumber.value) || parseFloat(inputNumber.value) < 0){
+            alert("Chỉ được nhập số dương")
+        } else {
+            convertedNumber = 3.279 * parseFloat(inputNumber.value);
+            alert(inputNumber.value + " meter = " + convertedNumber + " feet")
+        }
+    }
+
+</script>
+
+</body>
+</html>

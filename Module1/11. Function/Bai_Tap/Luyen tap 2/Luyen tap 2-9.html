@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tìm số lần xuất hiện ký tự</title>
+</head>
+<body>
+<script>
+    let lenOfArr;
+    let arr = new Array();
+    let character;
+    while (isNaN(lenOfArr) || lenOfArr === ""){
+        lenOfArr = prompt("Nhập độ dài của mảng")
+    }
+    for (let i = 0; i < parseFloat(lenOfArr); i++){
+        while (arr[i] === "" || arr[i] === undefined){
+            arr[i] = prompt("Nhập vào phẩn tử thứ " + (i+1))
+        }
+    }
+    character = prompt("Nhập ký tự cần tìm");
+    alert(checkChr(arr,character));
+    function checkChr(arr,chr) {
+        let count = 0;
+        for (let i = 0; i < arr.length; i++) {
+            if (chr === arr[i]) {
+                count++
+            }
+        }
+        if (count === 0){
+            return -1
+        } else {
+            return count;
+        }
+    }
+
+
+
+</script>
+</body>
+</html>

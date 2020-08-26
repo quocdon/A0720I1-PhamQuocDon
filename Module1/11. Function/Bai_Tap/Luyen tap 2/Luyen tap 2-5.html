@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tìm Min</title>
+</head>
+<body>
+<script>
+    let number1 = "";
+    let number2 = "";
+    let number3 = "";
+    while (number1 ==="" || isNaN(number1)){
+        number1 = prompt("Nhập số thứ nhất: ")
+    }
+    while (number2 ==="" || isNaN(number2)){
+        number2 = prompt("Nhập số thứ hai: ")
+    }
+    while (number3 ==="" || isNaN(number3)){
+        number3 = prompt("Nhập số thứ ba: ")
+    }
+    alert("Số nhỏ nhất là: " + min(number1,number2,number3));
+    function min(a,b,c) {
+        a = parseFloat(a);
+        b = parseFloat(b);
+        c = parseFloat(c);
+        if (a < b){
+            if (a < c){
+                return a
+            }else return c
+        }else {
+            if (b < c){
+                return b
+            } else return c
+        }
+    }
+</script>
+
+</body>
+</html>

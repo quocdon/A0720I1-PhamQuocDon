@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Diện tích, chu vi hình tròn</title>
+</head>
+<body>
+<script>
+    let radius;
+
+    while (isNaN(radius) || radius==="" || parseFloat(radius) < 0){
+        radius = prompt("Nhập bán kính hình tròn")
+    }
+    alert("Chu vi: " + perimeter(parseFloat(radius)) + "\n Diện tích: " + square(parseFloat(radius)))
+    function perimeter(temp) {
+        let prmt = 2 * temp * Math.PI;
+        return prmt;
+    }
+    function square(temp) {
+        let sqr = temp*temp*Math.PI;
+        return sqr
+    }
+</script>
+
+</body>
+</html>

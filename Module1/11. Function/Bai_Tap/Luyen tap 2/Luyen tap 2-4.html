@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kiểm tra ký tự số</title>
+</head>
+<body>
+<script>
+    let inputCharacter = "";
+    while (inputCharacter === ""){
+        inputCharacter = prompt("Nhập vào ký tự bất kỳ")
+    }
+    alert(checkCharacter(inputCharacter));
+    function checkCharacter(temp) {
+        if (isNaN(temp)) {
+            return false
+        }else {
+            return true
+        }
+    }
+</script>
+</body>
+</html>

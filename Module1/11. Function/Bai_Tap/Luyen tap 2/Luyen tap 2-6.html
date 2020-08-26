@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kiểm tra số nguyên dương</title>
+</head>
+<body>
+<script>
+    let inputnumber = "";
+    while (inputnumber === "" || isNaN(inputnumber)){
+        inputnumber = prompt("Nhập vào một số bất kỳ")
+    }
+    if (isNumber(inputnumber)){
+        alert(inputnumber + " là số nguyên dương");
+    }else alert(inputnumber + " không phải số nguyên dương");
+
+    function isNumber(number) {
+        number = parseFloat(number);
+        if (Number.isInteger(number) && parseInt(number) > 0){
+            return true
+        }else return false
+    }
+</script>
+
+</body>
+</html>

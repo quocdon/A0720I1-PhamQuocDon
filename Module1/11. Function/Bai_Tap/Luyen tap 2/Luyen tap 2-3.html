@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tính giai thừa</title>
+</head>
+<body>
+<script>
+    let inputNumber;
+    while (isNaN(inputNumber) || inputNumber==="" || parseFloat(inputNumber) < 0 || !Number.isInteger(parseFloat(inputNumber))) {
+        inputNumber = prompt("Nhập số nguyên dương bất kỳ")
+    }
+    alert(inputNumber + "! = " + factorial(inputNumber));
+    function factorial(temp){
+        let result = 1;
+        temp = parseInt(temp)
+        for (let i = 1; i <= temp; i++){
+            result *= i;
+        }
+        return result
+    }
+</script>
+</body>
+</html>

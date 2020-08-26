@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tính bình phương</title>
+</head>
+<body>
+<script>
+    let  inputNumber;
+    while (isNaN(inputNumber) || inputNumber === ""){
+        inputNumber = prompt("Nhập số bất kỳ")
+    }
+    function sqr(temp) {
+        return temp*temp;
+    }
+    alert(inputNumber + "^2 = " + sqr(parseFloat(inputNumber)))
+
+</script>
+
+</body>
+</html>

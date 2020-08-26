@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Đảo mảng số nguyên</title>
+</head>
+<body>
+<script>
+    let lenOfArr;
+    let arr = new Array();
+    while (isNaN(lenOfArr) || lenOfArr === ""){
+        lenOfArr = prompt("Nhập độ dài của mảng")
+    }
+    for (let i = 0; i < parseFloat(lenOfArr); i++){
+        while (isNaN(arr[i]) || arr[i] === ""){
+            arr[i] = prompt("Nhập vào phẩn tử thứ " + (i+1))
+        }
+    }
+    arr = reverse(arr);
+    alert(arr)
+    function reverse(tempArr) {
+        for (let i = 0; i < tempArr.length/2; i++){
+            let temp;
+            temp = tempArr[i];
+            tempArr[i] = tempArr[tempArr.length - i -1];
+            tempArr[tempArr.length - i -1] = temp;
+        }
+        return tempArr
+    }
+</script>
+</body>
+</html>

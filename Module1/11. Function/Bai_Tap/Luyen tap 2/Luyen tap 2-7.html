@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Đổi chỗ 2 số</title>
+</head>
+<body>
+<script>
+    let number1 = "";
+    let number2 = "";
+    let arr = new Array(2);
+    while (number1 ==="" || isNaN(number1)){
+        number1 = prompt("Nhập số thứ nhất: ")
+    }
+    while (number2 ==="" || isNaN(number2)){
+        number2 = prompt("Nhập số thứ hai: ")
+    }
+    [number1, number2] = swap(number1, number2);
+    alert(number1 + " - " +number2);
+    function swap(num1,num2) {
+        let arr = new Array(2)
+        arr[0] = num2;
+        arr[1] = num1;
+        return arr
+    }
+</script>
+</body>
+</html>
