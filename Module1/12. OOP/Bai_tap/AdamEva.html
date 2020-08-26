@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Adam Eva</title>
+</head>
+<body>
+<script>
+    class Apple {
+        constructor(weight) {
+            this.weight = weight;
+        }
+        isEmpty(){
+            if (this.weight === 0){
+                return true
+            } else {
+                return false
+            }
+        }
+    }
+    class Human {
+        constructor(name, gender, weight){
+            this.name = name;
+            this.gender = gender;
+            this.weight = weight;
+        }
+        speak(){
+            console.log("Tôi là con người")
+        }
+        eat(fruit){
+            if (fruit.weight > 0){
+                fruit.weight--;
+                this.weight++
+            }
+        }
+        getWeight(fruit){
+            return fruit.weight
+        }
+        getHumanInfo(person, info){
+            switch (info) {
+                case "name": {
+                    return person.name;
+                    break
+                }
+                case "gender": {
+                    return person.gender;
+                    break
+                }
+                case "weight": {
+                    return person.weight;
+                    break
+                }
+            }
+        }
+
+    }
+    let apple = new Apple(10);
+    let adam = new Human("Adam", "male", 60);
+    let eva = new Human("Eva", "female", 50);
+    adam.eat(apple);
+    alert(eva.getWeight(apple));
+    alert(adam.getHumanInfo(eva,"name"))
+</script>
+
+</body>
+</html>

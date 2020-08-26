@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bóng đèn</title>
+</head>
+<body>
+<img src="img/off.gif" id="lamp">
+<button onclick="turn()">Turn On/Off</button>
+<script>
+    class Lamp {
+        constructor(status) {
+            this.status = status
+        }
+        showLamp(img){
+            if (this.status){
+                img.src = "img/on.gif"
+            } else {
+                img.src = "img/off.gif"
+            }
+        }
+    }
+    class SwitchButton{
+        switchLamp(toLamp){
+            toLamp.status = !toLamp.status
+        }
+    }
+    let lamp = new Lamp(false);
+    let lampSwitch = new SwitchButton();
+    let lampImage = document.getElementById("lamp");
+    function turn() {
+        lampSwitch.switchLamp(lamp);
+        lamp.showLamp(lampImage)
+    }
+</script>
+</body>
+</html>

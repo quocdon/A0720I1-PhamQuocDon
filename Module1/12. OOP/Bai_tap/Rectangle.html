@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hinh chữ nhật</title>
+</head>
+<body>
+<canvas id="myCanvas" width="1000px" height="500px"></canvas>
+<script>
+    class Rectangle {
+        constructor(width, height) {
+            this.width = width;
+            this.height = height
+        }
+        square(){
+            return this.width*this.height
+        }
+        primeter(){
+            return 2*(this.width + this.height)
+        }
+    }
+    let abc = new Rectangle(200,400);
+    let c = document.getElementById("myCanvas");
+    let ctx = c.getContext("2d");
+    ctx.fillStyle = "red";
+    ctx.fillRect(20,20,abc.height, abc.width);
+    abc.width = 400;
+    abc.height = 800;
+    alert("Diện tích: " + abc.square() + " Chu vi: " + abc.primeter())
+</script>
+</body>
+</html>
