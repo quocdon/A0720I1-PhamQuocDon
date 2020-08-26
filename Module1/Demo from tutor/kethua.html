@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    class Animal{
+        constructor(name, legs){
+            this.name = name;
+            this.legs = legs;
+        }
+        sound(){
+            return "Tiếng kêu chưa biết"
+        };
+    }
+
+    class Dog extends Animal{
+        constructor(name, legs, type){
+            super(name, legs);
+            this.type = type;
+        }
+        sound() {
+            return "Gau Gau"
+        }
+    }
+
+    let husky = new Dog("Husky1", 4, "Husky")
+    document.writeln(husky.name + "<br>");
+    document.writeln(husky.legs + "<br>");
+    document.writeln(husky.type + "<br>");
+    document.writeln(husky.sound() + "<br>");
+</script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    //Khai báo class Student có name, age, email
+    class Student{
+        constructor(name, age, email){
+            this.name = name;
+            this.age = age;
+            this.email = email;
+        }
+        goToSchool(){
+            return "Student go to school by car";
+        }
+    }
+
+    let student1 = new Student("Viet", 25, "viet@gmail.com");
+    document.writeln("Tên sinh viên : " + student1.name + "<br>");
+    document.writeln("Tuổi sinh viên : " + student1.age + "<br>");
+    document.writeln("Email sinh viên : " + student1.email + "<br>");
+    document.writeln(student1.goToSchool());
+    let student2 = new Student("Nam", 22, "nam@gmail.com");
+    document.writeln("Tên sinh viên : " + student2.name + "<br>");
+    document.writeln("Tuổi sinh viên : " + student2.age + "<br>");
+    document.writeln("Email sinh viên : " + student2.email + "<br>");
+    document.writeln(student2.goToSchool());
+
+</script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Temprature</title>
+</head>
+<body>
+<script>
+    class celciusClass {
+        constructor (celcius){
+            this.celcius = celcius;
+        }
+        convertF(){
+            return this.celcius*1.8 + 32;
+        }
+        convertK(){
+            return this.celcius + 273.15;
+        }
+    }
+    let temprature = new celciusClass();
+    temprature.celcius = 25;
+    alert(temprature.celcius + " độ C = " + temprature.convertF() + " độ F = " + temprature.convertK() + " độ K")
+</script>
+</body>
+</html>
