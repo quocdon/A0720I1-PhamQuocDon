@@ -10,37 +10,35 @@ class GameObject {
         this.speed = speed;
         this.image = image;
     }
-    loadImage(){
-        this.image  = "img/"+ this.orientation + ".png"
-    }
     move(){
+        let img = new Image();
+        img.src = this.image;
         switch (this.orientation) {
             case LEFTORNT:{
-                this.xPos -= this.speed;
+                if (this.xPos >= 0){
+                    this.xPos -= this.speed;
+                }
                 break
             }
             case RIGHTORNT: {
-                this.xPos += this.speed;
+                if (this.xPos <= 1000 - img.width){
+                    this.xPos += this.speed;
+                }
                 break
             }
             case UPORNT: {
-                this.yPos -= this.speed;
+                if (this.yPos >= 0){
+                    this.yPos -= this.speed;
+                }
                 break
             }
             case DOWNORNT: {
-                this.yPos += this.speed;
+                if (this.yPos <= 500-img.height){
+                    this.yPos += this.speed;
+                }
                 break
             }
         }
-    }
-    /*turn(ornt){
-        this.orientation = ornt;
-        this.loadImage()
-    }*/
-    drawImage(ctx){
-        let image = new Image();
-        ctx.drawImage(image, this.xPos, this.yPos);
-        image.src = this.image
     }
 }
 class GamePlay {
@@ -48,16 +46,13 @@ class GamePlay {
         this.object = object;
         this.ctx = ctx;
     }
-    start(){
-        this.ctx = document.getElementById("gameBoard").getContext("2d");
-        this.object.drawImage(this.ctx);
-    }
     render(){
-        this.ctx.clearRect(0,0,500,500);
-        this.object.drawImage(this.ctx)
+        let img = new Image();
+        img.src = this.object.image;
+        this.ctx.drawImage(img, this.object.xPos, this.object.yPos);
     }
     moveObject(event){
-        let ornt;
+        let ornt = 0;
         switch (event.keyCode) {
             case 37: {
                 ornt = LEFTORNT;
@@ -76,23 +71,15 @@ class GamePlay {
                 break
             }
         }
-        if (ornt)
+        if (this.object.orientation !== ornt){
+            this.object.orientation = ornt
+        } else {
+            this.object.move()
+        }
+        this.ctx.clearRect(0,0,1000,500);
+        this.render()
     }
 }
-let newgame = new GamePlay();
-newgame.start()
-
-    /*this.car = new GameObject(50,50, RIGHTORNT, 20,"right");
-    this.ctx = undefined;
-    this.start = function(){
-        this.ctx = document.getElementById("gameBoard").getContext("2d");
-        this.car.drawImage(this.ctx);
-    }
-    this.render = function(){
-        this.ctx.clearRect(0,0,500,500);
-        this.car.drawImage()
-    }
-
-
-}
-
+let ctx = document.getElementById("gameBoard").getContext("2d");
+let chopper = new GameObject(0,0,"left",20,"img/Chopper.png");
+let startgame = new GamePlay(chopper, ctx);
