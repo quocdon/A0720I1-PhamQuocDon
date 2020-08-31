@@ -1,0 +1,183 @@
+body{
+    background-image: url(Background.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.header{
+    font-family: Arial;
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 3px;
+    margin-top: 3px;
+    margin-right: auto;
+    margin-left: auto;
+    color: #fffaeb;
+    width: 70%;
+    position: relative;
+}
+.guest-table{
+    font-family: Arial;
+    font-size: 18px;
+    font-weight: bold;
+    width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    color: #fffaeb;
+    position: relative;
+}
+.gueststyle{
+    font-family: Arial;
+    font-weight: bold;
+    text-align: center;
+}
+.inputstyle{
+    width: 350px;
+    margin: 5px;
+    padding: 7px;
+    font-size: 16px;
+    border-radius: 10px;
+    background-color: #fffaeb;
+    border-style: solid;
+    border-width: 0.5px;
+}
+.divstyle{
+    font-family: Arial;
+    font-size: 18px;
+    font-weight: bold;
+    width: 700px;
+    margin-left: 20px;
+    padding: 10px;
+}
+.confirmationTable{
+    font-family: Arial;
+    font-size: 18px;
+    font-weight: bold;
+    width: 90%;
+    margin-top: 10%;
+    margin-bottom: 15%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+    border-style: hidden;
+    border-radius: 15px;
+    background-color: rgba(255,255,255,0.4);
+    padding: 15px;
+    position: relative;
+}
+.confirmationTable td{
+    padding: 7px;
+}
+.amountstyle{
+    color: #b52a09;
+}
+.confirmationHeader{
+    text-align: center;
+    color: #b52a09;
+    padding-top: 15px;
+    padding-bottom: 25px;
+    font-size: 20px;
+}
+.selectstyled{
+    flex: 1;
+    cursor: pointer;
+    width: 366px;
+    margin: 5px;
+    font-size: 16px;
+    padding: 7px;
+    border-radius: 10px;
+    background-color: #fffaeb;
+}
+.buttonstyle{
+    border-style: solid;
+    border-width: 0.5px;
+    border-radius: 10px;
+    width: 100px;
+    height: 35px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.colorstyle{
+    color: #adff48;
+}
+/* Sytle for Nav bar*/
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 25%;
+    background-color: rgba(255,255,255,0.4);
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+    cursor: pointer;
+}
+
+li p {
+    display: block;
+    color: #000;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+
+li p.active {
+    background-color: #58257b;
+    font-weight: bold;
+    color: white;
+}
+
+li p:hover:not(.active) {
+    background-color: #db7093;
+    font-weight: bold;
+    color: white;
+}
+.navbardiv{
+    width: 30%;
+    float: left;
+}
+.infomationdiv{
+    width: 70%;
+    float: right;
+}
+.showInfoTable {
+    font-family: Arial;
+    font-size: 14px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 50px;
+    text-align: left;
+    border-radius: 10px;
+    padding: 10px;
+    border: 1px solid black;
+    border-collapse: collapse;
+    width: 65%;
+    position: fixed;
+}
+.showInfoTable tr{
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+.showInfoTable td{
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 10px;
+    background-color: rgba(255,255,255,0.4);
+}
+.showInfoTable th{
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 10px;
+    background-color: #fffaeb;
+    font-weight: bold;
+    text-align: center;
+}
+.detail{
+    cursor: pointer;
+    text-decoration-line: underline;
+}
+.headTitle{
+    background-color: dodgerblue;
+    color: white;
+    font-weight: bold;
+}
