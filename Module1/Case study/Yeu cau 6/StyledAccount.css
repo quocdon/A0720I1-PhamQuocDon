@@ -166,3 +166,7 @@ li p:hover:not(.active) {
     padding: 10px;
     background-color: #fffaeb;
 }
+.detail{
+    cursor: pointer;
+    text-decoration-line: underline;
+}
