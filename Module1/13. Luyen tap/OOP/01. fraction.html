@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Phân số</title>
+</head>
+<body>
+<script>
+    function hcf(num1, num2) {
+        /*highest common factor*/
+        let temp;
+        while (num2 !== 0){
+            temp = num1 % num2;
+            num1 = num2;
+            num2 = temp;
+        }
+        return num1;
+    }
+    function lcm(num1, num2) {
+        /*lowest common multiple*/
+        let temp = hcf(num1,num2);
+        return num1*num2/temp
+    }
+    class Fraction{
+        constructor(numerator, denominator) {
+            this.numerator = numerator;
+            this.denominator = denominator;
+        }
+        getNumerator(){
+            return this.numerator;
+        }
+        setNumerator(number){
+            this.numerator = parseFloat(number)
+        }
+        getDenominator(){
+            return this.denominator;
+        }
+        setDenominatorr(number){
+            this.denominator = parseFloat(number)
+        }
+        execute(){
+            return this.numerator/this.denominator
+        }
+        add(frctn){
+            let result = new Fraction();
+            let hcfTemp;
+            result.denominator = lcm(this.denominator, frctn.denominator);
+            result.numerator = result.denominator/this.denominator*this.numerator + result.denominator/frctn.denominator*frctn.numerator;
+            hcfTemp = hcf(result.denominator, result.numerator);
+            result.denominator = result.denominator/hcfTemp;
+            result.numerator = result.numerator/hcfTemp;
+            if (result.denominator < 0){
+                result.denominator *= -1;
+                result.numerator *= -1
+            }
+            return result;
+        }
+        sub(frctn){
+            let temp = new Fraction(frctn.numerator*(-1),frctn.denominator);
+            return this.add(temp)
+        }
+        multi(frctn){
+            let result = new Fraction();
+            let hcfTemp;
+            result.numerator = this.numerator*frctn.numerator;
+            result.denominator = this.denominator*frctn.denominator;
+            hcfTemp = hcf(result.numerator, result.denominator)
+            result.numerator /= hcfTemp;
+            result.denominator /= hcfTemp;
+            if (result.denominator < 0){
+                result.denominator *= -1;
+                result.numerator *= -1
+            }
+            return result
+        }
+        div(frctn){
+            let result = new Fraction();
+            let temp = new Fraction(frctn.denominator,frctn.numerator);
+            return this.multi(temp);
+        }
+    }
+    let numA = new Fraction();
+    let numB = new Fraction();
+    let operator;
+    let result;
+    while (!Number.isInteger(numA.getNumerator())){
+        numA.setNumerator(prompt("Nhập tử số của phân số thứ nhất"));
+    }
+    while (!Number.isInteger(numA.getDenominator())){
+        numA.setDenominatorr(prompt("Nhập mẫu số của phân số thứ nhất"));
+    }
+    while (!Number.isInteger(numB.getNumerator())){
+        numB.setNumerator(prompt("Nhập tử số của phân số thứ hai"));
+    }
+    while (!Number.isInteger(numB.getDenominator())){
+        numB.setDenominatorr(prompt("Nhập mẫu số của phân số thứ hai"));
+    }
+    while (["+","-","*","/"].indexOf(operator) === -1){
+        operator = prompt("Nhập phép tính:\n + : Cộng \n - : Trừ \n * : Nhân \n / : Chia")
+    }
+    switch (operator) {
+        case "+": {
+            result = numA.add(numB);
+            break
+        }
+        case "-": {
+            result = numA.sub(numB);
+            break
+        }
+        case "*": {
+            result = numA.multi(numB);
+            break
+        }
+        case "/": {
+            result = numA.div(numB);
+            break
+        }
+    }
+    let alertResult = "(" + numA.getNumerator() + "/" + numA.getDenominator() + ") " + operator + " (" + numB.getNumerator() + "/" + numB.getDenominator() + ") = ";
+    if (Number.isInteger(result.execute())){
+        alertResult += result.execute()
+    } else {
+        alertResult += result.getNumerator() + "/" + result.getDenominator()
+    }
+    alert(alertResult);
+</script>
+
+</body>
+</html>

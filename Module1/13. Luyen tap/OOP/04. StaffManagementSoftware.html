@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chương trình quản lý cán bộ</title>
+</head>
+<body>
+<script>
+    class Staff {
+        constructor(id, name, gender, homeTown, birthYear, major, level, salaryIndex, addOn) {
+            this.id = id;
+            this.name = name;
+            this.gender = gender;
+            this.homeTown = homeTown;
+            this.birthYear = birthYear;
+            this.major = major;
+            this.level = level;
+            this.salaryIndex = salaryIndex;
+            this.addOn = addOn;
+        }
+        income(){
+            return (this.salaryIndex + this.addOn)*450000
+        }
+    }
+    class StaffProgram {
+        constructor(staffList) {
+            this.staffList = staffList;
+        }
+        add(staff){
+            this.staffList.push(staff)
+        }
+        show(){
+            let temp = "";
+            for (let i = 0; i < this.staffList.length; i++){
+                temp += this.staffList[i].id + "-" + this.staffList[i].name + "\n"
+            }
+            alert(temp)
+        }
+        femalecount(){
+            
+        }
+    }
+</script>
+
+</body>
+</html>
