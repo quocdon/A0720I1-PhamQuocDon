@@ -21,25 +21,135 @@
         income(){
             return (this.salaryIndex + this.addOn)*450000
         }
+        setId(id) {
+            this.id = id;
+        }
+        setName(name) {
+            this.name = name;
+        }
+        setGender(gender) {
+            this.gender = gender;
+        }
+        setHomeTown(homeTown) {
+            this.homeTown = homeTown;
+        }
+        setBirthYear(year) {
+            this.birthYear = parseInt(year);
+        }
+        setMajor(major) {
+            this.major = major;
+        }
+        setLevel(level) {
+            this.level = level;
+        }
+        setSalaryIndex(index) {
+            this.salaryIndex = parseFloat(index);
+        }
+        setAddOn(addOn){
+            this.addOn = parseFloat(addOn);
+        }
     }
     class StaffProgram {
         constructor(staffList) {
             this.staffList = staffList;
         }
-        add(staff){
-            this.staffList.push(staff)
+        add(newStaff){
+            this.staffList.push(newStaff)
         }
         show(){
             let temp = "";
             for (let i = 0; i < this.staffList.length; i++){
-                temp += this.staffList[i].id + "-" + this.staffList[i].name + "\n"
+                temp += this.staffList[i].id + "-" + this.staffList[i].name + "-" + this.staffList[i].gender +  "-" + this.staffList[i].homeTown + "-" +
+                    this.staffList[i].birthYear + "-" + this.staffList[i].major +  "-" + this.staffList[i].level + "\n"
             }
-            alert(temp)
+            return temp;
         }
         femalecount(){
-            
+            let count = 0;
+            for (let i = 0; i < this.staffList.length; i++){
+                if (this.staffList[i].gender === "Nữ"){
+                    count++;
+                }
+            }
+            return count;
+        }
+        totalIncome(){
+            let sum = 0;
+            for (let i = 0; i < this.staffList.length; i++){
+                sum += this.staffList[i].income()
+            }
+            return sum
+        }
+        getIT(){
+            let temp = "";
+            for (let i = 0; i < this.staffList.length; i++){
+                if (this.staffList[i].major === "CNTT"){
+                    temp += this.staffList[i].id + "-" + this.staffList[i].name + "-" + this.staffList[i].gender +  "-" + this.staffList[i].homeTown + "-" +
+                        this.staffList[i].birthYear + "-" + this.staffList[i].major +  "-" + this.staffList[i].level + "\n"
+                }
+            }
+            return temp;
         }
     }
+    let list = new Array();
+    let program = new StaffProgram(list);
+    function mainMenu(){
+        let index;
+        index = prompt("1. Thêm cán bộ \n 2. Hiển thị DS cán bộ \n 3. Số cán bộ nữ \n 4. Tổng thu nhập \n 5. Liệt kê cán bộ CNTT");
+        switch (index) {
+            case "1":{
+                let newStaff = new Staff()
+                while (newStaff.id === undefined){
+                    newStaff.setId(prompt("Nhập ID"))
+                }
+                while (newStaff.name === undefined){
+                    newStaff.setName(prompt("Nhập tên"))
+                }
+                while (newStaff.gender === undefined || ["Nam", "Nữ"].indexOf(newStaff.gender) === -1){
+                    newStaff.setGender(prompt("Nhập giới tính (Nam/Nữ)"))
+                }
+                while (newStaff.homeTown === undefined){
+                    newStaff.setHomeTown(prompt("Nhập quê quán"))
+                }
+                while (newStaff.birthYear === undefined || !Number.isInteger(newStaff.birthYear) || newStaff.birthYear < 1900){
+                    newStaff.setBirthYear(prompt("Nhập năm sinh"))
+                }
+                while (newStaff.major === undefined){
+                    newStaff.setMajor(prompt("Nhập chuyên môn"))
+                }
+                while (newStaff.level === undefined || ["SĐH","ĐH","CĐ","TC"].indexOf(newStaff.level) === -1){
+                    newStaff.setLevel(prompt("Nhập trình độ: \n SĐH - Sau ĐH \n ĐH - Đại Học \n CĐ = Cao đẳng \n TC - Trung cấp"))
+                }
+                while (newStaff.salaryIndex === undefined || isNaN(newStaff.salaryIndex) || newStaff.salaryIndex < 0){
+                    newStaff.setSalaryIndex(prompt("Nhập hệ số lương"))
+                }
+                while (newStaff.addOn === undefined || isNaN(parseFloat(newStaff.addOn)) || parseFloat(newStaff.addOn) < 0) {
+                    newStaff.setAddOn(prompt("Nhập phụ cấp"))
+                }
+                program.add(newStaff);
+                break;
+            }
+            case "2":{
+                alert(program.show());
+                break
+            }
+            case "3":{
+                alert("Số cán bộ nữ: " + program.femalecount());
+                break
+            }
+            case "4":{
+                alert("Tổng thu nhập toàn bộ NV: " + program.totalIncome());
+                break
+            }
+            case "5":{
+                alert(program.getIT());
+                break
+            }
+
+        }
+        mainMenu()
+    }
+    mainMenu()
 </script>
 
 </body>

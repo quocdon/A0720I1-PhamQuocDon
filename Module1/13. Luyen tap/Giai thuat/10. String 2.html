@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Xử lý chuỗi 2</title>
+</head>
+<body>
+<script>
+    let myString = "";
+    let numWord = 1;
+    let newString = "";
+    let output ="";
+    let firstIndex = 0;
+    let lastIndex;
+    let wordArray = new Array();
+    let freqArray = new Array()
+    while (myString.trim() === ""){
+        myString = prompt("Nhập chuỗi bất kỳ")
+    }
+    //Loại bỏ ký dấu cách thừa ở 2 đầu của chuỗi
+    myString = myString.trim();
+    // Loại bỏ dấu cách thừa giữa chuỗi
+    for (let i = 0; i < myString.length; i++){
+        if (myString.charAt(i) === " " && myString.charAt(i+1) === " "){
+            continue
+        }else {
+            newString += myString.charAt(i)
+        }
+    }
+    for (let i = 0; i < newString.length; i++){
+        if (newString.charAt(i) === " "){
+            numWord++;
+            output += "<br>"
+        } else {
+            output += newString.charAt(i)
+        }
+    }
+    //Kiểm tra tần số xuất hiện của các từ phía trước dấu cách
+    for (let i = 0; i < newString.length; i++){
+        if (newString.charAt(i) === " "){
+            let word = newString.substring(firstIndex, i);
+            freqCount(word);
+            firstIndex = i + 1
+        }
+    }
+    //Kiểm tra tần số xuất hiện của từ cuối cùng trong chuỗi
+    let lastWord = newString.substring(firstIndex,newString.length);
+    freqCount(lastWord);
+    //In kết quả ra màn hình
+    document.write("Số lượng từ trong chuỗi: " + numWord + "<br>");
+    document.write("In mỗi từ trên mỗi dòng: <br>" + output + "<br>");
+    document.write("Đếm tần số xuất hiện các từ trong chuỗi <br>");
+    for (let i = 0; i < wordArray.length; i++){
+        document.write(wordArray[i] + " : " + freqArray[i] + "<br>")
+    }
+    //Hàm đếm tần số xuất hiện của từ trong chuỗi.
+    //Nếu là từ mới thì thêm vào mảng wordArray và thêm tần là 1 tương ứng ở mảng freqArray.
+    //Nếu đã xuất hiện thì tăng tần số tương ứng lên 1 đơn vị
+    function freqCount(word){
+        let index = wordArray.indexOf(word);
+        if (index === -1){
+            wordArray.push(word);
+            freqArray.push(1);
+        }else {
+            freqArray[index]++
+        }
+    }
+</script>
+
+</body>
+</html>

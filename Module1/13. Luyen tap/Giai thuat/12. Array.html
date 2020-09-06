@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mảng</title>
+</head>
+<body>
+<script>
+    let m,n;
+    let a = new Array();
+    let x = new Array()
+    let multiple = 1;
+    while (!Number.isInteger(m) || m < 0){
+        m = parseFloat(prompt("Nhập m"))
+    }
+    while (!Number.isInteger(n) || n < 0){
+        n = parseFloat(prompt("Nhập n"))
+    }
+    for (let i = 0; i < m; i++){
+        a[i] = new Array()
+        for (let j = 0; j < n; j++){
+            while (!Number.isInteger(a[i][j])){
+                a[i][j] = parseFloat(prompt("Nhập phần tử hàng " + (i+1) + " cột " + (j+1)))
+            }
+        }
+    }
+    // Tích các phần tử chia hết cho 3 ở dòng đầu tiên
+    for (let j = 0; j < n; j++){
+        if (a[0][j] % 3 === 0){
+            multiple *= a[0][j]
+        }
+    }
+    if (multiple === 1){
+        alert("Dòng đầu tiên không có phần tử chia hết cho 3")
+    } else {
+        alert("Tích các phần tử chia hết cho 3 ở dòng dầu tiên là: " + multiple)
+    }
+    //Tìm giá trị lớn nhất trên mỗi dòng
+    for (let i = 0; i < m; i++){
+        x[i] = maxInArray(a[i])
+    }
+    alert("Mảng X gồm các phần từ lớn nhất ở các dòng: \n" + x);
+    //Xóa phần tử đầu tiên trong mảng X
+    x.splice(0,1);
+    alert("Mảng X sau khi xóa phần tử đầu tiên:\n" + x);
+    //Hàm tìm phần tử lớn nhất trong mảng
+    function maxInArray(arr) {
+        let max = arr[0];
+        for (let i = 1; i < arr.length; i++){
+            if (max < arr[i]){
+                max = arr[i]
+            }
+        }
+        return max
+    }
+</script>
+
+</body>
+</html>

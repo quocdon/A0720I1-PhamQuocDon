@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>UCLN và BCNN</title>
+</head>
+<body>
+<script>
+    let number1;
+    let number2;
+    while (!Number.isInteger(number1) || number1 < 0){
+        number1 = parseFloat(prompt("Nhập số thứ nhất"))
+    }
+    while (!Number.isInteger(number2) || number2 < 0){
+        number2 = parseFloat(prompt("Nhập số thứ hai"))
+    }
+    alert("UCLN của " + number1 + " và " + number2 + " là: " + hcf(number1, number2) + "\nBCNN của " + number1 + " và " + number2 + " là: " + lcm(number1, number2));
+    function hcf(num1, num2) {
+        /*highest common factor - UCLN*/
+        let temp;
+        while (num2 !== 0){
+            temp = num1 % num2;
+            num1 = num2;
+            num2 = temp;
+        }
+        return num1;
+    }
+    function lcm(num1, num2) {
+        /*lowest common multiple - BCNN*/
+        let temp = hcf(num1,num2);
+        return num1*num2/temp
+    }
+</script>
+
+</body>
+</html>

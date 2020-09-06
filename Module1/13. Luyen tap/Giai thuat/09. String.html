@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Xử lý chuỗi</title>
+</head>
+<body>
+<script>
+    let myString = prompt("Nhập chuỗi bất kỳ");
+    let newString="";
+    for (let i = 0 ; i < myString.length ; i++){
+        newString += myString[myString.length - i - 1];
+    }
+    alert("Chuỗi đối xứng: " + newString);
+    alert("Chuỗi viết hoa hoàn toàn: " +myString.toUpperCase());
+    alert("Chuỗi viết thường hoàn toàn: " + myString.toLowerCase());
+    let caseString = "";
+    for (let i = 0 ; i < myString.length; i++){
+        if (myString.charAt(i) > myString.charAt(i).toUpperCase()){
+            caseString += myString.charAt(i).toUpperCase()
+        } else {
+            caseString += myString.charAt(i).toLowerCase()
+        }
+    }
+    alert("Chuỗi viết đảo ký tự hoa thành thường và ngược lại: \n" + caseString)
+</script>
+
+</body>
+</html>

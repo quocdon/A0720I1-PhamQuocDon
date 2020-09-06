@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tính giá trị biểu thức</title>
+</head>
+<body>
+<script>
+    let sum = 15;
+    let n;
+    let factorial = 1;
+    while (!Number.isInteger(n) || n < 0){
+        n = parseFloat(prompt("Nhập n"))
+    }
+    for (let i = 1; i <= n; i++){
+        factorial *= i;
+        sum += Math.pow(-1, i)/factorial
+    }
+    alert(sum)
+</script>
+
+</body>
+</html>
