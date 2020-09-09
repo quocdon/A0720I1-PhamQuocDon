@@ -1,0 +1,53 @@
+label{
+    cursor: pointer;
+    text-underline: black;
+    color: #0008d7;
+    font-weight: bold;
+    padding-left: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+h2{
+    padding-left: 20px;
+    color: red;
+}
+.studentList{
+    padding-left: 20px;
+    border: 1px solid black;
+    border-collapse: collapse;
+    width: 60%;
+    position: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+.studentList tr{
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+.studentList th{
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+.studentList td{
+    border: 1px solid black;
+    border-collapse: collapse;
+    text-align: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+div{
+    text-align: center;
+}
+h2{
+    text-align: center;
+}
+.formTable{
+    margin-left: auto;
+    margin-right: auto;
+    position: center;
+}
+.formTable td{
+    text-align: left;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
