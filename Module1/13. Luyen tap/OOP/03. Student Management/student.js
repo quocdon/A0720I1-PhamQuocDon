@@ -100,6 +100,9 @@ class Program {
         if (student.name === "") {
             messageAlert += "Tên sinh viên: Chưa nhập thông tin\n"
         }
+        if (student.birthday === "") {
+            messageAlert += "Ngày sinh: Chưa nhập thông tin\n"
+        }
         if (student.studentClass === "") {
             messageAlert += "Lớp: Chưa nhập thông tin\n"
         }
@@ -174,7 +177,7 @@ class Program {
             if (pos > this.list.length) {
                 alert("Chỉ được nhập từ 1 đến " + this.list.length)
             } else {
-                if (confirm("Bạn có muốn xóa sinh viên thứ " + pos + "trong DSSV không?")) {
+                if (confirm("Bạn có muốn xóa sinh viên thứ " + pos + " trong DSSV không?")) {
                     this.list.splice(pos - 1, 1);
                     alert("Xóa thành công")
                 }
@@ -234,8 +237,9 @@ function mainMenu() {
 }
 
 function removeById() {
-    let id = prompt("Nhập mã số sinh viên")
-    studentManagement.removeId(id)
+    let id = prompt("Nhập mã số sinh viên");
+    studentManagement.removeId(id);
+    studentManagement.print(0, studentManagement.list.length - 1);
 }
 
 function removeByNo() {
@@ -243,7 +247,8 @@ function removeByNo() {
     while (!Number.isInteger(pos) || parseFloat(pos) < 1) {
         pos = parseFloat(prompt("Nhập số thứ tự sinh viên muốn xóa"))
     }
-    studentManagement.removePos(pos)
+    studentManagement.removePos(pos);
+    studentManagement.print(0, studentManagement.list.length - 1);
 }
 
 function studentSearch() {
