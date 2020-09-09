@@ -9,33 +9,42 @@ class Employee {
         this.literacy = literacy;
         this.department = department;
     }
-    getName(){
+
+    getName() {
         return this.name;
     }
-    getId(){
+
+    getId() {
         return this.id;
     }
-    getDob(){
+
+    getDob() {
         return this.dob;
     }
-    getTel(){
+
+    getTel() {
         return this.tel;
     }
-    getEmail(){
+
+    getEmail() {
         return this.email;
     }
-    getAddress(){
+
+    getAddress() {
         return this.address;
     }
-    getLiteracy(){
+
+    getLiteracy() {
         return this.literacy;
     }
-    getDepartment(){
+
+    getDepartment() {
         return this.department;
     }
-    getSalary(){
+
+    getSalary() {
         switch (this.department) {
-            case "Manager":{
+            case "Manager": {
                 return 500;
                 break
             }
@@ -43,129 +52,34 @@ class Employee {
                 return 300;
                 break
             }
-            case "Marketing":{
+            case "Marketing": {
                 return 200;
                 break
             }
 
         }
     }
-}
-let staffName;
-let staffId;
-let staffDob;
-let staffTel;
-let staffEmail;
-let staffAddress;
-let literacy;
-let department;
-let listOfStaff = new Array()
 
-//----------- Show input form -------------------
-function inputStaffInfo(){
-    document.getElementById("showinformation").innerHTML = "<p class='header'>THÔNG TIN NHÂN VIÊN <br></p><br><br><br><br><br><br>" +
-        "<form action='guest.info.html' method='post' id='staffinfo'>" +
-        "        <table class='guest-table'>" +
-        "            <tr>" +
-        "                <td>" +
-        "                    <label>Tên nhân viên: <label>" +
-        "                </td>" +
-        "                <td>" +
-        "                    <input class='inputstyle' type='text' id='staffname'>" +
-        "                </td>" +
-        "            </tr>" +
-        "            <tr>" +
-        "                <td>" +
-        "                    <label>Số CMND:</label>" +
-        "                </td>" +
-        "                <td>" +
-        "                    <input class='inputstyle' type='text' id='staffid'>" +
-        "                </td>" +
-        "            </tr>" +
-        "            <tr>" +
-        "                <td>" +
-        "                    <label>Ngày sinh: </label>" +
-        "                </td>" +
-        "                <td>" +
-        "                    <input class='inputstyle' type='text' id='staffdob' placeholder='DD/MM/YYYY'>" +
-        "                </td>" +
-        "            </tr>" +
-        "            <tr>" +
-        "                <td>" +
-        "                    <label>Số điện thoại: </label>" +
-        "                </td>" +
-        "                <td>" +
-        "                    <input class='inputstyle' type='text' id='stafftel'>" +
-        "                </td>" +
-        "            </tr>"+
-                    "<tr>" +
-        "                <td>" +
-        "                    <label>Email: </label>" +
-        "                </td>" +
-        "                <td>" +
-        "                    <input class='inputstyle' type='text' id='staffemail'>" +
-        "                </td>" +
-        "            </tr>"+
-        "            <tr>" +
-        "                <td>" +
-        "                    <label>Địa chỉ:</label>" +
-        "                </td>" +
-        "                <td>" +
-        "                    <input class='inputstyle' type='text' id='staffaddress'>" +
-        "                </td>" +
-        "            </tr>" +
-        "            <tr>" +
-        "                <td>Trình độ học vấn:</td>" +
-        "                <td>" +
-        "                    <select class='selectstyled' id='literacy'>" +
-        "                        <option>Trung cấp</option>" +
-        "                        <option>Cao đẳng</option>" +
-        "                        <option>Đại học</option>" +
-        "                        <option>Sau đại học</option>" +
-        "                    </select>" +
-        "                </td>" +
-        "            </tr>" +
-        "            </tr>" +
-        "              <tr>" +
-        "                <td>Bộ phận</td>" +
-        "                <td>" +
-        "                    <select class='selectstyled' id='department'>" +
-        "                        <option>Manager</option>" +
-        "                        <option>Sales</option>" +
-        "                        <option>Marketing</option>" +
-        "                    </select>" +
-        "                </td>" +
-        "            </tr>" +
-        "            <tr>" +
-        "                <td></td>" +
-        "                <td><br>" +
-        "                    <input type='button' class='buttonstyle' value='Submit' onclick='submitStaff()' onmouseover='Smouseover()' onmouseout='Smouseout()' id='submitButton'>" +
-        "                    &#160 &#160 &#160 &#160\n" +
-        "                    <input type='reset' class='buttonstyle' value='Reset' onmouseover='Rmouseover()' onmouseout='Rmouseout()' id='resetButton'>" +
-        "                </td>" +
-        "            </tr>" +
-        "        </table>" +
-        "    </form>";
+    setName(name) {
+        this.name = name;
+    }
 }
 
-//----------- Edit guest information-------------
-function editStaffinfo() {
-    let staff = prompt("Nhập tên nhân viên");
-    index = findStaff(staff);
-    if (index === listOfStaff.length) {
-        alert("Không tìm thấy tên nhân viên");
-    } else {
-        document.getElementById("showinformation").innerHTML = "<p CLASS='header'>THÔNG TIN NHÂN VIÊN <br>" +
-            "STAFF INFORMATION" +
-            "</p><br><br><br><br><br><br>" +
-            "<form action='staff.info.html' method='post' id='staffinfo'>" +
-            "<table class='guest-table'>" +
+class employeeProgram {
+    constructor(staffList) {
+        this.staffList = staffList;
+    }
+
+    inputEmployeeInfo() {
+        let inputTable = "<p class='header'>THÔNG TIN NHÂN VIÊN <br></p><br><br><br><br><br><br>" +
+            "<form action='guest.info.html' method='post' id='employeeInfo'>" +
+            "        <table class='guest-table'>" +
             "            <tr>" +
             "                <td>" +
             "                    <label>Tên nhân viên: <label>" +
             "                </td>" +
             "                <td>" +
-            "                    <input class='inputstyle' type='text' id='staffname' value ='"+ listOfStaff[index].getName() +"'>" +
+            "                    <input class='inputstyle' type='text' id='employeeName'>" +
             "                </td>" +
             "            </tr>" +
             "            <tr>" +
@@ -173,7 +87,7 @@ function editStaffinfo() {
             "                    <label>Số CMND:</label>" +
             "                </td>" +
             "                <td>" +
-            "                    <input class='inputstyle' type='text' id='staffid' value = '" + listOfStaff[index].getId() + "'>" +
+            "                    <input class='inputstyle' type='text' id='employeeId'>" +
             "                </td>" +
             "            </tr>" +
             "            <tr>" +
@@ -181,31 +95,31 @@ function editStaffinfo() {
             "                    <label>Ngày sinh: </label>" +
             "                </td>" +
             "                <td>" +
-            "                    <input class='inputstyle' type='text' id='staffdob' placeholder='DD/MM/YYYY' value='" + listOfStaff[index].getDob() + "'>" +
+            "                    <input class='inputstyle' type='text' id='employeeDob' placeholder='DD/MM/YYYY'>" +
             "                </td>" +
             "            </tr>" +
-            "<tr>" +
+            "            <tr>" +
             "                <td>" +
             "                    <label>Số điện thoại: </label>" +
             "                </td>" +
             "                <td>" +
-            "                    <input class='inputstyle' type='text' id='stafftel' value='" + listOfStaff[index].getTel() + "'>" +
+            "                    <input class='inputstyle' type='text' id='employeeTel'>" +
             "                </td>" +
-            "            </tr>"+
-            "<tr>" +
+            "            </tr>" +
+            "            <tr>" +
             "                <td>" +
             "                    <label>Email: </label>" +
             "                </td>" +
             "                <td>" +
-            "                    <input class='inputstyle' type='text' id='staffemail' value='" + listOfStaff[index].getEmail() + "'>" +
+            "                    <input class='inputstyle' type='text' id='employeeEmail'>" +
             "                </td>" +
-            "            </tr>"+
+            "            </tr>" +
             "            <tr>" +
             "                <td>" +
             "                    <label>Địa chỉ:</label>" +
             "                </td>" +
             "                <td>" +
-            "                    <input class='inputstyle' type='text' id='staffaddress' value='" + listOfStaff[index].getAddress() + "'>" +
+            "                    <input class='inputstyle' type='text' id='employeeAddress'>" +
             "                </td>" +
             "            </tr>" +
             "            <tr>" +
@@ -219,7 +133,8 @@ function editStaffinfo() {
             "                    </select>" +
             "                </td>" +
             "            </tr>" +
-            "            <tr>" +
+            "            </tr>" +
+            "              <tr>" +
             "                <td>Bộ phận</td>" +
             "                <td>" +
             "                    <select class='selectstyled' id='department'>" +
@@ -232,87 +147,307 @@ function editStaffinfo() {
             "            <tr>" +
             "                <td></td>" +
             "                <td><br>" +
-            "                    <input type='button' class='buttonstyle' value='Submit' onclick='updateStaff()' onmouseover='Smouseover()' onmouseout='Smouseout()' id='submitButton'>" +
+            "                    <input type='button' class='buttonstyle' value='Submit' onclick='submitEmployee()' onmouseover='Smouseover()' onmouseout='Smouseout()' id='submitButton'>" +
             "                    &#160 &#160 &#160 &#160\n" +
             "                    <input type='reset' class='buttonstyle' value='Reset' onmouseover='Rmouseover()' onmouseout='Rmouseout()' id='resetButton'>" +
             "                </td>" +
             "            </tr>" +
             "        </table>" +
             "    </form>";
-        let temp = listOfStaff[index].getLiteracy();
-        let mySelect = document.getElementById("literacy");
-        for (let i, j = 0; i = mySelect.options[j]; j++) {
-            if (i.value === temp) {
-                mySelect.selectedIndex = j;
-                break;
+        document.getElementById("showInformation").innerHTML = inputTable
+    }
+
+    getEmployeeData() {
+        let employeeName = document.forms["employeeInfo"]["employeeName"];
+        let employeeId = document.forms["employeeInfo"]["employeeId"];
+        let employeeDob = document.forms["employeeInfo"]["employeeDob"];
+        let employeeTel = document.forms["employeeInfo"]["employeeTel"];
+        let employeeEmail = document.forms["employeeInfo"]["employeeEmail"];
+        let employeeAddress = document.forms["employeeInfo"]["employeeAddress"];
+        let literacy = document.forms["employeeInfo"]["literacy"];
+        let department = document.forms["employeeInfo"]["department"];
+        let employeeData = new Employee(employeeName.value, employeeId.value, employeeDob.value, employeeTel.value, employeeEmail.value, employeeAddress.value, literacy.value, department.value);
+        return employeeData
+    }
+
+    getAlertMessage(employee) {
+        let temp = "";
+        let messageAlert = "";
+// Check employee name
+        if (employee.getName() === "") {
+            messageAlert += "Tên nhân viên: Chưa nhập thông tin \n";
+        } else {
+            for (let i = 0; i < employee.getName().length; i++) {
+                if (employee.getName().charAt(i) === " " && employee.getName().charAt(i + 1) === " ") {
+                    continue;
+                }
+                temp += employee.getName().charAt(i);
+            }
+            employee.setName(temp);
+        }
+//Check employeeID format
+        let regexID = /^[\d]{8,8}$/;
+        if (employee.getId() === "") {
+            messageAlert += "Số CMND: Chưa nhập thông tin \n"
+        } else if (!regexID.test(employee.getId())) {
+            messageAlert += "Số CMND: Phải là dãy số có 8 chữ số \n";
+        }
+// Check DoB format
+        let checkdob = false;
+        let regexDob = /^(?=\d)(?:(?:31(?!.(?:0?[2469]|11))|(?:30|29)(?!.0?2)|29(?=.0?2.(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00)))(?:\x20|$))|(?:2[0-8]|1\d|0?[1-9]))([-.\/])(?:1[012]|0?[1-9])\1(?:1[6-9]|[2-9]\d)?\d\d(?:(?=\x20\d)\x20|$))?(((0?[1-9]|1[012])(:[0-5]\d){0,2}(\x20[AP]M))|([01]\d|2[0-3])(:[0-5]\d){1,2})?$/;
+        if (employee.getDob() === "") {
+            messageAlert += "Ngày sinh: Chưa nhập thông tin \n";
+        } else if (!regexDob.test(employee.getDob())) {
+            messageAlert += "Ngày sinh: Phải đúng định dạng DD/MM/YYYY \n "
+        }
+//Check telephone format
+        let regexTel = /^[\d]{10,10}$/;
+        if (employee.getTel() === "") {
+            messageAlert += "Số điện thoại: Chưa nhập thông tin \n"
+        } else if (!regexTel.test(employee.getTel())) {
+            messageAlert += "Số điện thoại: Phải là dãy số có 10 chữ số \n";
+        }
+// Check email format
+        let regexEmail = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+        if (employee.getEmail() === "") {
+            messageAlert += "Email: Chưa nhập thông tin \n"
+        } else if (!regexEmail.test(employee.getEmail())) {
+            messageAlert += "Email: Phải đúng định dạng abc@def.xyz \n";
+        }
+// Check address
+        if (employee.getAddress() === "") {
+            messageAlert += "Địa chỉ: Chưa nhập thông tin \n";
+        }
+        return messageAlert;
+    }
+
+    checkEmployeeInfo(employee) {
+        if (this.getAlertMessage(employee) === "") {
+            return true
+        } else {
+            return false
+        }
+    }
+
+    submitEmployeeInfo() {
+        let employee = this.getEmployeeData();
+        if (this.checkEmployeeInfo(employee)) {
+            this.staffList.push(employee);
+            alert("Thông tin được nhập thành công");
+            document.getElementById("employeeInfo").reset();
+        } else {
+            alert(this.getAlertMessage(employee))
+        }
+    }
+
+    getEmployeeIndex(employeeName) {
+        let i = 0;
+        if (this.staffList.length > 0) {
+            while (this.staffList[i].getName() !== employeeName) {
+                i++;
+                if (i === this.staffList.length) {
+                    break;
+                }
             }
         }
-        temp = listOfStaff[index].getDepartment();
-        mySelect = document.getElementById("department");
-        for (let i, j = 0; i = mySelect.options[j]; j++) {
-            if (i.value === temp) {
-                mySelect.selectedIndex = j;
-                break;
+        return i;
+    }
+
+    inputName() {
+        return prompt("Nhập tên nhân viên")
+    }
+
+    edit(employeeName) {
+        let index = this.getEmployeeIndex(employeeName);
+        if (index === this.staffList.length) {
+            alert("Không tìm thấy tên nhân viên");
+        } else {
+            let employee = this.staffList[index];
+            let editTable = "<p CLASS='header'>THÔNG TIN NHÂN VIÊN <br>" +
+                "EMPLOYEE INFORMATION" +
+                "</p><br><br><br><br><br><br>" +
+                "<form action='staff.info.html' method='post' id='employeeInfo'>" +
+                "<table class='guest-table'>" +
+                "            <tr>" +
+                "                <td>" +
+                "                    <label>Tên nhân viên: <label>" +
+                "                </td>" +
+                "                <td>" +
+                "                    <input class='inputstyle' type='text' id='employeeName' value ='" + employee.getName() + "'>" +
+                "                </td>" +
+                "            </tr>" +
+                "            <tr>" +
+                "                <td>" +
+                "                    <label>Số CMND:</label>" +
+                "                </td>" +
+                "                <td>" +
+                "                    <input class='inputstyle' type='text' id='employeeId' value = '" + employee.getId() + "'>" +
+                "                </td>" +
+                "            </tr>" +
+                "            <tr>" +
+                "                <td>" +
+                "                    <label>Ngày sinh: </label>" +
+                "                </td>" +
+                "                <td>" +
+                "                    <input class='inputstyle' type='text' id='employeeDob' placeholder='DD/MM/YYYY' value='" + employee.getDob() + "'>" +
+                "                </td>" +
+                "            </tr>" +
+                "<tr>" +
+                "                <td>" +
+                "                    <label>Số điện thoại: </label>" +
+                "                </td>" +
+                "                <td>" +
+                "                    <input class='inputstyle' type='text' id='employeeTel' value='" + employee.getTel() + "'>" +
+                "                </td>" +
+                "            </tr>" +
+                "<tr>" +
+                "                <td>" +
+                "                    <label>Email: </label>" +
+                "                </td>" +
+                "                <td>" +
+                "                    <input class='inputstyle' type='text' id='employeeEmail' value='" + employee.getEmail() + "'>" +
+                "                </td>" +
+                "            </tr>" +
+                "            <tr>" +
+                "                <td>" +
+                "                    <label>Địa chỉ:</label>" +
+                "                </td>" +
+                "                <td>" +
+                "                    <input class='inputstyle' type='text' id='employeeAddress' value='" + employee.getAddress() + "'>" +
+                "                </td>" +
+                "            </tr>" +
+                "            <tr>" +
+                "                <td>Trình độ học vấn:</td>" +
+                "                <td>" +
+                "                    <select class='selectstyled' id='literacy'>" +
+                "                        <option>Trung cấp</option>" +
+                "                        <option>Cao đẳng</option>" +
+                "                        <option>Đại học</option>" +
+                "                        <option>Sau đại học</option>" +
+                "                    </select>" +
+                "                </td>" +
+                "            </tr>" +
+                "            <tr>" +
+                "                <td>Bộ phận</td>" +
+                "                <td>" +
+                "                    <select class='selectstyled' id='department'>" +
+                "                        <option>Manager</option>" +
+                "                        <option>Sales</option>" +
+                "                        <option>Marketing</option>" +
+                "                    </select>" +
+                "                </td>" +
+                "            </tr>" +
+                "            <tr>" +
+                "                <td></td>" +
+                "                <td><br>" +
+                "                    <input type='button' class='buttonstyle' value='Submit' onclick='updateEmployee(" + index + ")' onmouseover='Smouseover()' onmouseout='Smouseout()' id='submitButton'>" +
+                "                    &#160 &#160 &#160 &#160\n" +
+                "                    <input type='reset' class='buttonstyle' value='Reset' onmouseover='Rmouseover()' onmouseout='Rmouseout()' id='resetButton'>" +
+                "                </td>" +
+                "            </tr>" +
+                "        </table>" +
+                "    </form>";
+            document.getElementById("showInformation").innerHTML = editTable;
+            let temp = employee.getLiteracy();
+            let mySelect = document.getElementById("literacy");
+            for (let i, j = 0; i = mySelect.options[j]; j++) {
+                if (i.value === temp) {
+                    mySelect.selectedIndex = j;
+                    break;
+                }
+            }
+            temp = employee.getDepartment();
+            mySelect = document.getElementById("department");
+            for (let i, j = 0; i = mySelect.options[j]; j++) {
+                if (i.value === temp) {
+                    mySelect.selectedIndex = j;
+                    break;
+                }
+            }
+        }
+
+    }
+
+    editEmployeeInfo() {
+        let employeeName = this.inputName();
+        this.edit(employeeName);
+    }
+
+    delete(employeeName) {
+        let index = this.getEmployeeIndex(employeeName);
+        if (index === this.staffList.length) {
+            alert("Không tìm thấy tên nhân viên");
+        } else {
+            if (confirm("Bạn có muốn xóa nhân viên " + this.staffList[index].getName() + " - Số CMND " + this.staffList[index].getId() +" không?")) {
+                this.staffList.splice(index, 1);
+                alert("Đã xóa nhân viên");
             }
         }
     }
-}
 
-//----------- Delete guest account---------------
-function deleteStaffInfo() {
-    let staff = prompt("Nhập tên nhân viên");
-    index = findStaff(staff);
-    if (index === listOfStaff.length){
-        alert("Không tìm thấy tên nhân viên");
-    } else {
-        if (confirm("Bạn có muốn xóa nhân viên " + listOfStaff[index].getName() + " không?")){
-            listOfStaff.splice(index,1);
-            alert("Đã xóa nhân viên");
+    deleteEmployeeInfo() {
+        let employeeName = this.inputName();
+        this.delete(employeeName);
+        this.showEmployeeInfo();
+    }
+
+    update(employeeIndex) {
+        let employee = this.getEmployeeData();
+        if (this.checkEmployeeInfo(employee)) {
+            this.staffList.splice(employeeIndex, 1)
+            this.staffList.push(employee);
+            alert("Chỉnh sửa thành công");
+        } else {
+            alert(this.getAlertMessage(employee))
         }
     }
-    showStaffInfo();
-}
 
-//----------- Show list of guest account---------
-function showStaffInfo() {
-    listOfStaff.sort(function (a,b){
-        if (a.getName().toLowerCase()< b.getName().toLowerCase()){return -1}
-        if (a.getName().toLowerCase()> b.getName().toLowerCase()){return 1}
-        return 0;
-    });
-    let staffInfoTable = "<table class='showInfoTable'>"+
-        "<tr>"+
-        "<th>STT </th>" +
-        "<th>Tên khách hàng </th>" +
-        "<th>Số CMND</th>" +
-        "<th>Ngày sinh</th>" +
-        "<th>Điện thoại</th>"+
-        "<th>Email</th>"+
-        "<th>Địa chỉ</th>" +
-        "<th>Trình độ học vấn</th>" +
-        "<th>Bộ phận</th>" +
-        "<th>Lương</th>" +
-        "</tr>";
-    for (let i = 0; i < listOfStaff.length; i++){
-        staffInfoTable += "<tr>" +
-            "<td>"+ parseInt(i+1) +"</td>"+
-            "<td>"+ listOfStaff[i].getName() +"</td>"+
-            "<td>"+ listOfStaff[i].getId() +"</td>"+
-            "<td>"+ listOfStaff[i].getDob() +"</td>"+
-            "<td>"+ listOfStaff[i].getTel() +"</td>"+
-            "<td>"+ listOfStaff[i].getEmail() +"</td>"+
-            "<td>"+ listOfStaff[i].getAddress() +"</td>"+
-            "<td>"+ listOfStaff[i].getLiteracy() +"</td>"+
-            "<td>"+ listOfStaff[i].getDepartment() +"</td>"+
-            "<td class='detail' onclick='staffDetail(" + i + ")'>Chi tiết</td></tr>";
+    sort() {
+        this.staffList.sort(function (a, b) {
+            if (a.getName().toLowerCase() < b.getName().toLowerCase()) {
+                return -1
+            }
+            if (a.getName().toLowerCase() > b.getName().toLowerCase()) {
+                return 1
+            }
+            return 0;
+        });
     }
-    staffInfoTable += "</table>";
-    document.getElementById("showinformation").innerHTML = staffInfoTable;
-}
 
-//----------- Show booking confirmation ---------
-function staffDetail(index) {
-        document.getElementById("showinformation").innerHTML = "<table class='confirmationTable'>" +
+    showEmployeeInfo() {
+        this.sort();
+        let staffInfoTable = "<table class='showInfoTable'>" +
+            "<tr>" +
+            "<th>STT </th>" +
+            "<th>Tên khách hàng </th>" +
+            "<th>Số CMND</th>" +
+            "<th>Ngày sinh</th>" +
+            "<th>Điện thoại</th>" +
+            "<th>Email</th>" +
+            "<th>Địa chỉ</th>" +
+            "<th>Trình độ học vấn</th>" +
+            "<th>Bộ phận</th>" +
+            "<th>Lương</th>" +
+            "</tr>";
+        for (let i = 0; i < this.staffList.length; i++) {
+            staffInfoTable += "<tr>" +
+                "<td>" + parseInt(i + 1) + "</td>" +
+                "<td>" + this.staffList[i].getName() + "</td>" +
+                "<td>" + this.staffList[i].getId() + "</td>" +
+                "<td>" + this.staffList[i].getDob() + "</td>" +
+                "<td>" + this.staffList[i].getTel() + "</td>" +
+                "<td>" + this.staffList[i].getEmail() + "</td>" +
+                "<td>" + this.staffList[i].getAddress() + "</td>" +
+                "<td>" + this.staffList[i].getLiteracy() + "</td>" +
+                "<td>" + this.staffList[i].getDepartment() + "</td>" +
+                "<td class='detail' onclick='allStaffDetail(" + i + ")'>Chi tiết</td></tr>";
+        }
+        staffInfoTable += "</table>";
+        document.getElementById("showInformation").innerHTML = staffInfoTable;
+    }
+
+    detail(index) {
+        let detailTable = "<table class='confirmationTable'>" +
             "<tr>" +
             "<td colspan='2' class='confirmationHeader'>THÔNG TIN NHÂN VIÊN</td>" +
             "</tr>" +
@@ -353,111 +488,21 @@ function staffDetail(index) {
             "<td class='amountstyle'>" + listOfStaff[index].getSalary() + "USD</td>" +
             "</tr>" +
             "</table>"
-
+        document.getElementById("showInformation").innerHTML = detailTable
+    }
 }
 
-// --------- Submit button event ----------------
-function submitStaff() {
-    messageAlert = "";
-    getStaffData();
-    if (checkStaffInfo()){
-        let temp = new Employee(staffName.value, staffId.value, staffDob.value, staffTel.value, staffEmail.value, staffAddress.value, literacy.value, department.value);
-        listOfStaff.push(temp);
-        alert("Thông tin được nhập thành công");
-        document.getElementById("staffinfo").reset();
-        mainMenu();
-    } else {alert(messageAlert)}
+let listOfStaff = new Array();
+let staff = new employeeProgram(listOfStaff);
+
+function allStaffDetail(index) {
+    staff.detail(index)
 }
 
-//---------- Update button event ----------------
-function updateStaff() {
-    messageAlert = "";
-    getStaffData();
-    if (checkStaffInfo()){
-        let temp = new Employee(staffName.value, staffId.value, staffDob.value, staffTel.value, staffEmail.value, staffAddress.value, literacy.value, department.value);
-        listOfStaff.splice(index,1);
-        listOfStaff.push(temp);
-        alert("Chỉnh sửa thành công");
-    } else {alert(messageAlert)}
+function updateEmployee(index) {
+    staff.update(index)
 }
 
-//----------- Get Data from input form ----------
-function getStaffData() {
-    staffName = document.forms["staffinfo"]["staffname"];
-    staffId = document.forms["staffinfo"]["staffid"];
-    staffDob = document.forms["staffinfo"]["staffdob"];
-    staffTel = document.forms["staffinfo"]["stafftel"];
-    staffEmail = document.forms["staffinfo"]["staffemail"];
-    staffAddress = document.forms["staffinfo"]["staffaddress"];
-    literacy = document.forms["staffinfo"]["literacy"];
-    department = document.forms["staffinfo"]["department"];
+function submitEmployee() {
+    staff.submitEmployeeInfo()
 }
-
-//----------- Check input information format -------------
-function checkStaffInfo(){
-    let temp = "";
-// Check staff name
-    if (staffName.value ===""){
-        messageAlert += "Tên nhân viên: Chưa nhập thông tin \n";
-    } else {
-        for (let i = 0; i < staffName.value.length; i++) {
-            if (staffName.value.charAt(i) === " " && staffName.value.charAt(i + 1) === " ") {
-                continue;
-            }
-            temp += staffName.value.charAt(i);
-        }
-        staffName.value = temp;
-    }
-//Check staffID format
-    let regexID = /^[\d]{8,8}$/;
-    if (staffId.value === ""){
-        messageAlert += "Số CMND: Chưa nhập thông tin \n"
-    } else if (!regexID.test(staffId.value)){
-        messageAlert += "Số CMND: Phải là dãy số có 8 chữ số \n";
-    }
-// Check DoB format
-    let checkdob = false;
-    let regexDob = /^(?=\d)(?:(?:31(?!.(?:0?[2469]|11))|(?:30|29)(?!.0?2)|29(?=.0?2.(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00)))(?:\x20|$))|(?:2[0-8]|1\d|0?[1-9]))([-.\/])(?:1[012]|0?[1-9])\1(?:1[6-9]|[2-9]\d)?\d\d(?:(?=\x20\d)\x20|$))?(((0?[1-9]|1[012])(:[0-5]\d){0,2}(\x20[AP]M))|([01]\d|2[0-3])(:[0-5]\d){1,2})?$/;
-    if (staffDob.value === ""){
-        messageAlert += "Ngày sinh: Chưa nhập thông tin \n";
-    } else if (!regexDob.test(staffDob.value)){
-            messageAlert += "Ngày sinh: Phải đúng định dạng DD/MM/YYYY \n "
-    }
-//Check telephone format
-    let regexTel = /^[\d]{10,10}$/;
-    if (staffId.value === ""){
-        messageAlert += "Số điện thoại: Chưa nhập thông tin \n"
-    } else if (!regexTel.test(staffTel.value)){
-        messageAlert += "Số điện thoại: Phải là dãy số có 10 chữ số \n";
-    }
-// Check email format
-    let regexEmail = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-    if (staffEmail.value ===""){
-        messageAlert += "Email: Chưa nhập thông tin \n"
-    } else if (!regexEmail.test(staffEmail.value)){
-        messageAlert += "Email: Phải đúng định dạng abc@def.xyz \n";
-    }
-// Check address
-    if (staffAddress.value ===""){
-        messageAlert += "Địa chỉ: Chưa nhập thông tin \n";
-    }
-
-    if (messageAlert !== ""){
-        return false
-    } else return true;
-}
-
-//--------- Find guest frorm Guest Account array ----------
-function findStaff(staff) {
-    let i = 0;
-    if (listOfStaff.length > 0){
-        while (listOfStaff[i].getName() !== staff) {
-            i++;
-            if (i === listOfStaff.length) {
-                break;
-            }
-        }
-    }
-    return i;
-}
-

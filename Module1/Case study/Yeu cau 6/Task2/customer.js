@@ -11,37 +11,53 @@ class Customer {
         this.services = services;
         this.roomType = roomType;
     }
-    getName(){
+
+    getName() {
         return this.guestName;
     }
-    getID(){
+
+    getID() {
         return this.guestId;
     }
-    getDob(){
+
+    getDob() {
         return this.guestDob;
     }
-    getEmail(){
+
+    getEmail() {
         return this.guestEmail;
     }
-    getAddress(){
+
+    getAddress() {
         return this.address;
     }
-    getClass(){
+
+    getClass() {
         return this.guestClass;
     }
-    getnumOfGuest(){
+
+    getnumOfGuest() {
         return this.numOfGuest;
     }
-    getRentDays(){
+
+    getRentDays() {
         return this.rentDays;
     }
-    getServices(){
+
+    getServices() {
         return this.services;
     }
-    getRoomType(){
+
+    getRoomType() {
         return this.roomType;
     }
-    getAmount(){
+
+    getAmount() {
+        let price;
+        let addDiscount;
+        let stayDiscount;
+        let classDiscount;
+        let discount;
         switch (this.services) {
             case ("Villa"): {
                 price = 500;
@@ -82,7 +98,7 @@ class Customer {
             if (this.rentDays >= 5) {
                 stayDiscount = 20;
             } else {
-                if (rentDays.value >= 2) {
+                if (this.rentDays >= 2) {
                     stayDiscount = 10;
                 } else stayDiscount = 0;
             }
@@ -114,172 +130,31 @@ class Customer {
 
         }
         discount = addDiscount + stayDiscount + classDiscount;
-        return  (price * this.rentDays - discount);
+        return (price * this.rentDays - discount);
+    }
+
+    setName(name) {
+        this.guestName = name
     }
 }
-let guestName;
-let guestId;
-let guestDob;
-let guestEmail;
-let address;
-let guestClass;
-let numOfGuest;
-let rentDays;
-let services;
-let roomType;
-let price;
-let amount;
-let discount;
-let addDiscount;
-let stayDiscount;
-let classDiscount;
-let messageAlert;
-let listOfGuest = new Array();
-let index;
-let info = new Customer();
-//------------- Load main menu -------------------
-function mainMenu() {
-    document.getElementById("showinformation").innerHTML="";
-    document.getElementById("mainMenu").innerHTML = "<ul>"+
-        "<li><p class='headTitle'>CUSTOMER</p></li>"+
-        "<li><p onclick='inputGuestInfo()'>Add new guest account</p></li>"+
-        "<li><p onclick='editGuestInfo()'>Edit Guest account</p></li>"+
-        "<li><p onclick='deleteGuestInfo()'>Delete guest account</p></li>"+
-        "<li><p onclick='showGuestInfo()'>Display list of guest account</p></li>"+
-        "<li><p class='headTitle'>EMPLOYEE</p></li>"+
-        "<li><p onclick='inputStaffInfo()'>Add new employee</p></li>"+
-        "<li><p onclick='editStaffinfo()'>Edit employee information</p></li>"+
-        "<li><p onclick='deleteStaffInfo()'>Delete employee</p></li>"+
-        "<li><p onclick='showStaffInfo()'>Display list of employee</p></li>"+
-        "<li><p onclick='mainMenu()' class='headTitle'>Exit</p></li>"+
-        "</ul>"
-}
 
-//----------- Show input form -------------------
-function inputGuestInfo(){
-    document.getElementById("showinformation").innerHTML = "<p class='header'>THÔNG TIN ĐẶT PHÒNG <br>" +
-        "        BOOKING INFORMATION" +
-        "    </p><br><br><br>" +
-        "<form action='guest.info.html' method='post' id='guestinfo'>" +
-        "        <table class='guest-table'>" +
-        "            <tr>" +
-        "                <td>" +
-        "                    <label>Tên khách hàng/Guest name<label>" +
-        "                </td>" +
-        "                <td>" +
-        "                    <input class='inputstyle' type='text' id='guestname'>" +
-        "                </td>" +
-        "            </tr>" +
-        "            <tr>" +
-        "                <td>" +
-        "                    <label>Số CMND/ID number:</label>" +
-        "                </td>" +
-        "                <td>" +
-        "                    <input class='inputstyle' type='text' id='guestid'>" +
-        "                </td>" +
-        "            </tr>" +
-        "            <tr>" +
-        "                <td>" +
-        "                    <label>Ngày sinh/Date of birth</label>" +
-        "                </td>" +
-        "                <td>" +
-        "                    <input class='inputstyle' type='text' id='guestdob' placeholder='DD/MM/YYYY'>" +
-        "                </td>" +
-        "            </tr>" +
-                    "<tr>" +
-        "                <td>" +
-        "                    <label>Email</label>" +
-        "                </td>" +
-        "                <td>" +
-        "                    <input class='inputstyle' type='text' id='guestemail'>" +
-        "                </td>" +
-        "            </tr>"+
-        "            <tr>" +
-        "                <td>" +
-        "                    <label>Địa chỉ/Address:</label>" +
-        "                </td>" +
-        "                <td>" +
-        "                    <select class='selectstyled' id='address'>" +
-        "                        <option>Đà Nẵng</option>" +
-        "                        <option>Thừa Thiên Huế</option>" +
-        "                        <option>Quảng Nam</option>" +
-        "                        <option>Tỉnh khác</option>" +
-        "                    </select>" +
-        "                </td>" +
-        "            </tr>" +
-        "            <tr>" +
-        "                <td>Hạng khách hàng/Customer Class:</td>\n" +
-        "                <td>" +
-        "                    <select class='selectstyled' id='guestclass'>" +
-        "                        <option>Diamond</option>" +
-        "                        <option>Platinum</option>" +
-        "                        <option>Gold</option>" +
-        "                        <option>Silver</option>" +
-        "                        <option>Member</option>" +
-        "                    </select>" +
-        "                </td>" +
-        "            </tr>" +
-        "            <tr>" +
-        "                <td>Số lượng khách/Number of Guest</td>" +
-        "                <td>" +
-        "                    <input class='inputstyle' type='text' id='numOfGuest'>" +
-        "                </td>" +
-        "            </tr>" +
-        "            <tr>" +
-        "                <td>Số ngày thuê/rentdays</td>" +
-        "                <td>" +
-        "                    <input class='inputstyle' type='text' id='rentdays'>" +
-        "                </td>" +
-        "            </tr>" +
-        "            <tr>" +
-        "                <td>Loại dịch vụ/ Services</td>" +
-        "                <td>" +
-        "                    <select class='selectstyled' id='services'>" +
-        "                        <option>Villa</option>" +
-        "                        <option>House</option>" +
-        "                        <option>Room</option>" +
-        "                    </select>" +
-        "                </td>" +
-        "            </tr>" +
-        "            <tr>" +
-        "                <td>Loại phòng/Room type</td>" +
-        "                <td>" +
-        "                    <select class='selectstyled' id='roomtype'>" +
-        "                        <option>VIP</option>" +
-        "                        <option>Business</option>" +
-        "                        <option>Normal</option>" +
-        "                    </select>" +
-        "                </td>" +
-        "            </tr>" +
-        "            <tr>" +
-        "                <td></td>" +
-        "                <td><br>" +
-        "                    <input type='button' class='buttonstyle' value='Submit' onclick='submitGuest()' onmouseover='Smouseover()' onmouseout='Smouseout()' id='submitButton'>" +
-        "                    &#160 &#160 &#160 &#160\n" +
-        "                    <input type='reset' class='buttonstyle' value='Reset' onmouseover='Rmouseover()' onmouseout='Rmouseout()' id='resetButton'>" +
-        "                </td>" +
-        "            </tr>" +
-        "        </table>" +
-        "    </form>";
-}
+class CustomerProgram {
+    constructor(guestList) {
+        this.guestList = guestList
+    }
 
-//----------- Edit guest information-------------
-function editGuestInfo() {
-    let guest = prompt("Nhập tên khách hàng");
-    index = findguest(guest);
-    if (index === listOfGuest.length) {
-        alert("Không tìm thấy tên khách hàng");
-    } else {
-        document.getElementById("showinformation").innerHTML = "<p CLASS='header'>THÔNG TIN ĐẶT PHÒNG <br>" +
-            "BOOKING INFORMATION" +
-            "</p><br><br><br><br><br><br>" +
-            "<form action='guest.info.html' method='post' id='guestinfo'>" +
-            "<table class='guest-table'>" +
+    inputGuestInfo() {
+        let inputTable = "<p class='header'>THÔNG TIN ĐẶT PHÒNG <br>" +
+            "        BOOKING INFORMATION" +
+            "    </p><br><br><br>" +
+            "<form action='guest.info.html' method='post' id='guestInfo'>" +
+            "        <table class='guest-table'>" +
             "            <tr>" +
             "                <td>" +
             "                    <label>Tên khách hàng/Guest name<label>" +
             "                </td>" +
-            "                <td>" + "<input class='inputstyle' type='text' id='guestname' value='" + listOfGuest[index].getName() + "'>" +
+            "                <td>" +
+            "                    <input class='inputstyle' type='text' id='guestName'>" +
             "                </td>" +
             "            </tr>" +
             "            <tr>" +
@@ -287,30 +162,30 @@ function editGuestInfo() {
             "                    <label>Số CMND/ID number:</label>" +
             "                </td>" +
             "                <td>" +
-            "                    <input class='inputstyle' type='text' id='guestid' value='" + listOfGuest[index].getID() + "'>" +
-            "                </td>\n" +
-            "            </tr>" +
-            "            <tr>" +
-            "                <td>" +
-            "                    <label>Ngày sinh/Date of birth</label>\n" +
-            "                </td>\n" +
-            "                <td>" +
-            "                    <input class='inputstyle' type='text' id='guestdob' value='" + listOfGuest[index].getDob() + "'>" +
+            "                    <input class='inputstyle' type='text' id='guestId'>" +
             "                </td>" +
             "            </tr>" +
             "            <tr>" +
+            "                <td>" +
+            "                    <label>Ngày sinh/Date of birth</label>" +
+            "                </td>" +
+            "                <td>" +
+            "                    <input class='inputstyle' type='text' id='guestDob' placeholder='DD/MM/YYYY'>" +
+            "                </td>" +
+            "            </tr>" +
+            "<tr>" +
             "                <td>" +
             "                    <label>Email</label>" +
             "                </td>" +
             "                <td>" +
-            "                    <input class='inputstyle' type='text' id='guestemail' + value='" + listOfGuest[index].getEmail() + "'>" +
+            "                    <input class='inputstyle' type='text' id='guestEmail' placeholder='example@abc.xyz'>" +
             "                </td>" +
             "            </tr>" +
             "            <tr>" +
             "                <td>" +
             "                    <label>Địa chỉ/Address:</label>" +
-            "                </td>\n" +
-            "                <td>\n" +
+            "                </td>" +
+            "                <td>" +
             "                    <select class='selectstyled' id='address'>" +
             "                        <option>Đà Nẵng</option>" +
             "                        <option>Thừa Thiên Huế</option>" +
@@ -320,9 +195,9 @@ function editGuestInfo() {
             "                </td>" +
             "            </tr>" +
             "            <tr>" +
-            "                <td>Hạng khách hàng/Customer Class:</td>" +
+            "                <td>Hạng khách hàng/Customer Class:</td>\n" +
             "                <td>" +
-            "                    <select class='selectstyled' id='guestclass'>" +
+            "                    <select class='selectstyled' id='guestClass'>" +
             "                        <option>Diamond</option>" +
             "                        <option>Platinum</option>" +
             "                        <option>Gold</option>" +
@@ -332,15 +207,15 @@ function editGuestInfo() {
             "                </td>" +
             "            </tr>" +
             "            <tr>" +
-            "                <td>Số lượng khách/Number of Guest:</td>" +
+            "                <td>Số lượng khách/Number of Guest</td>" +
             "                <td>" +
-            "                    <input class='inputstyle' type='text' id='numOfGuest' value='" + listOfGuest[index].getnumOfGuest() + "'>" +
+            "                    <input class='inputstyle' type='text' id='numOfGuest'>" +
             "                </td>" +
             "            </tr>" +
             "            <tr>" +
             "                <td>Số ngày thuê/rentdays</td>" +
             "                <td>" +
-            "                    <input class='inputstyle' type='text' id='rentdays' value='" + listOfGuest[index].getRentDays() + "'>" +
+            "                    <input class='inputstyle' type='text' id='rentDays'>" +
             "                </td>" +
             "            </tr>" +
             "            <tr>" +
@@ -356,7 +231,7 @@ function editGuestInfo() {
             "            <tr>" +
             "                <td>Loại phòng/Room type</td>" +
             "                <td>" +
-            "                    <select class='selectstyled' id='roomtype'>" +
+            "                    <select class='selectstyled' id='roomType'>" +
             "                        <option>VIP</option>" +
             "                        <option>Business</option>" +
             "                        <option>Normal</option>" +
@@ -366,284 +241,452 @@ function editGuestInfo() {
             "            <tr>" +
             "                <td></td>" +
             "                <td><br>" +
-            "                    <input type='button' class='buttonstyle' value='Update' onclick='updateGuest()' onmouseover='Smouseover()' onmouseout='Smouseout()' id='submitButton'>" +
-            "                    &#160 &#160 &#160 &#160" +
+            "                    <input type='button' class='buttonstyle' value='Submit' onclick='submitInfo()' onmouseover='Smouseover()' onmouseout='Smouseout()' id='submitButton'>" +
+            "                    &#160 &#160 &#160 &#160\n" +
             "                    <input type='reset' class='buttonstyle' value='Reset' onmouseover='Rmouseover()' onmouseout='Rmouseout()' id='resetButton'>" +
             "                </td>" +
             "            </tr>" +
             "        </table>" +
             "    </form>";
-        let temp = listOfGuest[index].getAddress();
-        let mySelect = document.getElementById("address");
-        for (let i, j = 0; i = mySelect.options[j]; j++) {
-            if (i.value === temp) {
-                mySelect.selectedIndex = j;
-                break;
+        document.getElementById("showInformation").innerHTML = inputTable;
+    }
+
+    getGuestData() {
+        let guestName = document.forms["guestInfo"]["guestName"];
+        let guestId = document.forms["guestInfo"]["guestId"];
+        let guestDob = document.forms["guestInfo"]["guestDob"];
+        let guestEmail = document.forms["guestInfo"]["guestEmail"]
+        let address = document.forms["guestInfo"]["address"];
+        let guestClass = document.forms["guestInfo"]["guestClass"];
+        let numOfGuest = document.forms["guestInfo"]["numOfGuest"];
+        let rentDays = document.forms["guestInfo"]["rentDays"];
+        let services = document.forms["guestInfo"]["services"];
+        let roomType = document.forms["guestInfo"]["roomType"];
+        let guestData = new Customer(guestName.value, guestId.value, guestDob.value, guestEmail.value, address.value, guestClass.value, numOfGuest.value, rentDays.value, services.value, roomType.value);
+        return guestData;
+    }
+
+    getAlertMessage(guest) {
+        let temp = "";
+        let messageAlert = "";
+// Check guest name
+        if (guest.getName() === "") {
+            messageAlert += "Tên khách hàng: Chưa nhập thông tin \n";
+        } else {
+            for (let i = 0; i < guest.getName().length; i++) {
+                if (guest.getName().charAt(i) === " " && guest.getName().charAt(i + 1) === " ") {
+                    continue;
+                }
+                temp += guest.getName().charAt(i);
+            }
+            guest.setName(temp);
+        }
+//Check guestID format
+        let regexID = /^[\d]{8,8}$/;
+        if (guest.getID() === "") {
+            messageAlert += "Số CMND: Chưa nhập thông tin \n"
+        } else if (!regexID.test(guest.getID())) {
+            messageAlert += "Số CMND: Phải là dãy số có 8 chữ số \n";
+        }
+// Check DoB format
+        let regexDob = /^(?=\d)(?:(?:31(?!.(?:0?[2469]|11))|(?:30|29)(?!.0?2)|29(?=.0?2.(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00)))(?:\x20|$))|(?:2[0-8]|1\d|0?[1-9]))([-.\/])(?:1[012]|0?[1-9])\1(?:1[6-9]|[2-9]\d)?\d\d(?:(?=\x20\d)\x20|$))?(((0?[1-9]|1[012])(:[0-5]\d){0,2}(\x20[AP]M))|([01]\d|2[0-3])(:[0-5]\d){1,2})?$/;
+        if (guest.getDob() === "") {
+            messageAlert += "Ngày sinh: Chưa nhập thông tin \n";
+        } else if (!regexDob.test(guest.getDob())) {
+            messageAlert += "Ngày sinh: Phải đúng định dạng DD/MM/YYYY \n "
+        }
+// Check email format
+        let regexEmail = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+        if (guest.getEmail() === "") {
+            messageAlert += "Email: Chưa nhập thông tin \n"
+        } else if (!regexEmail.test(guest.getEmail())) {
+            messageAlert += "Email: Phải đúng định dạng abc@def.xyz \n";
+        }
+// Check Number Of Guest
+        let regexNumber = /^[\d]+$/;
+        if (guest.getnumOfGuest() === "") {
+            messageAlert += "Số lượng khách: Chưa nhập thông tin\n"
+        } else if (!regexNumber.test(guest.getnumOfGuest())) {
+            messageAlert += "Số lượng khách: Phải là số nguyên dương \n"
+        }
+// Check rentdays
+        if (guest.getRentDays() === "") {
+            messageAlert += "Số ngày thuê: Chưa nhập thông tin\n"
+        } else if (!regexNumber.test(guest.getRentDays())) {
+            messageAlert += "Số ngày thuê: Phải là số nguyên dương \n"
+        }
+        return messageAlert;
+    }
+
+    checkInfo(guest) {
+        let messageAlert = this.getAlertMessage(guest);
+        if (messageAlert !== "") {
+            return false
+        } else return true;
+    }
+
+    submitGuest() {
+        let guest = this.getGuestData();
+        if (this.checkInfo(guest)) {
+            this.guestList.push(guest);
+            alert("Thông tin được nhập thành công");
+            document.getElementById("guestInfo").reset();
+        } else {
+            alert(this.getAlertMessage(guest))
+        }
+    }
+
+    getGuestIndex(guestName) {
+        let i = 0;
+        if (this.guestList.length > 0) {
+            while (this.guestList[i].guestName !== guestName) {
+                i++;
+                if (i === this.guestList.length) {
+                    break;
+                }
             }
         }
-        temp = listOfGuest[index].getClass();
-        mySelect = document.getElementById("guestclass");
-        for (let i, j = 0; i = mySelect.options[j]; j++) {
-            if (i.value === temp) {
-                mySelect.selectedIndex = j;
-                break;
+        return i;
+    }
+
+    inputName() {
+        return prompt("Nhập tên khách hàng")
+    }
+
+    edit(guestName) {
+        let index = this.getGuestIndex(guestName);
+        let guest = new Customer();
+        if (index === this.guestList.length) {
+            alert("Không tìm thấy tên khách hàng");
+        } else {
+            guest = this.guestList[index];
+            let editTable = "<p CLASS='header'>THÔNG TIN ĐẶT PHÒNG <br>" +
+                "BOOKING INFORMATION" +
+                "</p><br><br><br><br><br><br>" +
+                "<form action='guest.info.html' method='post' id='guestInfo'>" +
+                "<table class='guest-table'>" +
+                "            <tr>" +
+                "                <td>" +
+                "                    <label>Tên khách hàng/Guest name<label>" +
+                "                </td>" +
+                "                <td>" + "<input class='inputstyle' type='text' id='guestName' value='" + guest.getName() + "'>" +
+                "                </td>" +
+                "            </tr>" +
+                "            <tr>" +
+                "                <td>" +
+                "                    <label>Số CMND/ID number:</label>" +
+                "                </td>" +
+                "                <td>" +
+                "                    <input class='inputstyle' type='text' id='guestId' value='" + guest.getID() + "'>" +
+                "                </td>\n" +
+                "            </tr>" +
+                "            <tr>" +
+                "                <td>" +
+                "                    <label>Ngày sinh/Date of birth</label>\n" +
+                "                </td>\n" +
+                "                <td>" +
+                "                    <input class='inputstyle' type='text' id='guestDob' value='" + guest.getDob() + "'>" +
+                "                </td>" +
+                "            </tr>" +
+                "            <tr>" +
+                "                <td>" +
+                "                    <label>Email</label>" +
+                "                </td>" +
+                "                <td>" +
+                "                    <input class='inputstyle' type='text' id='guestEmail' + value='" + guest.getEmail() + "'>" +
+                "                </td>" +
+                "            </tr>" +
+                "            <tr>" +
+                "                <td>" +
+                "                    <label>Địa chỉ/Address:</label>" +
+                "                </td>\n" +
+                "                <td>\n" +
+                "                    <select class='selectstyled' id='address'>" +
+                "                        <option>Đà Nẵng</option>" +
+                "                        <option>Thừa Thiên Huế</option>" +
+                "                        <option>Quảng Nam</option>" +
+                "                        <option>Tỉnh khác</option>" +
+                "                    </select>" +
+                "                </td>" +
+                "            </tr>" +
+                "            <tr>" +
+                "                <td>Hạng khách hàng/Customer Class:</td>" +
+                "                <td>" +
+                "                    <select class='selectstyled' id='guestClass'>" +
+                "                        <option>Diamond</option>" +
+                "                        <option>Platinum</option>" +
+                "                        <option>Gold</option>" +
+                "                        <option>Silver</option>" +
+                "                        <option>Member</option>" +
+                "                    </select>" +
+                "                </td>" +
+                "            </tr>" +
+                "            <tr>" +
+                "                <td>Số lượng khách/Number of Guest:</td>" +
+                "                <td>" +
+                "                    <input class='inputstyle' type='text' id='numOfGuest' value='" + this.guestList[index].getnumOfGuest() + "'>" +
+                "                </td>" +
+                "            </tr>" +
+                "            <tr>" +
+                "                <td>Số ngày thuê/rentdays</td>" +
+                "                <td>" +
+                "                    <input class='inputstyle' type='text' id='rentDays' value='" + this.guestList[index].getRentDays() + "'>" +
+                "                </td>" +
+                "            </tr>" +
+                "            <tr>" +
+                "                <td>Loại dịch vụ/ Services</td>" +
+                "                <td>" +
+                "                    <select class='selectstyled' id='services'>" +
+                "                        <option>Villa</option>" +
+                "                        <option>House</option>" +
+                "                        <option>Room</option>" +
+                "                    </select>" +
+                "                </td>" +
+                "            </tr>" +
+                "            <tr>" +
+                "                <td>Loại phòng/Room type</td>" +
+                "                <td>" +
+                "                    <select class='selectstyled' id='roomType'>" +
+                "                        <option>VIP</option>" +
+                "                        <option>Business</option>" +
+                "                        <option>Normal</option>" +
+                "                    </select>" +
+                "                </td>" +
+                "            </tr>" +
+                "            <tr>" +
+                "                <td></td>" +
+                "                <td><br>" +
+                "                    <input type='button' class='buttonstyle' value='Update' onclick='updateInfo(" + index + ")' onmouseover='Smouseover()' onmouseout='Smouseout()' id='submitButton'>" +
+                "                    &#160 &#160 &#160 &#160" +
+                "                    <input type='reset' class='buttonstyle' value='Reset' onmouseover='Rmouseover()' onmouseout='Rmouseout()' id='resetButton'>" +
+                "                </td>" +
+                "            </tr>" +
+                "        </table>" +
+                "    </form>";
+            document.getElementById("showInformation").innerHTML = editTable;
+            let temp = guest.getAddress();
+            let mySelect = document.getElementById("address");
+            for (let i, j = 0; i = mySelect.options[j]; j++) {
+                if (i.value === temp) {
+                    mySelect.selectedIndex = j;
+                    break;
+                }
+            }
+            temp = guest.getClass();
+            mySelect = document.getElementById("guestClass");
+            for (let i, j = 0; i = mySelect.options[j]; j++) {
+                if (i.value === temp) {
+                    mySelect.selectedIndex = j;
+                    break;
+                }
+            }
+            temp = guest.getServices();
+            mySelect = document.getElementById("services");
+            for (let i, j = 0; i = mySelect.options[j]; j++) {
+                if (i.value === temp) {
+                    mySelect.selectedIndex = j;
+                    break;
+                }
+            }
+            temp = guest.getRoomType();
+            mySelect = document.getElementById("roomType");
+            for (let i, j = 0; i = mySelect.options[j]; j++) {
+                if (i.value === temp) {
+                    mySelect.selectedIndex = j;
+                    break;
+                }
             }
         }
-        temp = listOfGuest[index].getServices();
-        mySelect = document.getElementById("services");
-        for (let i, j = 0; i = mySelect.options[j]; j++) {
-            if (i.value === temp) {
-                mySelect.selectedIndex = j;
-                break;
-            }
+
+    }
+
+    update(guestIndex) {
+        let guest = this.getGuestData();
+        if (this.checkInfo(guest)) {
+            this.guestList.splice(guestIndex, 1)
+            this.guestList.push(guest);
+            alert("chỉnh sửa thành công");
+        } else {
+            alert(this.getAlertMessage(guest))
         }
-        temp = listOfGuest[index].getRoomType();
-        mySelect = document.getElementById("roomtype");
-        for (let i, j = 0; i = mySelect.options[j]; j++) {
-            if (i.value === temp) {
-                mySelect.selectedIndex = j;
-                break;
+    }
+
+    delete(guestName) {
+        let index = this.getGuestIndex(guestName);
+        if (index === this.guestList.length) {
+            alert("Không tìm thấy tên khách hàng");
+        } else {
+            if (confirm("Bạn có muốn xóa khách hàng " + this.guestList[index].getName() + " - Số CMND " + this.guestList[index].getID() + " không?")) {
+                this.guestList.splice(index, 1);
+                alert("Đã xóa khách hàng");
             }
         }
     }
-}
 
-//----------- Delete guest account---------------
-function deleteGuestInfo() {
-    let guest = prompt("Nhập tên khách hàng");
-    index = findguest(guest);
-    if (index === listOfGuest.length){
-        alert("Không tìm thấy tên khách hàng");
-    } else {
-        if (confirm("Bạn có muốn xóa khách hàng " + listOfGuest[index].getName() + " không?")){
-            listOfGuest.splice(index,1);
-            alert("Đã xóa khách hàng");
+    sort() {
+        this.guestList.sort(function (a, b) {
+            if (a.getName().toLowerCase() < b.getName().toLowerCase()) {
+                return -1
+            }
+            if (a.getName().toLowerCase() > b.getName().toLowerCase()) {
+                return 1
+            }
+            return 0;
+        });
+    }
+
+    showGuestInfo() {
+        this.sort()
+        let guestInfoTable = "<table class='showInfoTable'>" +
+            "<tr>" +
+            "<th>STT </th>" +
+            "<th>Tên khách hàng </th>" +
+            "<th>Số CMND</th>" +
+            "<th>Ngày sinh</th>" +
+            "<th>Email</th>" +
+            "<th>Địa chỉ</th>" +
+            "<th>Hạng khách hàng</th>" +
+            "<th>SL khách</th>" +
+            "<th>Số ngày thuê</th>" +
+            "<th>Loại dịch vụ</th>" +
+            "<th>Loại phòng</th>" +
+            "<th>Xác nhận đặt phòng</th>" +
+            "</tr>";
+        for (let i = 0; i < this.guestList.length; i++) {
+            guestInfoTable += "<tr>" +
+                "<td>" + (i + 1) + "</td>" +
+                "<td>" + this.guestList[i].getName() + "</td>" +
+                "<td>" + this.guestList[i].getID() + "</td>" +
+                "<td>" + this.guestList[i].getDob() + "</td>" +
+                "<td>" + this.guestList[i].getEmail() + "</td>" +
+                "<td>" + this.guestList[i].getAddress() + "</td>" +
+                "<td>" + this.guestList[i].getClass() + "</td>" +
+                "<td>" + this.guestList[i].getnumOfGuest() + "</td>" +
+                "<td>" + this.guestList[i].getRentDays() + "</td>" +
+                "<td>" + this.guestList[i].getServices() + "</td>" +
+                "<td>" + this.guestList[i].getRoomType() + "</td>" +
+                "<td class='detail' onclick='bookingDetail(" + i + ")'>Chi tiết</td></tr>";
         }
+        guestInfoTable += "</table>";
+        document.getElementById("showInformation").innerHTML = guestInfoTable;
     }
-    showGuestInfo();
-}
 
-//----------- Show list of guest account---------
-function showGuestInfo() {
-    listOfGuest.sort(function (a,b){
-        if (a.getName().toLowerCase()< b.getName().toLowerCase()){return -1}
-        if (a.getName().toLowerCase()> b.getName().toLowerCase()){return 1}
-        return 0;
-    });
-    let guestinfotable = "<table class='showInfoTable'>"+
-        "<tr>"+
-        "<th>STT </th>" +
-        "<th>Tên khách hàng </th>" +
-        "<th>Số CMND</th>" +
-        "<th>Ngày sinh</th>" +
-        "<th>Email</th>"+
-        "<th>Địa chỉ</th>" +
-        "<th>Hạng khách hàng</th>" +
-        "<th>SL khách</th>" +
-        "<th>Số ngày thuê</th>" +
-        "<th>Loại dịch vụ</th>" +
-        "<th>Loại phòng</th>" +
-        "<th>Xác nhận đặt phòng</th>" +
-        "</tr>";
-    for (let i = 0; i < listOfGuest.length; i++){
-        guestinfotable += "<tr>" +
-            "<td>"+ parseInt(i+1) +"</td>"+
-            "<td>"+ listOfGuest[i].getName() +"</td>"+
-            "<td>"+ listOfGuest[i].getID() +"</td>"+
-            "<td>"+ listOfGuest[i].getDob() +"</td>"+
-            "<td>"+ listOfGuest[i].getEmail() +"</td>"+
-            "<td>"+ listOfGuest[i].getAddress() +"</td>"+
-            "<td>"+ listOfGuest[i].getClass() +"</td>"+
-            "<td>"+ listOfGuest[i].getnumOfGuest() +"</td>"+
-            "<td>"+ listOfGuest[i].getRentDays() +"</td>"+
-            "<td>"+ listOfGuest[i].getServices() +"</td>"+
-            "<td>"+ listOfGuest[i].getRoomType() +"</td>"+
-            "<td class='detail' onclick='bookingDetail(" + i + ")'>Chi tiết</td></tr>";
+    editGuestInfo() {
+        let guestName = this.inputName();
+        this.edit(guestName)
     }
-    guestinfotable += "</table>";
-    document.getElementById("showinformation").innerHTML = guestinfotable;
-}
 
-//----------- Show booking confirmation ---------
-function bookingDetail(index) {
-        document.getElementById("showinformation").innerHTML = "<table class='confirmationTable'>" +
+    deleteGuestInfo() {
+        let guestName = this.inputName();
+        this.delete(guestName);
+        this.showGuestInfo()
+    }
+
+    detail(index) {
+        let detail = "<table class='confirmationTable'>" +
             "<tr>" +
             "<td colspan='2' class='confirmationHeader'>XÁC NHẬN ĐẶT PHÒNG/ BOOKING CONFIRMATION</td>" +
             "</tr>" +
             "<tr>" +
             "<td>Tên khách hàng/ Guest name: </td>" +
-            "<td>" + listOfGuest[index].getName() + "</td>" +
+            "<td>" + this.guestList[index].getName() + "</td>" +
             "</tr>" +
             "<tr>" +
             "<td>Số CMND/ID Number: </td>" +
-            "<td>" + listOfGuest[index].getID() + "</td>" +
+            "<td>" + this.guestList[index].getID() + "</td>" +
             "</tr>" +
             "<tr>" +
             "<td>Ngày sinh/ Date of birth: </td>" +
-            "<td>" + listOfGuest[index].getDob() + "</td>" +
+            "<td>" + this.guestList[index].getDob() + "</td>" +
             "</tr>" +
             "<tr>" +
             "<td>Email: </td>" +
-            "<td>" + listOfGuest[index].getEmail() + "</td>" +
+            "<td>" + this.guestList[index].getEmail() + "</td>" +
             "</tr>" +
             "<tr>" +
             "<td>Địa chỉ/ Address: </td>" +
-            "<td>" + listOfGuest[index].getAddress() + "</td>" +
+            "<td>" + this.guestList[index].getAddress() + "</td>" +
             "</tr>" +
             "<tr>" +
             "<td>Hạng khách hàng/ Customer class: </td>" +
-            "<td>" + listOfGuest[index].getClass() + "</td>" +
+            "<td>" + this.guestList[index].getClass() + "</td>" +
             "</tr>" +
             "<tr>" +
             "<td>Số lượng khách/ Number of Guest: </td>" +
-            "<td>" + listOfGuest[index].getnumOfGuest() + "</td>" +
+            "<td>" + this.guestList[index].getnumOfGuest() + "</td>" +
             "</tr>" +
             "<tr>" +
             "<td>Số ngày thuê/ Rentdays: </td>" +
-            "<td>" + listOfGuest[index].getRentDays() + "</td>" +
+            "<td>" + this.guestList[index].getRentDays() + "</td>" +
             "</tr>" +
             "<tr>" +
             "<td>Loại dịch vụ/ Services: </td>" +
-            "<td>" + listOfGuest[index].getServices() + "</td>" +
+            "<td>" + this.guestList[index].getServices() + "</td>" +
             "</tr>" +
             "<tr>" +
             "<td>Loại phòng/ Room type: </td>" +
-            "<td>" + listOfGuest[index].getRoomType() + "</td>" +
+            "<td>" + this.guestList[index].getRoomType() + "</td>" +
             "</tr>" +
             "<tr>" +
             "<tr>" +
             "<td>Thành tiền/ Total Amount: </td>" +
-            "<td class='amountstyle''>" + listOfGuest[index].getAmount() + " USD</td>" +
+            "<td class='amountstyle''>" + this.guestList[index].getAmount() + " USD</td>" +
             "</tr>" +
             "</table>"
-
+        document.getElementById("showInformation").innerHTML = detail;
+    }
 }
 
-// --------- Submit button event ----------------
-function submitGuest() {
-    messageAlert = "";
-    getGuestData();
-    if (checkInfo()){
-        let temp = new Customer(guestName.value, guestId.value, guestDob.value, guestEmail.value, address.value, guestClass.value, numOfGuest.value, rentDays.value, services.value, roomType.value);
-        listOfGuest.push(temp);
-        alert("Thông tin được nhập thành công");
-        document.getElementById("guestinfo").reset();
-        mainMenu();
-    } else {alert(messageAlert)}
+let listOfGuest = new Array();
+let customer = new CustomerProgram(listOfGuest);
+
+function submitInfo() {
+    customer.submitGuest();
 }
 
-//---------- Update button event ----------------
-function updateGuest() {
-    messageAlert = "";
-    getGuestData();
-    if (checkInfo()){
-        let temp = new Customer(guestName.value, guestId.value, guestDob.value, guestEmail.value, address.value, guestClass.value, numOfGuest.value, rentDays.value, services.value, roomType.value)
-        listOfGuest.splice(index,1);
-        listOfGuest.push(temp);
-        alert("Chỉnh sửa thành công");
-    } else {alert(messageAlert)}
+function updateInfo(index) {
+    customer.update(index)
 }
 
-//----------- Get Data from input form ----------
-function getGuestData() {
-    guestName = document.forms["guestinfo"]["guestname"];
-    guestId = document.forms["guestinfo"]["guestid"];
-    guestDob = document.forms["guestinfo"]["guestdob"];
-    guestEmail = document.forms["guestinfo"]["guestemail"]
-    address = document.forms["guestinfo"]["address"];
-    guestClass = document.forms["guestinfo"]["guestclass"];
-    numOfGuest = document.forms["guestinfo"]["numOfGuest"];
-    rentDays = document.forms["guestinfo"]["rentdays"];
-    services = document.forms["guestinfo"]["services"];
-    roomType = document.forms["guestinfo"]["roomtype"];
+function bookingDetail(index) {
+    customer.detail(index)
 }
 
-//----------- Check input information format -------------
-function checkInfo(){
-    let temp = "";
-// Check guest name
-    if (guestname.value ===""){
-        messageAlert += "Tên khách hàng: Chưa nhập thông tin \n";
-    } else {
-        for (let i = 0; i < guestname.value.length; i++) {
-            if (guestName.value.charAt(i) === " " && guestName.value.charAt(i + 1) === " ") {
-                continue;
-            }
-            temp += guestName.value.charAt(i);
-        }
-        guestName.value = temp;
-    }
-//Check guestID format
-    let regexID = /^[\d]{8,8}$/;
-    if (guestId.value === ""){
-        messageAlert += "Số CMND: Chưa nhập thông tin \n"
-    } else if (!regexID.test(guestId.value)){
-        messageAlert += "Số CMND: Phải là dãy số có 8 chữ số \n";
-    }
-// Check DoB format
-    let regexDob = /^(?=\d)(?:(?:31(?!.(?:0?[2469]|11))|(?:30|29)(?!.0?2)|29(?=.0?2.(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00)))(?:\x20|$))|(?:2[0-8]|1\d|0?[1-9]))([-.\/])(?:1[012]|0?[1-9])\1(?:1[6-9]|[2-9]\d)?\d\d(?:(?=\x20\d)\x20|$))?(((0?[1-9]|1[012])(:[0-5]\d){0,2}(\x20[AP]M))|([01]\d|2[0-3])(:[0-5]\d){1,2})?$/;
-    if (guestDob.value === ""){
-        messageAlert += "Ngày sinh: Chưa nhập thông tin \n";
-    } else if (!regexDob.test(guestDob.value)){
-            messageAlert += "Ngày sinh: Phải đúng định dạng DD/MM/YYYY \n "
-    }
-
-// Check email format
-    let regexEmail = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-    if (guestEmail.value ===""){
-        messageAlert += "Email: Chưa nhập thông tin \n"
-    } else if (!regexEmail.test(guestEmail.value)){
-        messageAlert += "Email: Phải đúng định dạng abc@def.xyz \n";
-    }
-
-
-// Check Number Of Guest
-    let regexNumber = /^[\d]+$/;
-    if (numOfGuest.value === ""){
-        messageAlert += "Số lượng khách: Chưa nhập thông tin\n"
-    } else if (!regexNumber.test(numOfGuest.value)){
-        messageAlert += "Số lượng khách: Phải là số nguyên dương \n"
-    }
-// Check rentdays
-    if (rentDays.value === ""){
-        messageAlert += "Số ngày thuê: Chưa nhập thông tin\n"
-    } else if (!regexNumber.test(rentDays.value)){
-        messageAlert += "Số ngày thuê: Phải là số nguyên dương \n"
-    }
-    if (messageAlert !== ""){
-        return false
-    } else return true;
-}
-
-//--------- Find guest frorm Guest Account array ----------
-function findguest(guest) {
-    let i = 0;
-    if (listOfGuest.length > 0){
-        while (listOfGuest[i].guestName !== guest) {
-            i++;
-            if (i === listOfGuest.length) {
-                break;
-            }
-        }
-    }
-    return i;
+function mainMenu() {
+    document.getElementById("showInformation").innerHTML = "";
+    document.getElementById("mainMenu").innerHTML = "<ul>" +
+        "<li><p class='headTitle'>CUSTOMER</p></li>" +
+        "<li><p onclick='customer.inputGuestInfo()'>Add new guest account</p></li>" +
+        "<li><p onclick='customer.editGuestInfo()'>Edit Guest account</p></li>" +
+        "<li><p onclick='customer.deleteGuestInfo()'>Delete guest account</p></li>" +
+        "<li><p onclick='customer.showGuestInfo()'>Display list of guest account</p></li>" +
+        "<li><p class='headTitle'>EMPLOYEE</p></li>" +
+        "<li><p onclick='staff.inputEmployeeInfo()'>Add new employee</p></li>" +
+        "<li><p onclick='staff.editEmployeeInfo()'>Edit employee information</p></li>" +
+        "<li><p onclick='staff.deleteEmployeeInfo()'>Delete employee</p></li>" +
+        "<li><p onclick='staff.showEmployeeInfo()'>Display list of employee</p></li>" +
+        "<li><p onclick='mainMenu()' class='headTitle'>Exit</p></li>" +
+        "</ul>"
 }
 
 //----------- Mouse event for Button --------------
 function Smouseover() {
-    document.getElementById("submitButton").style.color="white";
-    document.getElementById("submitButton").style.background="#a0a0a0";
+    document.getElementById("submitButton").style.color = "white";
+    document.getElementById("submitButton").style.background = "#a0a0a0";
 }
+
 function Smouseout() {
-    document.getElementById("submitButton").style.color="black";
-    document.getElementById("submitButton").style.background="white"
+    document.getElementById("submitButton").style.color = "black";
+    document.getElementById("submitButton").style.background = "white"
 }
+
 function Rmouseover() {
-    document.getElementById("resetButton").style.color="white";
-    document.getElementById("resetButton").style.background="#a0a0a0";
+    document.getElementById("resetButton").style.color = "white";
+    document.getElementById("resetButton").style.background = "#a0a0a0";
 }
+
 function Rmouseout() {
-    document.getElementById("resetButton").style.color="Black";
-    document.getElementById("resetButton").style.background="white";
+    document.getElementById("resetButton").style.color = "Black";
+    document.getElementById("resetButton").style.background = "white";
 }
 
