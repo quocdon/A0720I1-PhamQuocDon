@@ -1,0 +1,226 @@
+/*==Reset CSS==*/
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/*==Style cơ bản cho website==*/
+body {
+    font-family: sans-serif;
+    color: #333;
+    background-image: url(Background.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+/*==Style cho menu===*/
+#menu ul {
+    background: #058b8a;
+    list-style-type: none;
+    text-align: center;
+}
+#menu li {
+    color: #f1f1f1;
+    display: inline-block;
+    width: 120px;
+    height: 40px;
+    line-height: 40px;
+    margin-left: -5px;
+}
+#menu a {
+    text-decoration: none;
+    color: #fff;
+    display: block;
+}
+#menu a:hover {
+    background: #F1F1F1;
+    color: #333;
+}
+
+/*==Dropdown Menu==*/
+.sub-menu {
+    display: none;
+    position: absolute;
+}
+#menu li {
+    position: relative;
+}
+#menu li:hover .sub-menu {
+    display: block;
+}
+.sub-menu li {
+    margin-left: 0 !important;
+}
+
+/*==Menu cấp 3==*/
+.sub-menu > ul {
+    display: none !mportant;
+}
+.logo{
+    height: 50px;
+margin-top: auto;
+margin-bottom: auto;
+padding: 0;
+position: relative;
+}
+.header{
+    font-family: Arial;
+    font-size: 25px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 3px;
+    margin-top: 3px;
+    margin-right: auto;
+    margin-left: auto;
+    color: #fffaeb;
+}
+.guest-table{
+    font-family: Arial;
+    font-size: 16px;
+    font-weight: bold;
+    width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    color: #fffaeb;
+    position: relative;
+}
+.gueststyle{
+    font-family: Arial;
+    font-weight: bold;
+    text-align: center;
+}
+.inputstyle{
+    width: 350px;
+    margin: 5px;
+    padding: 7px;
+    font-size: 14px;
+    border-radius: 5px;
+    background-color: #fffaeb;
+    border-style: solid;
+    border-width: 0.5px;
+}
+.divstyle{
+    font-family: Arial;
+    font-size: 18px;
+    font-weight: bold;
+    width: 700px;
+    margin-left: 20px;
+    padding: 10px;
+}
+.confirmationTable{
+    font-family: Arial;
+    font-size: 18px;
+    font-weight: bold;
+    width: 50%;
+    margin-top: 10%;
+    margin-bottom: 15%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+    border-style: hidden;
+    border-radius: 15px;
+    background-color: rgba(255,255,255,0.4);
+    padding: 15px;
+    position: relative;
+}
+.confirmationTable td{
+    padding: 7px;
+}
+.amountstyle{
+    color: #b52a09;
+}
+.confirmationHeader{
+    text-align: center;
+    color: #b52a09;
+    padding-top: 15px;
+    padding-bottom: 25px;
+    font-size: 20px;
+}
+.selectstyled{
+    flex: 1;
+    cursor: pointer;
+    width: 366px;
+    margin: 5px;
+    font-size: 14px;
+    padding: 7px;
+    border-radius: 5px;
+    background-color: #fffaeb;
+}
+.buttonstyle{
+    border-style: solid;
+    border-width: 0.5px;
+    border-radius: 10px;
+    width: 100px;
+    height: 35px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.colorstyle{
+    color: #adff48;
+}
+.showInfoTable {
+    font-family: Arial;
+    font-size: 14px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+    text-align: center;
+    border-radius: 10px;
+    padding: 10px;
+    border: 1px solid black;
+    border-collapse: collapse;
+    width: 85%;
+}
+.showInfoTable tr{
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+.showInfoTable td{
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 10px;
+    background-color: rgba(255,255,255,0.4);
+}
+.showInfoTable th{
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 10px;
+    background-color: #fffaeb;
+    font-weight: bold;
+    text-align: center;
+}
+.detail{
+    cursor: pointer;
+    text-decoration-line: underline;
+}
+.headTitle{
+    background-color: dodgerblue;
+    color: white;
+    font-weight: bold;
+}
+.showDiv{
+    margin-top: 30px;
+}
+.alertMessage{
+    font-size: 10px;
+    color: #dd0000;
+    font-weight: normal;
+    padding-left: 10px;
+}
+input
+input:valid {
+    border-color: black;
+}
+input:invalid {
+    border-color: red;
+    border-width: 2px;
+}
+input:valid {
+    border-color: black;
+}
+.searchBox{
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}

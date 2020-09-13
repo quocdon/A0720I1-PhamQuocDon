@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MyBoucingGame</title>
+    <style>
+    </style>
+    <script>
+        const GAME_WIDTH = 500;
+        const GAME_HEIGHT = 700;
+        const BOUN_RADIUS = 20;
+        const BOUN_SPEED_X = 5;
+        const BOUN_SPEED_Y = 5;
+        const ON_STARTING = 0;
+        const ON_PLAYING = 1;
+        const ON_OVER = 2;
+        let highscore = 0;
+        class Bar {
+            constructor() {
+                this.height = 30;
+                this.width = 150;
+                this.x = GAME_WIDTH / 2 - this.width / 2;
+                this.y = GAME_HEIGHT - this.height;
+                this.step = 7;
+                this.update = function (quarter) {
+                    if (quarter === 37) {
+                        if (this.x < 0) {
+                            this.x = 0
+                        } else
+                            this.x -= this.step;
+                    } else if (quarter === 39) {
+                        if (this.x + this.width > GAME_WIDTH) {
+                            this.x = GAME_WIDTH - this.width
+                        } else
+                            this.x += this.step;
+                    }
+                };
+                this.draw = function (context) {
+                    context.beginPath();
+                    context.rect(this.x, this.y, this.width, this.height);
+                    context.fillStyle = "green";
+                    context.fill();
+                    context.stroke();
+                }
+            }
+        }
+        class Boun {
+            constructor() {
+                this.x = 100;
+                this.y = 200;
+                this.ratioQuarterX = 1;
+                this.ratioQuarterY = 1;
+                this.radius = BOUN_RADIUS;
+                this.chanceQuarter = function (edge) {
+                    let boun = this;
+                    switch (edge) {
+                        case "R": {
+                            boun.ratioQuarterX *= -1;
+                            break;
+                        }
+                        case "L": {
+                            boun.ratioQuarterX *= -1;
+                            break;
+                        }
+                        case "T": {
+                            boun.ratioQuarterY *= -1;
+                            break;
+                        }
+                        case "B": {
+                            boun.ratioQuarterY *= -1;
+                            break;
+                        }
+                    }
+                }
+                this.update = function () {
+                    this.x += this.ratioQuarterX * BOUN_SPEED_X;
+                    this.y += this.ratioQuarterY * BOUN_SPEED_Y;
+                }
+                this.draw = function (context) {
+                    context.beginPath();
+                    context.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
+                    context.fillStyle = "red";
+                    context.fill();
+                    context.stroke();
+                }
+            }
+        }
+        class Game {
+            score = 0;
+            constructor() {
+                this.newGame = function () {
+                    if (highscore < this.score) {
+                        highscore = this.score;
+                    }
+                    this.score = 0;
+                    this.status = ON_STARTING;
+                    this.boun = new Boun();
+                    this.bar = new Bar();
+                }
+                this.update = function () {
+                    if (this.status === ON_PLAYING) {
+                        this.bar.update();
+                        if (this.boun.x + this.boun.radius >= GAME_WIDTH) {
+                            this.boun.chanceQuarter("R");
+                        } else if (this.boun.x - this.boun.radius <= 0) {
+                            this.boun.chanceQuarter("L");
+                        } else if (this.boun.y - this.boun.radius <= 0) {
+                            this.boun.chanceQuarter("T");
+                        } else if ((this.boun.y + this.boun.radius >= GAME_HEIGHT - this.bar.height - 5) &&
+                            (this.boun.x > this.bar.x - 5) &&
+                            (this.boun.x < this.bar.x + 5 + this.bar.width)) {
+                            this.score++;
+                            this.boun.chanceQuarter("B")
+                        }
+                        this.boun.update();
+                        if (this.boun.y + this.boun.radius >= GAME_HEIGHT - this.bar.height) {
+                            this.status = ON_OVER;
+                        }
+                    }
+                }
+                this.drawGame = function (context) {
+                    context.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
+                    this.boun.draw(context);
+                    this.bar.draw(context);
+                    if (this.status == ON_STARTING) {
+                        context.font = "20px Arial";
+                        let text = "Press any key to play!";
+                        let textMetrics = context.measureText(text);
+                        context.fillStyle = "red";
+                        context.fillText(text, GAME_WIDTH / 2 - textMetrics.width / 2, GAME_HEIGHT / 4 * 3)
+                    } else if (this.status === ON_OVER) {
+                        context.font = "30px Arial";
+                        let text = "GAME OVER";
+                        context.fillText(text, GAME_WIDTH / 2 - context.measureText(text).width / 2, GAME_HEIGHT / 3);
+                        let playAgainText = "Press Enter key to play again";
+                        context.font = "20px Arial";
+                        context.fillText(playAgainText, GAME_WIDTH / 2 - context.measureText(playAgainText).width / 2, GAME_HEIGHT / 4 * 3);
+                        if (this.score < highscore) {
+                            context.font = "20px Arial";
+                            let yourScoreText = "Your score: " + this.score;
+                            let highScoreText = "High score: " + highscore;
+                            context.fillText(yourScoreText, GAME_WIDTH / 2 - context.measureText(yourScoreText).width / 2, GAME_HEIGHT / 2);
+                            context.fillText(highScoreText, GAME_WIDTH / 2 - context.measureText(highScoreText).width / 2, GAME_HEIGHT / 2 + 60);
+                        } else {
+                            context.font = "35px Arial";
+                            let text = "New High Score: " + this.score;
+                            context.fillText(text, GAME_WIDTH / 2 - context.measureText(text).width / 2, GAME_HEIGHT / 2);
+                        }
+                    } else {
+                        context.font = "30px Arial";
+                        let scoreText = this.score.toString();
+                        context.fillText(scoreText, GAME_WIDTH / 2 - context.measureText(scoreText).width / 2, 50);
+                    }
+                }
+                this.onkeyEvent = function (keyCode) {
+                    if (this.status === ON_PLAYING) {
+                        this.bar.update(keyCode)
+                    } else if (this.status === ON_STARTING) {
+                        this.status = ON_PLAYING;
+                        this.bar.update(keyCode);
+                    } else if (keyCode == 13) {
+                        this.newGame()
+                    }
+                }
+                this.newGame();
+            }
+        }
+    </script>
+</head>
+<body onload="loadGame()" onkeydown="onkeyEvent(event)">
+</body>
+<script>
+    let canvas = document.createElement("canvas");
+    canvas.width = GAME_WIDTH;
+    canvas.height = GAME_HEIGHT;
+    canvas.style.background = "lightblue";
+    document.body.appendChild(canvas);
+    let context = canvas.getContext("2d");
+    let game = new Game();
+    function loadGame() {
+        game.update();
+        game.drawGame(context);
+        // requestAnimationFrame(loadGame);
+        setTimeout(loadGame, 15);
+    }
+    function onkeyEvent(evt) {
+        game.onkeyEvent(evt.keyCode);
+    }
+</script>
+</html>
+
+</body>
+</html>

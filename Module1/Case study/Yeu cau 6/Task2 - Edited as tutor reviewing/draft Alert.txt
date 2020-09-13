@@ -1,0 +1,33 @@
+   /*
+   showAlertReset(){
+       document.getElementById("nameAlert").innerText = null;
+       document.getElementById("idAlert").innerText = null;
+       document.getElementById("dobAlert").innerText = null;
+       document.getElementById("emailAlert").innerText = null;
+       document.getElementById("numGuestAlert").innerText = null;
+       document.getElementById("rentDaysAlert").innerText = null;
+   }
+  showAlert(guest) {
+       this.showAlertReset();
+       let message = this.getAlertMessage(guest);
+       if (!this.checkInfo(guest)) {
+           if (message[0] !== ""){
+               document.getElementById("nameAlert").innerText = message[0];
+           }
+           if (message[1] !== ""){
+               document.getElementById("idAlert").innerText = message[1];
+           }
+           if (message[2] !== ""){
+               document.getElementById("dobAlert").innerText = message[2];
+           }
+           if (message[3] !== ""){
+               document.getElementById("emailAlert").innerText = message[3];
+           }
+           if (message[4] !== ""){
+               document.getElementById("numGuestAlert").innerText = message[4];
+           }
+           if (message[5] !== ""){
+               document.getElementById("rentDaysAlert").innerText = message[5];
+           }
+       }
+   }*/
