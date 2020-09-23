@@ -1,12 +1,9 @@
-package BaiTap;
+package Bai_Tap;
 
 import java.net.SocketOption;
 import java.util.Scanner;
 
 public class _02_NumberReading {
-    public String donvi(int d){
-        return "abc";
-    }
     public static void main(String[] args) {
         System.out.print("Please enter number (0-999): ");
         Scanner scanner = new Scanner(System.in);

@@ -1,7 +1,7 @@
 package ThucHanh;
 import java.util.Scanner;
 
-public class rectangle {
+public class _04_Rectangle {
     public static void main(String[] args){
         float width;
         float height;

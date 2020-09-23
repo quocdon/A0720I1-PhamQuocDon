@@ -1,8 +1,8 @@
-package ThucHanh;
+package Thuc_Hanh;
 
 import java.util.Scanner;
 
-public class linearEquationResolver {
+public class _05_LinearEquationResolver {
     public static void main(String[] args) {
         System.out.println("Linear Equation Resolver");
         System.out.println("Given a equation as 'ax + b = 0', please enter constants");
