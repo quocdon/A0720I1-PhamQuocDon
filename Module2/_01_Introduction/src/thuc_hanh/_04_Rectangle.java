@@ -1,4 +1,4 @@
-package ThucHanh;
+package Thuc_Hanh;
 import java.util.Scanner;
 
 public class _04_Rectangle {

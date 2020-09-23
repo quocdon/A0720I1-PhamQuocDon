@@ -1,5 +1,4 @@
 package Thuc_Hanh;
-
 import java.util.Scanner;
 
 public class _05_LinearEquationResolver {

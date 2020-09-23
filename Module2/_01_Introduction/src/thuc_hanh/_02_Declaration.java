@@ -1,4 +1,4 @@
-package thuc_hanh;
+package Thuc_Hanh;
 
 public class _02_Declaration {
     public static void main(String[] args){

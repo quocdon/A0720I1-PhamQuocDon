@@ -1,4 +1,4 @@
-package thuc_hanh;
+package Thuc_Hanh;
 import java.util.Scanner;
 
 public class _03_Operation {
