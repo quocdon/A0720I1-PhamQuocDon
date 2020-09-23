@@ -89,7 +89,6 @@ class Customer {
             default: {
                 addDiscount = 0
             }
-                ;
         }
         /*Discount by number of day staying*/
         if (this.rentDays >= 7) {
@@ -336,7 +335,7 @@ class CustomerProgram {
             "                    <label>Số CMND/ID number:</label>" +
             "                </td>" +
             "                <td>" +
-            "                    <input class='inputstyle' type='text' id='guestId' value='" + guest.getID() + "'>" +
+            "                    <input class='inputstyle' type='text' id='guestId' value='" + guest.getID() + "' pattern='^[0-9]{8}' title='CMND gồm 8 chữ số' required>" +
             "                </td>\n" +
             "            </tr>" +
             "            <tr>" +
@@ -344,7 +343,7 @@ class CustomerProgram {
             "                    <label>Ngày sinh/Date of birth</label>\n" +
             "                </td>\n" +
             "                <td>" +
-            "                    <input class='inputstyle' type='text' id='guestDob' value='" + guest.getDob() + "'>" +
+            "                    <input class='inputstyle' type='text' id='guestDob' value='" + guest.getDob() + "' required pattern='^(?=\\d)(?:(?:31(?!.(?:0?[2469]|11))|(?:30|29)(?!.0?2)|29(?=.0?2.(?:(?:(?:1[6-9]|[2-9]\\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00)))(?:\x20|$))|(?:2[0-8]|1\\d|0?[1-9]))([-.\\/])(?:1[012]|0?[1-9])\\1(?:1[6-9]|[2-9]\\d)?\\d\\d(?:(?=\x20\\d)\x20|$))?(((0?[1-9]|1[012])(:[0-5]\\d){0,2}(\x20[AP]M))|([01]\\d|2[0-3])(:[0-5]\\d){1,2})?$' title='Định dạng DD/MM/YYYY'>" +
             "                </td>" +
             "            </tr>" +
             "            <tr>" +
@@ -352,7 +351,7 @@ class CustomerProgram {
             "                    <label>Email</label>" +
             "                </td>" +
             "                <td>" +
-            "                    <input class='inputstyle' type='text' id='guestEmail' + value='" + guest.getEmail() + "'>" +
+            "                    <input class='inputstyle' type='text' id='guestEmail' + value='" + guest.getEmail() + "' required pattern='^[_a-z0-9]+(\\.[_a-z0-9]+)*@[a-z0-9-]+(\\.[a-z0-9-]+)*(\\.[a-z]{2,4})$' title='Định dạng abc@def.xyz'>" +
             "                </td>" +
             "            </tr>" +
             "            <tr>" +
@@ -383,13 +382,13 @@ class CustomerProgram {
             "            <tr>" +
             "                <td>Số lượng khách/Number of Guest:</td>" +
             "                <td>" +
-            "                    <input class='inputstyle' type='text' id='numOfGuest' value='" + this.guestList[index].getnumOfGuest() + "'>" +
+            "                    <input class='inputstyle' type='text' id='numOfGuest' value='" + this.guestList[index].getnumOfGuest() + "' required pattern='^[\\d]+$' title='Nhập số nguyên dương'>" +
             "                </td>" +
             "            </tr>" +
             "            <tr>" +
             "                <td>Số ngày thuê/rentdays</td>" +
             "                <td>" +
-            "                    <input class='inputstyle' type='text' id='rentDays' value='" + this.guestList[index].getRentDays() + "'>" +
+            "                    <input class='inputstyle' type='text' id='rentDays' value='" + this.guestList[index].getRentDays() + "' required pattern='^[\\d]+$' title='Nhập số nguyên dương'>" +
             "                </td>" +
             "            </tr>" +
             "            <tr>" +
