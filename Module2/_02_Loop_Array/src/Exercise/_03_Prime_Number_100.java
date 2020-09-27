@@ -2,14 +2,12 @@ package Exercise;
 
 public class _03_Prime_Number_100 {
     public static boolean prime_check(int number) {
-        boolean check = true;
         for (int i = 2; i <= Math.sqrt(number); i++) {
             if (number % i == 0) {
-                check = false;
-                break;
+                return false;
             }
         }
-        return check;
+        return true;
     }
 
     public static void main(String[] args) {
