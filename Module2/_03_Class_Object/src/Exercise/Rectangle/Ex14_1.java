@@ -1,4 +1,4 @@
-package Practice.Rectangle;
+package Exercise.Rectangle;
 
 import java.util.Scanner;
 

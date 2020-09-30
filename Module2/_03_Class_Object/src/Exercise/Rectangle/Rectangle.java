@@ -1,4 +1,4 @@
-package Practice.Rectangle;
+package Exercise.Rectangle;
 public class Rectangle {
     double width, height;
 

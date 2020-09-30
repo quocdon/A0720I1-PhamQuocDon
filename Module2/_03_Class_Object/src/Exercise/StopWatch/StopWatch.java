@@ -1,4 +1,4 @@
-package Practice.StopWatch;
+package Exercise.StopWatch;
 
 import java.util.Date;
 

@@ -1,4 +1,4 @@
-package Practice.QuadraticEquation;
+package Exercise.QuadraticEquation;
 
 import java.util.Scanner;
 

@@ -1,4 +1,4 @@
-package Practice.QuadraticEquation;
+package Exercise.QuadraticEquation;
 
 public class QuadraticEquation {
     private double a, b, c;
