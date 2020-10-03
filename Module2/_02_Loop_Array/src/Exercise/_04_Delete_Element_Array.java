@@ -9,6 +9,7 @@ public class _04_Delete_Element_Array {
                 for (int j = i; j < array.length-1; j++)
                     array[j] = array[j+1];
                 array[array.length - 1] = 0;
+                break;
             }
         return array;
     }
