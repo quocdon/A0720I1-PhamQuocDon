@@ -18,11 +18,14 @@ public class TimerProgram {
         Random rd = new Random();
         int[] array = new int[100000];
         for (int i = 0; i < array.length; i++)
-            array[i] = rd.nextInt();
-        Date start = timer.getStartTime();
+            array[i] = (int) (Math.random()*100000);
+        timer.getStartTime();
         sortArray(array);
-        Date end = timer.getEndTime();
-        long time = timer.getElapsedTime(start, end);
-        System.out.print("Rumetime = " + time + " ms");
+        timer.getEndTime();
+        double time = timer.getElapsedTime();
+        System.out.println("Runtime = " + time + " ms");
+        for (int i = 0; i < 15; i++){
+            System.out.print(array[i] + "\t");
+        }
     }
 }

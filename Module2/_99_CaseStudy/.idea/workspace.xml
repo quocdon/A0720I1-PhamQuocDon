@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="9aabc3b8-8042-4301-984c-ec275715a074" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../_03_Class_Object/out/production/_03_Class_Object/Practice/Fan/Fan.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_03_Class_Object/out/production/_03_Class_Object/Practice/Fan/FanProgram.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_03_Class_Object/out/production/_03_Class_Object/Practice/QuadraticEquation/QuadraticEquation.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_03_Class_Object/out/production/_03_Class_Object/Practice/QuadraticEquation/RootsOfEquation.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_03_Class_Object/out/production/_03_Class_Object/Practice/Rectangle/Ex14_1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_03_Class_Object/out/production/_03_Class_Object/Practice/Rectangle/Rectangle.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_03_Class_Object/out/production/_03_Class_Object/Practice/StopWatch/StopWatch.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_03_Class_Object/out/production/_03_Class_Object/Practice/StopWatch/TimerProgram.class" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectId" id="1iSTL8XFQoE4AcL5r0xUsvDYMCB" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9aabc3b8-8042-4301-984c-ec275715a074" name="Default Changelist" comment="" />
+      <created>1601899935633</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1601899935633</updated>
+      <workItem from="1601899941236" duration="338000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="378" y="188" key="com.intellij.ide.util.TipDialog" timestamp="1601900274554">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="378" y="188" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1601900274554" />
+  </component>
+</project>
