@@ -1,4 +1,4 @@
-package exercises;
+package exercises.circle;
 
 public class TestProgram {
     public static void main(String[] args) {

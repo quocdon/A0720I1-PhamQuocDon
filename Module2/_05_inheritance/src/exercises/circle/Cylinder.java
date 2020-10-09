@@ -1,4 +1,4 @@
-package exercises;
+package exercises.circle;
 
 public class Cylinder extends Circle {
     private double height;
