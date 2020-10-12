@@ -1,5 +1,7 @@
 package exercises.triangle;
 
+import practices.Shape;
+
 public class Triangle extends Shape {
     private double side1;
     private double side2;
@@ -41,13 +43,13 @@ public class Triangle extends Shape {
         this.side3 = side3;
     }
 
-    public double getArea() {
-        double p = (side1 + side2 + side3) / 2;
-        return Math.pow(p * (p - side1) * (p - side2) * (p - side3), 0.5);
-    }
-
     public double getPerimeter() {
         return side1 + side2 + side3;
+    }
+
+    public double getArea() {
+        double p = getPerimeter() / 2;
+        return Math.pow(p * (p - side1) * (p - side2) * (p - side3), 0.5);
     }
 
     @Override
@@ -56,6 +58,8 @@ public class Triangle extends Shape {
                 "side1=" + side1 +
                 ", side2=" + side2 +
                 ", side3=" + side3 +
+                ", color=" + super.getColor() +
+                ", filled=" + super.isFilled() +
                 '}';
     }
 }
