@@ -12,8 +12,8 @@ public class ColorableTest {
         shapes[1] = new Rectangle(10, 20);
         shapes[2] = new Square(10);
         for (Shape shape : shapes){
-            if (shape instanceof Square){
-                ((Square) shape).howToColor();
+            if (shape instanceof Colorable){
+                ((Colorable) shape).howToColor();
             }
         }
     }
