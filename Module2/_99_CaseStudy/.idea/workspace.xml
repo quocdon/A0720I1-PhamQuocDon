@@ -1,16 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9aabc3b8-8042-4301-984c-ec275715a074" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../_03_Class_Object/out/production/_03_Class_Object/Practice/Fan/Fan.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../_03_Class_Object/out/production/_03_Class_Object/Practice/Fan/FanProgram.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../_03_Class_Object/out/production/_03_Class_Object/Practice/QuadraticEquation/QuadraticEquation.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../_03_Class_Object/out/production/_03_Class_Object/Practice/QuadraticEquation/RootsOfEquation.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../_03_Class_Object/out/production/_03_Class_Object/Practice/Rectangle/Ex14_1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../_03_Class_Object/out/production/_03_Class_Object/Practice/Rectangle/Rectangle.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../_03_Class_Object/out/production/_03_Class_Object/Practice/StopWatch/StopWatch.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../_03_Class_Object/out/production/_03_Class_Object/Practice/StopWatch/TimerProgram.class" beforeDir="false" />
-    </list>
+    <list default="true" id="9aabc3b8-8042-4301-984c-ec275715a074" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -30,6 +21,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/FuramaResort" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -42,6 +34,7 @@
       <option name="presentableId" value="Default" />
       <updated>1601899935633</updated>
       <workItem from="1601899941236" duration="338000" />
+      <workItem from="1602675736439" duration="27000" />
     </task>
     <servers />
   </component>
@@ -49,6 +42,10 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1602675761529">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1602675761529" />
     <state x="378" y="188" key="com.intellij.ide.util.TipDialog" timestamp="1601900274554">
       <screen x="0" y="0" width="1366" height="728" />
     </state>

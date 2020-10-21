@@ -13,7 +13,7 @@ public class ColorableTest {
         shapes[2] = new Square(10);
         for (Shape shape : shapes){
             if (shape instanceof Colorable){
-                ((Colorable) shape).howToColor();
+                ((Colorable)shape).howToColor();
             }
         }
     }

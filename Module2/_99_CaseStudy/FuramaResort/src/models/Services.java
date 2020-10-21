@@ -1,6 +1,6 @@
-package Models;
+package models;
 
 public abstract class Services {
-    private String services;
+    private String id;
     public abstract void showInfo();
 }
