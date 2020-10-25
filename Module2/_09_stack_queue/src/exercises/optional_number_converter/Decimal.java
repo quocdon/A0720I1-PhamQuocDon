@@ -1,4 +1,4 @@
-package exercises.number_converter;
+package exercises.optional_number_converter;
 
 import java.util.Stack;
 

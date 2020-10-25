@@ -49,15 +49,17 @@ public class TestMyLinkedList {
         myLinkedListStudent.add(3, student_4);
         myLinkedListStudent.remove(1);
         MyLinkedList<Student> newStudent = myLinkedListStudent.clone();
+        myLinkedListStudent.clear();
+        System.out.println(myLinkedListStudent.getFirst());
 
-        for (int i = 0; i < myLinkedListStudent.size(); i++) {
-            Student student = (Student) myLinkedListStudent.get(i);
-            System.out.println(student.getName());
-        }
-        for (int i = 0; i < newStudent.size(); i++) {
-            Student student = (Student) newStudent.get(i);
-            System.out.println(student.getName());
-        }
+//        for (int i = 0; i < myLinkedListStudent.size(); i++) {
+//            Student student = (Student) myLinkedListStudent.get(i);
+//            System.out.println(student.getName());
+//        }
+//        for (int i = 0; i < newStudent.size(); i++) {
+//            Student student = (Student) newStudent.get(i);
+//            System.out.println(student.getName());
+//        }
         //System.out.println("Deleted Student: " + deletedStudent);
         //System.out.println(myLinkedListStudent.contains(student_2));
         /*Student student = myLinkedListStudent.getFirst();

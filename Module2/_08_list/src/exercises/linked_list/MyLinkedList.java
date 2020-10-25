@@ -47,7 +47,7 @@ public class MyLinkedList<E> {
         numNodes++;
     }
 
-    public boolean add(E element){
+    public boolean add(E element) {
         this.addLast(element);
         return true;
     }
@@ -69,16 +69,24 @@ public class MyLinkedList<E> {
     }
 
     public E getFirst() {
-        Node temp = head;
-        return (E) temp.data;
+        if (head == null) {
+            return null;
+        } else {
+            Node temp = head;
+            return (E) temp.data;
+        }
     }
 
     public E getLast() {
-        Node temp = head;
-        for (int i = 0; i < numNodes - 1; i++) {
-            temp = temp.next;
+        if ( head == null){
+            return null;
+        } else {
+            Node temp = head;
+            for (int i = 0; i < numNodes - 1; i++) {
+                temp = temp.next;
+            }
+            return (E) temp.data;
         }
-        return (E) temp.data;
     }
 
     public int indexOf(E element) {
@@ -126,23 +134,23 @@ public class MyLinkedList<E> {
     }
 
     public boolean contains(E element) {
-        if (this.indexOf(element) == -1){
+        if (this.indexOf(element) == -1) {
             return false;
         } else return true;
     }
 
-    public void clear(){
+    public void clear() {
         head = null;
         numNodes = 0;
     }
 
-    public MyLinkedList<E> clone(){
+    public MyLinkedList<E> clone() {
         MyLinkedList<E> newlist = new MyLinkedList<E>();
         newlist.head = this.head;
         Node temp = head;
         Node newTemp = newlist.head;
         newlist.numNodes = this.numNodes;
-        for (int i = 0; i < numNodes - 1; i++){
+        for (int i = 0; i < numNodes - 1; i++) {
             newTemp.next = temp.next;
         }
         return newlist;
