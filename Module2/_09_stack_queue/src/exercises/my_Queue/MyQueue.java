@@ -9,15 +9,16 @@ public class MyQueue {
         this.rear = null;
     }
 
-    public void enQueue(Node node) {
+    public void enQueue(int data) {
+        Node temp = new Node(data);
         if (this.front == null) {
-            this.front = node;
-            this.rear = node;
+            this.front = temp;
+            this.rear = temp;
             this.front.link = rear;
             this.rear.link = front;
         } else {
-            this.rear.link = node;
-            this.rear = node;
+            this.rear.link = temp;
+            this.rear = temp;
             this.rear.link = this.front;
         }
     }
@@ -49,6 +50,5 @@ public class MyQueue {
             }
             System.out.println(rear.data);
         }
-
     }
 }
