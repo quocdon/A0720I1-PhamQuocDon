@@ -49,8 +49,4 @@ public class Student {
                 ", birthday=" + birthday +
                 '}';
     }
-
-    public int compareBirthday(Student student){
-        return this.getBirthday().compareTo(student.getBirthday());
-    }
 }
