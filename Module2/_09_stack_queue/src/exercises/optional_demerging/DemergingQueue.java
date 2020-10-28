@@ -1,18 +1,20 @@
 package exercises.optional_demerging;
 
+import java.awt.*;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Queue;
 
 public class DemergingQueue {
     public static void main(String[] args) {
-        Queue<Student> studentList = new LinkedList<>();
+        LinkedList <Student> studentList = new LinkedList<>();
         Queue<Student> newStudentList = new LinkedList<>();
-        Student student1 = new Student("Nam", "male" , 01);
-        Student student2 = new Student("Dat", "male" , 02);
-        Student student3 = new Student("Huong", "female" , 03);
-        Student student4 = new Student("Ngoc", "female" , 04);
-        Student student5 = new Student("Hung", "male" , 05);
-        Student student6 = new Student("Ha", "female" , 06);
+        Student student1 = new Student("Nam", "male" , "01/01/1991");
+        Student student2 = new Student("Dat", "male" , "01/05/1992");
+        Student student3 = new Student("Huong", "female" , "03/09/2003");
+        Student student4 = new Student("Ngoc", "female" , "04/05/2004");
+        Student student5 = new Student("Hung", "male" , "02/04/2005");
+        Student student6 = new Student("Ha", "female" , "04/03/2006");
         studentList.add(student1);
         studentList.add(student2);
         studentList.add(student3);
@@ -35,6 +37,5 @@ public class DemergingQueue {
         while (!newStudentList.isEmpty()){
             System.out.println(newStudentList.remove().toString());
         }
-
     }
 }

@@ -1,11 +1,13 @@
 package exercises.optional_demerging;
 
+import java.util.Date;
+
 public class Student {
     private String name;
     private String gender;
-    private int birthday;
+    private String birthday;
 
-    public Student(String name, String gender, int birthday) {
+    public Student(String name, String gender, String birthday) {
         this.name = name;
         this.gender = gender;
         this.birthday = birthday;
@@ -27,11 +29,15 @@ public class Student {
         this.gender = gender;
     }
 
-    public int getBirthday() {
-        return birthday;
+    public Date getBirthday() {
+        int day = Integer.valueOf(this.birthday.substring(0,2));
+        int month = Integer.valueOf(this.birthday.substring(3,5));
+        int year = Integer.valueOf(this.birthday.substring(6,10));
+        Date date = new Date(year, month, day);
+        return date;
     }
 
-    public void setBirthday(int birthday) {
+    public void setBirthday(String birthday) {
         this.birthday = birthday;
     }
 
@@ -42,5 +48,9 @@ public class Student {
                 ", gender='" + gender + '\'' +
                 ", birthday=" + birthday +
                 '}';
+    }
+
+    public int compareBirthday(Student student){
+        return this.getBirthday().compareTo(student.getBirthday());
     }
 }
