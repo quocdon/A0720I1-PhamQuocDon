@@ -1,25 +1,28 @@
 package exercises.products;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Product {
-    private int id;
+    private String id;
     private String name;
     private int price;
 
-    public Product(){
+    public Product() {
 
     }
 
-    public Product(int id, String name, int price) {
+    public Product(String id, String name, int price) {
         this.id = id;
         this.name = name;
         this.price = price;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -46,5 +49,24 @@ public class Product {
                 ", name='" + name + '\'' +
                 ", price=" + price +
                 '}';
+    }
+
+    public static Product searchById(String id, List<Product> productList) {
+        for (Product product : productList) {
+            if (product.getId().equals(id)) {
+                return product;
+            }
+        }
+        return null;
+    }
+
+    public static List<Product> searchByName(String name, List<Product> productList) {
+        List<Product> list = new ArrayList<>();
+        for (Product product : productList) {
+            if (product.getName().equals(name)) {
+                list.add(product);
+            }
+        }
+        return list;
     }
 }
