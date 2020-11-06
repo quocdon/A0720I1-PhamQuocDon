@@ -79,7 +79,7 @@ public class ProductManager {
         price = Integer.valueOf(scanner.nextLine());
         Product product = new Product(id, name, price);
         productList.add(product);
-        System.out.println("** RESULT: Add product " + product + " successfully **");
+        System.out.println("** RESULT: Add " + product + " successfully **");
         mainMenu();
     }
 
