@@ -5,7 +5,10 @@ public class House extends Services {
     private String amenities;
     private int floor;
 
-    public House(){};
+    public House() {
+    }
+
+    ;
 
     public House(String roomType, String amenities, int floor) {
         this.roomType = roomType;
@@ -20,22 +23,46 @@ public class House extends Services {
         this.floor = floor;
     }
 
+    public String getRoomType() {
+        return roomType;
+    }
+
+    public void setRoomType(String roomType) {
+        this.roomType = roomType;
+    }
+
+    public String getAmenities() {
+        return amenities;
+    }
+
+    public void setAmenities(String amenities) {
+        this.amenities = amenities;
+    }
+
+    public int getFloor() {
+        return floor;
+    }
+
+    public void setFloor(int floor) {
+        this.floor = floor;
+    }
+
     @Override
     public String showInfo() {
-        return  "House{" +
+        return "House{" +
                 "id='" + getId() + '\'' +
                 ", serviceName='" + getServiceName() + '\'' +
                 ", area=" + getArea() +
                 ", rate=" + getRate() +
                 ", maxCapacity=" + getMaxCapacity() +
-                ", rentType='" + getRentType() + '\''+
+                ", rentType='" + getRentType() + '\'' +
                 ", roomType='" + roomType + '\'' +
                 ", amenities='" + amenities + '\'' +
                 ", floor=" + floor +
                 '}';
     }
 
-    public String toString(){
+    public String toString() {
         return getId() +
                 "," + getServiceName() +
                 "," + getArea() +
@@ -45,5 +72,9 @@ public class House extends Services {
                 "," + roomType +
                 "," + amenities +
                 "," + floor;
+    }
+
+    public String getHeader() {
+        return "House Id,Service Name,Area,Rate,Max Capacity,Rent Type,Room Type,Amenities,floor";
     }
 }

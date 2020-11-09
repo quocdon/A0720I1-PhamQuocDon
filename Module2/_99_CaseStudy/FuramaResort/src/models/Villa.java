@@ -60,7 +60,7 @@ public class Villa extends Services {
                 ", rentType='" + getRentType() + '\'' +
                 ", roomType='" + roomType + '\'' +
                 ", amenities='" + amenities + '\'' +
-                ", poolArea=" + poolArea + '\'' +
+                ", poolArea=" + poolArea +
                 ", floor=" + floor +
                 '}';
 
@@ -78,5 +78,10 @@ public class Villa extends Services {
                 "," + amenities +
                 "," + poolArea +
                 "," + floor;
+    }
+
+
+    public String getHeader() {
+        return "Villa Id,Service Name,Area,Rate,Max Capacity,Rent Type,Room Type,Amenities,Pool Area,floor";
     }
 }

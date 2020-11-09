@@ -71,4 +71,6 @@ public abstract class Services implements Serializable {
     }
 
     public abstract String showInfo();
+
+    public abstract String getHeader();
 }

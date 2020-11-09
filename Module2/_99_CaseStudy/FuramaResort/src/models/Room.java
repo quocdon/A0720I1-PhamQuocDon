@@ -36,13 +36,19 @@ public class Room extends Services {
                 '}';
     }
 
+
+
     public String toString() {
         return getId() +
-                "," + getServiceName() + '\'' +
+                "," + getServiceName() +
                 "," + getArea() +
                 "," + getRate() +
                 "," + getMaxCapacity() +
                 "," + getRentType() +
                 "," + compServices;
+    }
+
+    public String getHeader() {
+        return "Room Id,Service Name,Area,Rate,Max Capacity,Rent Type,Comp Services";
     }
 }
