@@ -1,6 +1,8 @@
 package models;
 
-public abstract class Services {
+import java.io.Serializable;
+
+public abstract class Services implements Serializable {
     private String id;
     private String serviceName;
     private double area;

@@ -50,7 +50,7 @@ public class MyBinarySearchTree {
     private void inorderRecursive(TreeNode root) {
         if (root != null) {
             inorderRecursive(root.left);
-            System.out.println(root.data);
+            System.out.print(root.data + "\t");
             inorderRecursive(root.right);
         }
     }
@@ -63,7 +63,7 @@ public class MyBinarySearchTree {
         if (root != null) {
             postorderRecursive(root.left);
             postorderRecursive(root.right);
-            System.out.println(root.data);
+            System.out.print(root.data + "\t");
         }
     }
 
@@ -73,7 +73,7 @@ public class MyBinarySearchTree {
 
     private void preorderRecursive(TreeNode root) {
         if (root != null) {
-            System.out.println(root.data);
+            System.out.print(root.data + "\t");
             preorderRecursive(root.left);
             preorderRecursive(root.right);
         }
@@ -91,9 +91,40 @@ public class MyBinarySearchTree {
         return false;
     }
 
-//    public boolean delete(int data) {
-//        if (!search(data)){
-//            return false;
-//        }
-//    }
+    public boolean delete(int data) {
+        if (!search(data)) {
+            return false;
+        }
+        TreeNode current = root;
+        TreeNode parrent = null;
+        TreeNode rightMost = null;
+        TreeNode parrentOfRightMost = null;
+        while (current.data != data) {
+            if (data < current.data) {
+                parrent = current;
+                current = current.left;
+            } else {
+                parrent = current;
+                current = current.right;
+            }
+        }
+        if (current.left == null) {
+            if (current.data < parrent.data) {
+                parrent.left = current.right;
+            } else parrent.right = current.right;
+            return true;
+        } else {
+            rightMost = current.left;
+            parrentOfRightMost = parrent;
+            while (rightMost.right != null) {
+                parrentOfRightMost = rightMost;
+                rightMost = rightMost.right;
+            }
+            current.data = rightMost.data;
+            parrentOfRightMost.right = rightMost.left;
+        }
+        return true;
+    }
 }
+
+

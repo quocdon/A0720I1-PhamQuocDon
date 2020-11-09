@@ -34,4 +34,16 @@ public class House extends Services {
                 ", floor=" + floor +
                 '}';
     }
+
+    public String toString(){
+        return getId() +
+                "," + getServiceName() +
+                "," + getArea() +
+                "," + getRate() +
+                "," + getMaxCapacity() +
+                "," + getRentType() +
+                "," + roomType +
+                "," + amenities +
+                "," + floor;
+    }
 }

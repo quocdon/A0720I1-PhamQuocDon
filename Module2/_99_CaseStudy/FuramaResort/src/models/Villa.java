@@ -6,7 +6,7 @@ public class Villa extends Services {
     private double poolArea;
     private int floor;
 
-    public Villa(){
+    public Villa() {
     }
 
     public Villa(String id, String serviceName, double area, double rate, int maxCapacity, String rentType, String roomType, String amenities, double poolArea, int floor) {
@@ -51,18 +51,32 @@ public class Villa extends Services {
 
     @Override
     public String showInfo() {
-        return  "Villa{" +
+        return "Villa{" +
                 "id='" + getId() + '\'' +
                 ", serviceName='" + getServiceName() + '\'' +
                 ", area=" + getArea() +
                 ", rate=" + getRate() +
                 ", maxCapacity=" + getMaxCapacity() +
-                ", rentType='" + getRentType() + '\''+
+                ", rentType='" + getRentType() + '\'' +
                 ", roomType='" + roomType + '\'' +
                 ", amenities='" + amenities + '\'' +
-                ", poolArea=" + poolArea + '\''+
+                ", poolArea=" + poolArea + '\'' +
                 ", floor=" + floor +
                 '}';
 
+    }
+
+    @Override
+    public String toString() {
+        return getId() +
+                "," + getServiceName() +
+                "," + getArea() +
+                "," + getRate() +
+                "," + getMaxCapacity() +
+                "," + getRentType() +
+                "," + roomType +
+                "," + amenities +
+                "," + poolArea +
+                "," + floor;
     }
 }

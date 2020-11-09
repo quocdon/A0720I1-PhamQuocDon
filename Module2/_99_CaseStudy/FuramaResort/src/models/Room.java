@@ -35,4 +35,14 @@ public class Room extends Services {
                 ", compServices='" + compServices + '\''+
                 '}';
     }
+
+    public String toString() {
+        return getId() +
+                "," + getServiceName() + '\'' +
+                "," + getArea() +
+                "," + getRate() +
+                "," + getMaxCapacity() +
+                "," + getRentType() +
+                "," + compServices;
+    }
 }
