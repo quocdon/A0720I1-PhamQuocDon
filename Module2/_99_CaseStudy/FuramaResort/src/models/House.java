@@ -62,7 +62,7 @@ public class House extends Services {
                 '}';
     }
 
-    public String toString() {
+    public String writeToCSV() {
         return getId() +
                 "," + getServiceName() +
                 "," + getArea() +

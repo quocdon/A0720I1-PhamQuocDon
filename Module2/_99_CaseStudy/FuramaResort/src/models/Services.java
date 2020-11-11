@@ -70,6 +70,8 @@ public abstract class Services implements Serializable {
         this.rentType = rentType;
     }
 
+    public abstract String writeToCSV();
+
     public abstract String showInfo();
 
     public abstract String getHeader();

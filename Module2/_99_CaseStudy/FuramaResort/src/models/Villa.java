@@ -67,7 +67,7 @@ public class Villa extends Services {
     }
 
     @Override
-    public String toString() {
+    public String writeToCSV() {
         return getId() +
                 "," + getServiceName() +
                 "," + getArea() +

@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9aabc3b8-8042-4301-984c-ec275715a074" name="Default Changelist" comment="" />
+    <list default="true" id="9aabc3b8-8042-4301-984c-ec275715a074" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../_12_sort/_12_sort.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FuramaResort/src/controllers/FileCsv.java" beforeDir="false" afterPath="$PROJECT_DIR$/FuramaResort/src/controllers/FileCsv.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FuramaResort/src/controllers/InputServices.java" beforeDir="false" afterPath="$PROJECT_DIR$/FuramaResort/src/controllers/InputServices.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FuramaResort/src/controllers/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/FuramaResort/src/controllers/MainController.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -21,7 +28,8 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/FuramaResort" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -35,6 +43,16 @@
       <updated>1601899935633</updated>
       <workItem from="1601899941236" duration="338000" />
       <workItem from="1602675736439" duration="27000" />
+      <workItem from="1605088298208" duration="140000" />
+      <workItem from="1605088463761" duration="57000" />
+      <workItem from="1605088553705" duration="259000" />
+      <workItem from="1605088838487" duration="45000" />
+      <workItem from="1605088917280" duration="567000" />
+      <workItem from="1605089513854" duration="7000" />
+      <workItem from="1605091518226" duration="59000" />
+      <workItem from="1605091597193" duration="657000" />
+      <workItem from="1605097704512" duration="49000" />
+      <workItem from="1605097779813" duration="156000" />
     </task>
     <servers />
   </component>
@@ -42,13 +60,21 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1602675761529">
+    <state x="531" y="253" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1605097728136">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1602675761529" />
-    <state x="378" y="188" key="com.intellij.ide.util.TipDialog" timestamp="1601900274554">
+    <state x="531" y="253" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.0.1366.728@0.0.1366.728" timestamp="1605097728136" />
+    <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1605097929909">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="378" y="188" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1601900274554" />
+    <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1605097929909" />
+    <state x="184" y="7" key="SettingsEditor" timestamp="1605091568749">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="184" y="7" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1605091568749" />
+    <state x="378" y="188" key="com.intellij.ide.util.TipDialog" timestamp="1605097880318">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="378" y="188" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1605097880318" />
   </component>
 </project>

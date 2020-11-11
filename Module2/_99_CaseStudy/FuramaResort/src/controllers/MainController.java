@@ -10,9 +10,12 @@ import java.util.Scanner;
 
 public class MainController {
     private static Scanner scanner = new Scanner(System.in);
-    private static List<Services> villaList = FileCsv.getServiceListFromCSV("src/data/Villa.csv");
-    private static List<Services> houseList = FileCsv.getServiceListFromCSV("src/data/House.csv");
-    private static List<Services> roomList = FileCsv.getServiceListFromCSV("src/data/Room.csv");
+    static final String VILLA_FILE_PATH = "src/data/Villa.csv";
+    static final String HOUSE_FILE_PATH= "src/data/House.csv";
+    static final String ROOM_FILE_PATH = "src/data/Room.csv";
+    private static List<Services> villaList = FileCsv.readServiceListFromCSV(VILLA_FILE_PATH);
+    private static List<Services> houseList = FileCsv.readServiceListFromCSV(HOUSE_FILE_PATH);
+    private static List<Services> roomList = FileCsv.readServiceListFromCSV(ROOM_FILE_PATH);
     public static void displayMainMenu() {
         System.out.print("---------------\nMAIN MENU: \n" +
                 "1. Add new services\n" +
@@ -57,7 +60,7 @@ public class MainController {
             case "1": {
                 Villa villa = InputServices.villa();
                 villaList.add(villa);
-                FileCsv.writeServicesToCSV(villaList, "src/data/Villa.csv");
+                FileCsv.writeServicesToCSV(villaList, VILLA_FILE_PATH);
                 System.out.println("Add " + villa.showInfo() + " successfully");
                 System.out.println("Press ENTER to continue");
                 scanner.nextLine();
@@ -67,7 +70,7 @@ public class MainController {
             case "2": {
                 House house = InputServices.house();
                 houseList.add(house);
-                FileCsv.writeServicesToCSV(houseList,"src/data/House.csv");
+                FileCsv.writeServicesToCSV(houseList,HOUSE_FILE_PATH);
                 System.out.println("Add " + house.showInfo() + " successfully");
                 System.out.println("Press ENTER to continue");
                 scanner.nextLine();
@@ -77,7 +80,7 @@ public class MainController {
             case "3":{
                 Room room = InputServices.room();
                 roomList.add(room);
-                FileCsv.writeServicesToCSV(roomList,"src/data/Room.csv");
+                FileCsv.writeServicesToCSV(roomList,ROOM_FILE_PATH);
                 System.out.println("Add " + room.showInfo() + " successfully");
                 System.out.println("Press ENTER to continue");
                 scanner.nextLine();
@@ -154,8 +157,6 @@ public class MainController {
                 scanner.nextLine();
                 showServices();
             }
-
-
         }
     }
 

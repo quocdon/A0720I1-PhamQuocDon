@@ -1,10 +1,7 @@
 package controllers;
 
 import javafx.scene.control.skin.CellSkinBase;
-import models.House;
-import models.Room;
-import models.Services;
-import models.Villa;
+import models.*;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -16,21 +13,20 @@ import java.util.List;
 public class FileCsv {
     private static final String NEW_LINE_SEPARATOR = "\n";
 
-    public static void writeServicesToCSV(List<Services> serviceList, String url) {
-
-        //Method writing service list to the file following the url.
-
+    public static void writeServicesToCSV(List<Services> serviceList, String filePath) {
+        //**Method writing service list to the file following the file path.
         FileWriter fileWriter = null;
 
         try {
-            fileWriter = new FileWriter(url);
+            fileWriter = new FileWriter(filePath);
             for (Services service : serviceList) {
-                //Writing header of the file
+                //Writing header to the file
                 if (serviceList.indexOf(service) == 0) {
                     fileWriter.append(service.getHeader());
                     fileWriter.append(NEW_LINE_SEPARATOR);
                 }
-                fileWriter.append(service.toString());
+                //Writing service data to the file
+                fileWriter.append(service.writeToCSV());
                 fileWriter.append(NEW_LINE_SEPARATOR);
             }
         } catch (Exception e) {
@@ -45,46 +41,149 @@ public class FileCsv {
         }
     }
 
-    public static List<Services> getServiceListFromCSV(String url) {
-        //Method reading list of services from the file following the url.
-
+    public static List<Services> readServiceListFromCSV(String filePath) {
+        //** Method reading list of services from the file following the file path.
         BufferedReader br = null;
         List<Services> serviceList = new ArrayList<>();
-        Path path = Paths.get(url);
+
+        //Check the file exists or not. If not, create new file following the file path
+        Path path = Paths.get(filePath);
         if (!Files.exists(path)) {
             try {
-                Writer writer = new FileWriter(url);
+                Writer writer = new FileWriter(filePath);
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
         }
 
+        //Reading data from the file
         try {
             String line;
             String serviceId = null;
-            br = new BufferedReader(new FileReader(url));
+            br = new BufferedReader(new FileReader(filePath));
             while ((line = br.readLine()) != null) {
                 String[] splitData = line.split(",");
                 if (splitData[1].equals("Service Name")) {
                     //Skip reading header
-                    //Identify class of elements of the list through first column of header.
+                    //Identify class of elements in the list through first field of header.
                     serviceId = splitData[0];
                     continue;
                 }
 
                 //Base on service ID to identify class of elements, initialize service object and add to the list
-                if (serviceId.equals("Villa Id")) {
-                    Villa villa = new Villa(splitData[0], splitData[1], Double.valueOf(splitData[2]), Double.valueOf(splitData[3]),
-                            Integer.valueOf(splitData[4]), splitData[5], splitData[6], splitData[7], Double.valueOf(splitData[8]), Integer.valueOf(splitData[9]));
-                    serviceList.add(villa);
-                } else if (serviceId.equals("House Id")) {
-                    House house = new House(splitData[0], splitData[1], Double.valueOf(splitData[2]), Double.valueOf(splitData[3]),
-                            Integer.valueOf(splitData[4]), splitData[5], splitData[6], splitData[7], Integer.valueOf(splitData[8]));
-                    serviceList.add(house);
-                } else if (serviceId.equals("Room Id")) {
-                    Room room = new Room(splitData[0], splitData[1], Double.valueOf(splitData[2]), Double.valueOf(splitData[3]),
-                            Integer.valueOf(splitData[4]), splitData[5], splitData[6]);
-                    serviceList.add(room);
+                assert serviceId != null;
+                switch (serviceId){
+                    case "Villa Id":{
+                        Villa villa = new Villa(splitData[0], splitData[1], Double.parseDouble(splitData[2]), Double.parseDouble(splitData[3]),
+                                Integer.parseInt(splitData[4]), splitData[5], splitData[6], splitData[7], Double.parseDouble(splitData[8]), Integer.parseInt(splitData[9]));
+                        serviceList.add(villa);
+                        break;
+                    }
+                    case "House Id":{
+                        House house = new House(splitData[0], splitData[1], Double.parseDouble(splitData[2]), Double.parseDouble(splitData[3]),
+                                Integer.parseInt(splitData[4]), splitData[5], splitData[6], splitData[7], Integer.parseInt(splitData[8]));
+                        serviceList.add(house);
+                        break;
+                    }
+                    case "Room Id": {
+                        Room room = new Room(splitData[0], splitData[1], Double.parseDouble(splitData[2]), Double.parseDouble(splitData[3]),
+                                Integer.parseInt(splitData[4]), splitData[5], splitData[6]);
+                        serviceList.add(room);
+                        break;
+                    }
+                }
+            }
+            return serviceList;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        } finally {
+            try {
+                br.close();
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return serviceList;
+    }
+
+    public static void writeCustomerToCSV(List<Customer> customerList, String filePath) {
+        //**Method writing service list to the file following the file path.
+        FileWriter fileWriter = null;
+
+        try {
+            fileWriter = new FileWriter(filePath);
+            for (Customer customer : customerList) {
+                //Writing header to the file
+                if (customerList.indexOf(customer) == 0) {
+                    fileWriter.append(customer.getHeader());
+                    fileWriter.append(NEW_LINE_SEPARATOR);
+                }
+                //Writing service data to the file
+                fileWriter.append(customer.writeToCSV());
+                fileWriter.append(NEW_LINE_SEPARATOR);
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        } finally {
+            try {
+                fileWriter.flush();
+                fileWriter.close();
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    public static List<Services> readCustomerListFromCSV(String filePath) {
+        //** Method reading list of customers from the file following the file path.
+        BufferedReader br = null;
+        List<Customer> customerList = new ArrayList<>();
+
+        //Check the file exists or not. If not, create new file following the file path
+        Path path = Paths.get(filePath);
+        if (!Files.exists(path)) {
+            try {
+                Writer writer = new FileWriter(filePath);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+        //Reading data from the file
+        try {
+            String line;
+            String serviceId = null;
+            br = new BufferedReader(new FileReader(filePath));
+            while ((line = br.readLine()) != null) {
+                String[] splitData = line.split(",");
+                if (splitData[1].equals("Service Name")) {
+                    //Skip reading header
+                    //Identify class of elements in the list through first field of header.
+                    serviceId = splitData[0];
+                    continue;
+                }
+
+                //Base on service ID to identify class of elements, initialize service object and add to the list
+                assert serviceId != null;
+                switch (serviceId){
+                    case "Villa Id":{
+                        Villa villa = new Villa(splitData[0], splitData[1], Double.parseDouble(splitData[2]), Double.parseDouble(splitData[3]),
+                                Integer.parseInt(splitData[4]), splitData[5], splitData[6], splitData[7], Double.parseDouble(splitData[8]), Integer.parseInt(splitData[9]));
+                        serviceList.add(villa);
+                        break;
+                    }
+                    case "House Id":{
+                        House house = new House(splitData[0], splitData[1], Double.parseDouble(splitData[2]), Double.parseDouble(splitData[3]),
+                                Integer.parseInt(splitData[4]), splitData[5], splitData[6], splitData[7], Integer.parseInt(splitData[8]));
+                        serviceList.add(house);
+                        break;
+                    }
+                    case "Room Id": {
+                        Room room = new Room(splitData[0], splitData[1], Double.parseDouble(splitData[2]), Double.parseDouble(splitData[3]),
+                                Integer.parseInt(splitData[4]), splitData[5], splitData[6]);
+                        serviceList.add(room);
+                        break;
+                    }
                 }
             }
             return serviceList;
