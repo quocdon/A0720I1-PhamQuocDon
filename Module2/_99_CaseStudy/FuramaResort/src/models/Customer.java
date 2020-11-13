@@ -9,11 +9,10 @@ public class Customer {
     private String email;
     private String customerClass;
     private String address;
-    private Services bookedService;
 
     public Customer(){}
 
-    public Customer(String name, String birthday, String gender, String id, String phoneNumber, String email, String customerClass, String address, Services bookedService) {
+    public Customer(String name, String birthday, String gender, String id, String phoneNumber, String email, String customerClass, String address) {
         this.name = name;
         this.birthday = birthday;
         this.gender = gender;
@@ -22,7 +21,6 @@ public class Customer {
         this.email = email;
         this.customerClass = customerClass;
         this.address = address;
-        this.bookedService = bookedService;
     }
 
     public String getName() {
@@ -89,14 +87,6 @@ public class Customer {
         this.address = address;
     }
 
-    public Services getBookedService() {
-        return bookedService;
-    }
-
-    public void setBookedService(Services bookedService) {
-        this.bookedService = bookedService;
-    }
-
     public String showInfo() {
         return "Customer{" +
                 "name='" + name + '\'' +
@@ -107,7 +97,6 @@ public class Customer {
                 ", email='" + email + '\'' +
                 ", customerClass='" + customerClass + '\'' +
                 ", address='" + address + '\'' +
-                ", bookedService=" + bookedService +
                 '}';
     }
 
@@ -123,8 +112,7 @@ public class Customer {
                 "," + phoneNumber +
                 "," + email +
                 "," + customerClass +
-                "," + address +
-                "," + bookedService;
+                "," + address;
     }
 
 }
