@@ -10,12 +10,12 @@ import java.util.Scanner;
 
 public class MainController {
     private static Scanner scanner = new Scanner(System.in);
-    static final String VILLA_FILE_PATH = "src/data/Villa.csv";
-    static final String HOUSE_FILE_PATH= "src/data/House.csv";
-    static final String ROOM_FILE_PATH = "src/data/Room.csv";
-    private static List<Services> villaList = FileCsv.readServiceListFromCSV(VILLA_FILE_PATH);
-    private static List<Services> houseList = FileCsv.readServiceListFromCSV(HOUSE_FILE_PATH);
-    private static List<Services> roomList = FileCsv.readServiceListFromCSV(ROOM_FILE_PATH);
+    public static final String VILLA_FILE_PATH = "src/data/Villa.csv";
+    public static final String HOUSE_FILE_PATH= "src/data/House.csv";
+    public static final String ROOM_FILE_PATH = "src/data/Room.csv";
+    public static List<Services> villaList = FileCsv.readServiceListFromCSV(VILLA_FILE_PATH);
+    public static List<Services> houseList = FileCsv.readServiceListFromCSV(HOUSE_FILE_PATH);
+    public static List<Services> roomList = FileCsv.readServiceListFromCSV(ROOM_FILE_PATH);
     public static void displayMainMenu() {
         System.out.print("---------------\nMAIN MENU: \n" +
                 "1. Add new services\n" +
@@ -158,6 +158,10 @@ public class MainController {
                 showServices();
             }
         }
+    }
+
+    public static void addNewCustomer(){
+
     }
 
     public static void main(String[] args) {
