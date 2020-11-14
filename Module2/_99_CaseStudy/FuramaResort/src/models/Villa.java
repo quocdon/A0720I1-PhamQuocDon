@@ -63,7 +63,6 @@ public class Villa extends Services {
                 ", poolArea=" + poolArea +
                 ", floor=" + floor +
                 '}';
-
     }
 
     @Override
@@ -83,5 +82,21 @@ public class Villa extends Services {
 
     public String getHeader() {
         return "Villa Id,Service Name,Area,Rate,Max Capacity,Rent Type,Room Type,Amenities,Pool Area,floor";
+    }
+
+    @Override
+    public String toString() {
+        return "Villa{" +
+                "id='" + getId() + '\'' +
+                ", serviceName='" + getServiceName() + '\'' +
+                ", area=" + getArea() +
+                ", rate=" + getRate() +
+                ", maxCapacity=" + getMaxCapacity() +
+                ", rentType='" + getRentType() + '\'' +
+                ", roomType='" + roomType + '\'' +
+                ", amenities='" + amenities + '\'' +
+                ", poolArea=" + poolArea +
+                ", floor=" + floor +
+                '}';
     }
 }

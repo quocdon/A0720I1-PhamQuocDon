@@ -1,6 +1,5 @@
 package controllers;
 
-import javafx.scene.control.skin.CellSkinBase;
 import models.*;
 
 import java.io.*;
@@ -8,9 +7,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
-
-import static controllers.MainController.*;
 
 public class FileCsv {
     private static final String NEW_LINE_SEPARATOR = "\n";
@@ -241,9 +239,13 @@ public class FileCsv {
                     Booking booking = new Booking();
                     Customer customer = new Customer(splitData[0],splitData[1],splitData[2],splitData[3],
                             splitData[4],splitData[5],splitData[6],splitData[7]);
-                    Services service = searchServiceById(splitData[8], serviceList);
                     booking.setCustomer(customer);
-                    booking.setService(service);
+
+                    for (Services service : serviceList){
+                        if (service.getId().equals(splitData[8])){
+                            booking.setService(service);
+                        }
+                    }
                     bookingList.add(booking);
                 }
             }
@@ -259,12 +261,46 @@ public class FileCsv {
         return bookingList;
     }
 
-    public static Services searchServiceById(String id, List<Services> serviceList){
-        for (Services service : serviceList){
-            if (service.getId().equals(id)){
-                return service;
+    public static LinkedHashMap readEmployeeFromCSV(String filePath){
+        BufferedReader br = null;
+        LinkedHashMap employeeHashMap = new LinkedHashMap<>();
+
+        //Check the file exists or not. If not, create new file following the file path
+        Path path = Paths.get(filePath);
+        if (!Files.exists(path)) {
+            try {
+                Writer writer = new FileWriter(filePath);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
             }
         }
-        return null;
+
+        //Reading data from the file
+        try {
+            String line;
+            br = new BufferedReader(new FileReader(filePath));
+            while ((line = br.readLine()) != null) {
+                String[] splitData = line.split(",");
+                //Skip reading header
+                if (splitData[0].equals("Name")) {
+                    continue;
+                }
+                Employee employee = new Employee();
+                employee.setName(splitData[0]);
+                employee.setAge(Integer.parseInt(splitData[1]));
+                employee.setAddress(splitData[2]);
+                String employeeId = String.format("NV%04d", employeeHashMap.size() + 1);
+                employeeHashMap.put(employeeId, employee);
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        } finally {
+            try {
+                br.close();
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return employeeHashMap;
     }
 }

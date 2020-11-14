@@ -101,7 +101,7 @@ public class Customer {
     }
 
     public String getHeader(){
-        return "Name,Birthday,Gender,Id,Phone Number,Email,Customer Class,Address,Booked Service";
+        return "Name,Birthday,Gender,Id,Phone Number,Email,Customer Class,Address";
     }
 
     public String writeToCSV() {
@@ -115,4 +115,17 @@ public class Customer {
                 "," + address;
     }
 
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "name='" + name + '\'' +
+                ", birthday='" + birthday + '\'' +
+                ", gender='" + gender + '\'' +
+                ", id='" + id + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", email='" + email + '\'' +
+                ", customerClass='" + customerClass + '\'' +
+                ", address='" + address + '\'' +
+                '}';
+    }
 }

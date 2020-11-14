@@ -51,4 +51,17 @@ public class Room extends Services {
     public String getHeader() {
         return "Room Id,Service Name,Area,Rate,Max Capacity,Rent Type,Comp Services";
     }
+
+    @Override
+    public String toString() {
+        return  "Room{" +
+                "id='" + getId() + '\'' +
+                ", serviceName='" + getServiceName() + '\'' +
+                ", area=" + getArea() +
+                ", rate=" + getRate() +
+                ", maxCapacity=" + getMaxCapacity() +
+                ", rentType='" + getRentType() + '\''+
+                ", compServices='" + compServices + '\''+
+                '}';
+    }
 }

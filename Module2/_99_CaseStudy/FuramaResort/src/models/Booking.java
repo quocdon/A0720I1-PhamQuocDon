@@ -29,17 +29,17 @@ public class Booking {
     }
 
     public String getHeader(){
-        return this.customer.getHeader() + ",Service Id";
+        return this.customer.getHeader() + ",Service Id,Service Name";
     }
 
     public String showInfo() {
         return "Booking{" +
-                "customer=" + customer.showInfo() +
-                ", service=" + service.showInfo() +
+                customer.showInfo() +
+                ", " + service.showInfo() +
                 '}';
     }
 
     public String writeToCSV(){
-        return customer.writeToCSV() + "," + service.getId();
+        return customer.writeToCSV() + "," + service.getId() + "," + service.getServiceName();
     }
 }

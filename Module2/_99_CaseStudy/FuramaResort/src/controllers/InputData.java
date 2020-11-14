@@ -1,12 +1,16 @@
 package controllers;
 
+import models.Customer;
 import models.House;
 import models.Room;
 import models.Villa;
 
+import java.util.List;
 import java.util.Scanner;
 
-public class InputServices {
+import static controllers.MainController.customerList;
+
+public class InputData {
     static Scanner scanner = new Scanner(System.in);
 
     public static Villa villa() {
@@ -87,5 +91,45 @@ public class InputServices {
         room.setCompServices(scanner.nextLine());
 
         return room;
+    }
+
+    public static Customer customer(){
+        Customer customer = new Customer();
+
+        System.out.println("---------------");
+        System.out.println("INPUT CUSTOMER INFORMATION:");
+        System.out.print("1. Name: ");
+        customer.setName(scanner.nextLine());
+        System.out.print("2. Birthday: ");
+        customer.setBirthday(scanner.nextLine());
+        System.out.print("3. Gender: ");
+        customer.setGender(scanner.nextLine());
+        System.out.print("4. ID: ");
+        customer.setId(scanner.nextLine());
+        System.out.print("5. Phone Number: ");
+        customer.setPhoneNumber(scanner.nextLine());
+        System.out.print("6. Email: ");
+        customer.setEmail(scanner.nextLine());
+        System.out.print("7. Customer Class: ");
+        customer.setCustomerClass(scanner.nextLine());
+        System.out.print("8. Address: ");
+        customer.setAddress(scanner.nextLine());
+        return customer;
+    }
+
+    public static <T> T selectElementInList (List<T> list){
+        int index;
+        for (T element: list){
+            System.out.println((list.indexOf(element)+1) + ". " + element.toString());
+        }
+        do {
+            System.out.print("Please choose element: ");
+            index = Integer.parseInt(scanner.nextLine()) - 1;
+            if (index < 0 || index >= list.size()){
+                System.out.println("The index input is invalid. Please press ENTER to continue !!!");
+                scanner.nextLine();
+            }
+        } while (index < 0 || index >= list.size());
+        return list.get(index);
     }
 }
