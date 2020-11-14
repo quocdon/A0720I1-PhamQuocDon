@@ -235,6 +235,7 @@ public class FileCsv {
                 if (splitData[0].equals("Name")) {
                     continue;
                 }
+                //Only init booking which service ID begin with serviceCode. Then, add the booking to booking list
                 if (splitData[8].substring(0,4).equals(serviceCode)){
                     Booking booking = new Booking();
                     Customer customer = new Customer(splitData[0],splitData[1],splitData[2],splitData[3],

@@ -93,7 +93,7 @@ public class InputData {
         return room;
     }
 
-    public static Customer customer(){
+    public static Customer customer() {
         Customer customer = new Customer();
 
         System.out.println("---------------");
@@ -117,15 +117,20 @@ public class InputData {
         return customer;
     }
 
-    public static <T> T selectElementInList (List<T> list){
+    public static <T> T selectElementInList(List<T> list) {
+        // This method use for select element in a list
+
         int index;
-        for (T element: list){
-            System.out.println((list.indexOf(element)+1) + ". " + element.toString());
+        // Step 1: print all elements of the list with numbering by index of element + 1
+        for (T element : list) {
+            System.out.println((list.indexOf(element) + 1) + ". " + element.toString());
         }
+        // Step 2: Choose element by input number from keyboard. The index of element = numberInput - 1
+        // try again if the index is out of bound of the list
         do {
             System.out.print("Please choose element: ");
             index = Integer.parseInt(scanner.nextLine()) - 1;
-            if (index < 0 || index >= list.size()){
+            if (index < 0 || index >= list.size()) {
                 System.out.println("The index input is invalid. Please press ENTER to continue !!!");
                 scanner.nextLine();
             }

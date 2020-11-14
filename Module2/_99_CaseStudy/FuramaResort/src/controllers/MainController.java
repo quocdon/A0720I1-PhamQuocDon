@@ -34,8 +34,8 @@ public class MainController {
                 "4. Show information of customers\n" +
                 "5. Add new booking\n" +
                 "6. Show all bookings\n" +
-                "7. Show information of Employee\n" +
-                "8. Cinema ticket\n" +
+                "7. Cinema ticket\n" +
+                "8. Show information of Employee\n" +
                 "9. Search employee profile\n" +
                 "10. Exit\n" +
                 "Please choose the function: ");
@@ -61,60 +61,9 @@ public class MainController {
                 scanner.nextLine();
                 displayMainMenu();
             case "5": {
-                System.out.println("--------------");
-                System.out.println("ADD NEW BOOKING");
-                System.out.println("LIST OF CUSTOMERS");
-                Customer customer = InputData.selectElementInList(customerList);
-                System.out.print("LIST OF SERVICES: \n" +
-                        "1. Booking Villa\n" +
-                        "2. Booking House\n" +
-                        "3. Booking Room\n" +
-                        "Please choose function: ");
-                String bookingIndex = scanner.nextLine();
-                switch (bookingIndex) {
-                    case "1": {
-                        Services service = InputData.selectElementInList(villaList);
-                        Booking booking = new Booking(customer, service);
-                        bookingList.add(booking);
-                        FileCsv.writeBookingToCSV(bookingList, BOOKING_FILE_PATH);
-                        System.out.println("Add " + booking.showInfo() + " successfully");
-                        System.out.println("Press ENTER to continue");
-                        scanner.nextLine();
-                        displayMainMenu();
-                        break;
-                    }
-                    case "2": {
-                        Services service = InputData.selectElementInList(houseList);
-                        Booking booking = new Booking(customer, service);
-                        bookingList.add(booking);
-                        FileCsv.writeBookingToCSV(bookingList, BOOKING_FILE_PATH);
-                        System.out.println("Add " + booking.showInfo() + " successfully");
-                        System.out.println("Press ENTER to continue");
-                        scanner.nextLine();
-                        displayMainMenu();
-                        break;
-                    }
-                    case "3": {
-                        Services service = InputData.selectElementInList(roomList);
-                        Booking booking = new Booking(customer, service);
-                        bookingList.add(booking);
-                        FileCsv.writeBookingToCSV(bookingList, BOOKING_FILE_PATH);
-                        System.out.println("Add " + booking.showInfo() + " successfully");
-                        System.out.println("Press ENTER to continue");
-                        scanner.nextLine();
-                        displayMainMenu();
-                        break;
-                    }
-                    default: {
-                        System.out.println("The index input is invalid. Please press ENTER to continue !!!");
-                        scanner.nextLine();
-                        displayMainMenu();
-                    }
-                }
+                addNewBooking();
                 break;
             }
-
-
             case "6": {
                 System.out.println("---------------");
                 System.out.println("LIST OF BOOKINGS: ");
@@ -127,6 +76,10 @@ public class MainController {
                 break;
             }
             case "7": {
+                cinemaTicket();
+                break;
+            }
+            case "8": {
                 System.out.println("--------------------");
                 System.out.println("LIST OF EMPLOYEE");
                 for (String key : employeeHashMap.keySet()) {
@@ -135,10 +88,6 @@ public class MainController {
                 System.out.println("Press ENTER to continue");
                 scanner.nextLine();
                 displayMainMenu();
-                break;
-            }
-            case "8": {
-                cinemaTicket();
                 break;
             }
             case "9": {
@@ -312,11 +261,54 @@ public class MainController {
         scanner.nextLine();
     }
 
-    public static void main(String[] args) {
-        bookingList = FileCsv.readBookingListFromCSV(BOOKING_FILE_PATH, VILLA_CODE, villaList);
-        bookingList.addAll(FileCsv.readBookingListFromCSV(BOOKING_FILE_PATH, HOUSE_CODE, houseList));
-        bookingList.addAll(FileCsv.readBookingListFromCSV(BOOKING_FILE_PATH, ROOM_CODE, roomList));
-        displayMainMenu();
+    public static void addNewBooking() {
+        System.out.println("--------------");
+        System.out.println("ADD NEW BOOKING");
+        System.out.println("LIST OF CUSTOMERS");
+        Customer customer = InputData.selectElementInList(customerList);
+        System.out.print("LIST OF SERVICES: \n" +
+                "1. Booking Villa\n" +
+                "2. Booking House\n" +
+                "3. Booking Room\n" +
+                "Please choose function: ");
+        String bookingIndex = scanner.nextLine();
+        switch (bookingIndex) {
+            case "1": {
+                Services service = InputData.selectElementInList(villaList);
+                Booking booking = new Booking(customer, service);
+                bookingList.add(booking);
+                FileCsv.writeBookingToCSV(bookingList, BOOKING_FILE_PATH);
+                System.out.println("Add " + booking.showInfo() + " successfully");
+                break;
+            }
+            case "2": {
+                Services service = InputData.selectElementInList(houseList);
+                Booking booking = new Booking(customer, service);
+                bookingList.add(booking);
+                FileCsv.writeBookingToCSV(bookingList, BOOKING_FILE_PATH);
+                System.out.println("Add " + booking.showInfo() + " successfully");
+                System.out.println("Press ENTER to continue");
+                scanner.nextLine();
+                displayMainMenu();
+                break;
+            }
+            case "3": {
+                Services service = InputData.selectElementInList(roomList);
+                Booking booking = new Booking(customer, service);
+                bookingList.add(booking);
+                FileCsv.writeBookingToCSV(bookingList, BOOKING_FILE_PATH);
+                System.out.println("Add " + booking.showInfo() + " successfully");
+                System.out.println("Press ENTER to continue");
+                scanner.nextLine();
+                displayMainMenu();
+                break;
+            }
+            default: {
+                System.out.println("The index input is invalid. Please press ENTER to continue !!!");
+                scanner.nextLine();
+                displayMainMenu();
+            }
+        }
     }
 
     public static void cinemaTicket(){
@@ -335,18 +327,26 @@ public class MainController {
                 System.out.println("LIST OF CUSTOMERS");
                 Customer customer = InputData.selectElementInList(customerList);
                 waitingList.add(customer);
+                System.out.println("add " + customer.showInfo() + "to waiting list successfully");
                 System.out.println("Press ENTER to continue");
                 scanner.nextLine();
                 cinemaTicket();
                 break;
             }
             case "2": {
-                System.out.print("Number of ticket selling: ");
+                int soldTicket = 0;
+                System.out.println("Number of customers in waiting list: " + waitingList.size());
+                System.out.println("Number of tickets remaining: " + numTicket);
+                System.out.print("Number of new tickets: ");
                 numTicket += Integer.parseInt(scanner.nextLine());
+                System.out.println("Total number of tickets: " + numTicket);
                 while (numTicket > 0 && waitingList.size() > 0){
                     boughtTicketList.add(waitingList.remove());
                     numTicket--;
+                    soldTicket++;
                 }
+                System.out.println("Number of sold ticket: " + soldTicket);
+                System.out.println("Number of tickets remaining: " + numTicket);
                 System.out.println("Press ENTER to continue");
                 scanner.nextLine();
                 cinemaTicket();
@@ -363,6 +363,7 @@ public class MainController {
                 break;
             }
             case "4": {
+                //Stop selling ticket, clear all data in waitinglist, boughtTicketList and numberTicket remaining.
                 boughtTicketList.clear();
                 waitingList.clear();
                 numTicket = 0;
@@ -387,4 +388,15 @@ public class MainController {
 
         }
     }
+
+    public static void main(String[] args) {
+        //Init bookingList. Read data from Booking.csv, add all customer booking villa, house, and room to the list
+        bookingList = FileCsv.readBookingListFromCSV(BOOKING_FILE_PATH, VILLA_CODE, villaList);
+        bookingList.addAll(FileCsv.readBookingListFromCSV(BOOKING_FILE_PATH, HOUSE_CODE, houseList));
+        bookingList.addAll(FileCsv.readBookingListFromCSV(BOOKING_FILE_PATH, ROOM_CODE, roomList));
+
+        displayMainMenu();
+    }
+
+
 }
