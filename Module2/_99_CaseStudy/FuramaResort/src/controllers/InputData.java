@@ -8,35 +8,55 @@ import models.Villa;
 import java.util.List;
 import java.util.Scanner;
 
-import static controllers.MainController.customerList;
-
 public class InputData {
     static Scanner scanner = new Scanner(System.in);
 
     public static Villa villa() {
         Villa villa = new Villa();
+        String inputTemp;
 
         //Users input information of service
         System.out.println("---------------");
         System.out.println("INPUT VILLA INFORMATION:");
-        System.out.print("1. ID: ");
-        villa.setId(scanner.nextLine());
-        System.out.print("2. Service Name: ");
-        villa.setServiceName(scanner.nextLine());
-        System.out.print("3. Area: ");
-        villa.setArea(Double.valueOf(scanner.nextLine()));
-        System.out.print("4. Rate: ");
-        villa.setRate(Double.valueOf(scanner.nextLine()));
-        System.out.print("Maximum Capacity: ");
-        villa.setMaxCapacity(Integer.valueOf(scanner.nextLine()));
+        do {
+            System.out.print("1. ID: ");
+            inputTemp = scanner.nextLine();
+        } while (!ServiceValidate.checkVillaId(inputTemp));
+        villa.setId(inputTemp);
+        do {
+            System.out.print("2. Service Name: ");
+            inputTemp = scanner.nextLine();
+        } while (!ServiceValidate.checkServiceName(inputTemp));
+        villa.setServiceName(inputTemp);
+        do {
+            System.out.print("3. Area: ");
+            inputTemp = scanner.nextLine();
+        } while (!ServiceValidate.checkArea(inputTemp));
+        villa.setArea(Double.parseDouble(inputTemp));
+        do {
+            System.out.print("4. Rate: ");
+            inputTemp = scanner.nextLine();
+        } while (!ServiceValidate.checkRate(inputTemp));
+        villa.setRate(Double.parseDouble(inputTemp));
+        do {
+            System.out.print("Maximum Capacity: ");
+            inputTemp = scanner.nextLine();
+        } while (!ServiceValidate.checkMaxCapacity(inputTemp));
+        villa.setMaxCapacity(Integer.parseInt(inputTemp));
         System.out.print("Rent Type: ");
         villa.setRentType(scanner.nextLine());
         System.out.print("Room Type: ");
         villa.setRoomType(scanner.nextLine());
-        System.out.print("Amenities: ");
-        villa.setAmenities(scanner.nextLine());
-        System.out.print("Pool Area: ");
-        villa.setPoolArea(Double.valueOf(scanner.nextLine()));
+        do {
+            System.out.print("Comp Service: ");
+            inputTemp = scanner.nextLine();
+        } while (!ServiceValidate.checkCompService(inputTemp));
+        villa.setCompService(inputTemp);
+        do {
+            System.out.print("Pool Area: ");
+            inputTemp = scanner.nextLine();
+        } while (!ServiceValidate.checkPoolArea(inputTemp));
+        villa.setPoolArea(Double.parseDouble(inputTemp));
         System.out.print("Floor: ");
         villa.setFloor(Integer.valueOf(scanner.nextLine()));
         return villa;

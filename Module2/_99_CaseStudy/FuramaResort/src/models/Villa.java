@@ -2,17 +2,17 @@ package models;
 
 public class Villa extends Services {
     private String roomType;
-    private String amenities;
+    private String compService;
     private double poolArea;
     private int floor;
 
     public Villa() {
     }
 
-    public Villa(String id, String serviceName, double area, double rate, int maxCapacity, String rentType, String roomType, String amenities, double poolArea, int floor) {
+    public Villa(String id, String serviceName, double area, double rate, int maxCapacity, String rentType, String roomType, String compService, double poolArea, int floor) {
         super(id, serviceName, area, rate, maxCapacity, rentType);
         this.roomType = roomType;
-        this.amenities = amenities;
+        this.compService = compService;
         this.poolArea = poolArea;
         this.floor = floor;
     }
@@ -25,12 +25,12 @@ public class Villa extends Services {
         this.roomType = roomType;
     }
 
-    public String getAmenities() {
-        return amenities;
+    public String getCompService() {
+        return compService;
     }
 
-    public void setAmenities(String amenities) {
-        this.amenities = amenities;
+    public void setCompService(String compService) {
+        this.compService = compService;
     }
 
     public double getPoolArea() {
@@ -59,7 +59,7 @@ public class Villa extends Services {
                 ", maxCapacity=" + getMaxCapacity() +
                 ", rentType='" + getRentType() + '\'' +
                 ", roomType='" + roomType + '\'' +
-                ", amenities='" + amenities + '\'' +
+                ", compService='" + compService + '\'' +
                 ", poolArea=" + poolArea +
                 ", floor=" + floor +
                 '}';
@@ -74,14 +74,14 @@ public class Villa extends Services {
                 "," + getMaxCapacity() +
                 "," + getRentType() +
                 "," + roomType +
-                "," + amenities +
+                "," + compService +
                 "," + poolArea +
                 "," + floor;
     }
 
 
     public String getHeader() {
-        return "Villa Id,Service Name,Area,Rate,Max Capacity,Rent Type,Room Type,Amenities,Pool Area,floor";
+        return "Villa Id,Service Name,Area,Rate,Max Capacity,Rent Type,Room Type,Comp Service,Pool Area,floor";
     }
 
     @Override
@@ -94,7 +94,7 @@ public class Villa extends Services {
                 ", maxCapacity=" + getMaxCapacity() +
                 ", rentType='" + getRentType() + '\'' +
                 ", roomType='" + roomType + '\'' +
-                ", amenities='" + amenities + '\'' +
+                ", compService='" + compService + '\'' +
                 ", poolArea=" + poolArea +
                 ", floor=" + floor +
                 '}';
