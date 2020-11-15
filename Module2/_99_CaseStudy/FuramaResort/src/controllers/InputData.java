@@ -1,7 +1,6 @@
 package controllers;
 
-import commons.NameException;
-import commons.UserException;
+import commons.*;
 import models.Customer;
 import models.House;
 import models.Room;
@@ -31,7 +30,7 @@ public class InputData {
         } while (!ServiceValidate.checkServiceName(inputTemp));
         villa.setServiceName(inputTemp);
         do {
-            System.out.print("3. Area: ");
+            System.out.print("3. Area (>30m2): ");
             inputTemp = scanner.nextLine();
         } while (!ServiceValidate.checkArea(inputTemp));
         villa.setArea(Double.parseDouble(inputTemp));
@@ -41,33 +40,32 @@ public class InputData {
         } while (!ServiceValidate.checkRate(inputTemp));
         villa.setRate(Double.parseDouble(inputTemp));
         do {
-            System.out.print("Maximum Capacity: ");
+            System.out.print("5. Maximum Capacity (<20 persons): ");
             inputTemp = scanner.nextLine();
         } while (!ServiceValidate.checkMaxCapacity(inputTemp));
         villa.setMaxCapacity(Integer.parseInt(inputTemp));
         do {
-            System.out.print("Rent Type: ");
+            System.out.print("6. Rent Type (Year,Month,Week,Day): ");
             inputTemp = scanner.nextLine();
-        } while (!ServiceValidate.checkServiceName(inputTemp));
+        } while (!ServiceValidate.checkRentType(inputTemp));
         villa.setRentType(inputTemp);
         do {
-            System.out.print("Room Type: ");
+            System.out.print("7. Room Type: ");
             inputTemp = scanner.nextLine();
         } while (!ServiceValidate.checkServiceName(inputTemp));
-
-        villa.setRoomType(scanner.nextLine());
+        villa.setRoomType(inputTemp);
         do {
-            System.out.print("Comp Service: ");
+            System.out.print("8. Comp Service (Massage,Karaoke,Food,Drink,Car): ");
             inputTemp = scanner.nextLine();
         } while (!ServiceValidate.checkCompService(inputTemp));
         villa.setCompService(inputTemp);
         do {
-            System.out.print("Pool Area: ");
+            System.out.print("9. Pool Area (>30m2): ");
             inputTemp = scanner.nextLine();
-        } while (!ServiceValidate.checkPoolArea(inputTemp));
+        } while (!ServiceValidate.checkArea(inputTemp));
         villa.setPoolArea(Double.parseDouble(inputTemp));
         do {
-            System.out.print("Floor: ");
+            System.out.print("10. Floor: ");
             inputTemp = scanner.nextLine();
         } while (!ServiceValidate.checkFloor(inputTemp));
         villa.setFloor(Integer.parseInt(inputTemp));
@@ -92,7 +90,7 @@ public class InputData {
         } while (!ServiceValidate.checkServiceName(inputTemp));
         house.setServiceName(inputTemp);
         do {
-            System.out.print("3. Area: ");
+            System.out.print("3. Area (>30m2): ");
             inputTemp = scanner.nextLine();
         } while (!ServiceValidate.checkArea(inputTemp));
         house.setArea(Double.parseDouble(inputTemp));
@@ -102,14 +100,14 @@ public class InputData {
         } while (!ServiceValidate.checkRate(inputTemp));
         house.setRate(Double.parseDouble(inputTemp));
         do {
-            System.out.print("5. Maximum Capacity: ");
+            System.out.print("5. Maximum Capacity (<20 persons): ");
             inputTemp = scanner.nextLine();
         } while (!ServiceValidate.checkMaxCapacity(inputTemp));
         house.setMaxCapacity(Integer.parseInt(inputTemp));
         do {
-            System.out.print("6. Rent Type: ");
+            System.out.print("6. Rent Type (Year,Month,Week,Day): ");
             inputTemp = scanner.nextLine();
-        } while (!ServiceValidate.checkServiceName(inputTemp));
+        } while (!ServiceValidate.checkRentType(inputTemp));
         house.setRentType(inputTemp);
         do {
             System.out.print("7. Room Type: ");
@@ -117,7 +115,7 @@ public class InputData {
         } while (!ServiceValidate.checkServiceName(inputTemp));
         house.setRoomType(inputTemp);
         do {
-            System.out.print("8. Comp Service: ");
+            System.out.print("8. Comp Service (Massage,Karaoke,Food,Drink,Car): ");
             inputTemp = scanner.nextLine();
         } while (!ServiceValidate.checkCompService(inputTemp));
         house.setCompService(inputTemp);
@@ -147,7 +145,7 @@ public class InputData {
         } while (!ServiceValidate.checkServiceName(inputTemp));
         room.setServiceName(inputTemp);
         do {
-            System.out.print("3. Area: ");
+            System.out.print("3. Area (>30m2): ");
             inputTemp = scanner.nextLine();
         } while (!ServiceValidate.checkArea(inputTemp));
         room.setArea(Double.parseDouble(inputTemp));
@@ -157,54 +155,71 @@ public class InputData {
         } while (!ServiceValidate.checkRate(inputTemp));
         room.setRate(Double.parseDouble(inputTemp));
         do {
-            System.out.print("5. Maximum Capacity: ");
+            System.out.print("5. Maximum Capacity (<20 persons): ");
             inputTemp = scanner.nextLine();
         } while (!ServiceValidate.checkMaxCapacity(inputTemp));
         room.setMaxCapacity(Integer.parseInt(inputTemp));
         do {
-            System.out.print("6. Rent Type: ");
+            System.out.print("6. Rent Type (Year,Month,Week,Day): ");
             inputTemp = scanner.nextLine();
-        } while (!ServiceValidate.checkServiceName(inputTemp));
+        } while (!ServiceValidate.checkRentType(inputTemp));
         room.setRentType(inputTemp);
         do {
-            System.out.print("7. Complimentary Services: ");
+            System.out.print("7. Comp Services (Massage,Karaoke,Food,Drink,Car): ");
             inputTemp = scanner.nextLine();
         } while (!ServiceValidate.checkCompService(inputTemp));
         room.setCompServices(inputTemp);
         return room;
     }
 
-    public static Customer customer() throws UserException {
+    public static Customer customer() {
         Customer customer = new Customer();
         String inputTemp;
         System.out.println("---------------");
         System.out.println("INPUT CUSTOMER INFORMATION:");
-        try {
+        do {
             System.out.print("1. Name: ");
             inputTemp = scanner.nextLine();
-            if (!CustomerValidate.checkName(inputTemp)){
-                throw new NameException("Invalid name. Please input again (Example: Pham Van An)");
-            }
-            customer.setName(inputTemp);
-        } catch (NameException ex){
-            System.out.println(ex.getMessage());
-            System.out.print("1. Name: ");
+        } while (!NameException.checkName(inputTemp));
+        customer.setName(inputTemp);
+        do {
+            System.out.print("2. Birthday: ");
             inputTemp = scanner.nextLine();
+        } while (!BirthdayException.checkBirthday(inputTemp));
+        customer.setBirthday(inputTemp);
+        do {
+            System.out.print("3. Gender: ");
+            inputTemp = scanner.nextLine();
+        } while (!GenderException.checkGender(inputTemp));
+        String gender = "";
+        gender = gender.concat(String.valueOf(Character.toUpperCase(inputTemp.charAt(0))));
+        for (int i = 1; i < inputTemp.length(); i++) {
+            gender = gender.concat(String.valueOf(Character.toLowerCase(inputTemp.charAt(i))));
         }
-        System.out.print("2. Birthday: ");
-        customer.setBirthday(scanner.nextLine());
-        System.out.print("3. Gender: ");
-        customer.setGender(scanner.nextLine());
-        System.out.print("4. ID: ");
-        customer.setId(scanner.nextLine());
-        System.out.print("5. Phone Number: ");
-        customer.setPhoneNumber(scanner.nextLine());
-        System.out.print("6. Email: ");
-        customer.setEmail(scanner.nextLine());
-        System.out.print("7. Customer Class: ");
-        customer.setCustomerClass(scanner.nextLine());
+        customer.setGender(gender);
+        do {
+            System.out.print("4. ID: ");
+            inputTemp = scanner.nextLine();
+        } while (!IdException.checkId(inputTemp));
+        customer.setId(inputTemp);
+        do {
+            System.out.print("5. Phone Number: ");
+            inputTemp = scanner.nextLine();
+        } while (!PhoneException.checkPhoneNumber(inputTemp));
+        customer.setPhoneNumber(inputTemp);
+        do {
+            System.out.print("6. Email: ");
+            inputTemp = scanner.nextLine();
+        } while (!EmailException.checkEmail(inputTemp));
+        customer.setEmail(inputTemp);
+        do {
+            System.out.print("7. Customer Class: ");
+            inputTemp = scanner.nextLine();
+        } while (!CustomerClassException.checkCustomerClass(inputTemp));
+        customer.setCustomerClass(inputTemp);
         System.out.print("8. Address: ");
         customer.setAddress(scanner.nextLine());
+        customer.setBookedService(null);
         return customer;
     }
 

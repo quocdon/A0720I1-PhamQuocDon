@@ -19,26 +19,25 @@ public class MainController {
     public static List<Services> villaList = FileCsv.readServiceListFromCSV(VILLA_FILE_PATH);
     public static List<Services> houseList = FileCsv.readServiceListFromCSV(HOUSE_FILE_PATH);
     public static List<Services> roomList = FileCsv.readServiceListFromCSV(ROOM_FILE_PATH);
-    public static List<Customer> customerList = FileCsv.readCustomerListFromCSV(CUSTOMER_FILE_PATH);
+    public static List<Customer> customerList = new ArrayList<>();
     public static LinkedHashMap<String, Employee> employeeHashMap = FileCsv.readEmployeeFromCSV(EMPLOYEE_FILE_PATH);
-    public static List<Booking> bookingList = new ArrayList<>();
+    public static List<Customer> bookingList = new ArrayList<>();
     public static Queue<Customer> waitingList = new LinkedList<>();
     public static Queue<Customer> boughtTicketList = new LinkedList<>();
     public static ProfileCarbinet profileCarbinet = new ProfileCarbinet();
     public static int numTicket = 0;
 
-    public static void displayMainMenu() throws UserException {
+    public static void displayMainMenu() {
         System.out.print("---------------\nMAIN MENU: \n" +
                 "1. Add new services\n" +
                 "2. Show services\n" +
                 "3. Add new customer\n" +
                 "4. Show information of customers\n" +
                 "5. Add new booking\n" +
-                "6. Show all bookings\n" +
-                "7. Cinema ticket\n" +
-                "8. Show information of Employee\n" +
-                "9. Search employee profile\n" +
-                "10. Exit\n" +
+                "6. Cinema ticket\n" +
+                "7. Show information of Employee\n" +
+                "8. Search employee profile\n" +
+                "9. Exit\n" +
                 "Please choose the function: ");
         String mainMenuIndex = scanner.nextLine();
         switch (mainMenuIndex) {
@@ -52,7 +51,9 @@ public class MainController {
             case "3":
                 addNewCustomer();
                 break;
-            case "4":
+            case "4": {
+                SortCustomerByNameBirthday sortCustomerByNameBirthday = new SortCustomerByNameBirthday();
+                Collections.sort(customerList, sortCustomerByNameBirthday);
                 System.out.println("-----------------");
                 System.out.println("LIST OF CUSTOMERS");
                 for (Customer customer : customerList) {
@@ -61,26 +62,17 @@ public class MainController {
                 System.out.println("Press ENTER to continue");
                 scanner.nextLine();
                 displayMainMenu();
+                break;
+            }
             case "5": {
                 addNewBooking();
                 break;
             }
             case "6": {
-                System.out.println("---------------");
-                System.out.println("LIST OF BOOKINGS: ");
-                for (Booking booking : bookingList) {
-                    System.out.println(booking.showInfo());
-                }
-                System.out.println("Press ENTER to continue");
-                scanner.nextLine();
-                displayMainMenu();
-                break;
-            }
-            case "7": {
                 cinemaTicket();
                 break;
             }
-            case "8": {
+            case "7": {
                 System.out.println("--------------------");
                 System.out.println("LIST OF EMPLOYEE");
                 for (String key : employeeHashMap.keySet()) {
@@ -91,14 +83,14 @@ public class MainController {
                 displayMainMenu();
                 break;
             }
-            case "9": {
-                for (String key: employeeHashMap.keySet()){
+            case "8": {
+                for (String key : employeeHashMap.keySet()) {
                     profileCarbinet.add(employeeHashMap.get(key));
                 }
                 System.out.print("Input employee name: ");
                 String name = scanner.nextLine();
                 Employee employee = profileCarbinet.search(name);
-                if (employee == null){
+                if (employee == null) {
                     System.out.println("Employee profile not found");
                 } else {
                     System.out.println(employee.toString());
@@ -108,7 +100,7 @@ public class MainController {
                 displayMainMenu();
                 break;
             }
-            case "10":
+            case "9":
                 System.exit(0);
             default:
                 System.out.println("The index input is invalid. Please press ENTER to continue !!!");
@@ -117,7 +109,7 @@ public class MainController {
         }
     }
 
-    public static void addNewServices() throws UserException {
+    public static void addNewServices() {
         System.out.print("---------------\nSERVICES: \n" +
                 "1. Add new villa\n" +
                 "2. Add new house\n" +
@@ -170,7 +162,7 @@ public class MainController {
         addNewServices();
     }
 
-    public static void showServices() throws UserException {
+    public static void showServices() {
         System.out.println("---------------");
         System.out.print("SHOW ALL SERVICES\n" +
                 "1. Show all Villa\n" +
@@ -242,7 +234,7 @@ public class MainController {
         }
     }
 
-    public static void addNewCustomer() throws UserException {
+    public static void addNewCustomer() {
         Customer customer = InputData.customer();
         customerList.add(customer);
         FileCsv.writeCustomerToCSV(customerList, CUSTOMER_FILE_PATH);
@@ -262,7 +254,7 @@ public class MainController {
         scanner.nextLine();
     }
 
-    public static void addNewBooking() throws UserException {
+    public static void addNewBooking() {
         System.out.println("--------------");
         System.out.println("ADD NEW BOOKING");
         System.out.println("LIST OF CUSTOMERS");
@@ -276,18 +268,31 @@ public class MainController {
         switch (bookingIndex) {
             case "1": {
                 Services service = InputData.selectElementInList(villaList);
-                Booking booking = new Booking(customer, service);
-                bookingList.add(booking);
+                if (bookingList.contains(customer)){
+                    customer.setBookedService(service);
+                } else {
+                    customer.setBookedService(service);
+                    bookingList.add(customer);
+                }
+                FileCsv.writeCustomerToCSV(customerList,CUSTOMER_FILE_PATH);
                 FileCsv.writeBookingToCSV(bookingList, BOOKING_FILE_PATH);
-                System.out.println("Add " + booking.showInfo() + " successfully");
+                System.out.println("Add " + customer.showInfo() + " successfully");
+                System.out.println("Press ENTER to continue");
+                scanner.nextLine();
+                displayMainMenu();
                 break;
             }
             case "2": {
                 Services service = InputData.selectElementInList(houseList);
-                Booking booking = new Booking(customer, service);
-                bookingList.add(booking);
+                if (bookingList.contains(customer)){
+                    customer.setBookedService(service);
+                } else {
+                    customer.setBookedService(service);
+                    bookingList.add(customer);
+                }
+                FileCsv.writeCustomerToCSV(customerList,CUSTOMER_FILE_PATH);
                 FileCsv.writeBookingToCSV(bookingList, BOOKING_FILE_PATH);
-                System.out.println("Add " + booking.showInfo() + " successfully");
+                System.out.println("Add " + customer.showInfo() + " successfully");
                 System.out.println("Press ENTER to continue");
                 scanner.nextLine();
                 displayMainMenu();
@@ -295,10 +300,15 @@ public class MainController {
             }
             case "3": {
                 Services service = InputData.selectElementInList(roomList);
-                Booking booking = new Booking(customer, service);
-                bookingList.add(booking);
+                if (bookingList.contains(customer)){
+                    customer.setBookedService(service);
+                } else {
+                    customer.setBookedService(service);
+                    bookingList.add(customer);
+                }
+                FileCsv.writeCustomerToCSV(customerList,CUSTOMER_FILE_PATH);
                 FileCsv.writeBookingToCSV(bookingList, BOOKING_FILE_PATH);
-                System.out.println("Add " + booking.showInfo() + " successfully");
+                System.out.println("Add " + customer.showInfo() + " successfully");
                 System.out.println("Press ENTER to continue");
                 scanner.nextLine();
                 displayMainMenu();
@@ -312,7 +322,7 @@ public class MainController {
         }
     }
 
-    public static void cinemaTicket() throws UserException {
+    public static void cinemaTicket() {
         System.out.println("------------------");
         System.out.println("CINEMA TICKET MENU:\n" +
                 "1. Buy ticket\n" +
@@ -341,7 +351,7 @@ public class MainController {
                 System.out.print("Number of new tickets: ");
                 numTicket += Integer.parseInt(scanner.nextLine());
                 System.out.println("Total number of tickets: " + numTicket);
-                while (numTicket > 0 && waitingList.size() > 0){
+                while (numTicket > 0 && waitingList.size() > 0) {
                     boughtTicketList.add(waitingList.remove());
                     numTicket--;
                     soldTicket++;
@@ -355,7 +365,7 @@ public class MainController {
             }
             case "3": {
                 System.out.println("LIST OF CUSTOMER BUYING TICKET: ");
-                for (Customer customer : boughtTicketList){
+                for (Customer customer : boughtTicketList) {
                     System.out.println(customer.showInfo());
                 }
                 System.out.println("Press ENTER to continue");
@@ -390,12 +400,18 @@ public class MainController {
         }
     }
 
-    public static void main(String[] args) throws UserException {
-        //Init bookingList. Read data from Booking.csv, add all customer booking villa, house, and room to the list
-        bookingList = FileCsv.readBookingListFromCSV(BOOKING_FILE_PATH, VILLA_CODE, villaList);
-        bookingList.addAll(FileCsv.readBookingListFromCSV(BOOKING_FILE_PATH, HOUSE_CODE, houseList));
-        bookingList.addAll(FileCsv.readBookingListFromCSV(BOOKING_FILE_PATH, ROOM_CODE, roomList));
-
+    public static void main(String[] args) {
+        //read data customerList from CSV file.
+        customerList = FileCsv.readCustomerListFromCSV(CUSTOMER_FILE_PATH, VILLA_CODE, villaList);
+        customerList.addAll(FileCsv.readCustomerListFromCSV(CUSTOMER_FILE_PATH, HOUSE_CODE, houseList));
+        customerList.addAll(FileCsv.readCustomerListFromCSV(CUSTOMER_FILE_PATH, ROOM_CODE, roomList));
+        customerList.addAll(FileCsv.readCustomerListFromCSV(CUSTOMER_FILE_PATH, "null", null));
+        //list all customers who have booked service != null to bookingList
+        for (Customer customer : customerList){
+            if (customer.getBookedService() != null){
+                bookingList.add(customer);
+            }
+        }
         displayMainMenu();
     }
 

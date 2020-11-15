@@ -1,5 +1,7 @@
 package models;
 
+import java.time.LocalDate;
+
 public class Customer {
     private String name;
     private String birthday;
@@ -9,10 +11,12 @@ public class Customer {
     private String email;
     private String customerClass;
     private String address;
+    private Services bookedService;
 
-    public Customer(){}
+    public Customer() {
+    }
 
-    public Customer(String name, String birthday, String gender, String id, String phoneNumber, String email, String customerClass, String address) {
+    public Customer(String name, String birthday, String gender, String id, String phoneNumber, String email, String customerClass, String address, Services bookedService) {
         this.name = name;
         this.birthday = birthday;
         this.gender = gender;
@@ -21,6 +25,7 @@ public class Customer {
         this.email = email;
         this.customerClass = customerClass;
         this.address = address;
+        this.bookedService = bookedService;
     }
 
     public String getName() {
@@ -87,6 +92,25 @@ public class Customer {
         this.address = address;
     }
 
+    public Services getBookedService() {
+        return bookedService;
+    }
+
+    public void setBookedService(Services bookedService) {
+        this.bookedService = bookedService;
+    }
+
+    public String getFirstName() {
+        String[] fullname = this.name.split(" ");
+        return fullname[fullname.length - 1];
+    }
+
+    public LocalDate getBirthdayToDate(){
+        String[] birthdayArr = this.birthday.split("/");
+        LocalDate date = LocalDate.of(Integer.parseInt(birthdayArr[2]), Integer.parseInt(birthdayArr[1]), Integer.parseInt(birthdayArr[0]));
+        return date;
+    }
+
     public String showInfo() {
         return "Customer{" +
                 "name='" + name + '\'' +
@@ -97,11 +121,12 @@ public class Customer {
                 ", email='" + email + '\'' +
                 ", customerClass='" + customerClass + '\'' +
                 ", address='" + address + '\'' +
+                ", bookedService='" + (bookedService == null? "null": bookedService.showInfo()) + '\'' +
                 '}';
     }
 
-    public String getHeader(){
-        return "Name,Birthday,Gender,Id,Phone Number,Email,Customer Class,Address";
+    public String getHeader() {
+        return "Name,Birthday,Gender,Id,Phone Number,Email,Customer Class,Address,Booked Service";
     }
 
     public String writeToCSV() {
@@ -112,7 +137,9 @@ public class Customer {
                 "," + phoneNumber +
                 "," + email +
                 "," + customerClass +
-                "," + address;
+                "," + address +
+                "," + (bookedService == null? null: bookedService.getId());
+
     }
 
     @Override
@@ -126,6 +153,7 @@ public class Customer {
                 ", email='" + email + '\'' +
                 ", customerClass='" + customerClass + '\'' +
                 ", address='" + address + '\'' +
+                ", bookedService=" + (bookedService == null? "null": bookedService.showInfo()) +
                 '}';
     }
 }

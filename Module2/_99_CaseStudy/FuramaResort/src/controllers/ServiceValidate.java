@@ -18,23 +18,11 @@ public class ServiceValidate {
     }
 
     public static boolean checkServiceName(String str){
-        regex = "^[A-Z][\\w\\s]{1,}$";
+        regex = "^[A-Z][a-z]{0,}([\\s][A-Z][a-z]{0,})*$";
         return str.matches(regex);
     }
 
     public static boolean checkArea(String area){
-        double areaNumber;
-        try {
-            areaNumber = Double.parseDouble(area);
-            if (areaNumber > 0){
-                return true;
-            } else return false;
-        } catch (Exception e){
-            return false;
-        }
-    }
-
-    public static boolean checkPoolArea(String area){
         double areaNumber;
         try {
             areaNumber = Double.parseDouble(area);
@@ -46,6 +34,7 @@ public class ServiceValidate {
         }
     }
 
+
     public static boolean checkRate(String rate){
         double rateNumber;
         try {
@@ -56,6 +45,11 @@ public class ServiceValidate {
         } catch (Exception e){
             return false;
         }
+    }
+
+    public static boolean checkRentType(String type){
+        regex = "^Year|Month|Week|Day$";
+        return type.matches(regex);
     }
 
     public static boolean checkMaxCapacity(String capacity){

@@ -133,9 +133,8 @@ public class FileCsv {
             }
         }
     }
-
-    public static List<Customer> readCustomerListFromCSV(String filePath) {
-        //** Method reading list of customers from the file following the file path.
+    public static List<Customer> readCustomerListFromCSV(String filePath, String serviceCode, List<Services> serviceList) {
+        //** Method reading list of bookings from the file following the file path.
         BufferedReader br = null;
         List<Customer> customerList = new ArrayList<>();
 
@@ -159,16 +158,20 @@ public class FileCsv {
                 if (splitData[0].equals("Name")) {
                     continue;
                 }
-                Customer customer = new Customer();
-                customer.setName(splitData[0]);
-                customer.setBirthday(splitData[1]);
-                customer.setGender(splitData[2]);
-                customer.setId(splitData[3]);
-                customer.setPhoneNumber(splitData[4]);
-                customer.setEmail(splitData[5]);
-                customer.setCustomerClass(splitData[6]);
-                customer.setAddress(splitData[7]);
-                customerList.add(customer);
+                if (splitData[8].substring(0,4).equals(serviceCode)){
+                    Customer customer = new Customer();
+                    customer = new Customer(splitData[0],splitData[1],splitData[2],splitData[3],
+                            splitData[4],splitData[5],splitData[6],splitData[7],null);
+                    //base on service ID, search service by service ID and set to customer
+                    if (!serviceCode.equals("null")){
+                        for (Services service : serviceList){
+                            if (service.getId().equals(splitData[8])){
+                                customer.setBookedService(service);
+                            }
+                        }
+                    }
+                    customerList.add(customer);
+                }
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -182,13 +185,13 @@ public class FileCsv {
         return customerList;
     }
 
-    public static void writeBookingToCSV(List<Booking> bookingList, String filePath) {
+    public static void writeBookingToCSV(List<Customer> bookingList, String filePath) {
         //**Method writing booking list to the file following the file path.
         FileWriter fileWriter = null;
 
         try {
             fileWriter = new FileWriter(filePath);
-            for (Booking booking : bookingList) {
+            for (Customer booking : bookingList) {
                 //Writing header to the file
                 if (bookingList.indexOf(booking) == 0) {
                     fileWriter.append(booking.getHeader());
@@ -210,57 +213,7 @@ public class FileCsv {
         }
     }
 
-    public static List<Booking> readBookingListFromCSV(String filePath, String serviceCode, List<Services> serviceList) {
-        //** Method reading list of bookings from the file following the file path.
-        BufferedReader br = null;
-        List<Booking> bookingList = new ArrayList<>();
 
-        //Check the file exists or not. If not, create new file following the file path
-        Path path = Paths.get(filePath);
-        if (!Files.exists(path)) {
-            try {
-                Writer writer = new FileWriter(filePath);
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-            }
-        }
-
-        //Reading data from the file
-        try {
-            String line;
-            br = new BufferedReader(new FileReader(filePath));
-            while ((line = br.readLine()) != null) {
-                String[] splitData = line.split(",");
-                //Skip reading header
-                if (splitData[0].equals("Name")) {
-                    continue;
-                }
-                //Only init booking which service ID begin with serviceCode. Then, add the booking to booking list
-                if (splitData[8].substring(0,4).equals(serviceCode)){
-                    Booking booking = new Booking();
-                    Customer customer = new Customer(splitData[0],splitData[1],splitData[2],splitData[3],
-                            splitData[4],splitData[5],splitData[6],splitData[7]);
-                    booking.setCustomer(customer);
-
-                    for (Services service : serviceList){
-                        if (service.getId().equals(splitData[8])){
-                            booking.setService(service);
-                        }
-                    }
-                    bookingList.add(booking);
-                }
-            }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        } finally {
-            try {
-                br.close();
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-            }
-        }
-        return bookingList;
-    }
 
     public static LinkedHashMap readEmployeeFromCSV(String filePath){
         BufferedReader br = null;
