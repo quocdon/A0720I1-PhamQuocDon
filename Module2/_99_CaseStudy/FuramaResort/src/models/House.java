@@ -2,7 +2,7 @@ package models;
 
 public class House extends Services {
     private String roomType;
-    private String amenities;
+    private String compService;
     private int floor;
 
     public House() {
@@ -10,16 +10,16 @@ public class House extends Services {
 
     ;
 
-    public House(String roomType, String amenities, int floor) {
+    public House(String roomType, String compService, int floor) {
         this.roomType = roomType;
-        this.amenities = amenities;
+        this.compService = compService;
         this.floor = floor;
     }
 
-    public House(String id, String serviceName, double area, double rate, int maxCapacity, String rentType, String roomType, String amenities, int floor) {
+    public House(String id, String serviceName, double area, double rate, int maxCapacity, String rentType, String roomType, String compService, int floor) {
         super(id, serviceName, area, rate, maxCapacity, rentType);
         this.roomType = roomType;
-        this.amenities = amenities;
+        this.compService = compService;
         this.floor = floor;
     }
 
@@ -31,12 +31,12 @@ public class House extends Services {
         this.roomType = roomType;
     }
 
-    public String getAmenities() {
-        return amenities;
+    public String getCompService() {
+        return compService;
     }
 
-    public void setAmenities(String amenities) {
-        this.amenities = amenities;
+    public void setCompService(String compService) {
+        this.compService = compService;
     }
 
     public int getFloor() {
@@ -57,7 +57,7 @@ public class House extends Services {
                 ", maxCapacity=" + getMaxCapacity() +
                 ", rentType='" + getRentType() + '\'' +
                 ", roomType='" + roomType + '\'' +
-                ", amenities='" + amenities + '\'' +
+                ", compService='" + compService + '\'' +
                 ", floor=" + floor +
                 '}';
     }
@@ -70,12 +70,12 @@ public class House extends Services {
                 "," + getMaxCapacity() +
                 "," + getRentType() +
                 "," + roomType +
-                "," + amenities +
+                "," + compService +
                 "," + floor;
     }
 
     public String getHeader() {
-        return "House Id,Service Name,Area,Rate,Max Capacity,Rent Type,Room Type,Amenities,floor";
+        return "House Id,Service Name,Area,Rate,Max Capacity,Rent Type,Room Type,Comp Service,floor";
     }
 
     @Override
@@ -88,7 +88,7 @@ public class House extends Services {
                     ", maxCapacity=" + getMaxCapacity() +
                     ", rentType='" + getRentType() + '\'' +
                     ", roomType='" + roomType + '\'' +
-                    ", amenities='" + amenities + '\'' +
+                    ", compService='" + compService + '\'' +
                     ", floor=" + floor +
                     '}';
     }

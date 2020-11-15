@@ -1,5 +1,7 @@
 package controllers;
 
+import commons.NameException;
+import commons.UserException;
 import models.Customer;
 import models.House;
 import models.Room;
@@ -43,9 +45,16 @@ public class InputData {
             inputTemp = scanner.nextLine();
         } while (!ServiceValidate.checkMaxCapacity(inputTemp));
         villa.setMaxCapacity(Integer.parseInt(inputTemp));
-        System.out.print("Rent Type: ");
-        villa.setRentType(scanner.nextLine());
-        System.out.print("Room Type: ");
+        do {
+            System.out.print("Rent Type: ");
+            inputTemp = scanner.nextLine();
+        } while (!ServiceValidate.checkServiceName(inputTemp));
+        villa.setRentType(inputTemp);
+        do {
+            System.out.print("Room Type: ");
+            inputTemp = scanner.nextLine();
+        } while (!ServiceValidate.checkServiceName(inputTemp));
+
         villa.setRoomType(scanner.nextLine());
         do {
             System.out.print("Comp Service: ");
@@ -57,69 +66,131 @@ public class InputData {
             inputTemp = scanner.nextLine();
         } while (!ServiceValidate.checkPoolArea(inputTemp));
         villa.setPoolArea(Double.parseDouble(inputTemp));
-        System.out.print("Floor: ");
-        villa.setFloor(Integer.valueOf(scanner.nextLine()));
+        do {
+            System.out.print("Floor: ");
+            inputTemp = scanner.nextLine();
+        } while (!ServiceValidate.checkFloor(inputTemp));
+        villa.setFloor(Integer.parseInt(inputTemp));
         return villa;
     }
 
     public static House house() {
         House house = new House();
+        String inputTemp;
 
         //Users input information of service
         System.out.println("---------------");
         System.out.println("INPUT HOUSE INFORMATION:");
-        System.out.print("1. ID: ");
-        house.setId(scanner.nextLine());
-        System.out.print("2. Service Name: ");
-        house.setServiceName(scanner.nextLine());
-        System.out.print("3. Area: ");
-        house.setArea(Double.valueOf(scanner.nextLine()));
-        System.out.print("4. Rate: ");
-        house.setRate(Double.valueOf(scanner.nextLine()));
-        System.out.print("5. Maximum Capacity: ");
-        house.setMaxCapacity(Integer.valueOf(scanner.nextLine()));
-        System.out.print("6. Rent Type: ");
-        house.setRentType(scanner.nextLine());
-        System.out.print("7. Room Type: ");
-        house.setRoomType(scanner.nextLine());
-        System.out.print("8. Amenities: ");
-        house.setAmenities(scanner.nextLine());
-        System.out.print("9. Floor: ");
-        house.setFloor(Integer.valueOf(scanner.nextLine()));
+        do {
+            System.out.print("1. ID: ");
+            inputTemp = scanner.nextLine();
+        } while (!ServiceValidate.checkHouseId(inputTemp));
+        house.setId(inputTemp);
+        do {
+            System.out.print("2. Service Name: ");
+            inputTemp = scanner.nextLine();
+        } while (!ServiceValidate.checkServiceName(inputTemp));
+        house.setServiceName(inputTemp);
+        do {
+            System.out.print("3. Area: ");
+            inputTemp = scanner.nextLine();
+        } while (!ServiceValidate.checkArea(inputTemp));
+        house.setArea(Double.parseDouble(inputTemp));
+        do {
+            System.out.print("4. Rate: ");
+            inputTemp = scanner.nextLine();
+        } while (!ServiceValidate.checkRate(inputTemp));
+        house.setRate(Double.parseDouble(inputTemp));
+        do {
+            System.out.print("5. Maximum Capacity: ");
+            inputTemp = scanner.nextLine();
+        } while (!ServiceValidate.checkMaxCapacity(inputTemp));
+        house.setMaxCapacity(Integer.parseInt(inputTemp));
+        do {
+            System.out.print("6. Rent Type: ");
+            inputTemp = scanner.nextLine();
+        } while (!ServiceValidate.checkServiceName(inputTemp));
+        house.setRentType(inputTemp);
+        do {
+            System.out.print("7. Room Type: ");
+            inputTemp = scanner.nextLine();
+        } while (!ServiceValidate.checkServiceName(inputTemp));
+        house.setRoomType(inputTemp);
+        do {
+            System.out.print("8. Comp Service: ");
+            inputTemp = scanner.nextLine();
+        } while (!ServiceValidate.checkCompService(inputTemp));
+        house.setCompService(inputTemp);
+        do {
+            System.out.print("9. Floor: ");
+            inputTemp = scanner.nextLine();
+        } while (!ServiceValidate.checkFloor(inputTemp));
+        house.setFloor(Integer.parseInt(inputTemp));
         return house;
     }
 
     public static Room room() {
         Room room = new Room();
+        String inputTemp;
 
         //Users input information of service
         System.out.println("---------------");
         System.out.println("INPUT ROOM INFORMATION:");
-        System.out.print("1. ID: ");
-        room.setId(scanner.nextLine());
-        System.out.print("2. Service Name: ");
-        room.setServiceName(scanner.nextLine());
-        System.out.print("3. Area: ");
-        room.setArea(Double.valueOf(scanner.nextLine()));
-        System.out.print("4. Rate: ");
-        room.setRate(Double.valueOf(scanner.nextLine()));
-        System.out.print("5. Maximum Capacity: ");
-        room.setMaxCapacity(Integer.valueOf(scanner.nextLine()));
-        System.out.print("6. Rent Type: ");
-        room.setRentType(scanner.nextLine());
-        System.out.print("7. Complimentary Services: ");
-        room.setCompServices(scanner.nextLine());
-
+        do {
+            System.out.print("1. ID: ");
+            inputTemp = scanner.nextLine();
+        } while (!ServiceValidate.checkRoomId(inputTemp));
+        room.setId(inputTemp);
+        do {
+            System.out.print("2. Service Name: ");
+            inputTemp = scanner.nextLine();
+        } while (!ServiceValidate.checkServiceName(inputTemp));
+        room.setServiceName(inputTemp);
+        do {
+            System.out.print("3. Area: ");
+            inputTemp = scanner.nextLine();
+        } while (!ServiceValidate.checkArea(inputTemp));
+        room.setArea(Double.parseDouble(inputTemp));
+        do {
+            System.out.print("4. Rate: ");
+            inputTemp = scanner.nextLine();
+        } while (!ServiceValidate.checkRate(inputTemp));
+        room.setRate(Double.parseDouble(inputTemp));
+        do {
+            System.out.print("5. Maximum Capacity: ");
+            inputTemp = scanner.nextLine();
+        } while (!ServiceValidate.checkMaxCapacity(inputTemp));
+        room.setMaxCapacity(Integer.parseInt(inputTemp));
+        do {
+            System.out.print("6. Rent Type: ");
+            inputTemp = scanner.nextLine();
+        } while (!ServiceValidate.checkServiceName(inputTemp));
+        room.setRentType(inputTemp);
+        do {
+            System.out.print("7. Complimentary Services: ");
+            inputTemp = scanner.nextLine();
+        } while (!ServiceValidate.checkCompService(inputTemp));
+        room.setCompServices(inputTemp);
         return room;
     }
 
-    public static Customer customer() {
+    public static Customer customer() throws UserException {
         Customer customer = new Customer();
-
+        String inputTemp;
         System.out.println("---------------");
         System.out.println("INPUT CUSTOMER INFORMATION:");
-        System.out.print("1. Name: ");
-        customer.setName(scanner.nextLine());
+        try {
+            System.out.print("1. Name: ");
+            inputTemp = scanner.nextLine();
+            if (!CustomerValidate.checkName(inputTemp)){
+                throw new NameException("Invalid name. Please input again (Example: Pham Van An)");
+            }
+            customer.setName(inputTemp);
+        } catch (NameException ex){
+            System.out.println(ex.getMessage());
+            System.out.print("1. Name: ");
+            inputTemp = scanner.nextLine();
+        }
         System.out.print("2. Birthday: ");
         customer.setBirthday(scanner.nextLine());
         System.out.print("3. Gender: ");
@@ -138,7 +209,7 @@ public class InputData {
     }
 
     public static <T> T selectElementInList(List<T> list) {
-        // This method use for select element in a list
+        // This method use to select element in a list
 
         int index;
         // Step 1: print all elements of the list with numbering by index of element + 1

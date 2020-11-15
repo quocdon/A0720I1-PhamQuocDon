@@ -1,4 +1,5 @@
-Villa Id,Service Name,Area,Rate,Max Capacity,Rent Type,Room Type,Amenities,Pool Area,floor
+Villa Id,Service Name,Area,Rate,Max Capacity,Rent Type,Room Type,Comp Service,Pool Area,floor
 SVVL-0001,Fusion Villa,125.0,500.0,10,Week,Suites,Karaoke,40.0,2
 SVVL-0002,Maia Villa,120.0,350.0,5,Day,Chic,Buffet,35.0,1
 SVVL-0003,Fusion Villa,120.0,200.0,10,Month,Suites,Karaoke,50.0,2
+SVVL-0004,Night Villa,12.0,345.0,8,day,chic,Car,900.0,2

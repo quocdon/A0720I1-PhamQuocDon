@@ -1,5 +1,6 @@
 package controllers;
 
+import commons.UserException;
 import models.*;
 
 import java.util.*;
@@ -26,7 +27,7 @@ public class MainController {
     public static ProfileCarbinet profileCarbinet = new ProfileCarbinet();
     public static int numTicket = 0;
 
-    public static void displayMainMenu() {
+    public static void displayMainMenu() throws UserException {
         System.out.print("---------------\nMAIN MENU: \n" +
                 "1. Add new services\n" +
                 "2. Show services\n" +
@@ -116,7 +117,7 @@ public class MainController {
         }
     }
 
-    public static void addNewServices() {
+    public static void addNewServices() throws UserException {
         System.out.print("---------------\nSERVICES: \n" +
                 "1. Add new villa\n" +
                 "2. Add new house\n" +
@@ -169,7 +170,7 @@ public class MainController {
         addNewServices();
     }
 
-    public static void showServices() {
+    public static void showServices() throws UserException {
         System.out.println("---------------");
         System.out.print("SHOW ALL SERVICES\n" +
                 "1. Show all Villa\n" +
@@ -241,7 +242,7 @@ public class MainController {
         }
     }
 
-    public static void addNewCustomer() {
+    public static void addNewCustomer() throws UserException {
         Customer customer = InputData.customer();
         customerList.add(customer);
         FileCsv.writeCustomerToCSV(customerList, CUSTOMER_FILE_PATH);
@@ -261,7 +262,7 @@ public class MainController {
         scanner.nextLine();
     }
 
-    public static void addNewBooking() {
+    public static void addNewBooking() throws UserException {
         System.out.println("--------------");
         System.out.println("ADD NEW BOOKING");
         System.out.println("LIST OF CUSTOMERS");
@@ -311,7 +312,7 @@ public class MainController {
         }
     }
 
-    public static void cinemaTicket(){
+    public static void cinemaTicket() throws UserException {
         System.out.println("------------------");
         System.out.println("CINEMA TICKET MENU:\n" +
                 "1. Buy ticket\n" +
@@ -389,7 +390,7 @@ public class MainController {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws UserException {
         //Init bookingList. Read data from Booking.csv, add all customer booking villa, house, and room to the list
         bookingList = FileCsv.readBookingListFromCSV(BOOKING_FILE_PATH, VILLA_CODE, villaList);
         bookingList.addAll(FileCsv.readBookingListFromCSV(BOOKING_FILE_PATH, HOUSE_CODE, houseList));

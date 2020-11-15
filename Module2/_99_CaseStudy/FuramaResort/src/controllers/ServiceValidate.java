@@ -74,4 +74,16 @@ public class ServiceValidate {
         regex = "^(Massage)|(Karaoke)|(Food)|(Drink)|(Car)$";
         return service.matches(regex);
     }
+
+    public static boolean checkFloor(String floor){
+        int floorNumber;
+        try {
+            floorNumber = Integer.parseInt(floor);
+            if (floorNumber > 0){
+                return true;
+            } else return false;
+        } catch (Exception e) {
+            return false;
+        }
+    }
 }
