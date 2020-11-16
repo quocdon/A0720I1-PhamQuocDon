@@ -1,3 +1,4 @@
 House Id,Service Name,Area,Rate,Max Capacity,Rent Type,Room Type,Comp Service,floor
 SVHO-0001,Happy House,70.0,120.0,4,Week,Chic,Food,2
 SVHO-0002,Crazy House,35.0,75.0,14,Day,Chic,Drink,2
+SVHO-0003,Fami House,80.0,90.0,4,Year,Suites,Drink,2
