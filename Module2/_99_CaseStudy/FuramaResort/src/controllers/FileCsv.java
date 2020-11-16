@@ -12,6 +12,9 @@ import java.util.List;
 
 public class FileCsv {
     private static final String NEW_LINE_SEPARATOR = "\n";
+    private static final String VILLA_CODE = "SVVL";
+    private static final String HOUSE_CODE = "SVHO";
+    private static final String ROOM_CODE = "SVRO";
 
     public static void writeServicesToCSV(List<Services> serviceList, String filePath) {
         //**Method writing service list to the file following the file path.
@@ -59,33 +62,30 @@ public class FileCsv {
         //Reading data from the file
         try {
             String line;
-            String serviceId = null;
             br = new BufferedReader(new FileReader(filePath));
             while ((line = br.readLine()) != null) {
                 String[] splitData = line.split(",");
                 if (splitData[1].equals("Service Name")) {
                     //Skip reading header
-                    //Identify class of elements in the list through first field of header.
-                    serviceId = splitData[0];
                     continue;
                 }
+                String serviceId = splitData[0].substring(0,4);
 
                 //Base on service ID to identify class of elements, initialize service object and add to the list
-                assert serviceId != null;
                 switch (serviceId) {
-                    case "Villa Id": {
+                    case VILLA_CODE: {
                         Villa villa = new Villa(splitData[0], splitData[1], Double.parseDouble(splitData[2]), Double.parseDouble(splitData[3]),
                                 Integer.parseInt(splitData[4]), splitData[5], splitData[6], splitData[7], Double.parseDouble(splitData[8]), Integer.parseInt(splitData[9]));
                         serviceList.add(villa);
                         break;
                     }
-                    case "House Id": {
+                    case HOUSE_CODE: {
                         House house = new House(splitData[0], splitData[1], Double.parseDouble(splitData[2]), Double.parseDouble(splitData[3]),
                                 Integer.parseInt(splitData[4]), splitData[5], splitData[6], splitData[7], Integer.parseInt(splitData[8]));
                         serviceList.add(house);
                         break;
                     }
-                    case "Room Id": {
+                    case ROOM_CODE: {
                         Room room = new Room(splitData[0], splitData[1], Double.parseDouble(splitData[2]), Double.parseDouble(splitData[3]),
                                 Integer.parseInt(splitData[4]), splitData[5], splitData[6]);
                         serviceList.add(room);
@@ -162,7 +162,7 @@ public class FileCsv {
                     Customer customer = new Customer();
                     customer = new Customer(splitData[0],splitData[1],splitData[2],splitData[3],
                             splitData[4],splitData[5],splitData[6],splitData[7],null);
-                    //base on service ID, search service by service ID and set to customer
+                    //Search service by service ID and set to customer
                     if (!serviceCode.equals("null")){
                         for (Services service : serviceList){
                             if (service.getId().equals(splitData[8])){
@@ -215,9 +215,9 @@ public class FileCsv {
 
 
 
-    public static LinkedHashMap readEmployeeFromCSV(String filePath){
+    public static LinkedHashMap<String, Employee> readEmployeeFromCSV(String filePath){
         BufferedReader br = null;
-        LinkedHashMap employeeHashMap = new LinkedHashMap<>();
+        LinkedHashMap<String, Employee> employeeHashMap = new LinkedHashMap<>();
 
         //Check the file exists or not. If not, create new file following the file path
         Path path = Paths.get(filePath);

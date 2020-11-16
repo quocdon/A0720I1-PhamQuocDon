@@ -2,3 +2,4 @@ Room Id,Service Name,Area,Rate,Max Capacity,Rent Type,Comp Services
 SVRO-0001,Tiny Room,70.0,50.0,2,Month,Drink
 SVRO-0002,My Room,33.0,50.0,1,Week,Food
 SVRO-0003,An Room,40.0,45.0,2,Year,Drink
+SVRO-0004,My Room,34.0,30.0,2,Year,Drink

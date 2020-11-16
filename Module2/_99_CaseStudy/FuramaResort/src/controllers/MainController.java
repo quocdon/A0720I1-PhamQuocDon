@@ -149,17 +149,18 @@ public class MainController {
                 addNewServices();
                 break;
             }
-            case "4":
+            case "4":{
                 displayMainMenu();
                 break;
+            }
             case "5":
                 System.exit(0);
-            default:
+            default: {
                 System.out.println("The index input is invalid. Please press ENTER to continue !!!");
                 scanner.nextLine();
                 addNewServices();
+            }
         }
-        addNewServices();
     }
 
     public static void showServices() {
@@ -245,7 +246,7 @@ public class MainController {
     }
 
     public static void showServiceNameNotDupicate(List<Services> serviceList) {
-        HashSet<String> serviceNameList = new HashSet<>();
+        TreeSet<String> serviceNameList = new TreeSet<>();
         for (Services service : serviceList) {
             serviceNameList.add(service.getServiceName());
         }
@@ -414,6 +415,4 @@ public class MainController {
         }
         displayMainMenu();
     }
-
-
 }

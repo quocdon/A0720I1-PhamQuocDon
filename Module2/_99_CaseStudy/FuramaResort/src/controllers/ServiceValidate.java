@@ -34,7 +34,6 @@ public class ServiceValidate {
         }
     }
 
-
     public static boolean checkRate(String rate){
         double rateNumber;
         try {
@@ -65,7 +64,7 @@ public class ServiceValidate {
     }
 
     public static boolean checkCompService(String service){
-        regex = "^(Massage)|(Karaoke)|(Food)|(Drink)|(Car)$";
+        regex = "^Massage|Karaoke|Food|Drink|Car$";
         return service.matches(regex);
     }
 
