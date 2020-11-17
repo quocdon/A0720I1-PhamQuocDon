@@ -1,4 +1,4 @@
-package commons;
+package exceptions;
 
 public class PhoneException extends UserException {
     public PhoneException() {

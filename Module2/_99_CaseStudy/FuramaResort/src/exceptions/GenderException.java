@@ -1,4 +1,4 @@
-package commons;
+package exceptions;
 
 public class GenderException extends UserException {
     public GenderException() {

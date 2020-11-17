@@ -1,6 +1,6 @@
-package controllers;
+package commons;
 
-import commons.*;
+import exceptions.*;
 import models.Customer;
 import models.House;
 import models.Room;

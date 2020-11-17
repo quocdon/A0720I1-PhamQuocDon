@@ -1,8 +1,7 @@
-package commons;
+package exceptions;
 
 import java.time.LocalDate;
 import java.time.Period;
-import java.util.Date;
 
 public class BirthdayException extends UserException {
     public BirthdayException() {

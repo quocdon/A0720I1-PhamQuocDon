@@ -1,4 +1,4 @@
-package commons;
+package exceptions;
 
 public class CustomerClassException extends UserException {
     public CustomerClassException() {
