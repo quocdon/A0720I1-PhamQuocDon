@@ -2,6 +2,7 @@ package controllers;
 
 import commons.FileCsv;
 import commons.InputData;
+import commons.SortCustomerByNameBirthday;
 import models.*;
 
 import java.util.*;
@@ -17,11 +18,11 @@ public class MainController {
     public static final String VILLA_CODE = "SVVL";
     public static final String HOUSE_CODE = "SVHO";
     public static final String ROOM_CODE = "SVRO";
-    public static List<Services> villaList = FileCsv.readServiceListFromCSV(VILLA_FILE_PATH);
-    public static List<Services> houseList = FileCsv.readServiceListFromCSV(HOUSE_FILE_PATH);
-    public static List<Services> roomList = FileCsv.readServiceListFromCSV(ROOM_FILE_PATH);
+    public static List<Services> villaList = new ArrayList<>();
+    public static List<Services> houseList = new ArrayList<>();
+    public static List<Services> roomList = new ArrayList<>();
     public static List<Customer> customerList = new ArrayList<>();
-    public static LinkedHashMap<String, Employee> employeeHashMap = FileCsv.readEmployeeFromCSV(EMPLOYEE_FILE_PATH);
+    public static LinkedHashMap<String, Employee> employeeHashMap = new LinkedHashMap<>();
     public static List<Customer> bookingList = new ArrayList<>();
     public static Queue<Customer> waitingList = new LinkedList<>();
     public static Queue<Customer> boughtTicketList = new LinkedList<>();
@@ -261,6 +262,7 @@ public class MainController {
         System.out.println("ADD NEW BOOKING");
         System.out.println("LIST OF CUSTOMERS");
         Customer customer = InputData.selectElementInList(customerList);
+        System.out.println("Customer: " + customer.getName() + " - " + customer.getBirthday() + " - " + customer.getId());
         System.out.print("LIST OF SERVICES: \n" +
                 "1. Booking Villa\n" +
                 "2. Booking House\n" +
@@ -403,11 +405,17 @@ public class MainController {
     }
 
     public static void main(String[] args) {
-        //read data customerList from CSV file.
+        //Read service list data from CSV file
+        villaList = FileCsv.readServiceListFromCSV(VILLA_FILE_PATH);
+        houseList = FileCsv.readServiceListFromCSV(HOUSE_FILE_PATH);
+        roomList = FileCsv.readServiceListFromCSV(ROOM_FILE_PATH);
+        //read customerList data from CSV file.
         customerList = FileCsv.readCustomerListFromCSV(CUSTOMER_FILE_PATH, VILLA_CODE, villaList);
         customerList.addAll(FileCsv.readCustomerListFromCSV(CUSTOMER_FILE_PATH, HOUSE_CODE, houseList));
         customerList.addAll(FileCsv.readCustomerListFromCSV(CUSTOMER_FILE_PATH, ROOM_CODE, roomList));
         customerList.addAll(FileCsv.readCustomerListFromCSV(CUSTOMER_FILE_PATH, "null", null));
+        //Read Employee data from CSV file
+        employeeHashMap = FileCsv.readEmployeeFromCSV(EMPLOYEE_FILE_PATH);
         //list all customers who have booked service != null to bookingList
         for (Customer customer : customerList){
             if (customer.getBookedService() != null){

@@ -1,4 +1,6 @@
-package models;
+package commons;
+
+import models.Customer;
 
 import java.util.Comparator;
 
