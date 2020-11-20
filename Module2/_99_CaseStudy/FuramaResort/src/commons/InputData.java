@@ -1,6 +1,5 @@
 package commons;
 
-import exceptions.*;
 import models.Customer;
 import models.House;
 import models.Room;
@@ -8,6 +7,8 @@ import models.Villa;
 
 import java.util.List;
 import java.util.Scanner;
+
+import static commons.CustomerValidate.*;
 
 public class InputData {
     static Scanner scanner = new Scanner(System.in);
@@ -180,17 +181,18 @@ public class InputData {
         do {
             System.out.print("1. Name: ");
             inputTemp = scanner.nextLine();
-        } while (!NameException.checkName(inputTemp));
+        } while (!checkName(inputTemp));
         customer.setName(inputTemp);
         do {
             System.out.print("2. Birthday: ");
             inputTemp = scanner.nextLine();
-        } while (!BirthdayException.checkBirthday(inputTemp));
+        } while (!checkBirthday(inputTemp));
         customer.setBirthday(inputTemp);
         do {
             System.out.print("3. Gender: ");
             inputTemp = scanner.nextLine();
-        } while (!GenderException.checkGender(inputTemp));
+        } while (!checkGender(inputTemp));
+        //Format gender data (Male, Female, Unknown)
         String gender = "";
         gender = gender.concat(String.valueOf(Character.toUpperCase(inputTemp.charAt(0))));
         for (int i = 1; i < inputTemp.length(); i++) {
@@ -200,22 +202,22 @@ public class InputData {
         do {
             System.out.print("4. ID: ");
             inputTemp = scanner.nextLine();
-        } while (!IdException.checkId(inputTemp));
+        } while (!checkId(inputTemp));
         customer.setId(inputTemp);
         do {
             System.out.print("5. Phone Number: ");
             inputTemp = scanner.nextLine();
-        } while (!PhoneException.checkPhoneNumber(inputTemp));
+        } while (!checkPhoneNumber(inputTemp));
         customer.setPhoneNumber(inputTemp);
         do {
             System.out.print("6. Email: ");
             inputTemp = scanner.nextLine();
-        } while (!EmailException.checkEmail(inputTemp));
+        } while (!checkEmail(inputTemp));
         customer.setEmail(inputTemp);
         do {
             System.out.print("7. Customer Class: ");
             inputTemp = scanner.nextLine();
-        } while (!CustomerClassException.checkCustomerClass(inputTemp));
+        } while (!checkCustomerClass(inputTemp));
         customer.setCustomerClass(inputTemp);
         System.out.print("8. Address: ");
         customer.setAddress(scanner.nextLine());

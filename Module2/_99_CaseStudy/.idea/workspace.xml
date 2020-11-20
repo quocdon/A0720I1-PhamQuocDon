@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9aabc3b8-8042-4301-984c-ec275715a074" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../_12_sort/_12_sort.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FuramaResort/src/controllers/FileCsv.java" beforeDir="false" afterPath="$PROJECT_DIR$/FuramaResort/src/controllers/FileCsv.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FuramaResort/src/controllers/InputServices.java" beforeDir="false" afterPath="$PROJECT_DIR$/FuramaResort/src/controllers/InputServices.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FuramaResort/src/controllers/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/FuramaResort/src/controllers/MainController.java" afterDir="false" />
-    </list>
+    <list default="true" id="9aabc3b8-8042-4301-984c-ec275715a074" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -53,6 +46,7 @@
       <workItem from="1605091597193" duration="657000" />
       <workItem from="1605097704512" duration="49000" />
       <workItem from="1605097779813" duration="156000" />
+      <workItem from="1605854821016" duration="99000" />
     </task>
     <servers />
   </component>
