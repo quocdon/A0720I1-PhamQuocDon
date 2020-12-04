@@ -1,11 +1,13 @@
 Name,Birthday,Gender,Id,Phone Number,Email,Customer Class,Address,Booked Service
 Pham Van An,05/01/1993,Unknown,555 222 111,0123545253,phaman21@codegym.com,Member,Hue,SVVL-0001
-Bui Ha Bao,20/11/2002,Male,123 555 125,0925225232,buihabao2@gmail.com,Gold,Da Nang,SVVL-0002
-Nguyen Thanh Giang,23/11/1992,Female,444 213 234,0123457852,giasz.swgs@asc.com,Member,Quang Binh,SVHO-0003
+Nguyen Van An,01/01/2002,Male,123 456 789,0101222555,an2200@gmail.com,Silver,Ha Noi,null
+Bui Ha Bao,20/11/2002,Male,123 555 125,0925225232,buihabao2@gmail.com,Gold,Da Nang,SVHO-0004
+Nguyen Quoc Cuong,16/11/2002,Male,121 214 532,0312334555,quoccuong2002@azx.com.vn,Silver,Quang Nam,null
+Pham Quoc Don,01/09/1991,Male,025 252 445,0555256365,don91@azc.ocm,Silver,Da Nang,null
 Pham Quoc Don,02/09/1991,Male,197 222 123,0374788252,quocdon2991@gmail.com,Gold,Da nang,SVRO-0001
 Nguyen Van Don,01/01/1993,Male,012 222 777,0935235135,donnguyen222@za2.com,Platinum,Quang Binh,SVRO-0003
-Nguyen Van An,01/01/2002,Male,123 456 789,0101222555,an2200@gmail.com,Silver,Ha Noi,null
-Nguyen Quoc Cuong,16/11/2002,Male,121 214 532,0312334555,quoccuong2002@azx.com.vn,Silver,Quang Nam,null
+Phan Duy,20/11/2002,Male,555 444 888,0123456789,phanduy@gmail.com,Platinum,Da Nang,null
+Nguyen Thanh Giang,23/11/1992,Female,444 213 234,0123457852,giasz.swgs@asc.com,Member,Quang Binh,SVHO-0003
+Hong Linh,20/11/2002,Unknown,213 124 121,0123456789,linh@gnal.com,Silver,Quang Binh,SVVL-1234
 Tran Hoang Vu,15/11/2002,Unknown,224 224 224,0924123852,hoangvu@fusionsuites.com,Platinum,Ho Chi Minh,null
-Tran Le Viet Vu,16/11/2002,Male,785 563 478,0935224224,vietvu@gmails.xdj,Member,Hue,null
-Pham Quoc Don,01/09/1991,Male,025 252 445,0555256365,don91@azc.ocm,Silver,Da Nang,null
+Tran Le Viet Vu,16/11/2002,Male,785 563 478,0935224224,vietvu@gmails.xdj,Member,Hue,SVRO-0001

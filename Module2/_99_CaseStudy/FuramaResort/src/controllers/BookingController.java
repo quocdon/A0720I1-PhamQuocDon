@@ -5,6 +5,7 @@ import commons.InputData;
 import models.Customer;
 import models.Services;
 
+import static Views.Main.*;
 import static controllers.MainController.*;
 
 public class BookingController {

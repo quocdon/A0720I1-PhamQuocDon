@@ -1,6 +1,7 @@
 package controllers;
 
 import models.Employee;
+import static Views.Main.*;
 
 import static controllers.MainController.*;
 

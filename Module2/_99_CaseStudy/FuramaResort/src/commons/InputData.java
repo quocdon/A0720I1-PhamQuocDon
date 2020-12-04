@@ -8,6 +8,7 @@ import models.Villa;
 import java.util.List;
 import java.util.Scanner;
 
+import static Views.Main.*;
 import static commons.CustomerValidate.*;
 
 public class InputData {
@@ -23,7 +24,7 @@ public class InputData {
         do {
             System.out.print("1. ID: ");
             inputTemp = scanner.nextLine();
-        } while (!ServiceValidate.checkVillaId(inputTemp));
+        } while (!ServiceValidate.checkVillaId(inputTemp) || !ServiceValidate.checkDuplicateId(inputTemp, villaList));
         villa.setId(inputTemp);
         do {
             System.out.print("2. Service Name: ");
@@ -83,7 +84,7 @@ public class InputData {
         do {
             System.out.print("1. ID: ");
             inputTemp = scanner.nextLine();
-        } while (!ServiceValidate.checkHouseId(inputTemp));
+        } while (!ServiceValidate.checkHouseId(inputTemp) || !ServiceValidate.checkDuplicateId(inputTemp, houseList));
         house.setId(inputTemp);
         do {
             System.out.print("2. Service Name: ");
@@ -138,7 +139,7 @@ public class InputData {
         do {
             System.out.print("1. ID: ");
             inputTemp = scanner.nextLine();
-        } while (!ServiceValidate.checkRoomId(inputTemp));
+        } while (!ServiceValidate.checkRoomId(inputTemp) || !ServiceValidate.checkDuplicateId(inputTemp, roomList));
         room.setId(inputTemp);
         do {
             System.out.print("2. Service Name: ");

@@ -7,6 +7,7 @@ import models.Customer;
 
 import java.util.Collections;
 
+import static Views.Main.*;
 import static controllers.MainController.*;
 
 public class CustomerController {

@@ -2,6 +2,7 @@ package controllers;
 
 import commons.InputData;
 import models.Customer;
+import static Views.Main.*;
 
 import static controllers.MainController.*;
 

@@ -10,7 +10,8 @@ import models.Villa;
 import java.util.List;
 import java.util.TreeSet;
 
-import static controllers.MainController.*;
+import static Views.Main.*;
+import static controllers.MainController.displayMainMenu;
 
 public class ServiceController {
     public static void addNewServices() {

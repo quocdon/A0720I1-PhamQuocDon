@@ -1,5 +1,9 @@
 package commons;
 
+import models.Services;
+
+import java.util.List;
+
 public class ServiceValidate {
     private static String regex = "";
     public static boolean checkVillaId(String str){
@@ -15,6 +19,15 @@ public class ServiceValidate {
     public static boolean checkRoomId(String str){
         regex = "^SVRO-[\\d]{4}$";
         return str.matches(regex);
+    }
+
+    public static boolean checkDuplicateId(String str, List<Services> list){
+        for (Services services : list){
+            if (services.getId().equals(str)){
+                return false;
+            }
+        }
+        return true;
     }
 
     public static boolean checkServiceName(String str){
