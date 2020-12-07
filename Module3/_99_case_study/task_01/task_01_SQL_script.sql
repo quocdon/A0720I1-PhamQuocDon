@@ -100,6 +100,8 @@ foreign key (IDNhanVien) references NhanVien(IDNhanVien),
 foreign key (IDKhachHang) references KhachHang(IDKhachHang),
 foreign key (IDDichVu) references DichVu(IDDichVu)
 );
+alter table HopDong
+modify TongTien int;
 create table HopDongChiTiet(
 IDHopDongChiTiet int not null auto_increment,
 IDHopDong int not null,
@@ -170,4 +172,29 @@ insert into DichVu values
 (8, 'Crazy Room', 50, 1, 2, 1000000, 3, 2, 'Kha dung');
 update DichVu set IDLoaiDichVu = 3 where IDDichVu >= 7;
 update DichVu set DienTich = 150 where IDDichVu in (2,3);
+INSERT INTO `furama_resort`.`hopdong` (`IDHopDong`, `IDNhanVien`, `IDKhachHang`, `IDDichVu`, `NgayLamHopDong`, `NgayKetThuc`, `TienDatCoc`) 
+VALUES ('1', '1', '2', '2', '2020-12-06', '2020-12-05', '1000000');
+INSERT INTO `furama_resort`.`hopdong` (`IDHopDong`, `IDNhanVien`, `IDKhachHang`, `IDDichVu`, `NgayLamHopDong`, `NgayKetThuc`, `TienDatCoc`) 
+VALUES ('2', '2', '4', '1', '2021-01-12', '2021-01-16', '500000');
+INSERT INTO `furama_resort`.`hopdong` (`IDHopDong`, `IDNhanVien`, `IDKhachHang`, `IDDichVu`, `NgayLamHopDong`, `NgayKetThuc`, `TienDatCoc`) 
+VALUES ('3', '5', '3', '4', '2021-01-01', '2021-01-13', '1500000');
+INSERT INTO `furama_resort`.`hopdong` (`IDHopDong`, `IDNhanVien`, `IDKhachHang`, `IDDichVu`, `NgayLamHopDong`, `NgayKetThuc`, `TienDatCoc`) 
+VALUES ('4', '4', '6', '3', '2020-12-10', '2020-12-30', '2000000');
+INSERT INTO `furama_resort`.`hopdongchitiet` (`IDHopDongChiTiet`, `IDHopDong`, `IDDichVuDiKem`, `SoLuong`) VALUES ('1', '1', '2', '3');
+INSERT INTO `furama_resort`.`hopdongchitiet` (`IDHopDongChiTiet`, `IDHopDong`, `IDDichVuDiKem`, `SoLuong`) VALUES ('2', '2', '1', '2');
+INSERT INTO `furama_resort`.`hopdongchitiet` (`IDHopDongChiTiet`, `IDHopDong`, `IDDichVuDiKem`, `SoLuong`) VALUES ('3', '3', '4', '1');
+INSERT INTO `furama_resort`.`hopdongchitiet` (`IDHopDongChiTiet`, `IDHopDong`, `IDDichVuDiKem`, `SoLuong`) VALUES ('4', '4', '5', '4');
+INSERT INTO `furama_resort`.`hopdongchitiet` (`IDHopDongChiTiet`, `IDHopDong`, `IDDichVuDiKem`, `SoLuong`) VALUES ('5', '4', '2', '2');
+INSERT INTO `furama_resort`.`hopdongchitiet` (`IDHopDongChiTiet`, `IDHopDong`, `IDDichVuDiKem`, `SoLuong`) VALUES ('6', '1', '3', '3');
+INSERT INTO `furama_resort`.`hopdongchitiet` (`IDHopDongChiTiet`, `IDHopDong`, `IDDichVuDiKem`, `SoLuong`) VALUES ('7', '2', '3', '3');
 
+-- 2.	Hiển thị thông tin của tất cả nhân viên có trong hệ thống có tên bắt đầu là một trong các ký tự “H”, “T” hoặc “K” và có tối đa 15 ký tự --  
+select *, substring_index(HoTen, ' ', -1) as TenNV from Nhanvien 
+having (TenNV like 'h%' or TenNV like 't%' or TenNV like 'k%') and length(HoTen) <= 15;
+
+-- 3. Hiển thị thông tin của tất cả khách hàng có độ tuổi từ 18 đến 50 tuổi và có địa chỉ ở “Đà Nẵng” hoặc “Quảng Trị”.--  
+select *, year(curdate()) - year(NgaySinh) as Tuoi from KhachHang
+having (DiaChi = 'Da Nang' or DiaChi = 'Quang Tri') and Tuoi > 18;
+-- 4.	Đếm xem tương ứng với mỗi khách hàng đã từng đặt phòng bao nhiêu lần. Kết quả hiển thị 
+-- được sắp xếp tăng dần theo số lần đặt phòng của khách hàng. 
+-- Chỉ đếm những khách hàng nào có Tên loại khách hàng là “Diamond”. --
