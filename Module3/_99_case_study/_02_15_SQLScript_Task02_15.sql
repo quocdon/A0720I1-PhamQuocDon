@@ -1,7 +1,8 @@
 use furama_resort;
 -- 2.	Hiển thị thông tin của tất cả nhân viên có trong hệ thống có tên bắt đầu là một trong các ký tự “H”, “T” hoặc “K” và có tối đa 15 ký tự --  
-select *, substring_index(HoTen, ' ', -1) as TenNV from Nhanvien 
-having (TenNV like 'h%' or TenNV like 't%' or TenNV like 'k%') and length(HoTen) <= 15;
+select * from Nhanvien
+where (substring_index(HoTen, ' ', -1) like 'h%' or substring_index(HoTen, ' ', -1) like 't%' or substring_index(HoTen, ' ', -1) like 'k%') 
+and length(HoTen) <= 15;
 
 -- 3. Hiển thị thông tin của tất cả khách hàng có độ tuổi từ 18 đến 50 tuổi và có địa chỉ ở “Đà Nẵng” hoặc “Quảng Trị”.--  
 select *, year(curdate()) - year(NgaySinh) as Tuoi from KhachHang
@@ -54,7 +55,7 @@ from (select * from HopDong where year(HopDong.NgayLamHopDong) = 2019) as HopDon
 left join DichVu on DichVu.IDDichVu = HopDong2019.IDDichVU 
 left join  HopDongChiTiet on HopDongChiTiet.IDHopDong = HopDong2019.IDHopDong
 left join DichVuDiKem on HopDongChiTiet.IDDichVuDiKem = DichVuDiKem.IDDichVuDiKem
-group by Thang;  
+group by Thang order by Thang;  
 
 -- 10.	Hiển thị thông tin tương ứng với từng Hợp đồng thì đã sử dụng bao nhiêu Dịch vụ đi kèm. Kết quả hiển thị bao gồm 
 -- IDHopDong, NgayLamHopDong, NgayKetthuc, TienDatCoc, SoLuongDichVuDiKem (được tính dựa trên việc count các IDHopDongChiTiet).
@@ -88,3 +89,40 @@ left join HopDongChiTiet on HopDongChiTiet.IDHopDong = HopDong10122019.IDHopDong
 left join DichVuDiKem on HopDongChiTiet.IDDichVuDiKem = DichVuDiKem.IDDichVuDiKem
 where HopDong01062019.IDDichVu is null
 group by HopDong10122019.IDHopDong;
+
+-- 13.	Hiển thị thông tin các Dịch vụ đi kèm được sử dụng nhiều nhất bởi các Khách hàng đã đặt phòng. 
+-- (Lưu ý là có thể có nhiều dịch vụ có số lần sử dụng nhiều như nhau).
+
+select IDDichVuDiKem, TenDichVuDiKem, SoLanSuDung from
+(select DichVuDiKem.IDDichVuDiKem, DichVuDiKem.TenDichVuDiKem, count(1) as SoLanSuDung
+from HopDong left join HopDongChiTiet on HopDong.IDHopDong = HopDongChiTiet.IDHopDong
+left join DichVuDiKem on DichVuDiKem.IDDichVuDiKem = HopDongChiTiet.IDDichVuDiKem
+group by DichVuDiKem.IDDichVuDiKem) as TongHopDichVu
+where SoLanSuDung = (select max(SoLanSuDung) from (select DichVuDiKem.IDDichVuDiKem, DichVuDiKem.TenDichVuDiKem, count(1) as SoLanSuDung
+from HopDong left join HopDongChiTiet on HopDong.IDHopDong = HopDongChiTiet.IDHopDong
+left join DichVuDiKem on DichVuDiKem.IDDichVuDiKem = HopDongChiTiet.IDDichVuDiKem
+group by DichVuDiKem.IDDichVuDiKem) as TongHopDichVu) order by IDDichVuDiKem;
+
+-- Tại sao không thể gọi bảng TongHopDichVu trong where được????? 
+-- Có thể rút gọn câu lệnh lại ngắn hơn được không????
+
+-- 14.	Hiển thị thông tin tất cả các Dịch vụ đi kèm chỉ mới được sử dụng một lần duy nhất. 
+-- Thông tin hiển thị bao gồm IDHopDong, TenLoaiDichVu, TenDichVuDiKem, SoLanSuDung.
+
+select HopDong.IDHopDong, DichVuDiKem.IDDichVuDiKem, DichVuDiKem.TenDichVuDiKem, count(1) as SoLanSuDung
+from HopDong left join HopDongChiTiet on HopDong.IDHopDong = HopDongChiTiet.IDHopDong
+left join DichVuDiKem on DichVuDiKem.IDDichVuDiKem = HopDongChiTiet.IDDichVuDiKem
+group by DichVuDiKem.IDDichVuDiKem
+having SoLanSuDung = 1;
+
+-- 15.	Hiển thi thông tin của tất cả nhân viên bao gồm IDNhanVien, HoTen, TrinhDo, TenBoPhan, SoDienThoai, DiaChi 
+-- mới chỉ lập được tối đa 3 hợp đồng từ năm 2018 đến 2019
+
+-- Hiểu theo yêu cầu để bài là không tính những nhân viên không lập được hợp đồng nào ( Đk Lọc:  1 <= SL_HĐ_của_NV <=3)
+
+select NhanVien.IDNhanVien, NhanVien.HoTen, TrinhDo.TrinhDo, BoPhan.TenBoPhan, NhanVien.SDT, NhanVien.DiaChi from
+(select IDNhanVien, count(1) as SoLuongHopDong from HopDong where year(NgayLamHopDong) between 2018 and 2019
+group by IDNhanVien having SoLuongHopDong between 1 and 3 ) as HopDong20182019
+left join NhanVien on NhanVien.IDNhanVien = HopDong20182019.IDNhanVien
+left join TrinhDo on NhanVien.IDTrinhDo = TrinhDo.IDTrinhDo
+left join BoPhan on NhanVien.IDBoPhan = BoPhan.IDBoPhan;

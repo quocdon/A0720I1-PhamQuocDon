@@ -44,7 +44,7 @@ CREATE TABLE `khachhang` (
 
 LOCK TABLES `khachhang` WRITE;
 /*!40000 ALTER TABLE `khachhang` DISABLE KEYS */;
-INSERT INTO `khachhang` VALUES (1,2,'Nguyen Van An','1991-11-22','111222333','0931552555','nguyenan1991@gmail.com','Da Nang'),(2,1,'Pham Van Cuong','1999-12-22','123255999','0934333555','phamcuong1999@gmail.com','Hue'),(3,3,'Nguyen Hoang Yen','1994-05-22','111312444','0375111555','nguyenyen1994@gmail.com','Quang Nam'),(4,2,'Nguyen Thuy Van','1995-01-26','111123656','0364666999','nguyenvan1995@gmail.com','Da Nang'),(5,4,'Hoang Van Binh','1994-04-24','123000333','0934696969','hoangbinh1994@gmail.com','Da Nang'),(6,5,'Trinh Thanh Giang','1992-01-12','100055523','0934255255','trinhgiang1992@gmail.com','Hue'),(7,2,'Nguyen Hoang Nam','1943-10-22','111635333','0931552123','nguyennam1943@gmail.com','Da Nang'),(8,4,'Pham Quoc Khanh','2009-12-22','123125999','0985252252','phamkhanh2009@gmail.com','Quang Tri'),(9,3,'Nguyen Bich Thuy','1984-06-12','111000444','0948248248','nguyenthuy1984@gmail.com','Quang Tri');
+INSERT INTO `khachhang` VALUES (1,2,'Nguyen Van An','1991-11-22','111222333','0931552555','nguyenan1991@gmail.com','Da Nang'),(2,1,'Pham Van Cuong','1999-12-22','123255999','0934333555','phamcuong1999@gmail.com','Quang Ngai'),(3,3,'Nguyen Hoang Yen','1994-05-22','111312444','0375111555','nguyenyen1994@gmail.com','Quang Nam'),(4,2,'Nguyen Thuy Van','1995-01-26','111123656','0364666999','nguyenvan1995@gmail.com','Da Nang'),(5,4,'Hoang Van Binh','1994-04-24','123000333','0934696969','hoangbinh1994@gmail.com','Da Nang'),(6,5,'Trinh Thanh Giang','1992-01-12','100055523','0934255255','trinhgiang1992@gmail.com','Hue'),(7,2,'Nguyen Hoang Nam','1943-10-22','111635333','0931552123','nguyennam1943@gmail.com','Da Nang'),(8,4,'Pham Quoc Khanh','2009-12-22','123125999','0985252252','phamkhanh2009@gmail.com','Quang Tri'),(9,3,'Nguyen Bich Thuy','1984-06-12','111000444','0948248248','nguyenthuy1984@gmail.com','Quang Tri');
 /*!40000 ALTER TABLE `khachhang` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -57,4 +57,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-12-09  1:27:28
+-- Dump completed on 2020-12-09 11:04:41
