@@ -118,11 +118,10 @@ having SoLanSuDung = 1;
 -- 15.	Hiển thi thông tin của tất cả nhân viên bao gồm IDNhanVien, HoTen, TrinhDo, TenBoPhan, SoDienThoai, DiaChi 
 -- mới chỉ lập được tối đa 3 hợp đồng từ năm 2018 đến 2019
 
--- Hiểu theo yêu cầu để bài là không tính những nhân viên không lập được hợp đồng nào ( Đk Lọc:  1 <= SL_HĐ_của_NV <=3)
-
 select NhanVien.IDNhanVien, NhanVien.HoTen, TrinhDo.TrinhDo, BoPhan.TenBoPhan, NhanVien.SDT, NhanVien.DiaChi from
-(select IDNhanVien, count(1) as SoLuongHopDong from HopDong where year(NgayLamHopDong) between 2018 and 2019
-group by IDNhanVien having SoLuongHopDong between 1 and 3 ) as HopDong20182019
-left join NhanVien on NhanVien.IDNhanVien = HopDong20182019.IDNhanVien
+nhanvien left join (select IDNhanVien from HopDong where year(NgayLamHopDong) between 2018 and 2019) as HopDong20182019 
+on NhanVien.IDNhanVien = HopDong20182019.IDNhanVien
 left join TrinhDo on NhanVien.IDTrinhDo = TrinhDo.IDTrinhDo
-left join BoPhan on NhanVien.IDBoPhan = BoPhan.IDBoPhan;
+left join BoPhan on NhanVien.IDBoPhan = BoPhan.IDBoPhan
+group by NhanVien.IDNhanVien
+having count(HopDong20182019.IDNhanVien) <= 3;
