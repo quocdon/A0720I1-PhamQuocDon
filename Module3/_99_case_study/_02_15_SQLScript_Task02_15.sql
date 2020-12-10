@@ -8,7 +8,7 @@ and length(HoTen) <= 15;
 -- 3. Hiển thị thông tin của tất cả khách hàng có độ tuổi từ 18 đến 50 tuổi và có địa chỉ ở “Đà Nẵng” hoặc “Quảng Trị”.--  
 
 select *, year(curdate()) - year(NgaySinh) as Tuoi from KhachHang
-having (DiaChi = 'Da Nang' or DiaChi = 'Quang Tri') and Tuoi > 18;
+having (DiaChi = 'Da Nang' or DiaChi = 'Quang Tri') and Tuoi between 18 and 50;
 
 -- 4.	Đếm xem tương ứng với mỗi khách hàng đã từng đặt phòng bao nhiêu lần. Kết quả hiển thị 
 -- được sắp xếp tăng dần theo số lần đặt phòng của khách hàng. 
