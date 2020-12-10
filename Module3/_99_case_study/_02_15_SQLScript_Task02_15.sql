@@ -19,7 +19,7 @@ group by KhachHang.IDKhachHang order by SoLanDatPhong;
 -- (Với TongTien được tính theo công thức như sau: ChiPhiThue + SoLuong*Gia, với SoLuong và Giá là từ bảng DichVuDiKem) 
 -- cho tất cả các Khách hàng đã từng đặt phỏng. (Những Khách hàng nào chưa từng đặt phòng cũng phải hiển thị ra).
 select KhachHang.IDKhachHang, KhachHang.HoTen, LoaiKhach.TenLoaiKhach, HopDong.IDHopDong, DichVu.TenDichVu, HopDong.NgayLamHopDong, 
-HopDong.NgayKetThuc, sum(DichVu.ChiPhiThue + DichVuDiKem.Gia*HopDongChiTiet.SoLuong) as TongTien 
+HopDong.NgayKetThuc, sum(DichVu.ChiPhiThue + ifnull(DichVuDiKem.Gia, 0) * ifnull(HopDongChiTiet.SoLuong, 0)) as TongTien 
 from KhachHang left join HopDong on KhachHang.IDKhachHang = HopDong.IDKhachHang
 left join LoaiKhach on KhachHang.IDLoaiKhach = LoaiKhach.IDLoaiKhach
 left join DichVu on DichVu.IDDichVu = HopDong.IDDichVU
@@ -50,7 +50,9 @@ select HoTen from KhachHang group by HoTen;
 
 -- 9.	Thực hiện thống kê doanh thu theo tháng, nghĩa là tương ứng với mỗi tháng trong năm 2019 
 -- thì sẽ có bao nhiêu khách hàng thực hiện đặt phòng.
-select month(HopDong2019.NgayLamHopDong) as Thang, Sum(DichVu.ChiPhiThue + DichVuDiKem.Gia*HopDongChiTiet.SoLuong) as DoanhThu
+select month(HopDong2019.NgayLamHopDong) as Thang, 
+Sum(DichVu.ChiPhiThue + ifnull(DichVuDiKem.Gia, 0)*ifnull(HopDongChiTiet.SoLuong, 0)) as DoanhThu, 
+count(HopDong2019.IDKhachHang) as SLKhachHang
 from (select * from HopDong where year(HopDong.NgayLamHopDong) = 2019) as HopDong2019
 left join DichVu on DichVu.IDDichVu = HopDong2019.IDDichVU 
 left join  HopDongChiTiet on HopDongChiTiet.IDHopDong = HopDong2019.IDHopDong
@@ -66,13 +68,13 @@ group by HopDong.IDHopDong;
 
 -- 11.	Hiển thị thông tin các Dịch vụ đi kèm đã được sử dụng bởi những Khách hàng có TenLoaiKhachHang là “Diamond” 
 -- và có địa chỉ là “Vinh” hoặc “Quảng Ngãi”.
-select LoaiDichVu.IDLoaiDichVu, LoaiDichVu.TenLoaiDichVu from HopDong 
-left join DichVu on HopDong.IDDichVu = Dichvu.IDDichVu
-left join LoaiDichVu on LoaiDichVu.IDLoaiDichVu = DichVu.IDLoaiDichVu
+select DichVuDiKem.IDDichVuDiKem, DichVuDiKem.TenDichVuDiKem from HopDong 
+inner join HopDongChiTiet on HopDong.IDHopDong = HopDongChiTiet.IDHopDong
+inner join DichVuDiKem on DichVuDiKem.IDDichVuDiKem = HopDongChiTiet.IDDichVuDiKem
 left join KhachHang on HopDong.IDKhachHang = KhachHang.IDKhachHang
 left join  LoaiKhach on LoaiKhach.IDLoaiKhach = KhachHang.IDLoaiKhach
 where LoaiKhach.IDLoaiKhach = 1 and KhachHang.DiaChi in ('Quang Ngai', 'Vinh')
-group by LoaiDichVu.IDLoaiDichVu;
+group by DichVuDiKem.IDDichVuDiKem order by DichVuDiKem.IDDichVuDiKem;
 
 -- 12.	Hiển thị thông tin IDHopDong, TenNhanVien, TenKhachHang, SoDienThoaiKhachHang, TenDichVu, 
 -- SoLuongDichVuDikem (được tính dựa trên tổng Hợp đồng chi tiết), TienDatCoc của tất cả các dịch vụ 
@@ -86,32 +88,28 @@ left join NhanVien on NhanVien.IDNhanVien = HopDong10122019.IDNhanVien
 left join KhachHang on KhachHang.IDKhachHang = HopDong10122019.IDKhachHang
 left join DichVu on HopDong10122019.IDDichVu = DichVu.IDDichVu
 left join HopDongChiTiet on HopDongChiTiet.IDHopDong = HopDong10122019.IDHopDong
-left join DichVuDiKem on HopDongChiTiet.IDDichVuDiKem = DichVuDiKem.IDDichVuDiKem
+inner join DichVuDiKem on HopDongChiTiet.IDDichVuDiKem = DichVuDiKem.IDDichVuDiKem
 where HopDong01062019.IDDichVu is null
 group by HopDong10122019.IDHopDong;
 
 -- 13.	Hiển thị thông tin các Dịch vụ đi kèm được sử dụng nhiều nhất bởi các Khách hàng đã đặt phòng. 
 -- (Lưu ý là có thể có nhiều dịch vụ có số lần sử dụng nhiều như nhau).
 
-select IDDichVuDiKem, TenDichVuDiKem, SoLanSuDung from
-(select DichVuDiKem.IDDichVuDiKem, DichVuDiKem.TenDichVuDiKem, count(1) as SoLanSuDung
-from HopDong left join HopDongChiTiet on HopDong.IDHopDong = HopDongChiTiet.IDHopDong
+select DichVuDiKem.IDDichVuDiKem, DichVuDiKem.TenDichVuDiKem, count(DichVuDiKem.IDDichVuDiKem) as SoLanSuDung
+from HopDong inner join HopDongChiTiet on HopDong.IDHopDong = HopDongChiTiet.IDHopDong
 left join DichVuDiKem on DichVuDiKem.IDDichVuDiKem = HopDongChiTiet.IDDichVuDiKem
-group by DichVuDiKem.IDDichVuDiKem) as TongHopDichVu
-where SoLanSuDung = (select max(SoLanSuDung) from (select DichVuDiKem.IDDichVuDiKem, DichVuDiKem.TenDichVuDiKem, count(1) as SoLanSuDung
-from HopDong left join HopDongChiTiet on HopDong.IDHopDong = HopDongChiTiet.IDHopDong
+group by DichVuDiKem.IDDichVuDiKem
+having SoLanSuDung = (select max(SoLanSuDung) from (select DichVuDiKem.IDDichVuDiKem, DichVuDiKem.TenDichVuDiKem, count(DichVuDiKem.IDDichVuDiKem) as SoLanSuDung
+from HopDong inner join HopDongChiTiet on HopDong.IDHopDong = HopDongChiTiet.IDHopDong
 left join DichVuDiKem on DichVuDiKem.IDDichVuDiKem = HopDongChiTiet.IDDichVuDiKem
 group by DichVuDiKem.IDDichVuDiKem) as TongHopDichVu) order by IDDichVuDiKem;
-
--- Tại sao không thể gọi bảng TongHopDichVu trong where được????? 
--- Có thể rút gọn câu lệnh lại ngắn hơn được không????
 
 -- 14.	Hiển thị thông tin tất cả các Dịch vụ đi kèm chỉ mới được sử dụng một lần duy nhất. 
 -- Thông tin hiển thị bao gồm IDHopDong, TenLoaiDichVu, TenDichVuDiKem, SoLanSuDung.
 
-select HopDong.IDHopDong, DichVuDiKem.IDDichVuDiKem, DichVuDiKem.TenDichVuDiKem, count(1) as SoLanSuDung
-from HopDong left join HopDongChiTiet on HopDong.IDHopDong = HopDongChiTiet.IDHopDong
-left join DichVuDiKem on DichVuDiKem.IDDichVuDiKem = HopDongChiTiet.IDDichVuDiKem
+select HopDong.IDHopDong, DichVuDiKem.IDDichVuDiKem, DichVuDiKem.TenDichVuDiKem, count(HopDong.IDHopDong) as SoLanSuDung
+from HopDong inner join HopDongChiTiet on HopDong.IDHopDong = HopDongChiTiet.IDHopDong
+inner join DichVuDiKem on DichVuDiKem.IDDichVuDiKem = HopDongChiTiet.IDDichVuDiKem
 group by DichVuDiKem.IDDichVuDiKem
 having SoLanSuDung = 1;
 
