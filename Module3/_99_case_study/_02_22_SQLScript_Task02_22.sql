@@ -212,3 +212,17 @@ and DichVuDiKem2019.SolanSuDung > 10;
 select concat('NV - ',IDNhanVien), hoten, email, sdt, ngaysinh, DiaChi from nhanvien 
 union all
 select concat('KH - ',IDKhachHang), hoten, email, sdt, ngaysinh, DiaChi from khachhang;
+
+-- 21.	Tạo khung nhìn có tên là V_NHANVIEN để lấy được thông tin của tất cả các nhân viên có địa chỉ là “Hải Châu” 
+-- và đã từng lập hợp đồng cho 1 hoặc nhiều Khách hàng bất kỳ  với ngày lập hợp đồng là “12/12/2019”
+create view V_NHANVIEN as
+select nhanvien.* from nhanvien inner join
+(select distinct hopdong.IDNhanVien from hopdong where ngaylamhopdong = '2019-12-12') as hopdong12122019
+on nhanvien.idnhanvien = hopdong12122019.idnhanvien
+where nhanvien.DiaChi = 'Hai Chau';
+
+-- 22.	Thông qua khung nhìn V_NHANVIEN thực hiện cập nhật địa chỉ thành “Liên Chiểu” 
+-- đối với tất cả các Nhân viên được nhìn thấy bởi khung nhìn này.
+
+update v_nhanvien
+set v_nhanvien.diachi = 'Lien Chieu';
