@@ -1,0 +1,28 @@
+body{
+    font-family: "Berlin Sans FB";
+    font-size: 15px;
+}
+header, footer{
+    background-color: darkcyan;
+    color: whitesmoke;
+    padding: 10px;
+}
+nav ul{
+    padding: 0px;
+}
+nav ul li{
+    display: inline;
+    margin: 5px;
+}
+section{
+    color: dimgrey;
+    background-color: lightblue;
+    padding: 10px;
+    margin: 10px;
+}
+section article{
+    background-color: whitesmoke;
+    padding: 10px;
+    margin: 5px;
+
+}
