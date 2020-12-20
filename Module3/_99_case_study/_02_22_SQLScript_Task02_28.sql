@@ -226,3 +226,101 @@ where nhanvien.DiaChi = 'Hai Chau';
 
 update v_nhanvien
 set v_nhanvien.diachi = 'Lien Chieu';
+
+-- 23.	Tạo Store procedure Sp_1 Dùng để xóa thông tin của một Khách hàng nào đó 
+-- với Id Khách hàng được truyền vào như là 1 tham số của Sp_1
+DELIMITER //
+create procedure sp_1(id_kh int)
+begin
+	delete khachhang
+    from khachhang
+    where khachhang.IDKhachHang = id_kh;
+    end//
+DELIMITER ;
+
+call sp_1(11);
+
+-- 24.	Tạo Store procedure Sp_2 Dùng để thêm mới vào bảng HopDong với 
+-- yêu cầu Sp_2 phải thực hiện kiểm tra tính hợp lệ của dữ liệu bổ sung, 
+-- với nguyên tắc không được trùng khóa chính và đảm bảo toàn vẹn tham chiếu đến các bảng liên quan.
+
+DELIMITER //
+create procedure sp_2
+(
+	IDHopDong_param int,
+	IDNhanVien_param int,
+	IDKhachHang_param int,
+	IDDichVu_param int,
+	NgayLamHopDong_param date,
+	NgayKetThuc_param date,
+	TienDatCoc_param int
+)
+begin
+	-- Khai báo biến kiểm tra khóa chính và khóa ngoại
+	declare kt_IDHopDong int;
+	declare kt_IDNhanVien int;
+	declare kt_IDKhachHang int;
+	declare kt_IDDichVu int;
+    
+    -- Gán giá trị cho biến kiểm tra bằng việc truy vấn tham số truyền vào tương ứng với các bảng trong CSDL
+    select IDHopDong into kt_IDHopDong from hopdong where IDHopDong = IDHopDong_param;
+    select IDNhanVien into kt_IDNhanVien from nhanvien where IDNhanVien = IDNhanVien_param;
+    select IDKhachHang into kt_IDKhachHang from khachhang where IDKhachHang = IDKhachHang_param;
+    select IDDichVu into kt_IDDichVu from dichvu where IDDichVu = IDDichVu_param;
+    
+    -- Kiểm tra tính hợp lệ của tham số truyền vào. 
+    -- Tham số truyền vào hợp lệ khi kt_idHopDong = null và các kt_idnhanvien, kt_idkhachhang và kt_iddichvu phải khác null
+    if (kt_idHopDong is null and IDHopDong_param > 0 and kt_idnhanvien is not null and kt_idkhachhang is not null and kt_iddichvu is not null) then
+		-- Thêm dữ liệu vào bảng hợp đồng
+		insert into hopdong(IDHopDong,IDNhanVien,IDKhachHang,IDDichVu,NgayLamHopDong,NgayKetThuc,TienDatCoc) values
+        (IDHopDong_param, IDNhanVien_param, IDKhachHang_param, IDDichVu_param, NgayLamHopDong_param, NgayKetThuc_param, TienDatCoc_param);
+        elseif kt_idhopdong is not null or IDHopDong_param < 0 then
+        -- Tham số không hợp lệ thì thông báo lỗi cho người dùng
+			signal sqlstate '23000' 
+			set message_text = 'IDHopDong khong hop le',
+			mysql_errno = 1264;
+		elseif kt_idnhanvien is null then
+			signal sqlstate '23000' 
+				set message_text = 'IDNhanVien khong ton tai',
+                mysql_errno = 1264;
+		elseif kt_idkhachhang is null then
+			signal sqlstate '23000' 
+			set message_text = 'IDKhachHang khong ton tai',
+			mysql_errno = 1264;
+		elseif kt_iddichvu is null then
+			signal sqlstate '23000' 
+			set message_text = 'IDDichVu khong ton tai',
+			mysql_errno = 1264;
+		end if;
+end//
+DELIMITER ;
+
+call sp_2(12,5,3,1,'2019-10-10','2019-10-15',3000000);
+
+-- 27.	Tạo user function thực hiện yêu cầu sau:
+-- a.	Tạo user function func_1: Đếm các dịch vụ đã được sử dụng với Tổng tiền là > 2.000.000 VNĐ.
+-- b.	Tạo user function Func_2: Tính khoảng thời gian dài nhất tính từ lúc bắt đầu làm hợp đồng đến 
+-- lúc kết thúc hợp đồng mà Khách hàng đã thực hiện thuê dịch vụ (lưu ý chỉ xét các khoảng thời gian dựa vào từng lần làm.
+
+
+-- 28.	Tạo Store procedure Sp_3 để tìm các dịch vụ được thuê bởi khách hàng với loại dịch vụ là “Room” 
+-- từ đầu năm 2015 đến hết năm 2019 để xóa thông tin của các dịch vụ đó (tức là xóa các bảng ghi trong 
+-- bảng DichVu) và xóa những HopDong sử dụng dịch vụ liên quan (tức là phải xóa những bản gi trong bảng HopDong) 
+-- và những bản liên quan khác.
+
+-- Sửa khóa ngoại bảng hợp đồng
+alter table hopdong
+drop foreign key hopdong_ibfk_3,
+add foreign key (IDDichVu) references DichVu(IDDichVu) on update cascade on delete cascade;
+
+DELIMITER //
+create procedure sp_3()
+begin
+	delete dichvu
+    from dichvu 
+    inner join (select distinct hopdong.IDDichVu, hopdong.ngaylamhopdong from hopdong where year(NgayLamHopDong) between 2015 and 2019) as DichVu20152019 
+    on dichvu20152019.IDDichVu = dichvu.IDDichVu;
+end//
+
+DELIMITER ;
+call sp_3();
