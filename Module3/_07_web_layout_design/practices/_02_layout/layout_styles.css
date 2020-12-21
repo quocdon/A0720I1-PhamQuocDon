@@ -1,3 +1,58 @@
-#main {
+body{
     width: 100%;
+    margin: 0;
 }
+#header {
+    height: 80px;
+    display: flex;
+    flex-direction: row;
+}
+#header #logo{
+    width: 20%;
+    background-color: #dddfe2;
+    margin: 5px;
+}
+#header #banner{
+    width: 80%;
+    background-color: gray;
+    margin: 5px;
+}
+#nav{
+    height: 30px;
+    background-color: #166fe5;
+    margin: 5px;
+}
+#main{
+    display: flex;
+    flex-direction: row;
+}
+#main #left{
+    margin: 5px;
+    width: 20%;
+    height: 500px;
+    background-color: darkcyan;
+}
+#main #left{
+    margin: 5px;
+    width: 20%;
+    height: 500px;
+    background-color: darkcyan;
+}
+#main #content{
+    margin: 5px;
+    width: 60%;
+    height: 500px;
+    background-color: pink;
+}
+#main #right{
+    margin: 5px;
+    width: 20%;
+    height: 500px;
+    background-color: brown;
+}
+#footer{
+    height: 20px;
+    background-color: darkolivegreen;
+    margin: 5px;
+}
+
