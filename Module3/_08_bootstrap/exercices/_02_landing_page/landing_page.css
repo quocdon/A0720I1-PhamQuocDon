@@ -1,0 +1,42 @@
+.cus-navbar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.cus-navbar-space-around{
+    width: 80%;
+    margin: 30px auto 30px auto;
+    display: flex;
+    flex-direction: row;
+    font-weight: bolder;
+    flex-wrap: wrap;
+}
+.text-content{
+    font-size: 30px;
+    margin: 10px 0 10px 0;
+    font-weight: lighter;
+}
+.first-content{
+    position: relative;
+    text-align: left;
+    color: black;
+}
+.text-left-centered{
+    position: absolute;
+    top: 50%;
+    transform: translate(0,-50%);
+    padding-left: 30px;
+}
+.navbar-icon{
+    display: block;
+    margin: auto;
+    width: 60px;
+    height: 40px;
+}
+.text-middle{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
