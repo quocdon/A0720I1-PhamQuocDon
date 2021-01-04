@@ -6,6 +6,7 @@ import org.apache.commons.fileupload.FileItemFactory;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import services.CustomerService;
 
 
 import javax.servlet.ServletException;
@@ -52,11 +53,24 @@ public class RegisterServlet extends HttpServlet {
                    }
                }
            }
+           String  username = forms.get("username");
+           String  password = forms.get("password");
+           String  customerName = forms.get("customerName");
+           String  birthday = forms.get("birthday");
+           String  address = forms.get("address");
+           CustomerService customerService = new CustomerService();
+           if (customerService.checkRegister(username)){
+               Customer customer = new Customer(username, password, customerName, birthday, address, image);
+               customerService.addCustomer(customer);
+               response.sendRedirect("login");
+           } else {
+               request.setAttribute("status","Username is exists");
+               response.sendRedirect("register");
+           }
        }
-
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        request.getRequestDispatcher("jsp/register.jsp").forward(request, response);
     }
 }
