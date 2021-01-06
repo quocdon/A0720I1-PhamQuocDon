@@ -20,54 +20,57 @@ import java.util.*;
 
 @WebServlet(name = "CustomerServlet", urlPatterns = "/register")
 public class RegisterServlet extends HttpServlet {
-    protected static List<Customer> customerList = new ArrayList<>();
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-       boolean isMultiPart = ServletFileUpload.isMultipartContent(request);
-       Map<String, String> forms = new HashMap<>();
-       if (isMultiPart){
-           FileItemFactory factory = new DiskFileItemFactory();
-           ServletFileUpload upload = new ServletFileUpload(factory);
-           List items = null;
-           try {
-               items = upload.parseRequest(request);
-           } catch (FileUploadException e){
-               e.printStackTrace();
-           }
+    public static List<Customer> customerList = new ArrayList<>();
 
-           Iterator iterator = items.iterator();
-           String image = null;
-           while (iterator.hasNext()){
-               FileItem item = (FileItem) iterator.next();
-               if (item.isFormField()){
-                   forms.put(item.getFieldName(), item.getString());
-               } else {
-                   try {
-                       String itemName = item.getName();
-                       image = "image\\" + itemName.substring(itemName.lastIndexOf("\\" + 1));
-                       String realPath = getServletContext().getRealPath("/") + image;
-                       File saveFile = new File(realPath);
-                       System.out.println("Path image: " + realPath);
-                       item.write(saveFile);
-                   } catch (Exception e){
-                       e.printStackTrace();
-                   }
-               }
-           }
-           String  username = forms.get("username");
-           String  password = forms.get("password");
-           String  customerName = forms.get("customerName");
-           String  birthday = forms.get("birthday");
-           String  address = forms.get("address");
-           CustomerService customerService = new CustomerService();
-           if (customerService.checkRegister(username)){
-               Customer customer = new Customer(username, password, customerName, birthday, address, image);
-               customerService.addCustomer(customer);
-               response.sendRedirect("login");
-           } else {
-               request.setAttribute("status","Username is exists");
-               response.sendRedirect("register");
-           }
-       }
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        boolean isMultiPart = ServletFileUpload.isMultipartContent(request);
+        Map<String, String> forms = new HashMap<>();
+        String image = null;
+        if (isMultiPart) {
+            FileItemFactory factory = new DiskFileItemFactory();
+            ServletFileUpload upload = new ServletFileUpload(factory);
+            List items = null;
+            try {
+                items = upload.parseRequest(request);
+            } catch (FileUploadException e) {
+                e.printStackTrace();
+            }
+
+            Iterator iterator = items.iterator();
+            while (iterator.hasNext()) {
+                FileItem item = (FileItem) iterator.next();
+                if (item.isFormField()) {
+                    forms.put(item.getFieldName(), item.getString());
+                } else {
+                    try {
+                        String itemName = item.getName();
+                        image = "image\\" + itemName.substring(itemName.lastIndexOf("\\") + 1);
+                        String realPath = getServletContext().getRealPath("/") + image;
+                        File saveFile = new File(realPath);
+                        System.out.println("Path image: " + realPath);
+                        item.write(saveFile);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+        String username = forms.get("username");
+        String password = forms.get("password");
+        String customerName = forms.get("customerName");
+        String birthday = forms.get("birthday");
+        String address = forms.get("address");
+        CustomerService customerService = new CustomerService();
+        if (customerService.checkRegister(username)) {
+            Customer customer = new Customer(username, password, customerName, birthday, address, image);
+            customerService.addCustomer(customer);
+            response.sendRedirect("login");
+            return;
+        } else {
+            request.setAttribute("status", "Username is exists");
+            request.getRequestDispatcher("jsp/register.jsp").forward(request, response);
+            return;
+        }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

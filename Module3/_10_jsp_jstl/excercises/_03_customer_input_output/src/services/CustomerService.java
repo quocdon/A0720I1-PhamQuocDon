@@ -11,9 +11,9 @@ public class CustomerService {
         return customerMap;
     }
 
-    public List<Customer> getCustomerList(){
-        Set<String> keySet = customerMap.keySet();
+    public List<Customer> getCustomerList() {
         List<Customer> customerList = new ArrayList<>();
+        Set<String> keySet = customerMap.keySet();
         for (String key : keySet){
             customerList.add(customerMap.get(key));
         }
@@ -25,26 +25,15 @@ public class CustomerService {
     }
 
 
-    public boolean checkLogin(String username, String password){
-        try{
-            if (customerMap.get(username).getPassword().equals(password)){
-                return true;
-            }
-        }catch (Exception e){
+    public boolean checkLogin(String username, String password) {
+        try {
+            return (customerMap.get(username).getPassword().equals(password));
+        } catch (NullPointerException e) {
             return false;
         }
-
-        return false;
     }
 
-    public boolean checkRegister(String username){
-        try{
-            if (customerMap.get(username) == null){
-                return true;
-            }
-        } catch (Exception e){
-            return true;
-        }
-        return false;
+    public boolean checkRegister(String username) {
+        return !customerMap.containsKey(username);
     }
 }
