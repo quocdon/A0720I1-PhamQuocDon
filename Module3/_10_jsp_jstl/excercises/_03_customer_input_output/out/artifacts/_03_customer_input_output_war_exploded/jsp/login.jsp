@@ -34,17 +34,13 @@
 
     <form method="post" action="login" class="col-sm-4">
         <h2 class="text-center">Login</h2>
-        <c:if test="${status != null }">
-            <p class="alert alert-danger" role="alert">${status}</p>
-            <hr>
-        </c:if>
         <div class="form-group">
             <label for="username">Username: </label>
-            <input type="text" name="username" id="username" class="form-control" >
+            <input type="text" name="username" id="username" class="form-control" required>
         </div>
         <div class="form-group">
             <label for="password">Password: </label>
-            <input type="password" name="password" id="password" class="form-control">
+            <input type="password" name="password" id="password" class="form-control" required>
         </div>
         <div class="form-group">
             <label></label>
@@ -54,6 +50,10 @@
             <label></label>
             <a href="${pageContext.request.contextPath}/register" class="text-reset">Register</a>
         </div>
+        <c:if test="${status != null }">
+            <hr>
+            <p class="alert alert-danger" role="alert">${status}</p>
+        </c:if>
     </form>
 </div>
 </body>

@@ -1,0 +1,17 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="product_management:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/product_management_war_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="product_management/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="product_management" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="file-copy" path="C:/Dev Programs/apache-tomcat-9.0.41/webapps/examples/WEB-INF/lib/taglibs-standard-impl-1.2.5.jar" />
+          <element id="file-copy" path="C:/Dev Programs/apache-tomcat-9.0.41/webapps/examples/WEB-INF/lib/taglibs-standard-spec-1.2.5.jar" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

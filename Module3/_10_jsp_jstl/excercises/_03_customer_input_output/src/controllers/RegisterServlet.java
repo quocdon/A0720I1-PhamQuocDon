@@ -67,7 +67,7 @@ public class RegisterServlet extends HttpServlet {
             response.sendRedirect("login");
             return;
         } else {
-            request.setAttribute("status", "Username is exists");
+            request.setAttribute("status", "Username already exists");
             request.getRequestDispatcher("jsp/register.jsp").forward(request, response);
             return;
         }
