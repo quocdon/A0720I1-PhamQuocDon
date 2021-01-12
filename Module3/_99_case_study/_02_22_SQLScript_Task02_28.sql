@@ -1,4 +1,4 @@
-use furama_resort;
+use furama;
 -- 2.	Hiển thị thông tin của tất cả nhân viên có trong hệ thống có tên bắt đầu là một trong các ký tự “H”, “T” hoặc “K” và có tối đa 15 ký tự --  
 
 select * from Nhanvien
@@ -296,6 +296,40 @@ end//
 DELIMITER ;
 
 call sp_2(12,5,3,1,'2019-10-10','2019-10-15',3000000);
+
+-- 25.	Tạo triggers có tên Tr_1 Xóa bản ghi trong bảng HopDong thì hiển thị tổng số lượng bản ghi còn lại có trong bảng HopDong ra giao diện console của database
+create table SL_HopDong(
+SLHopDong int default 0
+);
+drop trigger if exists tr_1 ;
+DELIMITER //
+create trigger tr_1
+after delete on hopdong
+for each row
+begin
+	declare SLHopDong int;
+	declare mes varchar(100);
+    select count(*) into SLHopDong from hopdong;
+    insert into SL_HopDong value (SLHopDong);
+end//
+delete FROM HOPDONG WHERE IDhopDONG=8;
+
+-- 26.	Tạo triggers có tên Tr_2 Khi cập nhật Ngày kết thúc hợp đồng, cần kiểm tra xem thời gian cập nhật 
+-- có phù hợp hay không, với quy tắc sau: Ngày kết thúc hợp đồng phải lớn hơn ngày làm hợp đồng ít nhất là 2 ngày. 
+-- Nếu dữ liệu hợp lệ thì cho phép cập nhật, nếu dữ liệu không hợp lệ thì in ra thông báo “Ngày kết thúc hợp đồng
+--  phải lớn hơn ngày làm hợp đồng ít nhất là 2 ngày” trên console của database
+drop trigger if exists tr_2 ;
+DELIMITER //
+create trigger tr_2
+before update on hopdong
+for each row
+begin
+if new.ngayketthuc - new.ngaylamhopdong < 2 then
+	signal sqlstate '23000'
+    set message_text = 'Ngay ket huc hop dong phai lon hon ngay lam hop dong it nhat 2 ngay',
+    mysql_errno = 1264;
+end if;
+end//
 
 -- 27.	Tạo user function thực hiện yêu cầu sau:
 -- a.	Tạo user function func_1: Đếm các dịch vụ đã được sử dụng với Tổng tiền là > 2.000.000 VNĐ.
