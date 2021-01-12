@@ -67,7 +67,7 @@ public class ProductServlet extends HttpServlet {
     }
 
     private void searchProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String searchName = request.getParameter("search");
+        String searchName = request.getParameter("search").trim();
         List<Product> result;
         if (searchName.equals("") || searchName == null){
             result = this.productService.findAll();
@@ -124,9 +124,6 @@ public class ProductServlet extends HttpServlet {
                 break;
             case "remove":
                 removeProduct(request, response);
-                break;
-            case "search":
-
                 break;
             default:
                 listProduct(request, response);

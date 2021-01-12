@@ -25,6 +25,7 @@
             <input class="btn btn-outline-primary" type="submit" value="Search">
             <input type="hidden" name="action" value="search">
         </form>
+        <p><a class="btn btn-outline-primary" href="search">Advanced Search</a></p>
     </div>
     <c:if test="${products != null}">
         <table class="table table-striped">

@@ -4,6 +4,7 @@ import model.Product;
 import service.ProductService;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class ProductServiceImpl implements ProductService {
     private static Map<Integer, Product> products = new HashMap<>();
@@ -38,13 +39,8 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<Product> findByName(String name) {
-        List<Product> result = new ArrayList<>();
-        Set<Integer> keySet = products.keySet();
-        for (int key : keySet) {
-            if (products.get(key).getName().equals(name)) {
-                result.add(products.get(key));
-            }
-        }
-        return result;
+        return products.values()
+                .stream()
+                .filter(cus -> cus.getName().toLowerCase().contains(name.toLowerCase())).collect(Collectors.toList());
     }
 }

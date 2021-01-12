@@ -9,37 +9,24 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Product List</title>
+    <title>Search Product</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+          integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" type="text/javascript"></script>
+    <script src="js/search.js" type="text/javascript"></script>
 </head>
 <body>
-<div>
-    <h1>Product List</h1>
-    <a href="products?action=create">Create new product</a>
-    <table>
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Description</th>
-            <th>Manufacturer</th>
-            <th>Edit</th>
-            <th>Delete</th>
-        </tr>
-        <c:forEach items="${products}" var="product">
-            <tr>
-                <td>${product.id}</td>
-                <td><a href="products?action=view&id=${product.id}">${product.name}</a></td>
-                <td>${product.price}</td>
-                <td>${product.description}</td>
-                <td>${product.manufacturer}</td>
-                <td><a href="products?action=edit&id=${product.id}">Edit</a></td>
-                <td><a href="products?action=remove&id=${product.id}">Remove</a></td>
-            </tr>
-        </c:forEach>
-
-    </table>
+<div class="container">
+    <h1 class="text-center">Advanced Search</h1>
+    <div class="d-flex justify-content-center">
+        <input class="form-control col-sm-4" type="search" id="productName" aria-label="search" placeholder="Search">
+        <button class="btn btn-outline-primary" id="search">Search</button>
+        <a href="products" class="btn btn-outline-primary">Back to List</a>
+    </div>
+    <hr>
+    <div class="text-center" id="result"></div>
 </div>
-
-
 </body>
 </html>
