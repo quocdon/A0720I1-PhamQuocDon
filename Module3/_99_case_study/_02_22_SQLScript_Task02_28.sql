@@ -333,9 +333,43 @@ end//
 
 -- 27.	Tạo user function thực hiện yêu cầu sau:
 -- a.	Tạo user function func_1: Đếm các dịch vụ đã được sử dụng với Tổng tiền là > 2.000.000 VNĐ.
+DELIMITER //
+create function func_1()
+returns int
+READS SQL DATA
+DETERMINISTIC
+begin
+declare SLDichVu int;
+select count(*) into SLDichVu from 
+(select DichVu.IDDichVu from hopdong
+left join dichvu on hopdong.IdDIchVu = dichvu.IDDichVu
+left join  HopDongChiTiet on HopDongChiTiet.IDHopDong = HopDong.IDHopDong
+left join DichVuDiKem on HopDongChiTiet.IDDichVuDiKem = DichVuDiKem.IDDichVuDiKem
+group by hopdong.idhopdong
+having sum(DichVu.ChiPhiThue + ifnull(DichVuDiKem.Gia, 0) * ifnull(HopDongChiTiet.SoLuong, 0)) > 2000000) as HopDong2Mil;
+return SLDichVu;
+end//
+
+select func_1()
+
 -- b.	Tạo user function Func_2: Tính khoảng thời gian dài nhất tính từ lúc bắt đầu làm hợp đồng đến 
 -- lúc kết thúc hợp đồng mà Khách hàng đã thực hiện thuê dịch vụ (lưu ý chỉ xét các khoảng thời gian dựa vào từng lần làm.
+DELIMITER //
+create function func_2()
+returns int
+READS SQL DATA
+DETERMINISTIC
+begin
+declare thoigianthuedainhat int;
 
+select max(thoigianthue) into thoigianthuedainhat 
+from 
+(select *, timestampdiff(day,hopdong.ngaylamhopdong,hopdong.ngayketthuc) as thoigianthue from hopdong) as HopDongCoThoiGianThue;
+
+return(thoigianthuedainhat);
+end//
+
+select func_2()
 
 -- 28.	Tạo Store procedure Sp_3 để tìm các dịch vụ được thuê bởi khách hàng với loại dịch vụ là “Room” 
 -- từ đầu năm 2015 đến hết năm 2019 để xóa thông tin của các dịch vụ đó (tức là xóa các bảng ghi trong 
