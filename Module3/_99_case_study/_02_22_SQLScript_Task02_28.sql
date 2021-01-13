@@ -381,13 +381,16 @@ alter table hopdong
 drop foreign key hopdong_ibfk_3,
 add foreign key (IDDichVu) references DichVu(IDDichVu) on update cascade on delete cascade;
 
+drop procedure if exists sp_3;
+
 DELIMITER //
 create procedure sp_3()
 begin
 	delete dichvu
     from dichvu 
     inner join (select distinct hopdong.IDDichVu, hopdong.ngaylamhopdong from hopdong where year(NgayLamHopDong) between 2015 and 2019) as DichVu20152019 
-    on dichvu20152019.IDDichVu = dichvu.IDDichVu;
+    on dichvu20152019.IDDichVu = dichvu.IDDichVu
+    where dichvu.IDLoaiDichVu = 3;
 end//
 
 DELIMITER ;
