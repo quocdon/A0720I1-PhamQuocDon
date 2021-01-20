@@ -31,7 +31,6 @@
 </head>
 <body>
 <div class="container d-flex justify-content-center">
-
     <form method="post" action="login" class="col-sm-4">
         <h2 class="text-center">Login</h2>
         <div class="form-group">

@@ -23,24 +23,6 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../../../../../Library/Apache/Common FileUpload/commons-fileupload-1.4-bin/commons-fileupload-1.4.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../../../../../Library/Apache/Common IO/commons-io-2.8.0/commons-io-2.8.0.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
           <root url="jar://C:/Dev Programs/apache-tomcat-9.0.41/webapps/examples/WEB-INF/lib/taglibs-standard-impl-1.2.5.jar!/" />
         </CLASSES>
         <JAVADOC />
@@ -51,6 +33,24 @@
       <library>
         <CLASSES>
           <root url="jar://C:/Dev Programs/apache-tomcat-9.0.41/webapps/examples/WEB-INF/lib/taglibs-standard-spec-1.2.5.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../../_98_libs/common file upload/commons-fileupload-1.4-bin/commons-fileupload-1.4-bin/commons-fileupload-1.4.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../../_98_libs/common file upload/commons-io-2.8.0-bin/commons-io-2.8.0/commons-io-2.8.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
