@@ -9,6 +9,9 @@
         </element>
         <element id="directory" name="lib">
           <element id="file-copy" path="$PROJECT_DIR$/../../../../../Setup/jstl lib/mysql-connector-java-8.0.22.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/../../../../../Setup/jstl lib/jstl-1.2.jar.zip" />
+          <element id="file-copy" path="C:/Dev Programs/apache-tomcat-9.0.41/webapps/examples/WEB-INF/lib/taglibs-standard-impl-1.2.5.jar" />
+          <element id="file-copy" path="C:/Dev Programs/apache-tomcat-9.0.41/webapps/examples/WEB-INF/lib/taglibs-standard-spec-1.2.5.jar" />
         </element>
       </element>
     </root>

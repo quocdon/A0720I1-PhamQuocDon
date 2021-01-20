@@ -1,0 +1,23 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="_03_customer_input_output:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/_03_customer_input_output_war_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="_03_customer_input_output/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="_03_customer_input_output" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="file-copy" path="$PROJECT_DIR$/../../../../../Setup/common file upload/commons-fileupload-1.4-bin/commons-fileupload-1.4-bin/commons-fileupload-1.4.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/../../../../../Setup/common file upload/commons-io-2.8.0-bin/commons-io-2.8.0/commons-io-2.8.0.jar" />
+          <element id="file-copy" path="C:/Dev Programs/apache-tomcat-9.0.41/webapps/examples/WEB-INF/lib/taglibs-standard-impl-1.2.5.jar" />
+          <element id="file-copy" path="C:/Dev Programs/apache-tomcat-9.0.41/webapps/examples/WEB-INF/lib/taglibs-standard-spec-1.2.5.jar" />
+          <element id="file-copy" path="D:/Library/Apache/Common IO/commons-io-2.8.0/commons-io-2.8.0.jar" />
+          <element id="file-copy" path="D:/Library/Apache/Common FileUpload/commons-fileupload-1.4-bin/commons-fileupload-1.4.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/../../../_98_libs/common file upload/commons-fileupload-1.4-bin/commons-fileupload-1.4-bin/commons-fileupload-1.4.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/../../../_98_libs/common file upload/commons-io-2.8.0-bin/commons-io-2.8.0/commons-io-2.8.0.jar" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

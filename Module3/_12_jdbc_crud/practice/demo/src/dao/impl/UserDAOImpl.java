@@ -13,10 +13,11 @@ import java.util.List;
 
 public class UserDAOImpl implements IUserDAO {
     private static final String INSERT_USER_SQL = "insert into User(id, name, email, country) values (?, ?, ?, ?)";
-    private static final String SELECT_USER_BY_ID_SQL = "select (*) from User where id = ?";
-    private static final String SELECT_ALL_USER_SQL = "select (*) from User";
+    private static final String SELECT_USER_BY_ID_SQL = "select * from user where id = ?";
+    private static final String SELECT_ALL_USER_SQL = "select * from user";
     private static final String DELETE_USER_BY_ID_SQL = "delete from user where id = ?";
     private static final String UPDATE_USER_SQL = "update user set name = ?, email = ?, country = ? where id = ?";
+    private static final String SELECT_USER_BY_NAME_SQL = "select * from user where user.name like ?";
 
     @Override
     public void insertUser(User user) throws SQLException {
@@ -59,14 +60,13 @@ public class UserDAOImpl implements IUserDAO {
         PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_USER_SQL);
         ResultSet resultSet = preparedStatement.executeQuery();
 
-        if (resultSet.next()) {
+        while (resultSet.next()) {
             int id = resultSet.getInt("id");
             String name = resultSet.getString("name");
             String email = resultSet.getString("email");
             String country = resultSet.getString("country");
             userList.add(new User(id, name, email, country));
         }
-
         return userList;
     }
 
@@ -90,5 +90,25 @@ public class UserDAOImpl implements IUserDAO {
         preparedStatement.setInt(4, user.getId());
 
         return preparedStatement.executeUpdate() > 0;
+    }
+
+    @Override
+    public List<User> selectByName(String searchName) throws SQLException {
+        List<User> list = new ArrayList<>();
+        Connection connection = DBConnection.getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement(SELECT_USER_BY_NAME_SQL);
+
+        preparedStatement.setString(1, "%" + searchName + "%");
+
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        while (resultSet.next()){
+            int id = resultSet.getInt("id");
+            String name = resultSet.getString("name");
+            String email = resultSet.getString("email");
+            String country = resultSet.getString("country");
+            list.add(new User(id, name, email, country));
+        }
+        return list;
     }
 }
