@@ -56,6 +56,10 @@ group by DichVu.IDDichVu;
 
 select distinct HoTen from KhachHang;
 select HoTen from KhachHang group by HoTen;
+select HoTen from KhachHang
+union
+select hoten from khachhang;
+
 
 -- 9.	Thực hiện thống kê doanh thu theo tháng, nghĩa là tương ứng với mỗi tháng trong năm 2019 
 -- thì sẽ có bao nhiêu khách hàng thực hiện đặt phòng.
@@ -297,7 +301,9 @@ DELIMITER ;
 
 call sp_2(12,5,3,1,'2019-10-10','2019-10-15',3000000);
 
--- 25.	Tạo triggers có tên Tr_1 Xóa bản ghi trong bảng HopDong thì hiển thị tổng số lượng bản ghi còn lại có trong bảng HopDong ra giao diện console của database
+-- 25.	Tạo triggers có tên Tr_1 Xóa bản ghi trong bảng HopDong thì hiển thị 
+-- tổng số lượng bản ghi còn lại có trong bảng HopDong ra giao diện console của database
+
 create table SL_HopDong(
 SLHopDong int default 0
 );
