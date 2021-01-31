@@ -1,0 +1,244 @@
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%--
+  Created by IntelliJ IDEA.
+  User: Hi_XV
+  Date: 1/25/2021
+  Time: 11:26 PM
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%--
+  Created by IntelliJ IDEA.
+  User: Hi_XV
+  Date: 1/24/2021
+  Time: 10:23 AM
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+<head>
+    <title>Furama Resort</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-4.6.0/dist/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/furamaStyle.css">
+    <script src="css/bootstrap-4.6.0/dist/js/bootstrap.js"></script>
+    <script src="css/jquery-3.5.1.slim.min.js"></script>
+    <script src="css/bootstrap-4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+<body>
+<div class="container-fluid">
+    <%--    Header--%>
+    <div class="jumbotron banner d-flex justify-content-between" style="margin-bottom:0">
+        <%--      logo--%>
+        <a class="navbar-brand col-sm-3" href="index.jsp" >
+            <img src="https://furamavietnam.com/wp-content/uploads/2018/08/logo.png" alt="">
+        </a>
+        <%--  Heading--%>
+        <div class="text-center col-sm-6">
+            <h1>FURAMA RESORT</h1>
+            <p>Khu nghỉ dưỡng ẩm thực tọa lạc tại TP Đà Nẵng</p>
+        </div>
+        <div class="col-sm-3 text-right flex-column">
+            <c:if test="${username == null}">
+                <a class="btn" href="login">Log in</a>
+            </c:if>
+            <c:if test="${username != null}">
+                <div><a>Tài khoản: ${username}</a></div>
+                <div><a href="logout">Đăng xuất</a></div>
+            </c:if>
+        </div>
+    </div>
+    <%--    Navigation bar--%>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="collapse navbar-collapse" id="navbarFurama">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="index.jsp">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <%--                <li class="nav-item">--%>
+                <%--                    <a class="nav-link" href="#">Link</a>--%>
+                <%--                </li>--%>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="employee" role="button" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        Nhân viên
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="employee-create">Thêm mới</a>
+                        <a class="dropdown-item" href="employee-list">Danh sách</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="customer" role="button" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        Khách hàng
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="customer-create">Thêm mới</a>
+                        <a class="dropdown-item" href="customer-list">Danh sách</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="service" role="button" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        Dịch vụ
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="service-create">Thêm mới</a>
+                        <%--                        <a class="dropdown-item" href="#">Danh sách</a>--%>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="contract" role="button" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        Hợp đồng
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="contract-create">Thêm mới</a>
+                        <%--                        <a class="dropdown-item" href="#">Danh sách</a>--%>
+                    </div>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
+                       name="search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+    <div class="row">
+        <!-- Left navigation -->
+        <div class="col-sm-2">
+            <ul class="nav nav-pills flex-column">
+                <li class="nav-item">
+                    <a class="nav-link" href="employee-list">Danh sách nhân viên</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="customer-list">Danh sách khách hàng</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contract-create">Tạo hợp đồng mới</a>
+                </li>
+            </ul>
+            <hr class="d-sm-none">
+        </div>
+        <%--        Content--%>
+        <div class="col-sm-10 d-flex justify-content-center">
+            <form method="post" action="${urlPattern}" class="col-sm-6">
+                <h1 class="text-center">Thông tin khách hàng</h1>
+                <br>
+                <table class="table table-striped">
+
+                    <tr class="form-group">
+                        <td>Hạng khách: </td>
+                        <td>
+                            <select name="customerType" class="form-control">
+                                <c:forEach var="customerType" items="${customerTypeList}">
+                                    <c:choose>
+                                        <c:when test="${customerType.id == customer.customerTypeId}">
+                                            <option value="${customerType.id}" selected>${customerType.name}</option>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <option value="${customerType.id}">${customerType.name}</option>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </c:forEach>
+                            </select>
+                        </td>
+                    </tr>
+                    <td>Tên khách:</td>
+                    <td><input class="form-control" type="text" name="name" value="${customer.name}" required></td>
+                    </tr>
+                    <tr class="form-group">
+                        <td>Ngày sinh:</td>
+                        <td><input class="form-control" type="date" name="birthday" value="${customer.birthday}" required></td>
+                    </tr>
+                    <tr class="form-group">
+                        <td>Giới tính: </td>
+                        <td>
+                            <select name="gender" class="form-control">
+                                <c:forEach var="gender" items="${genderList}">
+                                    <c:choose>
+                                        <c:when test="${customer.gender == gender}">
+                                            <option selected>${gender}</option>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <option>${gender}</option>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </c:forEach>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr class="form-group">
+                        <td>Số CMND: </td>
+                        <td><input class="form-control" type="text" name="idCard" value="${customer.idCard}" required></td>
+                    </tr>
+                    <c:if test="${idCardFlag != null}">
+                        <tr>
+                            <td></td>
+                            <td style="color: red">${idCardFlag}</td>
+                        </tr>
+                    </c:if>
+                    <tr class="form-group">
+                        <td>Số điện thoại:</td>
+                        <td><input class="form-control" type="text" name="phone" value="${customer.phone}" required></td>
+                    </tr>
+                    <c:if test="${phoneFlag != null}">
+                        <tr>
+                            <td></td>
+                            <td style="color: red">${phoneFlag}</td>
+                        </tr>
+                    </c:if>
+                    <tr class="form-group">
+                        <td>Email:</td>
+                        <td><input class="form-control" type="email" name="email" value="${customer.email}" required></td>
+                    </tr>
+                    <c:if test="${emailFlag != null}">
+                        <tr>
+                            <td></td>
+                            <td style="color: red">${emailFlag}</td>
+                        </tr>
+                    </c:if>
+                    <tr class="form-group">
+                        <td>Địa chỉ:</td>
+                        <td><input class="form-control" type="text" name="address" value="${customer.address}" required></td>
+                    </tr>
+                    <tr class="form-group">
+                        <td></td>
+                        <td><input type="submit" value="Submit" class="btn btn-primary">
+                            <input type="reset" value="Reset" class="btn btn-secondary">
+                        </td>
+                    </tr>
+                </table>
+                <input type="text" name="id" value="${customer.id}" hidden>
+            </form>
+        </div>
+    </div>
+    <div class="jumbotron text-center" style="margin-bottom:0">
+        <p>Tạo bởi Phạm Quốc Đôn - A0720i1</p>
+    </div>
+</div>
+</body>
+</html>
+
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+<head>
+    <title>Furama-Customer</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap-4.6.0/dist/css/bootstrap.css">
+    <script src="${pageContext.request.contextPath}/css/bootstrap-4.6.0/dist/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+<body>
+<div class="container">
+    <div>
+
+    </div>
+</div>
+</body>
+</html>

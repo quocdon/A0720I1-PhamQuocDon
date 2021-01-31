@@ -1,0 +1,9 @@
+body{
+    min-height: 100vh;
+}
+.banner{
+    background-image: url("/img/bannerFurama.jpg");
+    background-repeat: no-repeat;
+    width: 100%;
+    background-position: center;
+}
