@@ -44,8 +44,8 @@ public class CustomerListServlet extends HttpServlet {
             customerDTOList.add(customerDTO);
         }
         HttpSession session = request.getSession();
-        String username = (String) session.getAttribute("username");
-        request.setAttribute("username", username);
+        String signInUser = (String) session.getAttribute("signInUser");
+        request.setAttribute("signInUser", signInUser);
         request.setAttribute("customerList", customerDTOList);
         request.getRequestDispatcher("jsp/customer/customerList.jsp").forward(request, response);
     }

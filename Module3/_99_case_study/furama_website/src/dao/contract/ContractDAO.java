@@ -10,6 +10,6 @@ public interface ContractDAO {
     List<Contract> selectAll() throws SQLException;
     Contract selectServiceById(String id) throws SQLException;
     void insertContract(Contract contract) throws SQLException;
-    boolean updateContract(Contract contract);
+    boolean updateContract(Contract contract) throws SQLException;
     boolean deleteContract(int id);
 }

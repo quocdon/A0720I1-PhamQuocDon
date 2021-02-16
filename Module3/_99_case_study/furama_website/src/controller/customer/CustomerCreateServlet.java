@@ -80,8 +80,8 @@ public class CustomerCreateServlet extends HttpServlet {
         String[] genderList = {"Nam", "Nữ", "Khác"};
         String urlPattern = "customer-create";
         HttpSession session = request.getSession();
-        String username = (String) session.getAttribute("username");
-        request.setAttribute("username", username);
+        String signInUser = (String) session.getAttribute("signInUser");
+        request.setAttribute("signInUser", signInUser);
         request.setAttribute("genderList", genderList);
         request.setAttribute("customerTypeList", customerTypeList);
         request.setAttribute("urlPattern", urlPattern);

@@ -19,7 +19,7 @@ public class LoginServlet extends HttpServlet {
         String password = request.getParameter("password");
         HttpSession session = request.getSession();
         if (userService.checkUser(username, password)){
-            session.setAttribute("username", username);
+            session.setAttribute("signInUser", username);
             request.getRequestDispatcher("index.jsp").forward(request, response);
             return;
         }

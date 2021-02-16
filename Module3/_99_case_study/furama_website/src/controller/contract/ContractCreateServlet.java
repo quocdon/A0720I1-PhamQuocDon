@@ -63,15 +63,20 @@ public class ContractCreateServlet extends HttpServlet {
         Period period = Period.between(localStartDate, localEndDate);
         int stayPeriod = period.getDays();
         double amount = stayPeriod*serviceService.getById(serviceId).getCost();
+        Contract contract = new Contract(contractId, startDate, endDate, deposit, amount, employeeId, customerId, serviceId);
+        contractService.save(contract);
         List<AttachService> attachServiceList = attachServiceService.findAll();
         for (AttachService attachService : attachServiceList){
             int quantity = Integer.parseInt(request.getParameter(attachService.getName()));
             amount += quantity*attachService.getCost();
-            ContractDetail contractDetail = new ContractDetail(contractId, attachService.getId(),quantity);
-            contractDetailService.save(contractDetail);
+            if (quantity > 0){
+                ContractDetail contractDetail = new ContractDetail(contractId, attachService.getId(),quantity);
+                contractDetailService.save(contractDetail);
+            }
         }
-        Contract contract = new Contract(contractId, startDate, endDate, deposit, amount, employeeId, customerId, serviceId);
-        contractService.save(contract);
+        contract.setAmount(amount);
+        contractService.update(contract);
+
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -80,8 +85,8 @@ public class ContractCreateServlet extends HttpServlet {
         List<Service>  serviceList = serviceService.findAll();
         List<AttachService> attachServiceList = attachServiceService.findAll();
         HttpSession session = request.getSession();
-        String username = (String) session.getAttribute("username");
-        request.setAttribute("username", username);
+        String signInUser = (String) session.getAttribute("signInUser");
+        request.setAttribute("signInUser", signInUser);
         request.setAttribute("employeeList", employeeList);
         request.setAttribute("customerList", customerList);
         request.setAttribute("serviceList", serviceList);

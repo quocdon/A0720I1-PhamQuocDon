@@ -24,24 +24,26 @@ public class EmployeeDTOServiceImpl implements EmployeeDTOService {
     public List<EmployeeDTO> findAll() {
         List<Employee> employeeList = employeeService.findAll();
         List<EmployeeDTO> employeeDTOList = new ArrayList<>();
-        for (Employee employee : employeeList){
-            EmployeeDTO employeeDTO = new EmployeeDTO();
-            employeeDTO.setId(employee.getId());
-            employeeDTO.setName(employee.getName());
-            employeeDTO.setBirthday(employee.getBirthday());
-            employeeDTO.setIdCard(employee.getIdCard());
-            employeeDTO.setSalary(employee.getSalary());
-            employeeDTO.setPhone(employee.getPhone());
-            employeeDTO.setEmail(employee.getEmail());
-            employeeDTO.setAddress(employee.getAddress());
-            employeeDTO.setPositionId(employee.getPositionId());
-            employeeDTO.setPositionName(positionService.getPositionById(employee.getPositionId()).getName());
-            employeeDTO.setEducationDegreeId(employee.getEducationDegreeId());
-            employeeDTO.setEducationDegreeName(educationDegreeService.getEducationDegreeById(employee.getEducationDegreeId()).getName());
-            employeeDTO.setDepartmentId(employee.getDepartmentId());
-            employeeDTO.setDepartmentName(departmentService.getDepartmentById(employee.getDepartmentId()).getName());
-            employeeDTO.setUsername(employee.getUsername());
-            employeeDTOList.add(employeeDTO);
+        if (employeeList.size() > 0){
+            for (Employee employee : employeeList){
+                EmployeeDTO employeeDTO = new EmployeeDTO();
+                employeeDTO.setId(employee.getId());
+                employeeDTO.setName(employee.getName());
+                employeeDTO.setBirthday(employee.getBirthday());
+                employeeDTO.setIdCard(employee.getIdCard());
+                employeeDTO.setSalary(employee.getSalary());
+                employeeDTO.setPhone(employee.getPhone());
+                employeeDTO.setEmail(employee.getEmail());
+                employeeDTO.setAddress(employee.getAddress());
+                employeeDTO.setPositionId(employee.getPositionId());
+                employeeDTO.setPositionName(positionService.getPositionById(employee.getPositionId()).getName());
+                employeeDTO.setEducationDegreeId(employee.getEducationDegreeId());
+                employeeDTO.setEducationDegreeName(educationDegreeService.getEducationDegreeById(employee.getEducationDegreeId()).getName());
+                employeeDTO.setDepartmentId(employee.getDepartmentId());
+                employeeDTO.setDepartmentName(departmentService.getDepartmentById(employee.getDepartmentId()).getName());
+                employeeDTO.setUsername(employee.getUsername());
+                employeeDTOList.add(employeeDTO);
+            }
         }
         return employeeDTOList;
     }
@@ -68,4 +70,16 @@ public class EmployeeDTOServiceImpl implements EmployeeDTOService {
         }
         return result;
     }
+
+    @Override
+    public List<EmployeeDTO> selectEmployeePage(int page, int rowsPerPage, List<EmployeeDTO> employeeDTOList) {
+        List<EmployeeDTO> employeePage = new ArrayList<>();
+        int i = (page-1)*rowsPerPage;
+        while (i < page * rowsPerPage && i < employeeDTOList.size()){
+            employeePage.add(employeeDTOList.get(i));
+            i++;
+        }
+        return employeePage;
+    }
+
 }

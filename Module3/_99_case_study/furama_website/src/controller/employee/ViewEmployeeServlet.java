@@ -23,8 +23,8 @@ public class ViewEmployeeServlet extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("id"));
         EmployeeDTO employeeDTO = employeeDTOService.getById(id);
         HttpSession session = request.getSession();
-        String username = (String) session.getAttribute("username");
-        request.setAttribute("username", username);
+        String signInUser = (String) session.getAttribute("signInUser");
+        request.setAttribute("signInUser", signInUser);
         request.setAttribute("employee", employeeDTO);
         request.getRequestDispatcher("jsp/employee/employeeView.jsp").forward(request, response);
     }

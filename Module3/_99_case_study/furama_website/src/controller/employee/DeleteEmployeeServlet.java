@@ -26,6 +26,6 @@ public class DeleteEmployeeServlet extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("id"));
         Employee employee = employeeService.getById(id);
         userService.delete(employee.getUsername());
-        response.sendRedirect("employee-list");
+        response.sendRedirect("employee-list?page=1");
     }
 }

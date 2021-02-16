@@ -12,16 +12,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EducationDegreeDAOImpl implements EducationDegreeDAO {
-    private static final String SELECT_ALL = "Select * from education_degree";
-    private static final String SELECT_BY_ID = "Select * from education_degree where education_degree_id = ?";
+    private static final String SELECT_ALL_EDUCATION = "select * from education_degree";
+    private static final String SELECT_EDUCATION_BY_ID = "select * from education_degree where education_degree_id = ?";
 
     @Override
     public List<EducationDegree> selectAll() throws SQLException {
         List<EducationDegree> educationDegreeList = new ArrayList<>();
         Connection connection = DBConnection.getConnection();
-        PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL);
+        PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_EDUCATION);
         ResultSet resultSet = preparedStatement.executeQuery();
-        while (resultSet.next()){
+        while (resultSet.next()) {
             int id = resultSet.getInt("education_degree_id");
             String name = resultSet.getString("education_degree_name");
             EducationDegree educationDegree = new EducationDegree(id, name);
@@ -33,12 +33,13 @@ public class EducationDegreeDAOImpl implements EducationDegreeDAO {
     @Override
     public EducationDegree selectEducationDegreeById(int id) throws SQLException {
         Connection connection = DBConnection.getConnection();
-        PreparedStatement preparedStatement = connection.prepareStatement(SELECT_BY_ID);
-        preparedStatement.setInt(1, id);
-        ResultSet resultSet = preparedStatement.executeQuery();
-        if (resultSet.next()){
-            String name = resultSet.getString("education_degree_name");
-            return new EducationDegree(id, name);
+        List<EducationDegree> educationDegreeList = this.selectAll();
+        if (educationDegreeList.size() > 0){
+            for (EducationDegree educationDegree : educationDegreeList){
+                if (educationDegree.getId() == id){
+                    return educationDegree;
+                }
+            }
         }
         return null;
     }

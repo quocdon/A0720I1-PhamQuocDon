@@ -41,8 +41,8 @@ public class CreateServiceServlet extends HttpServlet {
         List<RentType> rentTypeList = rentTypeService.findAll();
         List<ServiceType> serviceTypeList = serviceTypeService.findAll();
         HttpSession session = request.getSession();
-        String username = (String) session.getAttribute("username");
-        request.setAttribute("username", username);
+        String signInUser = (String) session.getAttribute("signInUser");
+        request.setAttribute("signInUser", signInUser);
         request.setAttribute("rentTypeList", rentTypeList);
         request.setAttribute("serviceTypeList", serviceTypeList);
         request.getRequestDispatcher("jsp/service/serviceCreate.jsp").forward(request, response);

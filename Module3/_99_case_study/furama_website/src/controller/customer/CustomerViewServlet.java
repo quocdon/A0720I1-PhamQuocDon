@@ -29,8 +29,8 @@ public class CustomerViewServlet extends HttpServlet {
         Customer customer = customerService.getById(id);
         CustomerDTO customerDTO = new CustomerDTO(customer.getId(), customer.getCustomerTypeId(), customerTypeService.getCustomerTypeById(customer.getCustomerTypeId()).getName(), customer.getName(), customer.getBirthday(), customer.getGender(), customer.getIdCard(), customer.getPhone(), customer.getEmail(), customer.getAddress());
         HttpSession session = request.getSession();
-        String username = (String) session.getAttribute("username");
-        request.setAttribute("username", username);
+        String signInUser = (String) session.getAttribute("signInUser");
+        request.setAttribute("signInUser", signInUser);
         request.setAttribute("customer", customerDTO);
         request.getRequestDispatcher("jsp/customer/customerView.jsp").forward(request, response);
     }

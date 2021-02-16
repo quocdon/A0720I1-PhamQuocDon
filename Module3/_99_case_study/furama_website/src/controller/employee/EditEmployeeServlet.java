@@ -1,9 +1,7 @@
 package controller.employee;
 
-import model.Department;
-import model.EducationDegree;
-import model.Employee;
-import model.Position;
+import common.Validate;
+import model.*;
 import model.dto.EmployeeDTO;
 import service.employee.DepartmentService;
 import service.employee.EducationDegreeService;
@@ -37,29 +35,76 @@ public class EditEmployeeServlet extends HttpServlet {
     private EmployeeService employeeService = new EmployeeServiceImpl();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setCharacterEncoding("UTF-8");
+        Validate emailValidate = new Validate("^[a-zA-Z][\\w-]+@([\\w]+\\.[\\w]+|[\\w]+\\.[\\w]{2,}\\.[\\w]{2,})$");
+        Validate phoneValidate = new Validate("^09[0-1]\\d{7}$|^\\(84\\)\\+9[0-1]\\d{7}$");
+        Validate idCardValidate = new Validate("^\\d{9}$|^\\d{12}$");
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        boolean flag = true;
+        Employee employee = new Employee();
         String username = request.getParameter("username");
+        employee.setUsername(username);
         int id = Integer.parseInt(request.getParameter("id"));
+        employee.setId(id);
         String name = request.getParameter("name");
+        employee.setName(name);
         String birthdayInput = request.getParameter("birthday");
         Date birthday = null;
         try {
             birthday = dateFormat.parse(birthdayInput);
         } catch (ParseException e) {
-            e.printStackTrace();
+            flag = false;
         }
+        employee.setBirthday(birthday);
         String idCard = request.getParameter("idCard");
-        double salary = Double.parseDouble(request.getParameter("salary"));
+        if (idCardValidate.checkRegex(idCard)) {
+            employee.setIdCard(idCard);
+        } else {
+            flag = false;
+            request.setAttribute("idCardFlag", "CMND có 9 hoặc 12 số");
+        }
+        try {
+            double salary = Double.parseDouble(request.getParameter("salary"));
+            if (salary > 0) {
+                employee.setSalary(salary);
+            } else {
+                flag = false;
+                request.setAttribute("salaryFlag", "Lương phải là số dương");
+            }
+        } catch (Exception e) {
+            flag = false;
+            request.setAttribute("salaryFlag", "Lương phải là số dương");
+        }
         String phone = request.getParameter("phone");
+        if (phoneValidate.checkRegex(phone)) {
+            employee.setPhone(phone);
+        } else {
+            flag = false;
+            request.setAttribute("phoneFlag", "SĐT theo định dạng 090xxxxxxx-091xxxxxxx-84+90xxxxxxx-(84)91xxxxxxx");
+        }
         String email = request.getParameter("email");
+        if (emailValidate.checkRegex(email)) {
+            employee.setEmail(email);
+        } else {
+            flag = false;
+            request.setAttribute("emailFlag", "Email đúng định dạng sample@codegym.com");
+        }
         String address = request.getParameter("address");
+        employee.setAddress(address);
         int position = Integer.parseInt(request.getParameter("position"));
+        employee.setPositionId(position);
         int educationDegree = Integer.parseInt(request.getParameter("educationDegree"));
+        employee.setEducationDegreeId(educationDegree);
         int department = Integer.parseInt(request.getParameter("department"));
-        Employee employee = new Employee(id, name, birthday, idCard, salary, phone, email, address, position, educationDegree, department, username);
-        employeeService.update(employee);
-        response.sendRedirect("employee-list");
+        employee.setDepartmentId(department);
+        if (flag) {
+            employeeService.update(employee);
+            response.sendRedirect("employee-list");
+        } else {
+            request.setAttribute("username", username);
+            request.setAttribute("id", id);
+            this.doGet(request, response);
+        }
+
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -69,8 +114,8 @@ public class EditEmployeeServlet extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("id"));
         EmployeeDTO employeeDTO = employeeDTOService.getById(id);
         HttpSession session = request.getSession();
-        String username = (String) session.getAttribute("username");
-        request.setAttribute("username", username);
+        String signInUser = (String) session.getAttribute("signInUser");
+        request.setAttribute("signInUser", signInUser);
         request.setAttribute("positionList", positionList);
         request.setAttribute("educationDegreeList", educationDegreeList);
         request.setAttribute("departmentList", departmentList);

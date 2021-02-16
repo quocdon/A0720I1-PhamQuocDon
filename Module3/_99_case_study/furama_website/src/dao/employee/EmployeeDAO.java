@@ -12,4 +12,5 @@ public interface EmployeeDAO {
     boolean deleteEmployee(int id) throws SQLException;
     boolean updateEmployee(Employee employee) throws SQLException;
     List<Employee> selectEmployeeByName(String name) throws SQLException;
+    List<Employee> selectEmployeePage(int page, int rowsOfPage, List<Employee> employeeList);
 }

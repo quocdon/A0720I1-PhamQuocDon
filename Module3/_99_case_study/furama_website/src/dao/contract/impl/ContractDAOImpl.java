@@ -19,6 +19,7 @@ public class ContractDAOImpl implements ContractDAO {
     private static final String SELECT_ALL = "Select * from contract";
     private static final String SELECT_BY_ID = "Select * from contract where contract_id = ?";
     private static final String INSERT_CONTRACT = "Insert into contract(contract_id, contract_start_date, contract_end_date, contract_deposit, contract_amount, employee_id, customer_id, service_id) values (?,?,?,?,?,?,?,?);";
+    private static final String UPDATE_CONTRACT = "update contract set contract_start_date = ?, contract_end_date = ?, contract_deposit = ?, contract_amount = ?, employee_id = ?, customer_id = ?, service_id = ? where contract_id = ?";
 
     @Override
     public List<Contract> selectAll() throws SQLException {
@@ -78,8 +79,22 @@ public class ContractDAOImpl implements ContractDAO {
     }
 
     @Override
-    public boolean updateContract(Contract contract) {
-        return false;
+    public boolean updateContract(Contract contract) throws SQLException {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String startDate = simpleDateFormat.format(contract.getStartDate());
+        String endDate = simpleDateFormat.format(contract.getEndDate());
+        Connection connection = DBConnection.getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_CONTRACT);
+
+        preparedStatement.setString(1, startDate);
+        preparedStatement.setString(2, endDate);
+        preparedStatement.setDouble(3, contract.getDeposit());
+        preparedStatement.setDouble(4, contract.getAmount());
+        preparedStatement.setInt(5, contract.getEmployeeId());
+        preparedStatement.setString(6, contract.getCustomerId());
+        preparedStatement.setString(7, contract.getServiceId());
+        preparedStatement.setString(8, contract.getId());
+        return preparedStatement.executeUpdate() > 0;
     }
 
     @Override

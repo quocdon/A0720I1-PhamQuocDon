@@ -53,6 +53,11 @@ public class ContractServiceImpl implements ContractService {
 
     @Override
     public boolean update(Contract contract) {
+        try {
+            return contractDAO.updateContract(contract);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return false;
     }
 

@@ -11,8 +11,8 @@ import java.util.Date;
 import java.util.List;
 
 public class EmployeeDAOImpl implements EmployeeDAO {
-    private static final String SELECT_ALL = "Select * from employee";
-    private static final String SELECT_BY_ID = "Select * from employee where employee_id = ?";
+    private static final String SELECT_ALL_EMPLOYEE = "select * from employee";
+    private static final String SELECT_EMPLOYEE_BY_ID = "select * from employee where employee_id = ?";
     private static final String INSERT_EMPLOYEE = "insert into employee(employee_name, employee_birthday, employee_idcard, employee_salary, employee_phone, employee_email, employee_address, position_id, education_degree_id, department_id, username) values(?,?,?,?,?,?,?,?,?,?,?)";
     private static final String DELETE_EMPLOYEE = "delete from employee where employee_id = ?";
     private static final String UPDATE_EMPLOYEE = "update employee set employee_name = ?, employee_birthday = ?, employee_idcard = ?, employee_salary = ?, employee_phone = ?, employee_email = ?, employee_address = ?, position_id = ?, education_degree_id = ?, department_id = ? where employee_id = ?";
@@ -20,7 +20,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     public List<Employee> selectAll() throws SQLException {
         List<Employee> employeeList = new ArrayList<>();
         Connection connection = DBConnection.getConnection();
-        PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL);
+        PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_EMPLOYEE);
         ResultSet resultSet = preparedStatement.executeQuery();
         while (resultSet.next()){
             int id = resultSet.getInt("employee_id");
@@ -30,7 +30,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
             double salary = resultSet.getDouble("employee_salary");
             String phone = resultSet.getString("employee_phone");
             String email = resultSet.getString("employee_email");
-            String address = resultSet.getString("employee_address");
+            String address = resultSet.getNString("employee_address");
             int positionId = resultSet.getInt("position_id");
             int educationDegreeId = resultSet.getInt("education_degree_id");
             int departmentId = resultSet.getInt("department_id");
@@ -44,7 +44,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     @Override
     public Employee selectEmployeeById(int id) throws SQLException {
         Connection connection = DBConnection.getConnection();
-        PreparedStatement preparedStatement = connection.prepareStatement(SELECT_BY_ID);
+        PreparedStatement preparedStatement = connection.prepareStatement(SELECT_EMPLOYEE_BY_ID);
         preparedStatement.setInt(1, id);
         ResultSet resultSet = preparedStatement.executeQuery();
         if (resultSet.next()){
@@ -123,5 +123,16 @@ public class EmployeeDAOImpl implements EmployeeDAO {
             }
         }
         return result;
+    }
+
+    @Override
+    public List<Employee> selectEmployeePage(int page, int rowsPerPage, List<Employee> employeeList) {
+        List<Employee> employeePage = new ArrayList<>();
+        int i = (page-1)*rowsPerPage;
+        while (i < page * 10 || i < employeeList.size()){
+            employeePage.add(employeeList.get(i));
+            i++;
+        }
+        return employeePage;
     }
 }
