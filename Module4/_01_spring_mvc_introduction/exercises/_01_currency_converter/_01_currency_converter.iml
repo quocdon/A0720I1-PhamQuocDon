@@ -22,7 +22,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" exported="" name="Spring-5.2.3.RELEASE" level="project" />
-    <orderEntry type="library" exported="" name="Spring MVC-5.2.3.RELEASE" level="project" />
+    <orderEntry type="library" name="Spring-5.2.3.RELEASE" level="project" />
+    <orderEntry type="library" name="Spring MVC-5.2.3.RELEASE" level="project" />
   </component>
 </module>

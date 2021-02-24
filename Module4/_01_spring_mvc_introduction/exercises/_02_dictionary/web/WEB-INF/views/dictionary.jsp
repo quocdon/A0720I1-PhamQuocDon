@@ -13,9 +13,9 @@
     <title>Dictionary</title>
 </head>
 <body>
-<form action="/search", method="get">
+<form action="/search", method="post">
     <label>English</label>
-    <input type="text" name="word">
+    <input type="text" name="word" required>
     <input type="submit" value="search">
 </form>
 <hr>
