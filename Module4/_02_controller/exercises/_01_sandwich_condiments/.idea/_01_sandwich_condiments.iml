@@ -5,12 +5,4 @@
       <configuration />
     </facet>
   </component>
-  <component name="NewModuleRootManager" inherit-compiler-output="true">
-    <exclude-output />
-    <content url="file://$MODULE_DIR$" />
-    <orderEntry type="inheritedJdk" />
-    <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" exported="" name="Spring-5.2.3.RELEASE" level="project" />
-    <orderEntry type="library" exported="" name="Spring MVC-5.2.3.RELEASE" level="project" />
-  </component>
 </module>

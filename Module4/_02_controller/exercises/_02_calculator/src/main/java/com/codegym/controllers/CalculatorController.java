@@ -1,6 +1,8 @@
-package controllers;
+package com.codegym.controllers;
 
-import models.Calculator;
+
+import com.codegym.services.CalculatorService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -10,6 +12,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class CalculatorController {
+    @Autowired
+    CalculatorService calculatorService;
+
     @GetMapping("/")
     public String getHompage() {
         return "index";
@@ -17,17 +22,20 @@ public class CalculatorController {
 
     @PostMapping("/result")
     public String getResult(@RequestParam double number1, @RequestParam double number2, @RequestParam String operator, Model model) throws Exception {
-        Calculator calculator = new Calculator(number1, number2, operator);
-        if (number2 == 0 && operator.equals("Division")) {
-            model.addAttribute("error", "Divide by zero");
-            return "index";
-        } else {
-            model.addAttribute("calcuator", calculator);
-            return "result";
+        try {
+            double result = calculatorService.calculate(number1, number2, operator);
+            model.addAttribute("result", result);
+            model.addAttribute("number1", number1);
+            model.addAttribute("number2", number2);
+            model.addAttribute("operator", operator);
+        } catch (Exception e) {
+            model.addAttribute("error", e.getMessage());
         }
+        return "index";
     }
+
     @ExceptionHandler(Exception.class)
-    public String handleException(Model model){
+    public String handleException(Model model) {
         model.addAttribute("error", "Only input number");
         return "index";
     }
