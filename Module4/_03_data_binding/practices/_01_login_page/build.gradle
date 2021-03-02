@@ -1,0 +1,18 @@
+plugins {
+    id 'java'
+    id 'war'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // https://mvnrepository.com/artifact/org.springframework/spring-webmvc
+    implementation group: 'org.springframework', name: 'spring-webmvc', version: '5.3.4'
+}
