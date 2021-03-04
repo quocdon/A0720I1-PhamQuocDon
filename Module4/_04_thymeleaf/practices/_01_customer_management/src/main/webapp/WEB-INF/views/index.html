@@ -18,10 +18,16 @@
     </tr>
     </thead>
     <tbody>
-    <tr >
-
+    <tr th:each="row, rowStat : ${customers}">
+        <td th:text="${row.getName()}"></td>
+        <td th:text="${row.getEmail()}"></td>
+        <td th:text="${row.getAddress()}"></td>
+        <td><a href="@{/customer/{id}/edit(id=${row.getID()})}">Edit</a></td>
+        <td><a href="@{/customer/{id}/delete(id=${row.getID()})}">Delete</a></td>
+        <td><a href="@{/customer/{id}/view(id=${row.getID()})}">View</a></td>
     </tr>
     </tbody>
 </table>
+<footer th:replace="/layout::footer"></footer>
 </body>
 </html>
