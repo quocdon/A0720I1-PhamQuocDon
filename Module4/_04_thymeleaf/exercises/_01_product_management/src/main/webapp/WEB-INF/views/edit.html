@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout::head">
+</head>
+<body>
+<a class="btn btn-primary" th:href="@{/}">Back to list</a>
+<form action="#" th:action="@{/product/update}" th:object="${product}" method="post" novalidate="novalidate">
+    <table class="table table-bordered">
+        <tr>
+            <td><input hidden th:field="*{id}"></td>
+        </tr>
+        <tr>
+            <td>Name:</td>
+            <td><input type="text" th:field="*{name}" th:text="${product.getName()}"></td>
+        </tr>
+        <tr>
+            <td>Price:</td>
+            <td><input type="text" th:field="*{price}" th:text="${product.getPrice()}"></td>
+        </tr>
+        <tr>
+            <td>Manufacture:</td>
+            <td><input type="text" th:field="*{manufacture}" th:text="${product.getManufacture()}"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Save"></td>
+        </tr>
+    </table>
+</form>
+<footer th:replace="layout::footer"></footer>
+</body>
+</html>
