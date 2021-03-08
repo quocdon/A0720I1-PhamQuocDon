@@ -1,4 +1,6 @@
 package com.codegym.repository;
 
-public interface CommentRepository {
+import com.codegym.model.Comment;
+
+public interface CommentRepository extends Repository<Comment> {
 }

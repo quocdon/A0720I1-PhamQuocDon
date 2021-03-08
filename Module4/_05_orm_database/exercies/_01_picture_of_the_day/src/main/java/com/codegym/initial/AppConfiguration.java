@@ -1,4 +1,4 @@
-package com.codegym;
+package com.codegym.initial;
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
@@ -15,8 +15,6 @@ import org.thymeleaf.spring4.view.ThymeleafViewResolver;
 import org.thymeleaf.templatemode.TemplateMode;
 
 
-@EnableWebMvc
-@ComponentScan("com.codegym")
 @Configuration
 public class AppConfiguration implements ApplicationContextAware {
     @Bean

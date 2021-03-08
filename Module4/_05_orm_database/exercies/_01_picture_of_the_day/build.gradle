@@ -1,0 +1,33 @@
+plugins {
+    id 'java'
+    id 'war'
+}
+
+group 'com.codegym'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'javax.servlet', name: 'javax.servlet-api', version: '3.1.0'
+    compile group: 'org.springframework', name: 'spring-core', version: '4.3.17.RELEASE'
+    compile group: 'org.springframework', name: 'spring-context', version: '4.3.17.RELEASE'
+    compile group: 'org.springframework', name: 'spring-beans', version: '4.3.17.RELEASE'
+    compile group: 'org.springframework', name: 'spring-web', version: '4.3.17.RELEASE'
+
+    compile group: 'org.springframework', name: 'spring-webmvc', version: '4.3.17.RELEASE'
+    compile group: 'org.thymeleaf', name: 'thymeleaf-spring4', version: '3.0.9.RELEASE'
+    compile group: 'nz.net.ultraq.thymeleaf', name: 'thymeleaf-layout-dialect', version: '1.2'
+
+    compile group: 'org.hibernate', name: 'hibernate-core', version: '5.4.3.Final'
+    compile group: 'org.hibernate', name: 'hibernate-entitymanager', version: '5.4.10.Final'
+
+    compile	group:	'org.springframework.data' ,name: 'spring-data-jpa',version: '2.0.7.RELEASE'
+    compile	group:	'jstl',	name: 'jstl', version: '1.2'
+    compile	group:	'mysql',name: 'mysql-connector-java', version:	'8.0.11'
+    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.2.0'
+}
