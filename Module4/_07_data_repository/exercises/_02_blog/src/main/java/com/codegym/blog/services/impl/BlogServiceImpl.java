@@ -20,16 +20,17 @@ public class BlogServiceImpl implements BlogService {
 
     @Override
     public Blog findById(int id) {
-        return null;
+        return blogRepository.findById(id).orElse(null);
     }
 
     @Override
-    public void save(Blog blog) {
-
+    public Blog save(Blog blog) {
+        return blogRepository.save(blog);
     }
 
     @Override
     public void delete(int id) {
-
+        blogRepository.delete(blogRepository.getOne(id));
     }
+
 }

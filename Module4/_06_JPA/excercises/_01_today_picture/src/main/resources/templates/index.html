@@ -9,13 +9,14 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
     <style>
         #img-of-the-day{
-            width: 300px;
+            width: 100%;
         }
     </style>
 </head>
 <body>
 <div class="container">
-    <img id="img-of-the-day">
+<!--    <img id="img-of-the-day">-->
+    <img style="width: 180px" src="https://photo-cms-kienthuc.zadn.vn/zoomh/800/uploaded/ctvcongdongtre/2020_04_15/4/hot-girl-dong-phuc-khoe-anh-ao-dai-khien-trieu-trai-tim-phai-xao-xuyen.jpg">
     <br>
     <br>
     <form action="#" th:action="@{/save}" method="post" novalidate="novalidate" th:object="${comment}">

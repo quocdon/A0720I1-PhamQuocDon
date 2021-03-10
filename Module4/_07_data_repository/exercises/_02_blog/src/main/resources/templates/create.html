@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout::head">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="container">
+<!--    Menu-->
+    <div th:replace="layout::menu">
+    </div>
+<!--    Categories-->
+
+
+<!--    Content-->
+    <div>
+        <form th:action="@{/save}" th:method="post" th:object="${blog}" novalidate="novalidate">
+            <div>
+                <select th:field="*{category}">
+                    <option th:each="category : ${categories}" th:value="${category.id}"><label th:text="${category.getName()}"></label></option>
+                </select>
+            </div>
+            <div>
+                <h5>Title:</h5>
+                <input type="text" th:field="*{title}"/>
+            </div>
+            <div>
+                <h5>Content</h5>
+                <label>
+                    <textarea th:field="*{content}" rows="10" cols="150"></textarea>
+                </label>
+            </div>
+            <div>
+            </div>
+            <input type="submit" value="submit">
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

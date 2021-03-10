@@ -9,6 +9,6 @@ import org.springframework.stereotype.Service;
 public interface BlogService {
     Page<Blog> findAll(Pageable pageable);
     Blog findById(int id);
-    void save(Blog blog);
+    Blog save(Blog blog);
     void delete(int id);
 }

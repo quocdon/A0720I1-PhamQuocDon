@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout::head">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="container">
+    <!--    Menu-->
+    <div th:replace="layout::menu">
+    </div>
+    <!--    Categories-->
+
+
+    <!--    Content-->
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <td>No</td>
+                    <td>Blog</td>
+                    <td>View</td>
+                    <td>Delete</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="blog, blogStat : ${blogs}">
+                    <td th:text="${blogStat.count}"></td>
+                    <td>
+                        <h5 th:text="${blog.title}"></h5>
+                        <p th:text="${#strings.abbreviate(blog.content,5)}"></p>
+                    </td>
+                    <td><a th:href="@{/{id}/view(id=${blog.id})}">View</a></td>
+                    <td><a th:href="@{/{id}/delete(id=${blog.id})}">Delete</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <a th:href="@{'/'(page=${blogs.number - 1})}" th:if="${blogs.hasPrevious()}">Previous</a>
+        <span th:text="${blogs.number + 1}"></span>/<span th:text="${blogs.totalPages}"></span>
+        <a th:href="@{'/'(page=${blogs.number + 1})}" th:if="${blogs.hasNext()}">Next</a>
+    </div>
+</div>
+</body>
+
+
+</html>
