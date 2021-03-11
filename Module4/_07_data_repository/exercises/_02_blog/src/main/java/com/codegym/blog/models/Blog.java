@@ -9,6 +9,8 @@ public class Blog {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String title;
+    @Lob
+    @Basic(fetch = FetchType.LAZY)
     private String content;
     @ManyToOne
     private Category category;

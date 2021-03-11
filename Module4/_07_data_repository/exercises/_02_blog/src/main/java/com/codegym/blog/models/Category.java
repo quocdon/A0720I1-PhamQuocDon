@@ -1,5 +1,7 @@
 package com.codegym.blog.models;
 
+import org.springframework.data.domain.Pageable;
+
 import javax.persistence.*;
 import java.util.List;
 

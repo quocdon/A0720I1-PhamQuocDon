@@ -5,34 +5,39 @@
     <title>Title</title>
 </head>
 <body>
-<div class="container">
+<div class="container mh-100">
 <!--    Menu-->
     <div th:replace="layout::menu">
     </div>
 <!--    Categories-->
 
-
 <!--    Content-->
-    <div>
+    <div class="content-div">
         <form th:action="@{/save}" th:method="post" th:object="${blog}" novalidate="novalidate">
-            <div>
-                <select th:field="*{category}">
-                    <option th:each="category : ${categories}" th:value="${category.id}"><label th:text="${category.getName()}"></label></option>
-                </select>
+            <div class="row">
+                <label class="form-label col-sm-2">Category:</label>
+                <label class="col-sm-3">
+                    <select class="form-control" th:field="*{category}">
+                        <option th:each="category : ${categories}" th:value="${category.id}" th:utext="${category.name}"></option>
+                    </select>
+                </label>
+            </div>
+            <div class="row">
+                <label class="form-label col-sm-2">Title:</label>
+                <label class="col-sm-10">
+                    <input class="form-control" type="text" th:field="*{title}">
+                </label>
             </div>
             <div>
-                <h5>Title:</h5>
-                <input type="text" th:field="*{title}"/>
-            </div>
-            <div>
-                <h5>Content</h5>
+                <label class="form-label">Content</label>
                 <label>
-                    <textarea th:field="*{content}" rows="10" cols="150"></textarea>
+                    <textarea class="form-control" th:field="*{content}" rows="10" cols="150"></textarea>
                 </label>
             </div>
             <div>
             </div>
-            <input type="submit" value="submit">
+            <input class="btn btn-outline-secondary" type="submit" value="Submit">
+            <input class="btn btn-outline-secondary" type="reset" value="Reset">
         </form>
     </div>
 </div>

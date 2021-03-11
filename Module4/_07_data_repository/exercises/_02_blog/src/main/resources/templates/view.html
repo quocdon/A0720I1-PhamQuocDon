@@ -5,7 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-<div class="container">
+<div class="container mh-100">
     <!--    Menu-->
     <div th:replace="layout::menu">
     </div>
@@ -13,12 +13,14 @@
 
 
     <!--    Content-->
-    <div>
+    <div class="content-div">
         <h4 th:text="${blog.title}"></h4>
         <p th:text="${blog.category.name}"></p>
         <p>Posted: <span th:text="${blog.createdTime}"></span></p>
-        <p th:text="${blog.content}"></p>
-        <a th:href="@{/}">Back to list</a>
+        <hr>
+        <pre th:utext="${blog.content}"></pre>
+
+        <a class="btn btn-outline-secondary" th:href="@{/category}">Back to list</a>
     </div>
 </div>
 </body>
