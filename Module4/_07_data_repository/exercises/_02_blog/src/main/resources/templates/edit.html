@@ -14,28 +14,31 @@
 
     <!--    Content-->
     <div class="content-div">
-        <form th:action="@{/save}" th:method="post" th:object="${blog}" novalidate="novalidate">
+        <form th:action="@{/save}" th:method="post" th:object="${blog}">
             <label>
                 <input type="text" th:field="*{id}" hidden>
+                <input type="text" th:field="*{createdTime}" hidden>
+
             </label>
             <div class="row">
                 <label class="form-label col-sm-2">Category:</label>
                 <label class="col-sm-3">
-                    <select class="form-control" th:field="*{category}">
-                        <option th:each="category : ${categories}" th:value="${category.id}" th:utext="${category.name}"></option>
+                    <select class="form-control" th:field="*{category}" required>
+                        <option th:each="category : ${categories}" th:value="${category.id}"
+                                th:utext="${category.name}"></option>
                     </select>
                 </label>
             </div>
             <div class="row">
                 <label class="form-label col-sm-2">Title:</label>
                 <label class="col-sm-10">
-                    <input class="form-control" type="text" th:field="*{title}">
+                    <input class="form-control" type="text" th:field="*{title}" required>
                 </label>
             </div>
             <div>
                 <label class="form-label">Content:</label>
                 <label>
-                    <textarea class="form-control" th:field="*{content}" rows="10" cols="150"></textarea>
+                    <textarea class="form-control" th:field="*{content}" rows="10" cols="150" required></textarea>
                 </label>
             </div>
             <div>

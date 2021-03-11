@@ -34,7 +34,9 @@ public class BlogController {
 
     @PostMapping("/save")
     public String save(@ModelAttribute Blog blog) {
-        blog.setCreatedTime(LocalDate.now());
+        if (blog.getId() == 0) {
+            blog.setCreatedTime(LocalDate.now());
+        }
         Blog lastBlog = blogService.save(blog);
         return "redirect:/" + lastBlog.getId() + "/view";
     }
@@ -43,26 +45,7 @@ public class BlogController {
     public ModelAndView view(@PathVariable int id) {
         return new ModelAndView("view", "blog", blogService.findById(id));
     }
-//    @GetMapping(value = "/")
-//    public ModelAndView list(@PageableDefault(size = 5) Pageable pageable) {
-//        ModelAndView model = new ModelAndView("list");
-//        model.addObject("blogs", blogService.findAll(pageable));
-//        model.addObject("categories", categoryService.findAll());
-//        model.addObject("categoryPath", "");
-//        return model;
-//    }
 
-    //    @GetMapping(value = "/")
-//    public ModelAndView sortedList(@RequestParam(defaultValue = "DESC") String sortDirection, @RequestParam(defaultValue = "createdTime") String sortField, @RequestParam(defaultValue = "0") int page) {
-//
-//        Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending() : Sort.by(sortField).descending();
-//        Pageable pageable = PageRequest.of(page, 5, sort);
-//        ModelAndView model = new ModelAndView("list");
-//        model.addObject("blogs", blogService.findAll(pageable));
-//        model.addObject("categories", categoryService.findAll());
-//        model.addObject("currentURI", "");
-//        return model;
-//    }
     @GetMapping(value = {"/", "/{sortDirection}"})
     public ModelAndView sortedList(@PathVariable(required = false) String sortDirection,
                                    @RequestParam(defaultValue = "0") int page) {
@@ -101,7 +84,7 @@ public class BlogController {
 
     @PostMapping("/search")
     public String search(@RequestParam(defaultValue = "") String search, @PageableDefault(size = 5) Pageable pageable, Model model) {
-        if (search.equals("")){
+        if (search.equals("")) {
             return "redirect:/";
         }
         Page<Blog> result = blogService.findBlogsByTitleContainsOrContentContains(search, search, pageable);
