@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Student</title>
+</head>
+<body>
+<h3>Create Student</h3>
+<form th:object="${student}" method="post" action="/create">
+    <p>Name: <input type="text" th:field="*{name}"></p>
+    <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color: red"></p>
+    <p>Batch:
+        <select th:field="*{batch}">
+            <option value="1">A07</option>
+            <option value="2">A09</option>
+        </select>
+    </p>
+    <input type="submit" value="Create">
+</form>
+</body>
+</html>
