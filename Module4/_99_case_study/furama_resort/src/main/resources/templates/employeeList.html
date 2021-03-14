@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout::head">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="container-fluid">
+    <div th:replace="layout::header">
+<!--        header-->
+    </div>
+    <div th:insert="layout::navbar">
+<!--        navbar-->
+    </div>
+    <div class="row">
+<!--        main-->
+        <div th:replace="layout::left-panel">
+<!--            left panel-->
+        </div>
+        <div class="col-sm-10">
+<!--            content-->
+            <table class="table table-stripe">
+                <thead>
+                    <tr>
+                        <td>ID</td>
+                        <td>Họ tên</td>
+                        <td>Ngày sinh</td>
+                        <td>Email</td>
+                        <td>Chức vụ</td>
+                        <td>Bộ phận</td>
+                        <td>Tài khoản</td>
+                        <td>Chi tiết</td>
+                        <td>Chỉnh sửa</td>
+                        <td>Xóa</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="employee : ${employees}">
+                        <td th:text="${employee.id}"></td>
+                        <td th:text="${employee.name}"></td>
+                        <td th:text="${employee.birthday}"></td>
+                        <td th:text="${employee.email}"></td>
+                        <td th:text="${employee.position.name}"></td>
+                        <td th:text="${employee.department.name}"></td>
+                        <td th:text="${employee.user.username}"></td>
+                        <td><a th:href="@{/employee/view/{id}(id=${employee.id})}">Xem</a></td>
+                        <td><a th:href="@{/employee/edit/{id}(id=${employee.id})}">Sửa</a></td>
+                        <td><a th:href="@{/employee/delete/{id}(id=${employee.id})}">Xóa</a></td>
+                    </tr>
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+    <div>
+<!--        footer-->
+    </div>
+</div>
+</body>
+</html>

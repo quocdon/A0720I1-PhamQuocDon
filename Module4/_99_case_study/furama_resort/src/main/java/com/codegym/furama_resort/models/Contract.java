@@ -1,15 +1,17 @@
 package com.codegym.furama_resort.models;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Set;
 
 @Entity
+@Table(name = "contract")
 public class Contract {
     @Id
     private String id;
-    private Date startDate;
-    private Date endDate;
+    private LocalDate startDate;
+    private LocalDate endDate;
     private double deposit;
     private double amount;
     @ManyToOne
@@ -24,8 +26,8 @@ public class Contract {
     @JoinColumn(name = "service_id", nullable = false)
     private Service service;
 
-    @OneToMany(mappedBy = "contract_detail")
-    private Set<ContractDetail> contractDetails;
+    @OneToMany(mappedBy = "contract")
+    Set<ContractDetail> contractDetails;
 
     public Contract() {
     }
@@ -38,19 +40,19 @@ public class Contract {
         this.id = id;
     }
 
-    public Date getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
     }
 
-    public Date getEndDate() {
+    public LocalDate getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
 
@@ -96,5 +98,9 @@ public class Contract {
 
     public Set<ContractDetail> getContractDetails() {
         return contractDetails;
+    }
+
+    public void setContractDetails(Set<ContractDetail> contractDetails) {
+        this.contractDetails = contractDetails;
     }
 }

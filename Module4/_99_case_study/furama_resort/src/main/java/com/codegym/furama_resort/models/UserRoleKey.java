@@ -6,8 +6,8 @@ import java.io.Serializable;
 
 @Embeddable
 public class UserRoleKey implements Serializable {
-    @Column(name = "user_id")
-    int userId;
+    @Column(name = "username")
+    String username;
 
     @Column(name = "role_id")
     int roleId;

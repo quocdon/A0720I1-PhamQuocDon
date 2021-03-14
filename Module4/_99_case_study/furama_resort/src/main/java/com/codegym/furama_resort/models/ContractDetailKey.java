@@ -3,9 +3,10 @@ package com.codegym.furama_resort.models;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.Embedded;
+import java.io.Serializable;
 
 @Embeddable
-public class ContractDetailKey {
+public class ContractDetailKey implements Serializable {
     @Column(name = "contract_id")
     private String contractId;
     @Column(name = "attach_service_id")

@@ -11,7 +11,7 @@ public class EducationDegree {
     private int id;
     private String name;
 
-    @OneToMany(mappedBy = "education_degree")
+    @OneToMany(mappedBy = "educationDegree")
     Set<Employee> employees;
 
     public EducationDegree() {

@@ -12,15 +12,10 @@ public class RentType {
     private String name;
     private double cost;
 
-    @OneToMany (mappedBy = "rent_type")
+    @OneToMany (mappedBy = "rentType")
     private Set<Service> services;
 
     public RentType() {
-    }
-
-    public RentType(int id, String name) {
-        this.id = id;
-        this.name = name;
     }
 
     public int getId() {

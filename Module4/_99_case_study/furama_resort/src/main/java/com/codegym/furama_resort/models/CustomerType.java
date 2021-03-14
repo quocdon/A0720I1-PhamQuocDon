@@ -11,7 +11,7 @@ public class CustomerType {
     private int id;
     private String name;
 
-    @OneToMany(mappedBy = "customer_type")
+    @OneToMany(mappedBy = "customerType")
     private Set<Customer> customers;
 
     public CustomerType() {

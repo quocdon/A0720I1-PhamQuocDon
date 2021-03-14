@@ -11,7 +11,7 @@ public class Position {
     private String name;
 
     @OneToMany(mappedBy = "position")
-    private Set<User> users;
+    private Set<Employee> employees;
 
     public Position() {
     }
@@ -32,8 +32,7 @@ public class Position {
         this.name = name;
     }
 
-    public Set<User> getUsers() {
-        return users;
+    public Set<Employee> getEmployees() {
+        return employees;
     }
-
 }

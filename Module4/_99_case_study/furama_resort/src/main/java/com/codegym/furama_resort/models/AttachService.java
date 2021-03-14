@@ -14,8 +14,8 @@ public class AttachService {
     private String unit;
     private String status;
 
-    @OneToMany(mappedBy = "attach_service")
-    private Set<ContractDetail> contractDetails;
+    @OneToMany(mappedBy = "attachService")
+    Set<ContractDetail> contractDetails;
 
     public AttachService() {
     }
@@ -62,5 +62,9 @@ public class AttachService {
 
     public Set<ContractDetail> getContractDetails() {
         return contractDetails;
+    }
+
+    public void setContractDetails(Set<ContractDetail> contractDetails) {
+        this.contractDetails = contractDetails;
     }
 }

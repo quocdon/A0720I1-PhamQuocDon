@@ -10,7 +10,7 @@ public class ServiceType {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
-    @OneToMany(mappedBy = "service_type")
+    @OneToMany(mappedBy = "serviceType")
     private Set<Service> services;
 
     public ServiceType() {
@@ -34,5 +34,9 @@ public class ServiceType {
 
     public Set<Service> getServices() {
         return services;
+    }
+
+    public void setServices(Set<Service> services) {
+        this.services = services;
     }
 }

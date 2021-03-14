@@ -9,8 +9,8 @@ public class UserRole {
     private UserRoleKey id;
 
     @ManyToOne
-    @MapsId("userId")
-    @JoinColumn(name = "user_id")
+    @MapsId("username")
+    @JoinColumn(name = "username")
     private User user;
 
     @ManyToOne

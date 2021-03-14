@@ -9,8 +9,7 @@ public class User {
     private String username;
     private String password;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "employee_id", referencedColumnName = "id")
+    @OneToOne(mappedBy = "user")
     private Employee employee;
 
     @OneToMany(mappedBy = "user")
@@ -45,5 +44,9 @@ public class User {
 
     public Set<UserRole> getUserRoles() {
         return userRoles;
+    }
+
+    public void setUserRoles(Set<UserRole> userRoles) {
+        this.userRoles = userRoles;
     }
 }

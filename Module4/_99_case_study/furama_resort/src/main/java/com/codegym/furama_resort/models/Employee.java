@@ -1,9 +1,9 @@
 package com.codegym.furama_resort.models;
 
-import org.springframework.context.annotation.EnableMBeanExport;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 public class Employee {
@@ -11,7 +11,8 @@ public class Employee {
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
-    private Date birthday;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    private LocalDate birthday;
     private String idCard;
     private double salary;
     private String phone;
@@ -30,7 +31,8 @@ public class Employee {
     @JoinColumn(name = "department_id", nullable = false)
     private Department department;
 
-    @OneToOne(mappedBy = "employee")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "username", referencedColumnName = "username")
     private User user;
 
     public Employee() {
@@ -52,11 +54,11 @@ public class Employee {
         this.name = name;
     }
 
-    public Date getBirthday() {
+    public LocalDate getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(Date birthday) {
+    public void setBirthday(LocalDate birthday) {
         this.birthday = birthday;
     }
 

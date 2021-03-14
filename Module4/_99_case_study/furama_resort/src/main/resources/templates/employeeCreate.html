@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout::head">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="container">
+    <div th:replace="layout::header">
+        <!--        header-->
+    </div>
+    <div th:insert="layout::navbar">
+        <!--        navbar-->
+    </div>
+    <div class="row">
+        <!--        main-->
+        <div th:replace="layout::left-panel">
+            <!--            left panel-->
+        </div>
+        <div>
+            <!--            content-->
+            <form th:action="@{/employee/save}" method="post" th:object="${employee}">
+                <table>
+                    <tr>
+                        <td>Tài khoản:</td>
+                        <td><input type="text" th:field="*{user.username}"></td>
+                    </tr>
+                    <tr>
+                        <td>Mật khẩu:</td>
+                        <td><input id="password" type="password" th:field="*{user.password}"></td>
+                    </tr>
+                    <tr>
+                        <td>Họ và tên:</td>
+                        <td><input type="text" th:field="*{name}"></td>
+                    </tr>
+                    <tr>
+                        <td>Ngày sinh:</td>
+                        <td><input type="date" th:field="*{birthday}"></td>
+                    </tr>
+                    <tr>
+                        <td>Số CMND:</td>
+                        <td><input type="text" th:field="*{idCard}"></td>
+                    </tr>
+                    <tr>
+                        <td>Lương:</td>
+                        <td><input type="text" th:field="*{salary}"></td>
+                    </tr>
+                    <tr>
+                        <td>Số điện thoại:</td>
+                        <td><input type="text" th:field="*{phone}"></td>
+                    </tr>
+                    <tr>
+                        <td>Email:</td>
+                        <td><input type="text" th:field="*{email}"></td>
+                    </tr>
+                    <tr>
+                        <td>Địa chỉ:</td>
+                        <td><input type="text" th:field="*{address}"></td>
+                    </tr>
+                    <tr>
+                        <td>Chức vụ:</td>
+                        <td>
+                            <select th:field="*{position}">
+                                <option th:each="pos : ${positions}" th:value="${pos.id}"
+                                        th:utext="${pos.name}"></option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Bộ phận:</td>
+                        <td>
+                            <select th:field="*{department}">
+                                <option th:each="dep : ${departments}" th:value="${dep.id}"
+                                        th:utext="${dep.name}"></option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Trình độ học vấn:</td>
+                        <td>
+                            <select th:field="*{educationDegree}">
+                                <option th:each="edu : ${educationDegrees}" th:value="${edu.id}"
+                                        th:utext="${edu.name}"></option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><input type="submit" value="Register"></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+    <div>
+        <!--        footer-->
+    </div>
+
+</div>
+</body>
+</html>
