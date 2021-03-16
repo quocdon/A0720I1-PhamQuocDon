@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.validation.Valid;
+
 @Controller
 public class PhoneController {
     @GetMapping("/")
@@ -17,7 +19,7 @@ public class PhoneController {
         return "index";
     }
     @PostMapping("/")
-    public String checkValidation(@Validated @ModelAttribute PhoneNumber phoneNumber, BindingResult bindingResult, Model model){
+    public String checkValidation(@Valid @ModelAttribute PhoneNumber phoneNumber, BindingResult bindingResult, Model model){
         new PhoneNumber().validate(phoneNumber, bindingResult);
         if(bindingResult.hasFieldErrors()){
             return "index";

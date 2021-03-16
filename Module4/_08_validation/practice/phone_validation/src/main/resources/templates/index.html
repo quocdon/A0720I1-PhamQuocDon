@@ -5,16 +5,15 @@
     <title>Input PhoneNumber</title>
 </head>
 <body>
-<form action="#" th:action="@{/}" th:object="${phoneNumber}"
-      method="POST">
+<form th:action="@{/}" th:object="${phoneNumber}" method="post">
     <table>
         <tr>
             <td>PhoneNumber</td>
             <td><input type="text" th:field="*{number}"/></td>
-            <td><input th:if="${#fields.hasErrors()}" th:</td>
+            <td th:if="${#fields.hasErrors('number')}" th:errors="*{number}"></td>
         </tr>
     </table>
-    <button type="submit">submit</button>
+    <button type="submit">Submit</button>
 </form>
 </body>
 </html>

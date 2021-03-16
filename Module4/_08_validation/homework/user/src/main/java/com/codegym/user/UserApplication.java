@@ -1,4 +1,4 @@
-package com.codegym.customephonevalidation;
+package com.codegym.user;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -8,11 +8,12 @@ import org.springframework.context.support.ReloadableResourceBundleMessageSource
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
 @SpringBootApplication
-public class CustomePhoneValidationApplication {
+public class UserApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(CustomePhoneValidationApplication.class, args);
+        SpringApplication.run(UserApplication.class, args);
     }
+
     @Bean
     public MessageSource messageSource() {
         ReloadableResourceBundleMessageSource messageSource

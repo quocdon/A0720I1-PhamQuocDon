@@ -33,7 +33,7 @@ public class PhoneNumber implements Validator {
             errors.rejectValue("number", "number.length");
         }
         if (!number.startsWith("0")){
-            errors.rejectValue("number", "number.startWith");
+            errors.rejectValue("number", "number.startsWith");
         }
         if (!number.matches("(^$|[0-9]*$)")){
             errors.rejectValue("number", "number.matches");
