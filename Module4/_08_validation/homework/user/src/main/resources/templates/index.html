@@ -5,31 +5,31 @@
     <title>Title</title>
 </head>
 <body>
-<form method="post" th:object="${user}">
+<form method="post" th:action="@{/register}" th:object="${user}">
     <div>
         <label>First Name:</label>
-        <input type="text" th:field="*{firstName}">
-        <label th:if="${#fields.hasErrors()}" th:errors="*{firstName}"></label>
+        <input type="text" th:field="*{firstName}"/>
+        <label th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></label>
     </div>
     <div>
         <label>Last Name:</label>
-        <input type="text" th:field="*{lastName}">
-        <label th:if="${#fields.hasErrors()}" th:errors="*{lastName}"></label>
+        <input type="text" th:field="*{lastName}"/>
+        <label th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></label>
     </div>
     <div>
         <label>Phone number:</label>
-        <input type="text" th:field="*{phoneNumber}">
-        <label th:if="${#fields.hasErrors()}" th:errors="*{phoneNumber}"></label>
+        <input type="text" th:field="*{phoneNumber}"/>
+        <label th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></label>
     </div>
     <div>
         <label>Age:</label>
-        <input type="text" th:field="*{age}">
-        <label th:if="${#fields.hasErrors()}" th:errors="*{age}"></label>
+        <input type="text" th:field="*{age}"/>
+        <label th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></label>
     </div>
     <div>
         <label>Email:</label>
-        <input type="text" th:field="*{email}">
-        <label th:if="${#fields.hasErrors()}" th:errors="*{email}"></label>
+        <input type="text" th:field="*{email}"/>
+        <label th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></label>
     </div>
     <input type="submit" value="Submit">
 </form>

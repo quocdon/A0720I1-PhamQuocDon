@@ -20,8 +20,9 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public String register(@Valid @ModelAttribute User user, Model model, BindingResult bindingResult){
-        if (bindingResult.hasFieldErrors()){
+    public String register(@Valid @ModelAttribute User user, BindingResult bindingResult, Model model){
+        new User().validate(user, bindingResult);
+        if (bindingResult.hasErrors()){
             return "index";
         }
         model.addAttribute("user", user);

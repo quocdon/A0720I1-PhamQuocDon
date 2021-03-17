@@ -1,5 +1,6 @@
 package com.codegym.user.models;
 
+import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
@@ -7,7 +8,7 @@ import org.springframework.validation.Validator;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
-
+@Component
 public class User implements Validator {
     @Size(min = 5, max = 45)
     private String firstName;
@@ -71,15 +72,15 @@ public class User implements Validator {
     public void validate(Object target, Errors errors) {
         User user = (User) target;
         String phoneNumber = user.getPhoneNumber();
-        ValidationUtils.rejectIfEmpty(errors, "phoneNumber", "phoneNumber.Empty");
+        ValidationUtils.rejectIfEmpty(errors, "phoneNumber", "phoneNumber.empty");
         if (phoneNumber.length() > 11 || phoneNumber.length() < 10){
-            errors.rejectValue("number", "phoneNumber.length");
+            errors.rejectValue("phoneNumber", "phoneNumber.length");
         }
         if (!phoneNumber.startsWith("0")){
-            errors.rejectValue("number", "phoneNumber.startsWith");
+            errors.rejectValue("phoneNumber", "phoneNumber.startsWith");
         }
         if (!phoneNumber.matches("(^$|[0-9]*$)")){
-            errors.rejectValue("number", "phoneNumber.matches");
+            errors.rejectValue("phoneNumber", "phoneNumber.matches");
         }
     }
 }
