@@ -7,8 +7,12 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping(value = "/employee")
@@ -32,13 +36,13 @@ public class EmployeeController {
     UserService userService;
 
     @GetMapping("/")
-    public ModelAndView list(){
-        Pageable pageable = PageRequest.of(0,5);
+    public ModelAndView list() {
+        Pageable pageable = PageRequest.of(0, 5);
         return new ModelAndView("employeeList", "employees", employeeService.findAll(pageable));
     }
 
     @GetMapping("/create")
-    public ModelAndView create(){
+    public ModelAndView create() {
         ModelAndView modelAndView = new ModelAndView("employeeCreate");
         modelAndView.addObject("employee", new Employee());
         modelAndView.addObject("departments", departmentService.findAll());
@@ -49,13 +53,19 @@ public class EmployeeController {
     }
 
     @PostMapping("/save")
-    public String save(@ModelAttribute Employee employee, Model model){
+    public String save(@Valid @ModelAttribute Employee employee, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("departments", departmentService.findAll());
+            model.addAttribute("positions", positionService.findAll());
+            model.addAttribute("educationDegrees", educationDegreeService.findAll());
+            return "employeeCreate";
+        }
         employeeService.save(employee);
         return "redirect:/employee/";
     }
 
     @GetMapping("/delete/{id}")
-    public String delete(@PathVariable int id){
+    public String delete(@PathVariable int id) {
         employeeService.delete(id);
         return "redirect:/employee/";
     }

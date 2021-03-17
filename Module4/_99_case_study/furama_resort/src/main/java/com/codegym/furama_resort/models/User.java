@@ -1,10 +1,17 @@
 package com.codegym.furama_resort.models;
 
+import com.codegym.furama_resort.services.UserService;
+import com.codegym.furama_resort.services.impl.UserServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.Errors;
+import org.springframework.validation.ValidationUtils;
+import org.springframework.validation.Validator;
+
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-public class User {
+public class User implements Validator {
     @Id
     private String username;
     private String password;
@@ -48,5 +55,21 @@ public class User {
 
     public void setUserRoles(Set<UserRole> userRoles) {
         this.userRoles = userRoles;
+    }
+
+    @Override
+    public boolean supports(Class<?> clazz) {
+        return User.class.isAssignableFrom(clazz);
+    }
+
+    @Override
+    public void validate(Object target, Errors errors) {
+        UserService userService = new UserServiceImpl();
+        User user = (User) target;
+        String username = user.getUsername();
+        ValidationUtils.rejectIfEmpty(errors, "username", "username.Empty");
+        if (userService.findByUsername(username) != null){
+            errors.rejectValue("username", "username.Exist");
+        }
     }
 }
