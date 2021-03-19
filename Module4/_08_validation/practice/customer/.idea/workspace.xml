@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="56562a4c-5139-4348-8155-4d1bd41d7a82" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/customer/controllers/ProvinceController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/customer/models/Customer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/customer/models/Province.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/customer/repositories/CustomerRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/customer/repositories/ProvinceRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/customer/services/CustomerService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/customer/services/ProvinceService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/customer/services/impl/CustomerServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/customer/services/impl/ProvinceServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/province/create.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/province/list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../homework/user/src/main/java/com/codegym/user/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../homework/user/src/main/java/com/codegym/user/controllers/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../homework/user/src/main/java/com/codegym/user/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../homework/user/src/main/java/com/codegym/user/models/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../homework/user/src/main/resources/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../homework/user/src/main/resources/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../homework/user/src/main/resources/validationMessages.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../../homework/user/src/main/resources/validationMessages.properties" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../../.." />
+  </component>
+  <component name="ProjectId" id="1pt0F4jxCUBwS1ZRGh6zruOC8gm" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\CodeGym\A0720I1-PhamQuocDon\Module4\_08_validation\practice\customer\src\main\resources\templates\" />
+      <recent name="D:\CodeGym\A0720I1-PhamQuocDon\Module4\_08_validation\practice\customer\src\main\resources\templates\province" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="CustomerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="customer" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.codegym.customer.CustomerApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="56562a4c-5139-4348-8155-4d1bd41d7a82" name="Default Changelist" comment="" />
+      <created>1615986971456</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1615986971456</updated>
+      <workItem from="1615986976204" duration="3533000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="488" y="40" key="#com.intellij.ide.util.MemberChooser" timestamp="1615988891516">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="488" y="40" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1615988891516" />
+    <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1615989949815">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1615989949815" />
+  </component>
+</project>
