@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout::head">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="container">
+    <h3>Tìm thẻ mượn sách</h3>
+    <a class="btn btn-outline-secondary" th:href="@{/}">Trang chủ</a>
+    <hr>
+    <form th:action="@{/borrow/search}" method="post">
+        <label>Mã thẻ mượn:</label>
+        <input type="text" name="cardId" required>
+        <input class="btn btn-primary" type="submit" value="Search" >
+    </form>
+</div>
+</body>
+</html>
