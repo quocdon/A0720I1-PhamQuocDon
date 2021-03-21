@@ -11,7 +11,7 @@ public class ServiceType {
     private int id;
     private String name;
     @OneToMany(mappedBy = "serviceType")
-    private Set<Service> services;
+    private Set<ResortService> resortServices;
 
     public ServiceType() {
     }
@@ -32,11 +32,11 @@ public class ServiceType {
         this.name = name;
     }
 
-    public Set<Service> getServices() {
-        return services;
+    public Set<ResortService> getResortServices() {
+        return resortServices;
     }
 
-    public void setServices(Set<Service> services) {
-        this.services = services;
+    public void setResortServices(Set<ResortService> resortServices) {
+        this.resortServices = resortServices;
     }
 }

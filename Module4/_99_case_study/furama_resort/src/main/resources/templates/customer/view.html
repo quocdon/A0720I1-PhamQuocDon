@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/customer/layout::head">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="container-fluid">
+    <div th:replace="/customer/layout::header">
+        <!--        header-->
+    </div>
+    <div th:insert="/customer/layout::navbar">
+        <!--        navbar-->
+    </div>
+    <div class="row">
+        <!--        main-->
+        <div th:replace="/customer/layout::left-panel">
+            <!--            left panel-->
+        </div>
+        <div class="col-sm-8">
+            <!--            content-->
+            <table class="table table-stripe">
+                <tr>
+                    <td>Mã khách hàng:</td>
+                    <td th:text="${customer.id}"></td>
+                </tr>
+                <tr>
+                    <td>Hạng khách hàng:</td>
+                    <td th:text="${customer.customerType.name}"></td>
+                </tr>
+                <tr>
+                    <td>Tên khách hàng:</td>
+                    <td th:text="${customer.name}"></td>
+                </tr>
+                <tr>
+                    <td>Ngày sinh:</td>
+                    <td th:text="${customer.birthday}"></td>
+                </tr>
+                <tr>
+                    <td>Giới tính:</td>
+                    <td th:text="${customer.gender}"></td>
+                </tr>
+                <tr>
+                    <td>Số CMND:</td>
+                    <td th:text="${customer.idCard}"></td>
+                </tr>
+                <tr>
+                    <td>Số điện thoại:</td>
+                    <td th:text="${customer.phone}"></td>
+                </tr>
+                <tr>
+                    <td>Email:</td>
+                    <td th:text="${customer.email}"></td>
+                </tr>
+                <tr>
+                    <td>Địa chỉ:</td>
+                    <td th:text="${customer.address}"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><a class="btn btn-primary" th:href="@{/customer/}">Quay lại</a> </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div>
+        <!--        footer-->
+    </div>
+
+</div>
+</body>
+</html>

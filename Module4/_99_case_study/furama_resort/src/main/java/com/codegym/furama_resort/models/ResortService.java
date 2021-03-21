@@ -1,17 +1,23 @@
 package com.codegym.furama_resort.models;
 
-import org.springframework.stereotype.Controller;
-
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 import java.util.Set;
 
 @Entity
-public class Service {
+public class ResortService {
     @Id
+    @Pattern(regexp = "^DV-[0-9]{4}$", message = "Phải đúng định dạng DV-XXXX")
     private String id;
+    @NotBlank(message = "Không để trống")
     private String name;
+    @Min(value = 15, message = "Diện tích tối thiểu 15m2")
     private int area;
+    @Min(value = 5, message = "Giá tối thiểu 5$")
     private double cost;
+    @Min(value = 1, message = "Tối thiểu 1 khách")
     private int maxPeople;
     @ManyToOne
     @JoinColumn(name = "rent_type_id", nullable = false)
@@ -21,10 +27,10 @@ public class Service {
     @JoinColumn(name = "service_type_id", nullable = false)
     private ServiceType serviceType;
 
-    @OneToMany(mappedBy = "service")
+    @OneToMany(mappedBy = "resortService")
     private Set<Contract> contracts;
 
-    public Service() {
+    public ResortService() {
     }
 
     public String getId() {

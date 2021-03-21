@@ -1,25 +1,26 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="layout::head">
+<head th:replace="/employee/layout::head">
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
 <div class="container-fluid">
-    <div th:replace="layout::header">
+    <div th:replace="/employee/layout::header">
         <!--        header-->
     </div>
-    <div th:insert="layout::navbar">
+    <div th:insert="/employee/layout::navbar">
         <!--        navbar-->
     </div>
     <div class="row">
         <!--        main-->
-        <div th:replace="layout::left-panel">
+        <div th:replace="/employee/layout::left-panel">
             <!--            left panel-->
         </div>
         <div class="col-sm-8">
             <!--            content-->
             <form th:action="@{/employee/save}" method="post" th:object="${employee}">
+                <input th:if="${employee != null}" type="text" th:field="*{id}" hidden>
                 <div class="form-group row">
                     <label class="col-sm-1 col-form-label">Tên đăng nhập:</label>
                     <label class="col-sm-4">
@@ -32,7 +33,14 @@
                     <label class="col-sm-4" for="password">
                         <input class="form-control" id="password" type="password" th:field="*{user.password}">
                     </label>
-                    <label class="col-sm-3 col-form-label"></label>
+                    <label class="col-sm-3 col-form-label" th:if="${#fields.hasErrors('user.password')}" th:errors="*{user.password}"></label>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-1 col-form-label">Nhập lại mật khẩu:</label>
+                    <label class="col-sm-4" for="password">
+                        <input class="form-control" id="confirmPassword" type="password" name="confirmPassword">
+                    </label>
+                    <label class="col-sm-3 col-form-label" th:if="${#fields.hasErrors('user.password')}" th:errors="*{user.password}"></label>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-1 col-form-label">Họ và tên:</label>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/customer/layout::head">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="container-fluid">
+    <div th:replace="/customer/layout::header">
+        <!--        header-->
+    </div>
+    <div th:insert="/customer/layout::navbar">
+        <!--        navbar-->
+    </div>
+    <div class="row">
+        <!--        main-->
+        <div th:replace="/customer/layout::left-panel">
+            <!--            left panel-->
+        </div>
+        <div class="col-sm-8">
+            <!--            content-->
+            <form th:action="@{/customer/save}" method="post" th:object="${customer}">
+                <div class="form-group row">
+                    <label class="col-sm-1 col-form-label">Mã khách hàng:</label>
+                    <label class="col-sm-4">
+                        <input class="form-control" type="text" th:field="*{id}">
+                    </label>
+                    <label class="col-sm-3 col-form-label" th:if="${#fields.hasErrors('id')}" th:errors="*{id}"></label>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-1 col-form-label">Hạng khách:</label>
+                    <label class="col-sm-4">
+                        <select class="form-control" th:field="*{customerType}">
+                            <option th:each="cusType : ${customerTypes}" th:value="${cusType.id}"
+                                    th:utext="${cusType.name}"></option>
+                        </select>
+                    </label>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-1 col-form-label">Tên khách hàng:</label>
+                    <label class="col-sm-4">
+                        <input class="form-control" type="text" th:field="*{name}">
+                    </label>
+                    <label class="col-sm-3 col-form-label" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></label>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-1 col-form-label">Ngày sinh:</label>
+                    <label class="col-sm-4">
+                        <input class="form-control" type="date" th:field="*{birthday}">
+                    </label>
+                    <label class="col-sm-3 col-form-label" th:if="${#fields.hasErrors('birthday')}" th:errors="*{birthday}"></label>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-1 col-form-label">Giới tính:</label>
+                    <label class="col-sm-4">
+                        <select class="form-control" th:field="*{gender}">
+                            <option th:value="Nam" th:utext="Nam"></option>
+                            <option th:value="Nữ" th:utext="Nữ"></option>
+                            <option th:value="Khác" th:utext="Khác"></option>
+                        </select>
+                    </label>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-1 col-form-label">Số CMND:</label>
+                    <label class="col-sm-4">
+                        <input class="form-control" type="text" th:field="*{idCard}">
+                    </label>
+                    <label class="col-sm-3 col-form-label" th:if="${#fields.hasErrors('idCard')}" th:errors="*{idCard}"></label>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-1 col-form-label">Số điện thoại:</label>
+                    <label class="col-sm-4">
+                        <input class="form-control" type="text" th:field="*{phone}">
+                    </label>
+                    <label class="col-sm-3 col-form-label" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></label>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-1 col-form-label">Email:</label>
+                    <label class="col-sm-4">
+                        <input class="form-control" type="text" th:field="*{email}">
+                    </label>
+                    <label class="col-sm-3 col-form-label" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></label>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-1 col-form-label">Địa chỉ:</label>
+                    <label class="col-sm-4">
+                        <input class="form-control" type="text" th:field="*{address}">
+                    </label>
+                    <label class="col-sm-3 col-form-label" th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></label>
+                </div>
+                <div class="form-group text-center">
+                    <label><input class="btn btn-primary" type="submit" value="Submit"></label>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div>
+        <!--        footer-->
+    </div>
+
+</div>
+</body>
+</html>

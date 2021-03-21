@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="layout::head">
+<head th:replace="/employee/layout::head">
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
 <div class="container-fluid">
-    <div th:replace="layout::header">
+    <div th:replace="/employee/layout::header">
 <!--        header-->
     </div>
-    <div th:insert="layout::navbar">
+    <div th:insert="/employee/layout::navbar">
 <!--        navbar-->
     </div>
     <div class="row">
 <!--        main-->
-        <div th:replace="layout::left-panel">
+        <div th:replace="/employee/layout::left-panel">
 <!--            left panel-->
         </div>
         <div class="col-sm-10">
@@ -48,8 +48,12 @@
                         <td><a th:href="@{/employee/delete/{id}(id=${employee.id})}">Xóa</a></td>
                     </tr>
                 </tbody>
-
             </table>
+            <div>
+                <a th:href="@{/employee(search=${search},page=${employees.number - 1})}" th:if="${employees.hasPrevious()}">Previous</a>
+                <span th:text="${employees.number + 1}"></span>/<span th:text="${employees.totalPages}"></span>
+                <a th:href="@{/employee(search=${search},page=${employees.number + 1})}" th:if="${employees.hasNext()}">Next</a>
+            </div>
         </div>
     </div>
     <div>

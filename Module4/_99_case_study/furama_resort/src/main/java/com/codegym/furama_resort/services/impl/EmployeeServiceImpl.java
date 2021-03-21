@@ -32,4 +32,9 @@ public class EmployeeServiceImpl implements EmployeeService {
     public void delete(int id) {
         employeeRepository.deleteById(id);
     }
+
+    @Override
+    public Page<Employee> findByName(String search, Pageable pageable) {
+        return employeeRepository.findEmployeesByNameContains(search, pageable);
+    }
 }

@@ -27,18 +27,22 @@
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" href="#">Employee</a>
+                <a class="nav-link" href="/employee/">Nhân viên</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Customer</a>
+                <a class="nav-link" href="/customer/">Khách hàng</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Service</a>
+                <a class="nav-link" href="#">Dịch vụ</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Contract</a>
+                <a class="nav-link" href="#">Hợp đồng</a>
             </li>
         </ul>
+        <form class="form-inline my-2 my-lg-0" method="get" th:action="@{/employee}">
+            <input class="form-control mr-sm-2" type="search" placeholder="Tìm kiếm nhân viên" aria-label="Search" name="search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Tìm kiếm</button>
+        </form>
     </div>
 </nav>
 <div class="col-sm-2" th:fragment="left-panel">
@@ -49,10 +53,10 @@
 <!--    <p>Please choose function:</p>-->
     <ul class="nav nav-pills flex-column">
         <li class="nav-item">
-            <a class="nav-link" href="#" th:href="@{/employee/create}">New Employee</a>
+            <a class="nav-link" href="#" th:href="@{/employee/create}">Thêm mới nhân viên</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#" th:href="@{/employee/}">Employee List</a>
+            <a class="nav-link" href="#" th:href="@{/employee/}">Danh sách nhân viên</a>
         </li>
 <!--        <li class="nav-item">-->
 <!--            <a class="nav-link" href="#">new item</a>-->

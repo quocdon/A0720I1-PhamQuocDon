@@ -13,7 +13,7 @@ public class RentType {
     private double cost;
 
     @OneToMany (mappedBy = "rentType")
-    private Set<Service> services;
+    private Set<ResortService> resortServices;
 
     public RentType() {
     }
@@ -42,7 +42,7 @@ public class RentType {
         this.cost = cost;
     }
 
-    public Set<Service> getServices() {
-        return services;
+    public Set<ResortService> getResortServices() {
+        return resortServices;
     }
 }

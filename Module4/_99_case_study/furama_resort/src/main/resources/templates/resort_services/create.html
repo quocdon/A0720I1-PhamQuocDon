@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/resort_services/layout::head">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="container-fluid">
+    <div th:replace="/resort_services/layout::header">
+        <!--        header-->
+    </div>
+    <div th:insert="/resort_services/layout::navbar">
+        <!--        navbar-->
+    </div>
+    <div class="row">
+        <!--        main-->
+        <div th:replace="/resort_services/layout::left-panel">
+            <!--            left panel-->
+        </div>
+        <div class="col-sm-8">
+            <!--            content-->
+            <form th:action="@{/service/save}" method="post" th:object="${resortService}">
+                <div class="form-group row">
+                    <label class="col-sm-1 col-form-label">Loại dịch vụ:</label>
+                    <label class="col-sm-4" >
+                        <select class="form-control" th:field="*{serviceType}">
+                            <option th:each="serviceType : ${serviceTypes}" th:value="${serviceType.id}"
+                                    th:utext="${serviceType.name}"></option>
+                        </select>
+                    </label>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-1 col-form-label">Mã dịch vụ:</label>
+                    <label class="col-sm-4">
+                        <input class="form-control" type="text" th:field="*{id}">
+                    </label>
+                    <label class="col-sm-3 col-form-label" th:if="${#fields.hasErrors('id')}" th:errors="*{id}"></label>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-1 col-form-label">Tên dịch vụ:</label>
+                    <label class="col-sm-4">
+                        <input class="form-control" type="text" th:field="*{name}">
+                    </label>
+                    <label class="col-sm-3 col-form-label" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></label>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-1 col-form-label">Diện tích:</label>
+                    <label class="col-sm-4">
+                        <input class="form-control" type="text" th:field="*{area}">
+                    </label>
+                    <label class="col-sm-3 col-form-label" th:if="${#fields.hasErrors('area')}" th:errors="*{area}"></label>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-1 col-form-label">Giá:</label>
+                    <label class="col-sm-4">
+                        <input class="form-control" type="text" th:field="*{cost}">
+                    </label>
+                    <label class="col-sm-3 col-form-label" th:if="${#fields.hasErrors('cost')}" th:errors="*{cost}"></label>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-1 col-form-label">Số khách tối đa:</label>
+                    <label class="col-sm-4">
+                        <input class="form-control" type="text" th:field="*{maxPeople}">
+                    </label>
+                    <label class="col-sm-3 col-form-label" th:if="${#fields.hasErrors('maxPeople')}" th:errors="*{maxPeople}"></label>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-1 col-form-label">Kiểu thuê:</label>
+                    <label class="col-sm-4">
+                        <select class="form-control" th:field="*{rentType}">
+                            <option th:each="rentType : ${rentTypes}" th:value="${rentType.id}"
+                                    th:utext="${rentType.name}"></option>
+                        </select>
+                    </label>
+                </div>
+                <div class="form-group text-center">
+                    <label><input class="btn btn-primary" type="submit" value="Submit"></label>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div>
+        <!--        footer-->
+    </div>
+
+</div>
+</body>
+</html>

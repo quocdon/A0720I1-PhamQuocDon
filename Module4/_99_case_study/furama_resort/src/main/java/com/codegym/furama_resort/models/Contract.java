@@ -2,7 +2,6 @@ package com.codegym.furama_resort.models;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.Set;
 
 @Entity
@@ -24,7 +23,7 @@ public class Contract {
 
     @ManyToOne
     @JoinColumn(name = "service_id", nullable = false)
-    private Service service;
+    private ResortService resortService;
 
     @OneToMany(mappedBy = "contract")
     Set<ContractDetail> contractDetails;
@@ -88,12 +87,12 @@ public class Contract {
         this.customer = customer;
     }
 
-    public Service getService() {
-        return service;
+    public ResortService getResortService() {
+        return resortService;
     }
 
-    public void setService(Service service) {
-        this.service = service;
+    public void setResortService(ResortService resortService) {
+        this.resortService = resortService;
     }
 
     public Set<ContractDetail> getContractDetails() {

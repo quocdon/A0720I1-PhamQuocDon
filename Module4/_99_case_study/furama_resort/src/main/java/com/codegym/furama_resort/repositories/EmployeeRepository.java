@@ -9,4 +9,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
     Page<Employee> findAll(Pageable pageable);
+    Page<Employee> findEmployeesByNameContains(String name, Pageable pageable);
 }

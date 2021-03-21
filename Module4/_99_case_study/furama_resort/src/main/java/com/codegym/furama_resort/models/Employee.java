@@ -1,16 +1,9 @@
 package com.codegym.furama_resort.models;
 
-import com.codegym.furama_resort.services.EmployeeService;
-import com.codegym.furama_resort.services.UserService;
-import com.codegym.furama_resort.services.impl.EmployeeServiceImpl;
-import com.codegym.furama_resort.services.impl.UserServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.validation.Errors;
-import org.springframework.validation.ValidationUtils;
-import org.springframework.validation.Validator;
 
 import javax.persistence.*;
+import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -18,7 +11,7 @@ import javax.validation.constraints.Pattern;
 import java.time.LocalDate;
 
 @Entity
-public class Employee implements Validator {
+public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -52,6 +45,7 @@ public class Employee implements Validator {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "username", referencedColumnName = "username")
+    @Valid
     private User user;
 
     public Employee() {
@@ -153,19 +147,4 @@ public class Employee implements Validator {
         this.user = user;
     }
 
-    @Override
-    public boolean supports(Class<?> clazz) {
-        return Employee.class.isAssignableFrom(clazz);
-    }
-
-    @Override
-    public void validate(Object target, Errors errors) {
-        UserService userService = new UserServiceImpl();
-        Employee employee = (Employee) target;
-        String username = employee.getUser().getUsername();
-        ValidationUtils.rejectIfEmpty(errors, "user.username", "user.username.Empty");
-        if (userService.findByUsername(username) != null){
-            errors.rejectValue("user.username", "user.username.Exist");
-        }
-    }
 }
