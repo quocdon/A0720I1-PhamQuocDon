@@ -94,4 +94,9 @@ public class CustomerController {
             return modelAndView;
         }
     }
+
+    @ExceptionHandler(Exception.class)
+    public String viewErrorPage(){
+        return "error-page";
+    }
 }

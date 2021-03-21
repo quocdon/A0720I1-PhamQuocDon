@@ -130,4 +130,8 @@ public class EmployeeController {
             return modelAndView;
         }
     }
+    @ExceptionHandler(Exception.class)
+    public String viewErrorPage(){
+        return "error-page";
+    }
 }

@@ -43,7 +43,7 @@
                         <td th:text="${customer.email}"></td>
                         <td><a th:href="@{/customer/view/{id}(id=${customer.id})}">Xem</a></td>
                         <td><a th:href="@{/customer/edit/{id}(id=${customer.id})}">Sửa</a></td>
-                        <td><a th:href="@{/customer/delete/{id}(id=${customer.id})}">Xóa</a></td>
+                        <td><a th:href="@{/customer/delete/{id}(id=${customer.id})}" onclick="return confirm('Bạn muốn xóa khách hàng này không?')">Xóa</a></td>
                     </tr>
                 </tbody>
             </table>

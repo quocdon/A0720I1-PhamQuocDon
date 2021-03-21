@@ -12,4 +12,6 @@ public interface ResortServiceService {
     Page<ResortService> findAllByServiceType(ServiceType serviceType, Pageable pageable);
     ResortService save(ResortService resortService);
     ResortService findById(String id);
+    boolean existById(String id);
+    Page<ResortService> findByName(String name, Pageable pageable);
 }

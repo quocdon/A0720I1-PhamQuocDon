@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/employee/layout::head">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="container-fluid">
+    <div th:replace="/resort_services/layout::header">
+<!--        header-->
+    </div>
+    <div th:insert="/resort_services/layout::navbar">
+<!--        navbar-->
+    </div>
+    <div class="row">
+<!--        main-->
+        <div th:replace="/resort_services/layout::left-panel">
+<!--            left panel-->
+        </div>
+        <div class="col-sm-10">
+<!--            content-->
+            <table class="table table-stripe">
+                <thead>
+                    <tr>
+                        <td>Loại Dịch vụ</td>
+                        <td>Mã dịch vụ</td>
+                        <td>Tên dịch vụ</td>
+                        <td>Diện tích</td>
+                        <td>Số khách tối đa</td>
+                        <td>Kiểu thuê</td>
+                        <td>Giá</td>
+                        <td>Đặt phòng</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="service : ${services}">
+                        <td th:text="${service.serviceType.name}"></td>
+                        <td th:text="${service.id}"></td>
+                        <td th:text="${service.name}"></td>
+                        <td th:text="${service.area}"></td>
+                        <td th:text="${service.maxPeople}"></td>
+                        <td th:text="${service.rentType.name}"></td>
+                        <td th:text="${service.cost}"></td>
+                        <td><a th:href="@{/contract/create(serviceId=${service.id})}">Đặt phòng</a></td>
+
+                    </tr>
+                </tbody>
+            </table>
+            <div>
+                <a th:href="@{/service(search=${search},page=${services.number - 1})}" th:if="${services.hasPrevious()}">Previous</a>
+                <span th:text="${services.number + 1}"></span>/<span th:text="${services.totalPages}"></span>
+                <a th:href="@{/service(search=${search},page=${services.number + 1})}" th:if="${services.hasNext()}">Next</a>
+            </div>
+        </div>
+    </div>
+    <div>
+<!--        footer-->
+    </div>
+</div>
+</body>
+</html>

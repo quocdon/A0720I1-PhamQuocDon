@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 public class ResortServiceServiceImpl implements ResortServiceService {
     @Autowired
     private ResortServiceRepository resortServiceRepository;
+
     @Override
     public Page<ResortService> findAll(Pageable pageable) {
         return resortServiceRepository.findAll(pageable);
@@ -31,5 +32,15 @@ public class ResortServiceServiceImpl implements ResortServiceService {
     @Override
     public ResortService findById(String id) {
         return resortServiceRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public boolean existById(String id) {
+        return resortServiceRepository.existsById(id);
+    }
+
+    @Override
+    public Page<ResortService> findByName(String name, Pageable pageable) {
+        return resortServiceRepository.findAllByNameContains(name, pageable);
     }
 }
