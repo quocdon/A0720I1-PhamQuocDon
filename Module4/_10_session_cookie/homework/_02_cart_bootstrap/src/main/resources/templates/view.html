@@ -21,7 +21,7 @@
                     </div>
                     <form class="h-20 mt-6 mb-2 form-group row d-flex justify-content-around" th:action="@{/addCart}" method="get">
                         <input name="id" type="text" th:value="${item.id}" hidden>
-                        <input class="form-control col-sm-6" type="number" name="quantity" value="1">
+                        <input class="form-control col-sm-6" type="number" name="quantity" min="1" value="1">
                         <input class="btn btn-primary" type="submit" value="Mua ngay">
                     </form>
                 </div>

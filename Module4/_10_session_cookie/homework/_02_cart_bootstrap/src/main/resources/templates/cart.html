@@ -43,7 +43,7 @@
                     <form class="row mr-0 ml-0" method="get" th:action="@{/updateCart}">
                         <input type="text" name="id" th:value="${id}" hidden>
                         <h5>Số lượng: </h5>
-                        <input class="form-control col-sm-3" type="number" name="quantity" th:value="${item.getValue()}"
+                        <input class="form-control col-sm-3" type="number" name="quantity" min="1" th:value="${item.getValue()}"
                                required>
                         <input class="btn btn-primary" type="submit" value="Lưu">
                     </form>
@@ -56,6 +56,7 @@
         <tr>
             <td></td>
             <td><h5 style="color: red">Tổng tiền: <th:block th:text="${amount}"></th:block></h5></td>
+            <td></td>
         </tr>
         <tr>
             <td></td>
