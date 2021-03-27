@@ -26,26 +26,3 @@
 
 </body>
 </html>
-
-<!--<div th:if="${items != null}">-->
-<!--    <table>-->
-<!--        <tr>-->
-<!--            <td>Mã hàng</td>-->
-<!--            <td>Tên hàng</td>-->
-<!--            <td>Đơn giá</td>-->
-<!--            <td>Số lượng</td>-->
-<!--            <td></td>-->
-<!--        </tr>-->
-<!--        <tr th:each="item : ${items}">-->
-<!--            <td th:text="${item.id}"></td>-->
-<!--            <td th:text="${item.name}"></td>-->
-<!--            <td th:text="${item.price}"></td>-->
-<!--            <td>-->
-<!--                <form th:action="@{/addCart}" method="get">-->
-<!--                    <input name="id" type="text" th:value="${item.id}" hidden>-->
-<!--                    <input type="number" name="quantity" value="1">-->
-<!--                    <input type="submit" value="Add cart">-->
-<!--                </form>-->
-<!--            </td>-->
-<!--        </tr>-->
-<!--    </table>-->
