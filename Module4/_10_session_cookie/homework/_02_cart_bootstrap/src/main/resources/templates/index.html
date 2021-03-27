@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout::head">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="container">
+    <div th:replace="layout::header">
+
+    </div>
+    <div class="row" th:if="${items != null}">
+        <th:block th:each="item : ${items}">
+            <a th:href="@{/view(id=${item.id})}" class="text-decoration-none card col-sm-3">
+                <img th:src="${item.imageUrl}" class="card-img-top mt-2" th:alt="${item.name}">
+                <div class="card-body mb-2">
+                    <h5 class="card-title h-50" style="" th:text="${item.name}"></h5>
+                    <div>
+                        <h6 style="color: red"><span>Giá: </span><span class="card-text h-15" th:text="${item.price}"></span></h6>
+                    </div>
+                </div>
+            </a>
+        </th:block>
+    </div>
+</div>
+
+</body>
+</html>
+
+<!--<div th:if="${items != null}">-->
+<!--    <table>-->
+<!--        <tr>-->
+<!--            <td>Mã hàng</td>-->
+<!--            <td>Tên hàng</td>-->
+<!--            <td>Đơn giá</td>-->
+<!--            <td>Số lượng</td>-->
+<!--            <td></td>-->
+<!--        </tr>-->
+<!--        <tr th:each="item : ${items}">-->
+<!--            <td th:text="${item.id}"></td>-->
+<!--            <td th:text="${item.name}"></td>-->
+<!--            <td th:text="${item.price}"></td>-->
+<!--            <td>-->
+<!--                <form th:action="@{/addCart}" method="get">-->
+<!--                    <input name="id" type="text" th:value="${item.id}" hidden>-->
+<!--                    <input type="number" name="quantity" value="1">-->
+<!--                    <input type="submit" value="Add cart">-->
+<!--                </form>-->
+<!--            </td>-->
+<!--        </tr>-->
+<!--    </table>-->

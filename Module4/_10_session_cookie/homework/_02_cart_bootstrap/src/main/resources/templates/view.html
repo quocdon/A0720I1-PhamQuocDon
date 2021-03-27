@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout::head">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="container">
+    <div th:replace="layout::header">
+
+    </div>
+    <th:block th:if="${item != null}">
+        <div class="row">
+            <div class="card col-sm-3">
+                <img th:src="${item.imageUrl}" class="card-img-top mt-2" th:alt="${item.name}">
+                <div class="card-body mb-2">
+                    <h5 class="card-title text-center">MÃ SẢN PHẨM</h5>
+                    <h5 class="card-title text-center" style="" th:text="${item.id}"></h5>
+                    <div>
+                        <h5 class="text-center card-text h-15" style="color: red">Giá: <th:block th:text="${item.price}"></th:block></h5>
+                    </div>
+                    <form class="h-20 mt-6 mb-2 form-group row d-flex justify-content-around" th:action="@{/addCart}" method="get">
+                        <input name="id" type="text" th:value="${item.id}" hidden>
+                        <input class="form-control col-sm-6" type="number" name="quantity" value="1">
+                        <input class="btn btn-primary" type="submit" value="Mua ngay">
+                    </form>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <h4 th:text="${item.name}"></h4>
+                <hr>
+                <div>
+                    <ul>
+                        <li>Ưu đãi phòng chờ thương gia</li>
+                        <li>Trả góp 0% thẻ tín dụng</li>
+                        <li>Nhập mã VNPAY70 giảm thêm 70.000đ cho đơn hàng từ 3 triệu khi thanh toán quét QRcode qua App của ngân hàng</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </th:block>
+</div>
+</body>
+</html>

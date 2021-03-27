@@ -2,13 +2,18 @@ package com.codegym.cart.controllers;
 
 import com.codegym.cart.models.Item;
 import com.codegym.cart.services.ItemService;
-import com.sun.javafx.sg.prism.NGShape;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
-import java.util.*;
+import javax.jws.WebParam;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 @Controller
 @SessionAttributes("cart")
@@ -39,8 +44,14 @@ public class CartController {
 
     @GetMapping("/cart")
     public String showCart(@ModelAttribute("cart") Map<Item, Integer> cart, Model model, @RequestParam(defaultValue = "0") int id){
+        int amount = 0;
+        Set<Item> keySet = cart.keySet();
+        for (Item key : keySet){
+            amount += key.getPrice()*cart.get(key);
+        }
         model.addAttribute("cart", cart);
         model.addAttribute("id", id);
+        model.addAttribute("amount", amount);
         return "cart";
     }
 
@@ -63,5 +74,12 @@ public class CartController {
         }
         return "redirect:/cart";
     }
+
+    @GetMapping("/view")
+    public String viewItem(@RequestParam int id, Model model){
+        model.addAttribute("item", itemService.findById(id));
+        return "view";
+    }
+
 
 }
