@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
 
@@ -22,7 +23,7 @@ public class CartController {
 
     @ModelAttribute("cart")
     public Map<Item, Integer> setUpCart() {
-        return new HashMap<>();
+        return new LinkedHashMap<>();
     }
 
     @GetMapping("/")
@@ -31,7 +32,7 @@ public class CartController {
         return "index";
     }
     @GetMapping("/addCart")
-    public String addCart(@ModelAttribute("cart") Map<Item, Integer> cart, Model model, @RequestParam int id, @RequestParam int quantity){
+    public String addCart(@ModelAttribute("cart") Map<Item, Integer> cart, @RequestParam int id, @RequestParam int quantity){
         Item item = itemService.findById(id);
         if (cart.containsKey(item)){
             cart.replace(item, cart.get(item), cart.get(item) + quantity);
@@ -48,14 +49,13 @@ public class CartController {
         for (Item key : keySet){
             amount += key.getPrice()*cart.get(key);
         }
-        model.addAttribute("cart", cart);
         model.addAttribute("id", id);
         model.addAttribute("amount", amount);
         return "cart";
     }
 
     @GetMapping(value = "/updateCart")
-    public String updateCart(@ModelAttribute("cart") Map<Item, Integer> cart, Model model, @RequestParam int id, @RequestParam int quantity){
+    public String updateCart(@ModelAttribute("cart") Map<Item, Integer> cart, @RequestParam int id, @RequestParam int quantity){
         Item item = itemService.findById(id);
         cart.replace(item, cart.get(item), quantity);
         return "redirect:/cart";
