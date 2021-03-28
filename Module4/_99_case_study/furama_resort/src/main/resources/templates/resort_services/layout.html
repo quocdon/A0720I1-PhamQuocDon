@@ -16,8 +16,29 @@
 </head>
 <body>
 <div class="jumbotron text-center" style="margin-bottom:0" th:fragment="header">
-    <h1>FURAMA RESORT</h1>
-    <p>Case Study - Module 4 - Back End Development with Spring </p>
+    <div class="text-center">
+        <h1>FURAMA RESORT</h1>
+        <p>Case Study - Module 4 - Back End Development with Spring </p>
+    </div>
+    <div>
+        <th:block th:if="${user.employee == null}">
+            <a th:href="@{/login}">
+                Đăng nhập
+            </a>
+        </th:block>
+        <th:block th:if="${user.employee != null}">
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" th:text="${user.employee.name}">
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" th:href="@{/employee/view/{id}(id=${user.employee.id})}">Thông tin nhân viên</a>
+                    <a class="dropdown-item" th:href="@{/logout}">Logout</a>
+
+                </div>
+            </div>
+        </th:block>
+    </div>
 </div>
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark col-sm-12" th:fragment="navbar">
     <a class="navbar-brand" href="/">FURAMA RESORT</a>

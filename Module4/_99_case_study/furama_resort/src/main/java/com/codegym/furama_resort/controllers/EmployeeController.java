@@ -1,6 +1,7 @@
 package com.codegym.furama_resort.controllers;
 
 import com.codegym.furama_resort.models.Employee;
+import com.codegym.furama_resort.models.User;
 import com.codegym.furama_resort.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -15,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.validation.Valid;
 
 @Controller
+@SessionAttributes("user")
 @RequestMapping(value = "/employee")
 public class EmployeeController {
     @Autowired
@@ -34,6 +36,11 @@ public class EmployeeController {
 
     @Autowired
     private UserService userService;
+
+    @ModelAttribute("user")
+    public User getUser(){
+        return new User();
+    }
 
     @ModelAttribute("pathUri")
     public String getPathUri() {

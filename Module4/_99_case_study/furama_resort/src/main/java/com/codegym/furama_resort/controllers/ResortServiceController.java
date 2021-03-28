@@ -2,6 +2,7 @@ package com.codegym.furama_resort.controllers;
 
 import com.codegym.furama_resort.models.Customer;
 import com.codegym.furama_resort.models.ResortService;
+import com.codegym.furama_resort.models.User;
 import com.codegym.furama_resort.services.RentTypeService;
 import com.codegym.furama_resort.services.ResortServiceService;
 import com.codegym.furama_resort.services.ServiceTypeService;
@@ -18,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.validation.Valid;
 
 @Controller
+@SessionAttributes("user")
 @RequestMapping("/service")
 public class ResortServiceController {
     @Autowired
@@ -28,6 +30,11 @@ public class ResortServiceController {
 
     @Autowired
     private ServiceTypeService serviceTypeService;
+
+    @ModelAttribute("user")
+    public User getUser(){
+        return new User();
+    }
 
     @GetMapping("/create")
     public ModelAndView create() {
