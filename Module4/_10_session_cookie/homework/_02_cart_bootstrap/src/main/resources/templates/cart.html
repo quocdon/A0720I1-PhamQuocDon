@@ -24,16 +24,16 @@
         <tr th:each="item : ${cart}">
             <td class="w-40"><img style="width: 150px" th:src="${item.key.imageUrl}"></td>
             <td class="w-60">
-                <h4 th:text="${item.key.name}"></h4>
-                <h5 class="text-dark">Mã sản phẩm:
+                <h4 class="text-success" th:text="${item.key.name}"></h4>
+                <h5 class="text-secondary">Mã sản phẩm:
                     <th:block th:text="${item.key.id}"></th:block>
                 </h5>
-                <h5 class="text-dark">Đơn giá:
-                    <th:block th:text="${item.key.price}"></th:block>
+                <h5 class="text-secondary">Đơn giá:
+                    <th:block th:text="${#numbers.formatDecimal(item.key.price, 0, 'POINT', 0, 'COMMA')}"></th:block>
                 </h5>
 
                 <th:block th:if="${item.key.id != id}">
-                    <h5>
+                    <h5 class="text-secondary">
                         Số lượng:
                         <th:block th:text="${item.getValue()}"></th:block>
                         <a class="btn btn-outline-success" th:href="@{/cart(id=${item.getKey().getId()})}">Thay đổi</a>
@@ -55,7 +55,7 @@
         </tr>
         <tr>
             <td></td>
-            <td><h5 style="color: red">Tổng tiền: <th:block th:text="${amount}"></th:block></h5></td>
+            <td><h5 style="color: red">Tổng tiền: <th:block th:text="${#numbers.formatDecimal(amount, 0, 'POINT', 0, 'COMMA')}"></th:block></h5></td>
             <td></td>
         </tr>
         <tr>

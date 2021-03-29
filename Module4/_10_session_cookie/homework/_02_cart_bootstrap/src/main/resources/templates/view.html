@@ -17,7 +17,7 @@
                     <h5 class="card-title text-center">MÃ SẢN PHẨM</h5>
                     <h5 class="card-title text-center" style="" th:text="${item.id}"></h5>
                     <div>
-                        <h5 class="text-center card-text h-15" style="color: red">Giá: <th:block th:text="${item.price}"></th:block></h5>
+                        <h5 class="text-center card-text h-15" style="color: red">Giá: <th:block th:text="${#numbers.formatDecimal(item.price, 0, 'POINT', 0, 'COMMA')}"></th:block></h5>
                     </div>
                     <form class="h-20 mt-6 mb-2 form-group row d-flex justify-content-around" th:action="@{/addCart}" method="get">
                         <input name="id" type="text" th:value="${item.id}" hidden>

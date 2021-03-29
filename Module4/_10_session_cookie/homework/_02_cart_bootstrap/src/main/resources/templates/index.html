@@ -16,7 +16,7 @@
                 <div class="card-body mb-2">
                     <h5 class="card-title h-50" style="" th:text="${item.name}"></h5>
                     <div>
-                        <h6 style="color: red"><span>Giá: </span><span class="card-text h-15" th:text="${item.price}"></span></h6>
+                        <h6 style="color: red"><span>Giá: </span><span class="card-text h-15" th:text="${#numbers.formatDecimal(item.price, 0, 'POINT', 0, 'COMMA')}"></span></h6>
                     </div>
                 </div>
             </a>
