@@ -21,7 +21,7 @@
         <p>Case Study - Module 4 - Back End Development with Spring </p>
     </div>
     <div>
-        <th:block th:if="${user.employee == null}">
+        <th:block th:unless="${user.employee != null}">
             <a th:href="@{/login}">
                 Đăng nhập
             </a>

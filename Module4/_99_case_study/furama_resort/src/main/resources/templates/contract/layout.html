@@ -26,7 +26,7 @@
         <p>Case Study - Module 4 - Back End Development with Spring </p>
     </div>
     <div>
-        <th:block th:if="${user.employee == null}">
+        <th:block th:unless="${user.employee != null}">
             <a th:href="@{/login}">
                 Đăng nhập
             </a>
@@ -34,11 +34,11 @@
         <th:block th:if="${user.employee != null}">
             <div class="dropdown">
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" th:text="${${user.employee.name}}">
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" th:text="${user.employee.name}">
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     <a class="dropdown-item" th:href="@{/employee/view/{id}(id=${user.employee.id})}">Thông tin nhân viên</a>
-                    <a class="dropdown-item" href="#">Logout</a>
+                    <a class="dropdown-item" th:href="@{/logout}">Logout</a>
 
                 </div>
             </div>

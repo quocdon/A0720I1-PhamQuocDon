@@ -14,14 +14,13 @@
         }
     </style>
 </head>
-<body>
 <div class="jumbotron text-center" style="margin-bottom:0" th:fragment="header">
     <div class="text-center">
         <h1>FURAMA RESORT</h1>
         <p>Case Study - Module 4 - Back End Development with Spring </p>
     </div>
     <div>
-        <th:block th:if="${user.employee == null}">
+        <th:block th:unless="${user.employee != null}">
             <a th:href="@{/login}">
                 Đăng nhập
             </a>

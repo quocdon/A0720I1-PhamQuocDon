@@ -1,6 +1,7 @@
 package com.codegym.furama_resort.controllers;
 
 import com.codegym.furama_resort.models.User;
+import com.codegym.furama_resort.services.EmployeeService;
 import com.codegym.furama_resort.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 @Controller
 @SessionAttributes("user")
@@ -18,47 +20,51 @@ public class MainController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    EmployeeService employeeService;
+
     @ModelAttribute("user")
-    public User getUser(){
+    public User getUser() {
         return new User();
     }
 
     @GetMapping("/")
-    public String viewHomePage(){
+    public String viewHomePage(@ModelAttribute("user") User user) {
         return "index";
     }
 
     @GetMapping("/login")
-    public String showLoginForm(){
+    public String showLoginForm() {
         return "login";
     }
 
     @PostMapping("/login")
-    public String login(@ModelAttribute("user") User user, BindingResult bindingResult, @RequestParam("remember") boolean remember, Model model){
-        if (!userService.existById(user.getUsername())){
-            bindingResult.addError(new FieldError("user", "username", "Tên đăng nhập không tồn tại"));
+    public String login(@Valid @ModelAttribute("user") User user, BindingResult bindingResult, Model model) {
+        if (!bindingResult.hasErrors()){
+            if (!userService.existById(user.getUsername())) {
+                bindingResult.addError(new FieldError("user", "username", "Tên đăng nhập không tồn tại"));
+            } else if (!userService.findByUsername(user.getUsername()).getPassword().equals(user.getPassword())) {
+                bindingResult.addError(new FieldError("user", "password", "Mật khẩu không chính xác"));
+            }
+        }
+        if (bindingResult.hasErrors()) {
             return "login";
         } else {
-            if (userService.findByUsername(user.getUsername()).getPassword().equals(user.getPassword())){
-                user = userService.findByUsername(user.getUsername());
-                model.addAttribute("user", user);
-                return "index";
-            } else {
-                bindingResult.addError(new FieldError("user", "password", "Mật khẩu không chính xác"));
-                return "login";
-            }
+            user.setEmployee(employeeService.findByUsername(user.getUsername()));
+            return "redirect:/";
         }
     }
 
+
     @GetMapping("/logout")
-    public String logout(SessionStatus status){
+    public String logout(SessionStatus status) {
         status.setComplete();
         return "redirect:/";
 //        Edit after learning Spring security lesson
     }
 
     @ExceptionHandler(Exception.class)
-    public String viewErrorPage(){
+    public String viewErrorPage() {
         return "error-page";
     }
 
