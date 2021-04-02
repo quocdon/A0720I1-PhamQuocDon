@@ -5,7 +5,15 @@
     <title>Create new Smartphone</title>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script type="text/css">
-
+        $(document).ready(function(){
+            $('#newSmartphoneForm').submit(function(event){
+                let producer = $('#producer').val();
+                let model = $('#model').val();
+                let price = $('#price').val();
+                let json = {"producer" : producer, "model" : model, "price" : price};
+                $.ajax({
+                    }
+        )}
     </script>
 </head>
 <body>
