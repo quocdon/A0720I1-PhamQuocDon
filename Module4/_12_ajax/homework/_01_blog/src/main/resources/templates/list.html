@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout::head">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="container">
+    <!--    Menu-->
+    <div th:replace="layout::menu">
+    </div>
+    <!--    Categories-->
+
+
+    <!--    Content-->
+    <div>
+        <table class="table table-stripe">
+            <thead>
+            <tr>
+                <td class="col-10"></td>
+                <td class="col-1">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="filter"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Filter
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="/">All categories</a>
+                            <a class="dropdown-item" th:each="category: ${categories}" th:utext="${category.name}"
+                               th:href="@{/category/{id}(id=${category.id})}"></a>
+                        </div>
+                    </div>
+                </td>
+                <td class="col-1">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="sort"
+                                data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                            Sort
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" th:href="@{/desc}">Newest</a>
+                            <a class="dropdown-item" th:href="@{/asc}">Oldest</a>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="blog, blogStat : ${blogs}">
+                <td class="column">
+                    <div class="d-flex justify-content-between">
+                        <div class="row">
+                            <h5><a class="text-decoration-none" th:text="${blog.title}"
+                                   th:href="@{/{id}/view(id=${blog.id})}"></a></h5>
+                            <label class="badge bg-outline-success text-success text-wrap"
+                                   th:text="${blog.category.name}"></label>
+                        </div>
+                        <div>
+                            <label>Posted on: </label>
+                            <label th:text="${blog.createdTime}"></label>
+                        </div>
+                    </div>
+                    <div>
+                        <p th:text="${#strings.abbreviate(blog.content,150)}"></p>
+                    </div>
+                </td>
+                <td class="text-center"><a th:href="@{/{id}/edit(id=${blog.id})}">Edit</a></td>
+                <td class="text-center"><a th:href="@{/{id}/delete(id=${blog.id})}">Delete</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <a th:href="@{${currentURI}(page=${blogs.number - 1})}" th:if="${blogs.hasPrevious()}">Previous</a>
+        <span th:text="${blogs.number + 1}"></span>/<span th:text="${blogs.totalPages}"></span>
+        <a th:href="@{${currentURI}(page=${blogs.number + 1})}" th:if="${blogs.hasNext()}">Next</a>
+    </div>
+</div>
+</body>
+</html>

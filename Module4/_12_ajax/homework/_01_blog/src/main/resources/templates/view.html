@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout::head">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="container mh-100">
+    <!--    Menu-->
+    <div th:replace="layout::menu">
+    </div>
+    <!--    Categories-->
+
+
+    <!--    Content-->
+    <div class="content-div">
+        <h4 th:text="${blog.title}"></h4>
+        <p th:text="${blog.category.name}"></p>
+        <p>Posted: <span th:text="${blog.createdTime}"></span></p>
+        <hr>
+        <pre th:utext="${blog.content}"></pre>
+
+        <a class="btn btn-outline-secondary" th:href="@{/}">Back to list</a>
+    </div>
+</div>
+</body>
+</html>

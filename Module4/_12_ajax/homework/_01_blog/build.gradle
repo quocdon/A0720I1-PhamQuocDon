@@ -21,7 +21,6 @@ dependencies {
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-core'
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-
 }
 
 test {
