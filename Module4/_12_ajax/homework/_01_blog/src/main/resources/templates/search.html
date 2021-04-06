@@ -6,6 +6,24 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 </head>
 <body>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#searchForm').submit(function (event) {
+            let search = $('#search').val();
+            console.log(search);
+            $.ajax({
+                type : "POST",
+                url : "search",
+                data : {search},
+                dataType : HTML,
+                success : function (responseText) {
+                    $('#result').html(responseText);
+                }
+            })
+            event.preventDefault();
+        })
+    })
+</script>
 <div class="container">
     <!--    Menu-->
     <div th:replace="layout::menu">
@@ -24,23 +42,5 @@
 
     </div>
 </div>
-
-<script type="text/javascript">
-    $(document).ready(function (event) {
-        $('#searchForm').submit(function (event) {
-            let search = $('#search').val();
-            $.ajax({
-                type : "POST",
-                contentType : "application/json",
-                url : "/search",
-                data : JSON.stringify(search)
-                dataType : JSON,
-                success : function (result) {
-
-                }
-            })
-        })
-    })
-</script>
 </body>
 </html>

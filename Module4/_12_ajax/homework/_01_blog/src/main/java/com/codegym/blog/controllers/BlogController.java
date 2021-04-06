@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Controller
 public class BlogController {
@@ -81,16 +82,14 @@ public class BlogController {
         return model;
     }
 
-    @PostMapping("/search")
-    public String search(@RequestParam(defaultValue = "") String search, @PageableDefault(size = 5) Pageable pageable, Model model) {
-        if (search.equals("")) {
-            return "redirect:/";
+    @RequestMapping(value = "/search", method = RequestMethod.POST)
+    public String search(@RequestBody String search, @PageableDefault(size = 5) Pageable pageable, Model model) {
+        if (search.equals("")){
+            model.addAttribute("blogs", blogService.findAll(pageable));
+        } else {
+            model.addAttribute("blogs", blogService.findBlogsByTitleContainsOrContentContains(search, search, pageable));
         }
-        Page<Blog> result = blogService.findBlogsByTitleContainsOrContentContains(search, search, pageable);
-        model.addAttribute("blogs", result);
-        model.addAttribute("categories", categoryService.findAll());
-        model.addAttribute("currentURI", "");
-        return "list";
+        return "result";
     }
     @GetMapping("/search")
     public String showSearchPage(){
