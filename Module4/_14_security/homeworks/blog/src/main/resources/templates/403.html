@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout::head">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="container mh-100">
+    <!--    Menu-->
+    <div th:replace="layout::menu">
+    </div>
+    <!--    Categories-->
+
+
+    <!--    Content-->
+    <div class="content-div">
+        <h3 th:if="${message != null}" th:utext="${message}" style="color: red;"></h3>
+        <a th:href="@{/}">Home Page</a>
+    </div>
+</div>
+</body>
+</html>

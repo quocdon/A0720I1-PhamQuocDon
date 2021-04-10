@@ -1,10 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title th:text="#{dashboard.title}"></title>
 </head>
 <body>
-$END$
+<h1 th:text="#{dashboard.heading}"></h1>
+<span th:text="#{dashboard.greeting}"></span> <span th:text="${user.username}"></span>
 </body>
 </html>

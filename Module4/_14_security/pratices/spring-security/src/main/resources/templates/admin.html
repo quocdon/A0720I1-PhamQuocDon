@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2 style="color: red">Admin Page</h2>
+<div th:replace="index::navbar">
+
+</div>
+<div>
+    <h4>Username: <th:block th:text="${loggedInUser.username}"></th:block> </h4>
+    <h4>Roles:
+        <th:block th:each="role : ${loggedInUser.getAuthorities()}">
+            <th:block th:text="${role.getAuthority()}"></th:block>
+        </th:block>
+    </h4>
+</div>
+</body>
+</html>
