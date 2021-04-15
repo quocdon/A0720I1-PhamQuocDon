@@ -1,0 +1,32 @@
+<div xmlns:th="http://www.thymeleaf.org">
+    <div th:if="${services != null}">
+        <th:block th:each="service : ${services}">
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${service.name}">Card title</h5>
+                    <div class="card-text">
+                        <table>
+                            <tr>
+                                <td>Type</td>
+                                <td th:text="${service.serviceType.name}"></td>
+                            </tr>
+                            <tr>
+                                <td>Price</td>
+                                <td th:text="${service.cost}"></td>
+                            </tr>
+                            <tr>
+                                <td>Area</td>
+                                <td th:text="${service.area}"></td>
+                            </tr>
+                            <tr>
+                                <td>Max.People</td>
+                                <td th:text="${service.maxPeople}"></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+        </th:block>
+    </div>
+</div>

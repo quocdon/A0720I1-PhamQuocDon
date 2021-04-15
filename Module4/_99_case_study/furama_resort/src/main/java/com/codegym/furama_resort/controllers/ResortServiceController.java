@@ -67,6 +67,20 @@ public class ResortServiceController {
         return modelAndView;
     }
 
+    @GetMapping("/serviceModal")
+    public String showServiceListInModal(@RequestParam(defaultValue = "") String search,
+                                         @RequestParam(defaultValue = "0") int page,
+                                         Model model){
+        Pageable pageable = PageRequest.of(page, 10);
+        if (search.equals("")){
+            model.addAttribute("services", resortServiceService.findAll(pageable));
+        } else {
+            model.addAttribute("search", search);
+            model.addAttribute("services", resortServiceService.findByName(search, pageable));
+        }
+        return "/resort_services/listModal";
+    }
+
     @ExceptionHandler(Exception.class)
     public String viewErrorPage(){
         return "error-page";
