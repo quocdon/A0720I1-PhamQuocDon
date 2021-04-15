@@ -1,7 +1,6 @@
 package com.codegym.furama_resort.services.impl;
 
 import com.codegym.furama_resort.models.Employee;
-import com.codegym.furama_resort.models.User;
 import com.codegym.furama_resort.repositories.EmployeeRepository;
 import com.codegym.furama_resort.services.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;

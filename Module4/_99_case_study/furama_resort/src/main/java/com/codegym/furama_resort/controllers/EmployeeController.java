@@ -1,22 +1,26 @@
 package com.codegym.furama_resort.controllers;
 
-import com.codegym.furama_resort.models.Employee;
-import com.codegym.furama_resort.models.User;
+import com.codegym.furama_resort.models.*;
+import com.codegym.furama_resort.models.dto.AppUserDto;
 import com.codegym.furama_resort.services.*;
+import org.hibernate.annotations.Parameter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.repository.query.Param;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
-@SessionAttributes("user")
 @RequestMapping(value = "/employee")
 public class EmployeeController {
     @Autowired
@@ -32,19 +36,20 @@ public class EmployeeController {
     private EducationDegreeService educationDegreeService;
 
     @Autowired
-    private RoleService roleService;
+    private AppRoleService appRoleService;
 
     @Autowired
-    private UserService userService;
+    private AppUserService appUserService;
 
-    @ModelAttribute("user")
-    public User getUser(){
-        return new User();
-    }
+    @Autowired
+    private UserRoleService userRoleService;
 
-    @ModelAttribute("pathUri")
-    public String getPathUri() {
-        return "/employee";
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    @ModelAttribute("appRoles")
+    public List<AppRole> getPathUri() {
+        return appRoleService.findAll();
     }
 
 //    @GetMapping(value = {"/",""})
@@ -63,16 +68,16 @@ public class EmployeeController {
         modelAndView.addObject("departments", departmentService.findAll());
         modelAndView.addObject("positions", positionService.findAll());
         modelAndView.addObject("educationDegrees", educationDegreeService.findAll());
-        modelAndView.addObject("roles", roleService.findAll());
+        modelAndView.addObject("roles", appRoleService.findAll());
         return modelAndView;
     }
 
     @PostMapping("/save")
-    public String save(@Valid @ModelAttribute Employee employee, BindingResult bindingResult, @RequestParam String confirmPassword, Model model) {
-        if (userService.existById(employee.getUser().getUsername())) {
+    public String save(@Valid @ModelAttribute Employee employee, BindingResult bindingResult, @RequestParam String confirmPassword, Model model, RedirectAttributes attributes) {
+        if (appUserService.existById(employee.getAppUser().getUsername())) {
             bindingResult.addError(new FieldError("employee", "user.username", "Tên đăng nhập đã tồn tại"));
         }
-        if (!employee.getUser().getPassword().equals(confirmPassword)) {
+        if (!employee.getAppUser().getPassword().equals(confirmPassword)) {
             bindingResult.addError(new FieldError("employee", "user.password", "Xác nhận mật khẩu không chính xác"));
         }
         if (bindingResult.hasFieldErrors()) {
@@ -81,7 +86,22 @@ public class EmployeeController {
             model.addAttribute("educationDegrees", educationDegreeService.findAll());
             return "employee/create";
         }
+        employee.getAppUser().setPassword(bCryptPasswordEncoder.encode(employee.getAppUser().getPassword()));
         employeeService.save(employee);
+        AppUserDto appUserDto = new AppUserDto();
+        appUserDto.setAppUser(employee.getAppUser());
+        model.addAttribute("appUserDto", appUserDto);
+        return "/employee/setRole";
+    }
+    @PostMapping("/setRole")
+    public String setRole(@ModelAttribute AppUserDto appUserDto){
+        for (AppRole role : appUserDto.getRoles()){
+            UserRole userRole = new UserRole();
+            userRole.setAppUser(appUserDto.getAppUser());
+            userRole.setAppRole(role);
+            userRole.setId(new UserRoleKey(appUserDto.getAppUser().getUsername(), role.getId()));
+            userRoleService.save(userRole);
+        }
         return "redirect:/employee/";
     }
 
@@ -137,8 +157,8 @@ public class EmployeeController {
             return modelAndView;
         }
     }
-    @ExceptionHandler(Exception.class)
-    public String viewErrorPage(){
-        return "error-page";
-    }
+//    @ExceptionHandler(Exception.class)
+//    public String viewErrorPage(){
+//        return "error-page";
+//    }
 }

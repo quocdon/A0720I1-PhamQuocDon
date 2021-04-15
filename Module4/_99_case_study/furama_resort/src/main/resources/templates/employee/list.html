@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="/employee/layout::head">
+<head th:replace="~{layout::head}">
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
 <div class="container-fluid">
-    <div th:replace="/employee/layout::header">
+    <div th:replace="~{/layout::header}">
 <!--        header-->
     </div>
-    <div th:insert="/employee/layout::navbar">
+    <div th:insert="~{/layout::navbar}">
 <!--        navbar-->
     </div>
     <div class="row">
 <!--        main-->
-        <div th:replace="/employee/layout::left-panel">
+        <div th:replace="~{/layout::employee-left-panel}">
 <!--            left panel-->
         </div>
         <div class="col-sm-10">
@@ -42,7 +42,7 @@
                         <td th:text="${employee.email}"></td>
                         <td th:text="${employee.position.name}"></td>
                         <td th:text="${employee.department.name}"></td>
-                        <td th:text="${employee.user.username}"></td>
+                        <td th:text="${employee.appUser.username}"></td>
                         <td><a th:href="@{/employee/view/{id}(id=${employee.id})}">Xem</a></td>
                         <td><a th:href="@{/employee/edit/{id}(id=${employee.id})}">Sửa</a></td>
                         <td><a th:href="@{/employee/delete/{id}(id=${employee.id})}" onclick="return confirm('Bạn muốn xóa nhân viên này không?')">Xóa</a></td>

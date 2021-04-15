@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:fragment="head">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>My blog</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+          integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#submitSearch').click(function (event) {
+                let search = $("#search").val();
+                $.ajax({
+                    url: "/search",
+                    type: "GET",
+                    data: {"search" : search},
+                    dataType: "HTML",
+                    success :function (data) {
+                        $("#result").html(data);
+                    }
+                })
+                // event.preventDefault();
+            })
+
+            $('#loadMore').click(function (event) {
+                let search = $("#search").val();
+                let page = $("#page").val();
+                $.ajax({
+                    url: "/search",
+                    type: "GET",
+                    data: {"search" : search,
+                            "page" : page },
+                    dataType: "HTML",
+                    success :function (data) {
+                        $("#result").html(data);
+                    }
+                })
+                // event.preventDefault();
+            })
+
+        })
+    </script>
+    <style>
+        body {
+            height: 100vh;
+        }
+
+        pre {
+            overflow-x: auto;
+            white-space: pre-wrap;
+            white-space: -moz-pre-wrap;
+            white-space: -pre-wrap;
+            white-space: -o-pre-wrap;
+            word-wrap: break-word;
+            font-family: Arial;
+            font-size: 18px;
+            text-align: justify;
+        }
+
+        p {
+            margin: 0;
+            padding: 5px 10px 5px 10px;
+            text-align: justify;
+        }
+
+        h5 {
+            padding-left: 25px;
+        }
+
+        .content-div {
+            margin-top: 25px;
+        }
+    </style>
+</head>
+<body>
+<div th:fragment="menu">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <!-- Navbar content -->
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" th:href="@{/}">Home<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" th:href="@{/create}">New Post<span class="sr-only">(current)</span></a>
+                </li>
+                <li sec:authorize="isAnonymous()" class="nav-item active">
+                    <a class="nav-link" th:href="@{/login}">Login<span class="sr-only">(current)</span></a>
+                </li>
+                <li sec:authorize="isAuthenticated()" class="nav-item active">
+                    <span class="nav-link" th:utext="${#request.userPrincipal.name}"><span class="sr-only">(current)</span></span>
+                </li>
+                <li sec:authorize="isAuthenticated()" class="nav-item active">
+                    <a class="nav-link" th:href="@{/logout}">Logout<span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+            <div class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="search">
+                <button class="btn btn-outline-success my-2 my-sm-0" id="submitSearch">Search</button>
+            </div>
+        </div>
+    </nav>
+</div>
+</body>
+</html>

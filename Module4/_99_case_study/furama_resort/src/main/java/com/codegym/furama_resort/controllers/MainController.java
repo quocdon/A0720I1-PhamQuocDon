@@ -1,8 +1,8 @@
 package com.codegym.furama_resort.controllers;
 
-import com.codegym.furama_resort.models.User;
+import com.codegym.furama_resort.models.AppUser;
 import com.codegym.furama_resort.services.EmployeeService;
-import com.codegym.furama_resort.services.UserService;
+import com.codegym.furama_resort.services.AppUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,25 +11,24 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 @Controller
-@SessionAttributes("user")
 public class MainController {
     @Autowired
-    UserService userService;
+    AppUserService appUserService;
 
     @Autowired
     EmployeeService employeeService;
 
-    @ModelAttribute("user")
-    public User getUser() {
-        return new User();
+    @ModelAttribute("searchUri")
+    public String getCurrentUri(HttpServletRequest request) {
+        return "@{/" + request.getRequestURI() + "}";
     }
 
     @GetMapping("/")
-    public String viewHomePage(@ModelAttribute("user") User user) {
+    public String viewHomePage(@ModelAttribute("user") AppUser appUser) {
         return "index";
     }
 
@@ -38,24 +37,6 @@ public class MainController {
         return "login";
     }
 
-    @PostMapping("/login")
-    public String login(@Valid @ModelAttribute("user") User user, BindingResult bindingResult, Model model) {
-        if (!bindingResult.hasErrors()){
-            if (!userService.existById(user.getUsername())) {
-                bindingResult.addError(new FieldError("user", "username", "Tên đăng nhập không tồn tại"));
-            } else if (!userService.findByUsername(user.getUsername()).getPassword().equals(user.getPassword())) {
-                bindingResult.addError(new FieldError("user", "password", "Mật khẩu không chính xác"));
-            }
-        }
-        if (bindingResult.hasErrors()) {
-            return "login";
-        } else {
-            user.setEmployee(employeeService.findByUsername(user.getUsername()));
-            return "redirect:/";
-        }
-    }
-
-
     @GetMapping("/logout")
     public String logout(SessionStatus status) {
         status.setComplete();
@@ -63,10 +44,10 @@ public class MainController {
 //        Edit after learning Spring security lesson
     }
 
-    @ExceptionHandler(Exception.class)
-    public String viewErrorPage() {
-        return "error-page";
-    }
+//    @ExceptionHandler(Exception.class)
+//    public String viewErrorPage() {
+//        return "error-page";
+//    }
 
 
 }

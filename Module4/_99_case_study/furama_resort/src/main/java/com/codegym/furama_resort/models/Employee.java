@@ -46,7 +46,7 @@ public class Employee {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "username", referencedColumnName = "username")
     @Valid
-    private User user;
+    private AppUser appUser;
 
     public Employee() {
     }
@@ -139,12 +139,12 @@ public class Employee {
         this.department = department;
     }
 
-    public User getUser() {
-        return user;
+    public AppUser getAppUser() {
+        return appUser;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setAppUser(AppUser appUser) {
+        this.appUser = appUser;
     }
 
 }

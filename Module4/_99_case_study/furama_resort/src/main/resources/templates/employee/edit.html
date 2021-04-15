@@ -1,27 +1,27 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="/employee/layout::head">
+<head th:replace="~{layout::head}">
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
 <div class="container-fluid">
-    <div th:replace="/employee/layout::header">
+    <div th:replace="~{/layout::header}">
         <!--        header-->
     </div>
-    <div th:insert="/employee/layout::navbar">
+    <div th:insert="~{/layout::navbar}">
         <!--        navbar-->
     </div>
     <div class="row">
         <!--        main-->
-        <div th:replace="/employee/layout::left-panel">
+        <div th:replace="~{/layout::employee-left-panel}">
             <!--            left panel-->
         </div>
         <div class="col-sm-8">
             <!--            content-->
             <form th:action="@{/employee/update}" method="post" th:object="${employee}">
                 <input th:if="${employee != null}" type="text" th:field="*{id}" hidden>
-                <input class="form-control" type="text" th:field="*{user}" hidden>
+                <input class="form-control" type="text" th:field="*{appUser}" hidden>
                 <div class="form-group row">
                     <label class="col-sm-1 col-form-label">Họ và tên:</label>
                     <label class="col-sm-4">

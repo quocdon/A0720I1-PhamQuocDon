@@ -1,7 +1,7 @@
 package com.codegym.furama_resort.controllers;
 
+import com.codegym.furama_resort.models.AppUser;
 import com.codegym.furama_resort.models.Customer;
-import com.codegym.furama_resort.models.User;
 import com.codegym.furama_resort.services.CustomerService;
 import com.codegym.furama_resort.services.CustomerTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,6 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.validation.Valid;
 
 @Controller
-@SessionAttributes("user")
 @RequestMapping("/customer")
 public class CustomerController {
     @Autowired
@@ -25,11 +24,6 @@ public class CustomerController {
 
     @Autowired
     private CustomerTypeService customerTypeService;
-
-    @ModelAttribute("user")
-    public User getUser(){
-        return new User();
-    }
 
     @GetMapping("/create")
     public ModelAndView create() {

@@ -1,39 +1,41 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="/resort_services/layout::head">
+<head th:replace="layout::head">
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
 <div class="container-fluid">
-    <div th:replace="/resort_services/layout::header">
+    <div th:replace="layout::header">
         <!--        header-->
     </div>
-    <div th:insert="/resort_services/layout::navbar">
+    <div th:insert="layout::navbar">
         <!--        navbar-->
-
     </div>
     <div class="row">
         <!--        main-->
-        <form th:object="${user}" method="post" th:action="@{/login}">
+        <form name='f' th:action="@{/j_spring_security_check}" method='POST'>
             <div>
                 <label>Username: </label>
-                <input type="text" th:field="*{username}">
-                <label th:if="${#fields.hasErrors('username')}"  th:errors="*{username}"></label>
+                <input type="text" name="username">
             </div>
             <div>
                 <label>Password: </label>
-                <input type="password" th:field="*{password}">
-                <label th:if="${#fields.hasErrors('password')}"  th:errors="*{password}"></label>
+                <input type="password" name="password">
+
             </div>
-<!--            <div>-->
-<!--                <input type="checkbox" name="remember" value="true">-->
-<!--                <label>Remember me</label>-->
-<!--            </div>-->
             <div>
-                <input type="submit" value="Login">
+                <label>Remember me </label>
+                <input type="checkbox" name="remember-me">
+            </div>
+            <div>
+                <input name="submit" type="submit" value="Login">
             </div>
         </form>
+        <hr>
+        <div th:if="${#request.getParameter('error') == true}">
+            <span style="color: red">Tên đăng nhập hoặc mật khẩu không chính xác</span>
+        </div>
     </div>
     <div>
         <!--        footer-->

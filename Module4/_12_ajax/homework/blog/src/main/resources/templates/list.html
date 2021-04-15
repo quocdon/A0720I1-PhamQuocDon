@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout::head">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="container">
+    <!--    Menu-->
+    <div th:replace="layout::menu">
+    </div>
+    <!--    Categories-->
+
+
+    <!--    Content-->
+    <div id="result">
+        <table class="table table-stripe">
+            <tbody>
+            <tr th:each="blog, blogStat : ${blogs}">
+                <td class="column">
+                    <div class="d-flex justify-content-between">
+                        <div class="row">
+                            <h5><a class="text-decoration-none" th:text="${blog.title}"
+                                   th:href="@{/view/{id}(id=${blog.id})}"></a></h5>
+                            <label class="badge bg-outline-success text-success text-wrap"
+                                   th:text="${blog.category.name}"></label>
+                        </div>
+                        <div>
+                            <label>Posted on: <th:block th:text="${blog.createdTime}"></th:block> by <th:block th:text="${blog.appUser.username}"></th:block> </label>
+
+                        </div>
+                    </div>
+                    <div>
+                        <p th:text="${#strings.abbreviate(blog.content,150)}"></p>
+                    </div>
+                </td>
+                <td class="text-center"><a th:href="@{/edit/{id}(id=${blog.id})}">Edit</a></td>
+                <td class="text-center"><a th:href="@{/delete/{id}(id=${blog.id})}" onclick="return confirm('Are you sure to delete this blog')">Delete</a></td>
+            </tr>
+            </tbody>
+        </table>
+        <div>
+            <a th:href="@{/(sortDirection=${sortDirection},search=${search},categoryId=${categoryId},page=${blogs.number - 1})}" th:if="${blogs.hasPrevious()}">Previous</a>
+            <span th:text="${blogs.number + 1}"></span>/<span th:text="${blogs.totalPages}"></span>
+            <a th:href="@{/(sortDirection=${sortDirection},search=${search},categoryId=${categoryId},page=${blogs.number + 1})}" th:if="${blogs.hasNext()}">Next</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

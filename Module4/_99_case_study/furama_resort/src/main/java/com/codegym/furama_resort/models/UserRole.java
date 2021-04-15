@@ -11,12 +11,12 @@ public class UserRole {
     @ManyToOne
     @MapsId("username")
     @JoinColumn(name = "username")
-    private User user;
+    private AppUser appUser;
 
     @ManyToOne
     @MapsId("roleId")
     @JoinColumn(name = "role_id")
-    private Role role;
+    private AppRole appRole;
 
     public UserRole() {
     }
@@ -29,19 +29,19 @@ public class UserRole {
         this.id = id;
     }
 
-    public User getUser() {
-        return user;
+    public AppUser getAppUser() {
+        return appUser;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setAppUser(AppUser appUser) {
+        this.appUser = appUser;
     }
 
-    public Role getRole() {
-        return role;
+    public AppRole getAppRole() {
+        return appRole;
     }
 
-    public void setRole(Role role) {
-        this.role = role;
+    public void setAppRole(AppRole appRole) {
+        this.appRole = appRole;
     }
 }

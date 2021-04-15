@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="/employee/layout::head">
+<head th:replace="~{layout::head}">
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
 <div class="container-fluid">
-    <div th:replace="/employee/layout::header">
+    <div th:replace="~{/layout::header}">
         <!--        header-->
     </div>
-    <div th:insert="/employee/layout::navbar">
+    <div th:insert="~{/layout::navbar}">
         <!--        navbar-->
     </div>
     <div class="row">
         <!--        main-->
-        <div th:replace="/employee/layout::left-panel">
+        <div th:replace="~{/layout::employee-left-panel}">
             <!--            left panel-->
         </div>
         <div class="col-sm-8">
@@ -24,23 +24,23 @@
                 <div class="form-group row">
                     <label class="col-sm-1 col-form-label">Tên đăng nhập:</label>
                     <label class="col-sm-4">
-                        <input class="form-control" type="text" th:field="*{user.username}">
+                        <input class="form-control" type="text" th:field="*{appUser.username}">
                     </label>
-                    <label class="col-sm-3 col-form-label" th:if="${#fields.hasErrors('user.username')}" th:errors="*{user.username}"></label>
+                    <label class="col-sm-3 col-form-label" th:if="${#fields.hasErrors('appUser.username')}" th:errors="*{appUser.username}"></label>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-1 col-form-label">Mật khẩu:</label>
                     <label class="col-sm-4" for="password">
-                        <input class="form-control" id="password" type="password" th:field="*{user.password}">
+                        <input class="form-control" id="password" type="password" th:field="*{appUser.password}">
                     </label>
-                    <label class="col-sm-3 col-form-label" th:if="${#fields.hasErrors('user.password')}" th:errors="*{user.password}"></label>
+                    <label class="col-sm-3 col-form-label" th:if="${#fields.hasErrors('appUser.password')}" th:errors="*{appUser.password}"></label>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-1 col-form-label">Nhập lại mật khẩu:</label>
                     <label class="col-sm-4" for="password">
                         <input class="form-control" id="confirmPassword" type="password" name="confirmPassword">
                     </label>
-                    <label class="col-sm-3 col-form-label" th:if="${#fields.hasErrors('user.password')}" th:errors="*{user.password}"></label>
+                    <label class="col-sm-3 col-form-label" th:if="${#fields.hasErrors('appUser.password')}" th:errors="*{appUser.password}"></label>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-1 col-form-label">Họ và tên:</label>

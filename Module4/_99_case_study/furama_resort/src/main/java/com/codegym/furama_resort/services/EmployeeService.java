@@ -1,7 +1,6 @@
 package com.codegym.furama_resort.services;
 
 import com.codegym.furama_resort.models.Employee;
-import com.codegym.furama_resort.models.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;

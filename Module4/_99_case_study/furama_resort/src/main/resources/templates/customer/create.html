@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="/customer/layout::head">
+<head th:replace="~{layout::head}">
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
 <div class="container-fluid">
-    <div th:replace="/customer/layout::header">
+    <div th:replace="~{/layout::header}">
         <!--        header-->
     </div>
-    <div th:insert="/customer/layout::navbar">
+    <div th:insert="~{/layout::navbar}">
         <!--        navbar-->
     </div>
     <div class="row">
         <!--        main-->
-        <div th:replace="/customer/layout::left-panel">
+        <div th:replace="~{/layout::customer-left-panel}">
             <!--            left panel-->
         </div>
         <div class="col-sm-8">

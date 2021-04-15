@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="/employee/layout::head">
+<head th:replace="~{layout::head}">
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
 <div class="container-fluid">
-    <div th:replace="/resort_services/layout::header">
-<!--        header-->
+    <div th:replace="~{/layout::header}">
+        <!--        header-->
     </div>
-    <div th:insert="/resort_services/layout::navbar">
-<!--        navbar-->
+    <div th:insert="~{/layout::navbar}">
+        <!--        navbar-->
     </div>
     <div class="row">
-<!--        main-->
-        <div th:replace="/resort_services/layout::left-panel">
-<!--            left panel-->
+        <!--        main-->
+        <div th:replace="~{/layout::service-left-panel}">
+            <!--            left panel-->
         </div>
         <div class="col-sm-10">
 <!--            content-->

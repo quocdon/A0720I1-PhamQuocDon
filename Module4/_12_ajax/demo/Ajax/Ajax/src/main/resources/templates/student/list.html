@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{/student/layout::head}">
+
+</head>
+<body>
+
+
+<h3 th:if="${successMsg}" th:text="${successMsg}" style="color: red"></h3>
+
+<form action="/student/search">
+    <label>Input Text: </label>
+    <input type="text" th:name="inputSearch">
+    <input type="submit" value="Search">
+</form>
+
+
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Gender</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+        <tr th:each="student,status:${studentList}">
+            <td th:text="${student.id}"></td>
+            <td th:text="${student.name}"></td>
+            <td th:switch="${student.gender}">
+                <span th:case="0">Female</span>
+                <span th:case="1">Male</span>
+                <span th:case="*">LGBT</span>
+            </td>
+            <td>
+<!--                <a th:href="@{/student/edit/{id}(id=${student.id})}">Edit</a>-->
+                <button class="edit" type="button" th:value="${student.id}">Edit</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<div th:insert="~{/student/layout::footer}"></div>
+
+
+<div>
+    <a th:href="@{'/student'(page=${studentList.number - 1})}" th:if="${studentList.hasPrevious()}">Previous</a>
+    <span th:text="${studentList.number + 1}"></span>/<span th:text="${studentList.totalPages}"></span>
+    <a th:href="@{'/student'(page=${studentList.number + 1})}" th:if="${studentList.hasNext()}">Next</a>
+</div>
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary btn-lg" id="btnModalCreate">
+    Create
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Body
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="/js/jquery-3.5.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+<script>
+    $(document).ready(function () {
+        $("#btnModalCreate").click(function () {
+            $.ajax({
+                type: "GET",
+                url: "/create",
+                dataType: "HTML",
+                success: function (data) {
+                    $(".modal-body").html(data);
+                    $("#modelId").modal('show');
+                }
+            });
+        });
+        $(".edit").click(function () {
+            $.ajax({
+                type: "GET",
+                url: "/student/edit/" + $(this).val(),
+                dataType: "HTML",
+                success: function (data) {
+                    $(".modal-body").html(data);
+                    $("#modelId").modal('show');
+                }
+            });
+        });
+    });
+</script>
+
+
+</body>
+</html>
