@@ -19,7 +19,7 @@
         </div>
         <div class="col-sm-10">
 <!--            content-->
-            <table class="table table-stripe">
+            <table class="table table-striped">
                 <thead>
                     <tr>
                         <td>Mã Hợp đồng</td>
@@ -28,7 +28,6 @@
                         <td>Ngày bắt đầu</td>
                         <td>Ngày kết thúc</td>
                         <td>Dịch vụ đi kèm</td>
-                        <td>Số tiền</td>
                         <td>Chi tiết</td>
                         <td>Chỉnh sửa</td>
                         <td>Xóa</td>
@@ -45,7 +44,10 @@
                         <td th:text="${contract.endDate}"></td>
                         <td>
                             <th:block th:each="detail: ${contract.contractDetails}">
-                                <p th:text="${detail.attachService.name}"></p>
+                                <p>
+                                    <th:block th:text="${detail.attachService.name}"></th:block>
+                                    (<th:block th:text="${detail.quantity}"></th:block>)
+                                </p>
                             </th:block>
                         </td>
                         <td><a th:href="@{/contract/view/{id}(id=${contract.id})}">Xem</a></td>
@@ -58,7 +60,7 @@
             <div>
                 <a th:href="@{/contract(search=${search},page=${contracts.number - 1})}" th:if="${contracts.hasPrevious()}">Previous</a>
                 <span th:text="${contracts.number + 1}"></span>/<span th:text="${contracts.totalPages}"></span>
-                <a th:href="@{/customer(search=${search},page=${contracts.number + 1})}" th:if="${contracts.hasNext()}">Next</a>
+                <a th:href="@{/contract(search=${search},page=${contracts.number + 1})}" th:if="${contracts.hasNext()}">Next</a>
             </div>
         </div>
     </div>

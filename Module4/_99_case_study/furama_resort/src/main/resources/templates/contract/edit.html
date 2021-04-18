@@ -17,7 +17,7 @@
         <div th:replace="~{/layout::contract-left-panel}">
             <!--            left panel-->
         </div>
-        <div class="col-sm-8">
+        <div class="col-sm-8 d-flex flex-column">
             <!--                        content--
 
                                Modal-->
@@ -65,12 +65,12 @@
 
             <div class="d-flex flex-column w-100">
                 <h3 class="text-center bg-success text-white mr-auto ml-auto w-100">THÔNG TIN DỊCH VỤ</h3>
-                <button type="button" class="text-center btn btn-outline-success mr-auto ml-auto" id="btnModalService">
-                    Chọn
+                <button type="button" class="text-center btn btn-outline-success mr-auto ml-auto"
+                        id="btnModalService">Chọn
                 </button>
                 <br>
                 <div id="service-div">
-                    <table th:if="${contract.resortService != null}">
+                    <table class="table table-striped" th:if="${contract.resortService != null}">
                         <tr>
                             <td>Mã dịch vụ:</td>
                             <td th:text="${contract.resortService.id}" id="selected-service-id"
@@ -86,7 +86,7 @@
                         </tr>
                         <tr>
                             <td>Giá:</td>
-                            <td th:text="${contract.resortService.cost}"></td>
+                            <td th:text="${#numbers.formatDecimal(contract.resortService.cost, 0, 'POINT', 0, 'COMMA')}"></td>
                         </tr>
                     </table>
                 </div>
@@ -94,11 +94,9 @@
 
             <div class="d-flex flex-column w-100">
                 <h3 class="text-center bg-success text-white">THÔNG TIN KHÁCH HÀNG</h3>
-                <button type="button" class="text-center btn btn-outline-success mr-auto ml-auto" id="btnModalCustomer">
-                    Chọn
-                </button>
+                <button type="button" class="text-center btn btn-outline-success mr-auto ml-auto" id="btnModalCustomer">Chọn</button>
                 <div id="customer-div">
-                    <table th:if="${contract.customer != null}">
+                    <table class="table table-striped" th:if="${contract.customer != null}">
                         <tr>
                             <td>Mã khách hàng:</td>
                             <td th:text="${contract.customer.id}"></td>
@@ -128,31 +126,40 @@
             </div>
             <h3 class="text-center bg-success text-white">THÔNG TIN LƯU TRÚ</h3>
             <form class="w-100 mr-auto ml-auto" th:action="@{/contract/save}" method="post" th:object="${contract}">
-                <input type="text" th:field="*{id}" hidden>
-                <input id="service-id-form" type="text" th:field="*{resortService}" hidden>
-                <input id="customer-id-form" type="text" th:field="*{customer}" hidden>
+                    <input type="text" th:field="*{id}" th:value="${contract.id}" hidden>
+                <input id="service-id-form" type="text" th:field="*{resortService}"
+                       th:value="${contract.resortService.id}" hidden>
+                <input id="customer-id-form" type="text" th:field="*{customer}" th:value="${contract.customer.id}"
+                       hidden>
                 <div class="form-group row">
-                    <label class="w-100 col-form-label" th:if="${#fields.hasErrors('resortService')}"
-                           th:errors="*{resortService}"></label>
+                    <label class="col-sm-1 col-form-label"></label>
+                    <label class="col-sm-4">
+                        <label class="col-sm-3 col-form-label" th:if="${#fields.hasErrors('resortService')}"
+                               th:errors="*{resortService}"></label>
+                    </label>
                 </div>
                 <div class="form-group row">
-                    <label class="col-sm-3 col-form-label" th:if="${#fields.hasErrors('customer')}"
-                           th:errors="*{customer}"></label>
+                    <label class="col-sm-1 col-form-label"></label>
+                    <label class="col-sm-4">
+                        <label class="col-sm-3 col-form-label" th:if="${#fields.hasErrors('customer')}"
+                               th:errors="*{customer}"></label>
+                    </label>
                 </div>
 
                 <div class="form-group row">
-                    <label class="col-sm-3 col-form-label">Ngày bắt đầu:</label>
+                    <label class="col-sm-1 col-form-label">Ngày bắt đầu:</label>
                     <label class="col-sm-4">
-                        <input type="date" class="form-control" th:field="*{startDate}">
+                        <input type="date" class="form-control" th:field="*{startDate}"
+                               th:value="${contract.startDate}">
                         <label class="col-sm-3 col-form-label" th:if="${#fields.hasErrors('startDate')}"
                                th:errors="*{startDate}"></label>
                     </label>
                 </div>
 
                 <div class="form-group row">
-                    <label class="col-sm-3 col-form-label">Ngày kết thúc:</label>
+                    <label class="col-sm-1 col-form-label">Ngày kết thúc:</label>
                     <label class="col-sm-4">
-                        <input type="date" class="form-control" th:field="*{endDate}">
+                        <input type="date" class="form-control" th:field="*{endDate}" th:value="${contract.endDate}">
                         <label class="col-sm-3 col-form-label" th:if="${#fields.hasErrors('endDate')}"
                                th:errors="*{endDate}"></label>
                     </label>

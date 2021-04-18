@@ -1,0 +1,18 @@
+<table xmlns:th="http://www.thymeleaf.org" class="table table-striped">
+    <tr>
+        <td>Mã dịch vụ:</td>
+        <td th:text="${service.id}" id="selected-service-id" th:value="${service.id}"></td>
+    </tr>
+    <tr>
+        <td>Tên dịch vụ:</td>
+        <td th:text="${service.name}"></td>
+    </tr>
+    <tr>
+        <td>Loại dịch vụ:</td>
+        <td th:text="${service.serviceType.name}"></td>
+    </tr>
+    <tr>
+        <td>Giá:</td>
+        <td th:text="${#numbers.formatDecimal(service.cost, 0, 'POINT', 0, 'COMMA')}"></td>
+    </tr>
+</table>

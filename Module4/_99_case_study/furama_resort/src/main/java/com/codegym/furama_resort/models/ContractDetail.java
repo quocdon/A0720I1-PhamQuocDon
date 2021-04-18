@@ -1,6 +1,7 @@
 package com.codegym.furama_resort.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 
 @Entity
 @Table(name = "contract_detail")

@@ -1,0 +1,92 @@
+<div xmlns:th="http://www.thymeleaf.org">
+    <div th:if="${services != null}">
+        <input id="search" type="text" placeholder="Tìm kiếm" th:value="${search}">
+        <button id="search-button">Search</button>
+        <th:block th:each="service : ${services}">
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${service.name}">Card title</h5>
+                    <div class="card-text">
+                        <table>
+                            <tr>
+                                <td>Mã</td>
+                                <td id="serviceId" th:text="${service.id}"></td>
+                            </tr>
+                            <tr>
+                                <td>Loại DV</td>
+                                <td th:text="${service.serviceType.name}"></td>
+                            </tr>
+                            <tr>
+                                <td>Giá</td>
+                                <td th:text="${#numbers.formatDecimal(service.cost, 0, 'POINT', 0, 'COMMA')}"></td>
+                            </tr>
+                            <tr>
+                                <td>Diện tích</td>
+                                <td th:text="${service.area}"></td>
+                            </tr>
+                            <tr>
+                                <td>SL Khách</td>
+                                <td th:text="${service.maxPeople}"></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <button type="button" class="selectService" th:value="${service.id}">Chọn</button>
+                </div>
+            </div>
+        </th:block>
+    </div>
+    <div>
+        <button type="button" class="page-button" th:value="${services.number - 1}" th:if="${services.hasPrevious()}">
+            Previous
+        </button>
+        <span th:text="${services.number + 1}"></span>/<span th:text="${services.totalPages}"></span>
+        <button type="button" class="page-button" th:value="${services.number + 1}" th:if="${services.hasNext()}">Next
+        </button>
+    </div>
+</div>
+
+<!-- Ajax for service selection-->
+<script language="JavaScript">
+    $(document).ready(function () {
+        $(".selectService").click(function () {
+            let serviceId = $(this).val();
+            $.ajax({
+                type: "GET",
+                data: {"serviceId": serviceId},
+                url: "/service/selectServiceById",
+                dataType: "HTML",
+                success: function (data) {
+                    $("#service-div").html(data);
+                    $("#serviceModelId").modal('hide');
+                    $("#service-id-form").val(serviceId);
+                }
+            })
+        })
+        $(".page-button").click(function () {
+            let page = $(this).val();
+            let search = $("#search").val();
+            $.ajax({
+                type: "GET",
+                data: {"page": page,
+                        "search": search},
+                url: "/service/showServiceList",
+                dataType: "HTML",
+                success: function (data) {
+                    $("#service-modal-body").html(data);
+                }
+            })
+        })
+        $("#search-button").click(function () {
+            let search = $("#search").val();
+            $.ajax({
+                type: "GET",
+                data: {"search": search},
+                url: "/service/showServiceList",
+                dataType: "HTML",
+                success: function (data) {
+                    $("#service-modal-body").html(data);
+                }
+            })
+        })
+    })
+</script>

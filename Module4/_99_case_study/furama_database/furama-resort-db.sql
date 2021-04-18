@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.22, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.21, for Win64 (x86_64)
 --
--- Host: localhost    Database: furama6
+-- Host: localhost    Database: furama-resort
 -- ------------------------------------------------------
--- Server version	8.0.22
+-- Server version	8.0.21
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -16,6 +16,54 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `app_role`
+--
+
+DROP TABLE IF EXISTS `app_role`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `app_role` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `app_role`
+--
+
+LOCK TABLES `app_role` WRITE;
+/*!40000 ALTER TABLE `app_role` DISABLE KEYS */;
+INSERT INTO `app_role` VALUES (1,'ROLE_GIAMDOC'),(2,'ROLE_QUANLY'),(3,'ROLE_NHANVIEN');
+/*!40000 ALTER TABLE `app_role` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `app_user`
+--
+
+DROP TABLE IF EXISTS `app_user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `app_user` (
+  `username` varchar(255) NOT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`username`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `app_user`
+--
+
+LOCK TABLES `app_user` WRITE;
+/*!40000 ALTER TABLE `app_user` DISABLE KEYS */;
+INSERT INTO `app_user` VALUES ('admin','$2a$10$52nJhv6TJlbwbzhl.ip0v.QRoafPZPVv97cdhkyHemq7WpWgBXXVS'),('quocdon','$2a$10$50uwmKtpb6YbAkWLA0/Nzux4uMucQu2P48L0wpFAM9MsfyXE6q78i'),('quochoang','$2a$10$IvPi7zFxxLM59Yo6kJHmS.mfhoRsZWoyW9hxKwgJQY0SJCcIlTpDG'),('thuha','$2a$10$1QDrO3QpdIpUbjYtIhXKy.bC/l5D37DgW/DSQQLfV6D4GNLr341y2');
+/*!40000 ALTER TABLE `app_user` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `attach_service`
 --
 
@@ -25,11 +73,11 @@ DROP TABLE IF EXISTS `attach_service`;
 CREATE TABLE `attach_service` (
   `id` int NOT NULL AUTO_INCREMENT,
   `cost` double NOT NULL,
-  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `status` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `unit` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `status` varchar(255) DEFAULT NULL,
+  `unit` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,6 +86,7 @@ CREATE TABLE `attach_service` (
 
 LOCK TABLES `attach_service` WRITE;
 /*!40000 ALTER TABLE `attach_service` DISABLE KEYS */;
+INSERT INTO `attach_service` VALUES (1,1000000,'Massage','available','Lần'),(2,300000,'Karaoke','Khả dụng','Giờ'),(3,300000,'Thức ăn','Khả dụng','Khách'),(4,20000,'Nước uống','Khả dụng','Khách'),(5,150000,'Thuê xe','Khả dụng','Khách');
 /*!40000 ALTER TABLE `attach_service` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -49,23 +98,22 @@ DROP TABLE IF EXISTS `contract`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract` (
-  `id` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `id` int NOT NULL,
   `amount` double NOT NULL,
   `deposit` double NOT NULL,
-  `end_date` date DEFAULT NULL,
-  `start_date` date DEFAULT NULL,
-  `customer_id` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `employee_id` int NOT NULL,
-  `service_id` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `end_date` date NOT NULL,
+  `start_date` date NOT NULL,
+  `customer_id` varchar(255) NOT NULL,
+  `employee_id` int DEFAULT NULL,
+  `service_id` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `FKq28qogy68douoc4gkgcy3ow9p` (`customer_id`),
   KEY `FKr2iw6grixlkbx43q2svdrhbb9` (`employee_id`),
   KEY `FK19581iyfbe0bln65k7j2rf26u` (`service_id`),
   CONSTRAINT `FK19581iyfbe0bln65k7j2rf26u` FOREIGN KEY (`service_id`) REFERENCES `resort_service` (`id`),
-  CONSTRAINT `FK38oaxtv1vfg7g4pclrar2adxq` FOREIGN KEY (`service_id`) REFERENCES `service` (`id`),
   CONSTRAINT `FKq28qogy68douoc4gkgcy3ow9p` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`),
   CONSTRAINT `FKr2iw6grixlkbx43q2svdrhbb9` FOREIGN KEY (`employee_id`) REFERENCES `employee` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -74,6 +122,7 @@ CREATE TABLE `contract` (
 
 LOCK TABLES `contract` WRITE;
 /*!40000 ALTER TABLE `contract` DISABLE KEYS */;
+INSERT INTO `contract` VALUES (2,0,0,'2021-09-04','2021-09-02','KH-0003',1,'DV-0001'),(3,0,0,'2021-05-09','2021-05-05','KH-0003',2,'DV-0002'),(4,0,0,'2022-01-09','2022-01-01','KH-0002',3,'DV-0006'),(5,0,0,'2021-04-29','2021-04-25','KH-0001',3,'DV-0002'),(6,0,0,'2021-08-08','2021-08-02','KH-0001',2,'DV-0003'),(8,0,0,'2021-09-04','2021-09-02','KH-0003',1,'DV-0001'),(9,0,0,'2021-09-05','2021-09-02','KH-0003',1,'DV-0001'),(10,0,0,'2021-09-04','2021-09-02','KH-0003',1,'DV-0001'),(11,0,0,'2021-09-05','2021-09-02','KH-0003',1,'DV-0001'),(12,0,0,'2021-09-05','2021-09-02','KH-0003',1,'DV-0001'),(13,0,0,'2021-09-09','2021-09-02','KH-0002',1,'DV-0001'),(14,0,0,'2022-01-09','2022-01-05','KH-0001',1,'DV-0003'),(15,0,0,'2021-04-29','2021-04-19','KH-0001',2,'DV-0001'),(16,0,0,'2022-01-05','2022-01-01','KH-0001',1,'DV-0001'),(17,0,0,'2021-04-30','2021-04-21','KH-0001',1,'DV-0001');
 /*!40000 ALTER TABLE `contract` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -86,13 +135,13 @@ DROP TABLE IF EXISTS `contract_detail`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_detail` (
   `attach_service_id` int NOT NULL,
-  `contract_id` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `contract_id` int NOT NULL,
   `quantity` int NOT NULL,
   PRIMARY KEY (`attach_service_id`,`contract_id`),
   KEY `FKh3a73928bh54b95v82kwthjrk` (`contract_id`),
   CONSTRAINT `FK7cbwupicl8f762x3kulehjhf8` FOREIGN KEY (`attach_service_id`) REFERENCES `attach_service` (`id`),
   CONSTRAINT `FKh3a73928bh54b95v82kwthjrk` FOREIGN KEY (`contract_id`) REFERENCES `contract` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -101,6 +150,7 @@ CREATE TABLE `contract_detail` (
 
 LOCK TABLES `contract_detail` WRITE;
 /*!40000 ALTER TABLE `contract_detail` DISABLE KEYS */;
+INSERT INTO `contract_detail` VALUES (1,2,2),(1,3,1),(1,14,3),(1,15,3),(1,17,3),(2,4,3),(2,6,3),(2,14,3),(2,15,3),(2,17,3),(3,4,3),(3,6,1),(3,9,2),(3,16,3),(4,5,1),(4,6,1),(5,5,1);
 /*!40000 ALTER TABLE `contract_detail` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -112,19 +162,19 @@ DROP TABLE IF EXISTS `customer`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `customer` (
-  `id` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `address` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `birthday` date DEFAULT NULL,
-  `email` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `gender` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `id_card` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `phone` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `id` varchar(255) NOT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `birthday` date NOT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `gender` varchar(255) NOT NULL,
+  `id_card` varchar(255) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `phone` varchar(255) DEFAULT NULL,
   `customer_type_id` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `FKn8vf9jf3m29plqn6rx45p2pl7` (`customer_type_id`),
   CONSTRAINT `FKn8vf9jf3m29plqn6rx45p2pl7` FOREIGN KEY (`customer_type_id`) REFERENCES `customer_type` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -133,7 +183,7 @@ CREATE TABLE `customer` (
 
 LOCK TABLES `customer` WRITE;
 /*!40000 ALTER TABLE `customer` DISABLE KEYS */;
-INSERT INTO `customer` VALUES ('KH-0001','Hà Tĩnh','1998-05-31','hongsang@gmail.com','Khác','012366555','Nguyễn Hồng Sáng','0903663666',1),('KH-0002','Quảng Bình','1995-01-01','huongnguyen@gmail.com','Nữ','123666888777','Nguyễn Hương Thảo','0915363635',2),('KH-0003','Quảng Nam','2002-01-01','viet2fa@gmail.com','Nam','000555999','Hoàng Việt','0903255233',5),('KH-0004','Quang Nam','2000-08-30','thuongphan@gmail.com','Nữ','555442263','Phan Phương','0905123123',1),('KH-0005','TPHCM','2003-11-30','duysas2@gmail.com','Khác','666363555','Nguyễn Hoàng Duy','0902555666',3),('KH-0006','TPHCM','1991-01-01','quangthe@gmail.com','Nam','123123123123','Phạm Quang Thế','0915663252',1);
+INSERT INTO `customer` VALUES ('KH-0001','Quảng Nam','1998-01-01','haitruong@gmail.com','Nam','169636325','Trương Hải','0915255255',3),('KH-0002','Hà Tĩnh','2002-05-05','hoaithuongnguyen@gmail.com','Nữ','193366655','Nguyễn Hoài Thương','0905444555',2),('KH-0003','Huế','1991-05-02','minhhongoc@gmail.com','Nam','198855633255','Hồ Ngọc Minh','0912333655',5),('KH-0004','BÌnh định','2001-01-01','namthanh@gmaicx.com','Nam','125363666','Nguyễn Thanh Nam','0903255255',4);
 /*!40000 ALTER TABLE `customer` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -146,9 +196,9 @@ DROP TABLE IF EXISTS `customer_type`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `customer_type` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -170,9 +220,9 @@ DROP TABLE IF EXISTS `department`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `department` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -194,9 +244,9 @@ DROP TABLE IF EXISTS `education_degree`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `education_degree` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -218,27 +268,27 @@ DROP TABLE IF EXISTS `employee`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `employee` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `address` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `birthday` date DEFAULT NULL,
-  `email` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `id_card` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `phone` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `birthday` date NOT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `id_card` varchar(255) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `phone` varchar(255) DEFAULT NULL,
   `salary` double NOT NULL,
+  `username` varchar(255) DEFAULT NULL,
   `department_id` int NOT NULL,
   `education_degree_id` int NOT NULL,
   `position_id` int NOT NULL,
-  `username` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
+  KEY `FKngshymyxtfw86p83ohbp0svg1` (`username`),
   KEY `FKbejtwvg9bxus2mffsm3swj3u9` (`department_id`),
   KEY `FKs4qy1cue6wal9e4pq9wjuau5w` (`education_degree_id`),
   KEY `FKbc8rdko9o9n1ri9bpdyxv3x7i` (`position_id`),
-  KEY `FK467lpiaoknw8aojq6e6k0a0cy` (`username`),
-  CONSTRAINT `FK467lpiaoknw8aojq6e6k0a0cy` FOREIGN KEY (`username`) REFERENCES `user` (`username`),
   CONSTRAINT `FKbc8rdko9o9n1ri9bpdyxv3x7i` FOREIGN KEY (`position_id`) REFERENCES `position` (`id`),
   CONSTRAINT `FKbejtwvg9bxus2mffsm3swj3u9` FOREIGN KEY (`department_id`) REFERENCES `department` (`id`),
+  CONSTRAINT `FKngshymyxtfw86p83ohbp0svg1` FOREIGN KEY (`username`) REFERENCES `app_user` (`username`),
   CONSTRAINT `FKs4qy1cue6wal9e4pq9wjuau5w` FOREIGN KEY (`education_degree_id`) REFERENCES `education_degree` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -247,8 +297,30 @@ CREATE TABLE `employee` (
 
 LOCK TABLES `employee` WRITE;
 /*!40000 ALTER TABLE `employee` DISABLE KEYS */;
-INSERT INTO `employee` VALUES (3,'Quang Tri','1991-09-02','quocdon2991@gmail.com','123123555','Phạm Quốc Đôn','0915032020',5000000,3,3,6,'quocdon'),(4,'Đà Nẵng','1993-10-28','hoang2991@gmail.com','033033555','Phạm Quốc Hoàng','0905226336',10000000,2,3,2,'quochoang'),(5,'Quang Nam','1997-04-15','viet2fa@gmail.com','123456789012','Hoàng Việt','0906223636',9000000,4,3,3,'hoangviet'),(6,'Binh Dinh','2001-02-14','nambinhdinh@gmail.com','111122223333','Nguyễn Thanh Nam','0902112336',6000000,3,3,4,'namthanh'),(7,'Đà Nẵng','1997-05-05','phuong2k@gmail.com','197255333','Nguyễn Thu Phương','0912552336',3500000,1,2,1,'phuong2k'),(8,'Đà Nẵng','2006-10-30','thuha211@gmail.com','333666699','Nguyễn Thu Hà','0904112336',4500000,2,4,2,'thuha'),(9,'Binh Dinh','1999-01-01','duysas2@gmail.com','095563666','Nguyễn Hoàng Duy','0906666333',6000000,4,3,4,'duynguyen');
+INSERT INTO `employee` VALUES (1,'Quảng Trị','1991-09-02','quocdon2991@gmail.com','197255499','Phạm Quốc Đôn','0915225252',15000000,'quocdon',3,3,6),(2,'Quảng Trị','1993-12-15','hoangpham2@gmail.com','444555666','Phạm Quốc Hoàng','0913666555',10000000,'quochoang',4,3,1),(3,'Quảng Nam','1997-01-01','thuha97@gmail.com','195625536','Nguyễn Thu Hà','0905444555',7000000,'thuha',1,4,4);
 /*!40000 ALTER TABLE `employee` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `hibernate_sequence`
+--
+
+DROP TABLE IF EXISTS `hibernate_sequence`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `hibernate_sequence` (
+  `next_val` bigint DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `hibernate_sequence`
+--
+
+LOCK TABLES `hibernate_sequence` WRITE;
+/*!40000 ALTER TABLE `hibernate_sequence` DISABLE KEYS */;
+INSERT INTO `hibernate_sequence` VALUES (18);
+/*!40000 ALTER TABLE `hibernate_sequence` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -260,9 +332,9 @@ DROP TABLE IF EXISTS `position`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `position` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -285,9 +357,9 @@ DROP TABLE IF EXISTS `rent_type`;
 CREATE TABLE `rent_type` (
   `id` int NOT NULL AUTO_INCREMENT,
   `cost` double NOT NULL,
-  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -308,11 +380,11 @@ DROP TABLE IF EXISTS `resort_service`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `resort_service` (
-  `id` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `id` varchar(255) NOT NULL,
   `area` int NOT NULL,
   `cost` double NOT NULL,
   `max_people` int NOT NULL,
-  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
   `rent_type_id` int NOT NULL,
   `service_type_id` int NOT NULL,
   PRIMARY KEY (`id`),
@@ -320,7 +392,7 @@ CREATE TABLE `resort_service` (
   KEY `FKq21trst72wfvqwtwslbir0lih` (`service_type_id`),
   CONSTRAINT `FKkhnogmpkhaa5gts57vppcbxie` FOREIGN KEY (`rent_type_id`) REFERENCES `rent_type` (`id`),
   CONSTRAINT `FKq21trst72wfvqwtwslbir0lih` FOREIGN KEY (`service_type_id`) REFERENCES `service_type` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -329,63 +401,8 @@ CREATE TABLE `resort_service` (
 
 LOCK TABLES `resort_service` WRITE;
 /*!40000 ALTER TABLE `resort_service` DISABLE KEYS */;
+INSERT INTO `resort_service` VALUES ('DV-0001',150,2500000,4,'Happy House',3,2),('DV-0002',200,15000000,8,'Art Villa',2,1),('DV-0003',45,3000000,3,'Happy House',1,2),('DV-0004',120,9000000,6,'An Villa',1,1),('DV-0005',63,1200000,2,'Funny Room',1,3),('DV-0006',100,5000000,4,'Dana House',4,2);
 /*!40000 ALTER TABLE `resort_service` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `role`
---
-
-DROP TABLE IF EXISTS `role`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `role` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `role`
---
-
-LOCK TABLES `role` WRITE;
-/*!40000 ALTER TABLE `role` DISABLE KEYS */;
-INSERT INTO `role` VALUES (1,'Quản trị viên'),(2,'Thành viên');
-/*!40000 ALTER TABLE `role` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `service`
---
-
-DROP TABLE IF EXISTS `service`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `service` (
-  `id` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `area` int NOT NULL,
-  `cost` double NOT NULL,
-  `max_people` int NOT NULL,
-  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `rent_type_id` int NOT NULL,
-  `service_type_id` int NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FKiynq5okirstjw1oge1sc2xwom` (`rent_type_id`),
-  KEY `FK8e4s0klc1xdmf3dwoy16k7fmi` (`service_type_id`),
-  CONSTRAINT `FK8e4s0klc1xdmf3dwoy16k7fmi` FOREIGN KEY (`service_type_id`) REFERENCES `service_type` (`id`),
-  CONSTRAINT `FKiynq5okirstjw1oge1sc2xwom` FOREIGN KEY (`rent_type_id`) REFERENCES `rent_type` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `service`
---
-
-LOCK TABLES `service` WRITE;
-/*!40000 ALTER TABLE `service` DISABLE KEYS */;
-/*!40000 ALTER TABLE `service` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -397,9 +414,9 @@ DROP TABLE IF EXISTS `service_type`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `service_type` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -413,30 +430,6 @@ INSERT INTO `service_type` VALUES (1,'Villa'),(2,'House'),(3,'Room');
 UNLOCK TABLES;
 
 --
--- Table structure for table `user`
---
-
-DROP TABLE IF EXISTS `user`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `user` (
-  `username` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `password` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  PRIMARY KEY (`username`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `user`
---
-
-LOCK TABLES `user` WRITE;
-/*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES ('duynguyen','duynguyen'),('hoangviet','55556666'),('namthanh','namthanh'),('phuong2k','phuong2k'),('quocdon','123456'),('quochoang','123456'),('thuha','thuha');
-/*!40000 ALTER TABLE `user` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `user_role`
 --
 
@@ -445,12 +438,12 @@ DROP TABLE IF EXISTS `user_role`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `user_role` (
   `role_id` int NOT NULL,
-  `username` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `username` varchar(255) NOT NULL,
   PRIMARY KEY (`role_id`,`username`),
-  KEY `FKnircs1pyebpo0eucojumm0aed` (`username`),
-  CONSTRAINT `FKa68196081fvovjhkek5m97n3y` FOREIGN KEY (`role_id`) REFERENCES `role` (`id`),
-  CONSTRAINT `FKnircs1pyebpo0eucojumm0aed` FOREIGN KEY (`username`) REFERENCES `user` (`username`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  KEY `FKtcdhlmjy42y6a90l6qtavd20t` (`username`),
+  CONSTRAINT `FKp6m37g6n6c288s096400uw8fw` FOREIGN KEY (`role_id`) REFERENCES `app_role` (`id`),
+  CONSTRAINT `FKtcdhlmjy42y6a90l6qtavd20t` FOREIGN KEY (`username`) REFERENCES `app_user` (`username`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -459,6 +452,7 @@ CREATE TABLE `user_role` (
 
 LOCK TABLES `user_role` WRITE;
 /*!40000 ALTER TABLE `user_role` DISABLE KEYS */;
+INSERT INTO `user_role` VALUES (1,'admin'),(1,'quocdon'),(3,'quochoang'),(2,'thuha'),(3,'thuha');
 /*!40000 ALTER TABLE `user_role` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -471,4 +465,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-03-21 21:16:23
+-- Dump completed on 2021-04-19  1:28:29

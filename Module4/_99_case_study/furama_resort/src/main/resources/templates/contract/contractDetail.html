@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout::head}">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="container-fluid">
+    <div th:replace="~{/layout::header}">
+        <!--        header-->
+    </div>
+    <div th:insert="~{/layout::navbar}">
+        <!--        navbar-->
+    </div>
+    <div class="row">
+        <!--        main-->
+        <div th:replace="~{/layout::contract-left-panel}">
+            <!--            left panel-->
+        </div>
+        <div class="col-sm-8">
+            <h3 class="text-center bg-success text-white w-100">DỊCH VỤ ĐI KÈM</h3>
+            <form th:object="${contractDetailDto}" method="post" th:action="@{/contract/saveContractDetail}">
+                <table class="table table-stripe">
+                    <thead>
+                    <tr>
+                        <td>Mã dịch vụ</td>
+                        <td>Dịch vụ</td>
+                        <td>Đơn giá</td>
+                        <td>Số lượng</td>
+                        <td></td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <th:block th:each="attachService, stat: ${contractDetailDto.attachServices.entrySet()}">
+                        <tr>
+                            <td th:text="${attachService.key.id}"></td>
+                            <td th:text="${attachService.key.name}"></td>
+                            <td th:text="${attachService.key.cost}"></td>
+                            <td>
+                                <input min="0" type="number" th:field="*{attachServices[__${stat.index+1}__]}" th:value="${contractDetailDto.attachServices[__${stat.index+1}__]}">
+                            </td>
+                        </tr>
+                    </th:block>
+                        <tr>
+                            <td>
+                                <input type="text" th:field="*{contract}" th:value="${contractDetailDto.contract.id}" hidden>
+                            </td>
+                            <td colspan="3"><input type="submit" value="submit"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

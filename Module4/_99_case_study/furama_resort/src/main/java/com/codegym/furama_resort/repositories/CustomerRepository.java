@@ -9,5 +9,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CustomerRepository extends JpaRepository<Customer, String> {
     Page<Customer> findAll(Pageable pageable);
-    Page<Customer> findAllByIdCardContainsOrNameContains(String idCard, String name, Pageable pageable);
+    Page<Customer> findAllByIdContainsOrNameContains(String id, String name, Pageable pageable);
 }

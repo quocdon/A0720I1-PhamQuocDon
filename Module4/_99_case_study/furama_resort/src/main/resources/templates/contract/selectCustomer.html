@@ -1,0 +1,26 @@
+<table xmlns:th="http://www.thymeleaf.org" class="table table-striped">
+    <tr>
+        <td>Mã khách hàng:</td>
+        <td th:text="${customer.id}"></td>
+    </tr>
+    <tr>
+        <td>Tên khách hàng:</td>
+        <td th:text="${customer.name}"></td>
+    </tr>
+    <tr>
+        <td>Loại khách hàng:</td>
+        <td th:text="${customer.customerType.name}"></td>
+    </tr>
+    <tr>
+        <td>Ngày sinh:</td>
+        <td th:text="${customer.birthday}"></td>
+    </tr>
+    <tr>
+        <td>SĐT:</td>
+        <td th:text="${customer.phone}"></td>
+    </tr>
+    <tr>
+        <td>Email:</td>
+        <td th:text="${customer.email}"></td>
+    </tr>
+</table>

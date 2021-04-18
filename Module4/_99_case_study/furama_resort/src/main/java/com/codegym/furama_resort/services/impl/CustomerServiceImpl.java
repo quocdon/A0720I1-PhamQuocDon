@@ -42,7 +42,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public Page<Customer> findAllByIdOrName(String search, Pageable pageable) {
-        return customerRepository.findAllByIdCardContainsOrNameContains(search, search, pageable);
+        return customerRepository.findAllByIdContainsOrNameContains(search, search, pageable);
     }
 
     @Override

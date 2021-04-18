@@ -13,5 +13,5 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
     Page<Employee> findAll(Pageable pageable);
     Page<Employee> findEmployeesByNameContains(String name, Pageable pageable);
     @Query("SELECT e FROM Employee e WHERE e.appUser.username = :username")
-    Employee findAllByUsername(@Param("username") String username);
+    Employee findAllByAppUser_Username(String username);
 }

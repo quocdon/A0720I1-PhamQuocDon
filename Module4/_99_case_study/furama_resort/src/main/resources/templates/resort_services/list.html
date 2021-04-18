@@ -21,7 +21,6 @@
 <!--            content-->
             <table class="table table-stripe">
                 <thead>
-                    <tr>
                         <td>Loại Dịch vụ</td>
                         <td>Mã dịch vụ</td>
                         <td>Tên dịch vụ</td>
@@ -29,8 +28,6 @@
                         <td>Số khách tối đa</td>
                         <td>Kiểu thuê</td>
                         <td>Giá</td>
-                        <td>Đặt phòng</td>
-                    </tr>
                 </thead>
                 <tbody>
                     <tr th:each="service : ${services}">
@@ -40,9 +37,7 @@
                         <td th:text="${service.area}"></td>
                         <td th:text="${service.maxPeople}"></td>
                         <td th:text="${service.rentType.name}"></td>
-                        <td th:text="${service.cost}"></td>
-                        <td><a th:href="@{/contract/create(serviceId=${service.id})}">Đặt phòng</a></td>
-
+                        <td th:text="${#numbers.formatDecimal(service.cost, 0, 'POINT', 0, 'COMMA')}"></td>
                     </tr>
                 </tbody>
             </table>

@@ -1,0 +1,87 @@
+<div xmlns:th="http://www.thymeleaf.org">
+    <div th:if="${customers != null}">
+        <input id="customer-search" type="text" placeholder="Tìm kiếm" th:value="${customerSearch}">
+        <button id="customer-search-button">Search</button>
+        <th:block th:each="customer : ${customers}">
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-text" th:text="${customer.id}">Card title</h5>
+                    <h5 class="card-title" th:text="${customer.name}">Card title</h5>
+                    <div class="card-text">
+                        <table>
+                            <tr>
+                                <td>Hạng khách:</td>
+                                <td id="serviceId" th:text="${customer.customerType.name}"></td>
+                            </tr>
+                            <tr>
+                                <td>Số CMND</td>
+                                <td th:text="${customer.idCard}"></td>
+                            </tr>
+                            <tr>
+                                <td>SĐT:</td>
+                                <td th:text="${customer.phone}"></td>
+                            </tr>
+                            <tr>
+                                <td>Email</td>
+                                <td th:text="${customer.email}"></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <button type="button" class="selectCustomer" th:value="${customer.id}">Chọn</button>
+                </div>
+            </div>
+        </th:block>
+    </div>
+    <div>
+        <button type="button" class="customer-page-button" th:value="${customers.number - 1}" th:if="${customers.hasPrevious()}">
+            Previous
+        </button>
+        <span th:text="${customers.number + 1}"></span>/<span th:text="${customers.totalPages}"></span>
+        <button type="button" class="customer-page-button" th:value="${customers.number + 1}" th:if="${customers.hasNext()}">Next
+        </button>
+    </div>
+</div>
+<script language="JavaScript">
+    $(document).ready(function () {
+        $(".selectCustomer").click(function () {
+            let customerId = $(this).val();
+            $.ajax({
+                type: "GET",
+                data: {"customerId": customerId},
+                url: "/customer/selectCustomerById",
+                dataType: "HTML",
+                success: function (data) {
+                    $("#customer-div").html(data);
+                    $("#customerModelId").modal('hide');
+                    $("#customer-id-form").val(customerId);
+                }
+            })
+        })
+        $(".customer-page-button").click(function () {
+            let page = $(this).val();
+            let search = $("#customer-search").val();
+            $.ajax({
+                type: "GET",
+                data: {"page": page,
+                        "search": search},
+                url: "/customer/showCustomerList",
+                dataType: "HTML",
+                success: function (data) {
+                    $("#customer-modal-body").html(data);
+                }
+            })
+        })
+        $("#customer-search-button").click(function () {
+            let search = $("#customer-search").val();
+            $.ajax({
+                type: "GET",
+                data: {"search": search},
+                url: "/customer/showCustomerList",
+                dataType: "HTML",
+                success: function (data) {
+                    $("#customer-modal-body").html(data);
+                }
+            })
+        })
+    })
+</script>

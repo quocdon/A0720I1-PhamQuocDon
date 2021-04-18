@@ -1,41 +1,54 @@
 package com.codegym.furama_resort.models;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Set;
 
 @Entity
 @Table(name = "contract")
 public class Contract {
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
+
+    @NotNull(message = "Không để trống")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate startDate;
+    @NotNull(message = "Không để trống")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate endDate;
     private double deposit;
     private double amount;
+
     @ManyToOne
-    @JoinColumn(name = "employee_id", nullable = false)
+    @JoinColumn(name = "employee_id")
     private Employee employee;
 
     @ManyToOne
     @JoinColumn(name = "customer_id", nullable = false)
+    @NotNull(message = "Chưa chọn khách hàng")
     private Customer customer;
 
     @ManyToOne
     @JoinColumn(name = "service_id", nullable = false)
+    @NotNull(message = "Chưa chọn dịch vụ")
     private ResortService resortService;
 
-    @OneToMany(mappedBy = "contract")
-    Set<ContractDetail> contractDetails;
+    @OneToMany(mappedBy = "contract", cascade = CascadeType.ALL)
+    List<ContractDetail> contractDetails;
 
     public Contract() {
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -95,11 +108,11 @@ public class Contract {
         this.resortService = resortService;
     }
 
-    public Set<ContractDetail> getContractDetails() {
+    public List<ContractDetail> getContractDetails() {
         return contractDetails;
     }
 
-    public void setContractDetails(Set<ContractDetail> contractDetails) {
+    public void setContractDetails(List<ContractDetail> contractDetails) {
         this.contractDetails = contractDetails;
     }
 }

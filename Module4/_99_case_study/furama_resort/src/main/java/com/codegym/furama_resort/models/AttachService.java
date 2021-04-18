@@ -1,6 +1,7 @@
 package com.codegym.furama_resort.models;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -15,7 +16,7 @@ public class AttachService {
     private String status;
 
     @OneToMany(mappedBy = "attachService")
-    Set<ContractDetail> contractDetails;
+    List<ContractDetail> contractDetails;
 
     public AttachService() {
     }
@@ -60,11 +61,11 @@ public class AttachService {
         this.status = status;
     }
 
-    public Set<ContractDetail> getContractDetails() {
+    public List<ContractDetail> getContractDetails() {
         return contractDetails;
     }
 
-    public void setContractDetails(Set<ContractDetail> contractDetails) {
+    public void setContractDetails(List<ContractDetail> contractDetails) {
         this.contractDetails = contractDetails;
     }
 }

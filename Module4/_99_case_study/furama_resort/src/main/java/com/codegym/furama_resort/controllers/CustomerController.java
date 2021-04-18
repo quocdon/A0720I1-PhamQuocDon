@@ -96,6 +96,26 @@ public class CustomerController {
         }
     }
 
+    @GetMapping("/showCustomerList")
+    public String showCustomerListInModal(@RequestParam(defaultValue = "") String search,
+                                          @RequestParam(defaultValue = "0") int page,
+                                          Model model){
+        Pageable pageable = PageRequest.of(page, 1);
+        if (search.equals("")){
+            model.addAttribute("customers", customerService.findAll(pageable));
+        } else {
+            model.addAttribute("customerSearch", search);
+            model.addAttribute("customers", customerService.findAllByIdOrName(search, pageable));
+        }
+        return "/contract/customerModal";
+    }
+
+    @GetMapping("/selectCustomerById")
+    public String selectCustomerById(@RequestParam String customerId, Model model){
+        model.addAttribute("customer", customerService.findById(customerId));
+        return "/contract/selectCustomer";
+    }
+
     @ExceptionHandler(Exception.class)
     public String viewErrorPage(){
         return "error-page";

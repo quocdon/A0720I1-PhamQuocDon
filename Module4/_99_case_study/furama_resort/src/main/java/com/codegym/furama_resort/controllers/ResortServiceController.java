@@ -1,7 +1,9 @@
 package com.codegym.furama_resort.controllers;
 
-import com.codegym.furama_resort.models.AppUser;
+import com.codegym.furama_resort.models.Contract;
+import com.codegym.furama_resort.models.RentType;
 import com.codegym.furama_resort.models.ResortService;
+import com.codegym.furama_resort.models.ServiceType;
 import com.codegym.furama_resort.services.RentTypeService;
 import com.codegym.furama_resort.services.ResortServiceService;
 import com.codegym.furama_resort.services.ServiceTypeService;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 @RequestMapping("/service")
@@ -29,12 +32,20 @@ public class ResortServiceController {
     @Autowired
     private ServiceTypeService serviceTypeService;
 
+    @ModelAttribute("rentTypes")
+    public List<RentType> getRentTypeList(){
+        return rentTypeService.findAll();
+    }
+
+    @ModelAttribute("serviceTypes")
+    public List<ServiceType> getServiceTypeList(){
+        return serviceTypeService.findAll();
+    }
+
     @GetMapping("/create")
     public ModelAndView create() {
         ModelAndView modelAndView = new ModelAndView("resort_services/create");
         modelAndView.addObject("resortService", new ResortService());
-        modelAndView.addObject("rentTypes", rentTypeService.findAll());
-        modelAndView.addObject("serviceTypes", serviceTypeService.findAll());
         return modelAndView;
     }
 
@@ -45,8 +56,6 @@ public class ResortServiceController {
         }
 
         if (bindingResult.hasFieldErrors()) {
-            model.addAttribute("rentTypes", rentTypeService.findAll());
-            model.addAttribute("serviceTypes", serviceTypeService.findAll());
             return "resort_services/create";
         }
         resortServiceService.save(resortService);
@@ -67,18 +76,24 @@ public class ResortServiceController {
         return modelAndView;
     }
 
-    @GetMapping("/serviceModal")
+    @GetMapping("/showServiceList")
     public String showServiceListInModal(@RequestParam(defaultValue = "") String search,
                                          @RequestParam(defaultValue = "0") int page,
                                          Model model){
-        Pageable pageable = PageRequest.of(page, 10);
+        Pageable pageable = PageRequest.of(page, 1);
         if (search.equals("")){
             model.addAttribute("services", resortServiceService.findAll(pageable));
         } else {
             model.addAttribute("search", search);
             model.addAttribute("services", resortServiceService.findByName(search, pageable));
         }
-        return "/resort_services/listModal";
+        return "/contract/serviceModal";
+    }
+
+    @GetMapping("/selectServiceById")
+    public String selectService(@RequestParam(name = "serviceId") String serviceId, Model model){
+        model.addAttribute("service", resortServiceService.findById(serviceId));
+        return "/contract/selectService";
     }
 
     @ExceptionHandler(Exception.class)
