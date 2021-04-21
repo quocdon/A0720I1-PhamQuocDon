@@ -8,6 +8,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
 import java.time.LocalDate;
 
@@ -25,6 +26,7 @@ public class Customer {
     private String name;
     @NotNull (message = "Không để trống")
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    @Past(message = "Chỉ nhập ngày trong quá khứ")
     private LocalDate birthday;
     @NotNull (message = "Không để trống")
     private String gender;

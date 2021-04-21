@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 public interface ResortServiceService {
     Page<ResortService> findAll(Pageable pageable);
     Page<ResortService> findAllByServiceType(ServiceType serviceType, Pageable pageable);
+    Page<ResortService> findAllByIdOrNameContains(String search, Pageable pageable);
     ResortService save(ResortService resortService);
     ResortService findById(String id);
     boolean existById(String id);

@@ -3,20 +3,21 @@
 <head th:replace="layout::head">
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
 <div class="container-fluid">
-    <div th:replace="layout::header">
+    <div class="header" th:replace="layout::header">
         <!--        header-->
     </div>
     <div th:insert="layout::navbar">
         <!--        navbar-->
     </div>
-    <div class="row">
+    <div class="website-body">
         <!--        main-->
 
     </div>
-    <div>
+    <div th:replace="layout::footer">
         <!--        footer-->
     </div>
 </div>

@@ -30,4 +30,9 @@ public class UserRoleServiceImpl implements UserRoleService {
     public Set<UserRole> findByAppUser(AppUser appUser) {
         return userRoleRepository.findByAppUser(appUser);
     }
+
+    @Override
+    public void deleteAllByUsername(String username) {
+        userRoleRepository.deleteUserRolesByAppUser_Username(username);
+    }
 }

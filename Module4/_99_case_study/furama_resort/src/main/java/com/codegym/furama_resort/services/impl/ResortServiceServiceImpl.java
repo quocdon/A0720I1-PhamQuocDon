@@ -25,6 +25,11 @@ public class ResortServiceServiceImpl implements ResortServiceService {
     }
 
     @Override
+    public Page<ResortService> findAllByIdOrNameContains(String search, Pageable pageable) {
+        return resortServiceRepository.findAllByIdContainsOrNameContains(search, search, pageable);
+    }
+
+    @Override
     public ResortService save(ResortService resortService) {
         return resortServiceRepository.save(resortService);
     }

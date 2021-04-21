@@ -12,14 +12,15 @@
     <div th:insert="~{/layout::navbar}">
         <!--        navbar-->
     </div>
-    <div class="row">
+    <div class="website-body">
         <!--        main-->
         <div th:replace="~{/layout::employee-left-panel}">
             <!--            left panel-->
         </div>
-        <div class="col-sm-8">
+        <div class="main-content">
             <!--            content-->
-            <table class="table table-stripe">
+            <h3 CLASS="text-center font-weight-bold text-success ml-auto mr-auto mb-3 mt-3">THÔNG TIN NHÂN VIÊN</h3>
+            <table class="table table-striped col-9 ml-auto mr-auto">
                 <tr>
                     <td>Mã số NV:</td>
                     <td th:text="${employee.id}"></td>
@@ -38,7 +39,7 @@
                 </tr>
                 <tr>
                     <td>Lương:</td>
-                    <td th:text="${employee.salary}"></td>
+                    <td th:text="${#numbers.formatDecimal(employee.salary, 0, 'POINT', 0, 'COMMA')}"></td>
                 </tr>
                 <tr>
                     <td>Số điện thoại:</td>
@@ -65,15 +66,23 @@
                     <td th:text="${employee.educationDegree.name}"></td>
                 </tr>
                 <tr>
+                    <td>Phân quyền:</td>
+                    <td>
+                        <th:block th:each="role : ${employee.appUser.userRoles}">
+                            <p th:text="${role.appRole.name}"></p>
+                        </th:block>
+                    </td>
+                </tr>
+                <tr>
                     <td></td>
-                    <td><a class="btn btn-primary" th:href="@{/employee/}">Quay lại</a> </td>
+                    <td><a class="btn btn-primary" th:href="@{/employee/}">Quay lại</a></td>
                 </tr>
             </table>
         </div>
-        <div>
-            <!--        footer-->
-        </div>
-
     </div>
+    <div th:replace="~{/layout::footer}">
+        <!--        footer-->
+    </div>
+</div>
 </body>
 </html>

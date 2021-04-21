@@ -22,10 +22,10 @@ public class MainController {
     @Autowired
     EmployeeService employeeService;
 
-    @ModelAttribute("searchUri")
-    public String getCurrentUri(HttpServletRequest request) {
-        return "@{/" + request.getRequestURI() + "}";
-    }
+//    @ModelAttribute("searchUri")
+//    public String getCurrentUri(HttpServletRequest request) {
+//        return "@{/" + request.getRequestURI() + "}";
+//    }
 
     @GetMapping("/")
     public String viewHomePage(@ModelAttribute("user") AppUser appUser) {

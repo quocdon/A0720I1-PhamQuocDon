@@ -40,4 +40,18 @@ public class AppRole {
     public void setUserRoles(Set<UserRole> userRoles) {
         this.userRoles = userRoles;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof AppRole){
+            AppRole other = (AppRole) obj;
+            return other.getId() == this.id;
+        };
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return this.id;
+    }
 }

@@ -12,15 +12,15 @@
     <div th:insert="~{/layout::navbar}">
         <!--        navbar-->
     </div>
-    <div class="row">
+    <div class="website-body">
         <!--        main-->
         <div th:replace="~{/layout::service-left-panel}">
             <!--            left panel-->
         </div>
-        <div class="col-sm-10">
+        <div class="main-content col-10 mr-auto ml-auto">
 <!--            content-->
-            <table class="table table-stripe">
-                <thead>
+            <table class="table table-striped">
+                <thead class="font-weight-bold text-center">
                         <td>Loại Dịch vụ</td>
                         <td>Mã dịch vụ</td>
                         <td>Tên dịch vụ</td>
@@ -31,25 +31,25 @@
                 </thead>
                 <tbody>
                     <tr th:each="service : ${services}">
-                        <td th:text="${service.serviceType.name}"></td>
-                        <td th:text="${service.id}"></td>
+                        <td class="text-center" th:text="${service.serviceType.name}"></td>
+                        <td class="text-center" th:text="${service.id}"></td>
                         <td th:text="${service.name}"></td>
-                        <td th:text="${service.area}"></td>
-                        <td th:text="${service.maxPeople}"></td>
-                        <td th:text="${service.rentType.name}"></td>
-                        <td th:text="${#numbers.formatDecimal(service.cost, 0, 'POINT', 0, 'COMMA')}"></td>
+                        <td class="text-center" th:text="${service.area}"></td>
+                        <td class="text-center" th:text="${service.maxPeople}"></td>
+                        <td class="text-center" th:text="${service.rentType.name}"></td>
+                        <td class="text-right" th:text="${#numbers.formatDecimal(service.cost, 0, 'POINT', 0, 'COMMA')}"></td>
                     </tr>
                 </tbody>
             </table>
-            <div>
+            <div class="mr-auto ml-auto">
                 <a th:href="@{/service(search=${search},page=${services.number - 1})}" th:if="${services.hasPrevious()}">Previous</a>
                 <span th:text="${services.number + 1}"></span>/<span th:text="${services.totalPages}"></span>
                 <a th:href="@{/service(search=${search},page=${services.number + 1})}" th:if="${services.hasNext()}">Next</a>
             </div>
         </div>
     </div>
-    <div>
-<!--        footer-->
+    <div th:replace="~{/layout::footer}">
+        <!--        footer-->
     </div>
 </div>
 </body>

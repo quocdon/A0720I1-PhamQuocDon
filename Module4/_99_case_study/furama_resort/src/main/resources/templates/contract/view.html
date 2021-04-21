@@ -12,13 +12,13 @@
     <div th:insert="~{/layout::navbar}">
         <!--        navbar-->
     </div>
-    <div class="row">
+    <div class="website-body">
         <!--        main-->
         <div th:replace="~{/layout::contract-left-panel}">
             <!--            left panel-->
         </div>
-        <div class="col-sm-8 d-flex flex-column">
-            <div>
+        <div class="main-content mr-auto ml-auto">
+            <div class="contract-content mr-auto ml-auto col-10">
                 <h2 class="text-center text-danger font-weight-bold">HỢP ĐỒNG SỐ <th:block th:text="${contract.id}"></th:block></h2>
                 <p class="text-center text-primary font-weight-bold font-italic">Tạo bởi <th:block th:text="${contract.employee.name}"></th:block> - Mã NV: <th:block th:text="${contract.employee.id}"></th:block></p>
                 <br>
@@ -40,6 +40,10 @@
                         <tr>
                             <td>Ngày sinh:</td>
                             <td th:text="${contract.customer.birthday}"></td>
+                        </tr>
+                        <tr>
+                            <td>Số CMND:</td>
+                            <td th:text="${contract.customer.idCard}"></td>
                         </tr>
                         <tr>
                             <td>SĐT:</td>
@@ -121,7 +125,7 @@
             <a class="btn btn-primary mr-auto ml-auto" th:href="@{/contract/}">Quay lại</a>
         </div>
     </div>
-    <div>
+    <div th:replace="~{/layout::footer}">
         <!--        footer-->
     </div>
 </div>

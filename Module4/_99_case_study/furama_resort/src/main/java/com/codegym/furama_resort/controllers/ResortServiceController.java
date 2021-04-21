@@ -80,12 +80,13 @@ public class ResortServiceController {
     public String showServiceListInModal(@RequestParam(defaultValue = "") String search,
                                          @RequestParam(defaultValue = "0") int page,
                                          Model model){
-        Pageable pageable = PageRequest.of(page, 1);
+        search = search.trim();
+        Pageable pageable = PageRequest.of(page, 4);
         if (search.equals("")){
             model.addAttribute("services", resortServiceService.findAll(pageable));
         } else {
             model.addAttribute("search", search);
-            model.addAttribute("services", resortServiceService.findByName(search, pageable));
+            model.addAttribute("services", resortServiceService.findAllByIdOrNameContains(search, pageable));
         }
         return "/contract/serviceModal";
     }

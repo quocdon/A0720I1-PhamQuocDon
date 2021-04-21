@@ -12,68 +12,80 @@
     <div th:insert="~{/layout::navbar}">
         <!--        navbar-->
     </div>
-    <div class="row">
+    <div class="website-body">
         <!--        main-->
         <div th:replace="~{/layout::employee-left-panel}">
             <!--            left panel-->
         </div>
-        <div class="col-sm-8">
+        <div class="main-content">
             <!--            content-->
-            <form th:action="@{/employee/update}" method="post" th:object="${employee}">
+            <h3 CLASS="text-center font-weight-bold text-success ml-auto mr-auto mb-3 mt-3">CHỈNH SỬA THÔNG TIN NHÂN
+                VIÊN</h3>
+            <form class="col-10 ml-auto mr-auto" th:action="@{/employee/update}" method="post" th:object="${employee}">
                 <input th:if="${employee != null}" type="text" th:field="*{id}" hidden>
                 <input class="form-control" type="text" th:field="*{appUser}" hidden>
                 <div class="form-group row">
-                    <label class="col-sm-1 col-form-label">Họ và tên:</label>
-                    <label class="col-sm-4">
+                    <label class="col-3 col-form-label">Họ và tên:</label>
+                    <label class="col-7 column">
                         <input class="form-control" type="text" th:field="*{name}">
+                        <label class="text-danger" th:if="${#fields.hasErrors('name')}"
+                               th:errors="*{name}"></label>
                     </label>
-                    <label class="col-sm-3 col-form-label" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></label>
+
                 </div>
                 <div class="form-group row">
-                    <label class="col-sm-1 col-form-label">Ngày sinh:</label>
-                    <label class="col-sm-4">
+                    <label class="col-3 col-form-label">Ngày sinh:</label>
+                    <label class="col-7 column">
                         <input class="form-control" type="date" th:field="*{birthday}">
+                        <label class="text-danger" th:if="${#fields.hasErrors('birthday')}"
+                               th:errors="*{birthday}"></label>
                     </label>
-                    <label class="col-sm-3 col-form-label" th:if="${#fields.hasErrors('birthday')}" th:errors="*{birthday}"></label>
                 </div>
                 <div class="form-group row">
-                    <label class="col-sm-1 col-form-label">Số CMND:</label>
-                    <label class="col-sm-4">
+                    <label class="col-3 col-form-label">Số CMND:</label>
+                    <label class="col-7 column">
                         <input class="form-control" type="text" th:field="*{idCard}">
+                        <label class="text-danger" th:if="${#fields.hasErrors('idCard')}"
+                               th:errors="*{idCard}"></label>
                     </label>
-                    <label class="col-sm-3 col-form-label" th:if="${#fields.hasErrors('idCard')}" th:errors="*{idCard}"></label>
                 </div>
                 <div class="form-group row">
-                    <label class="col-sm-1 col-form-label">Lương:</label>
-                    <label class="col-sm-4">
+                    <label class="col-3 col-form-label">Lương:</label>
+                    <label class="col-7 column">
                         <input class="form-control" type="text" th:field="*{salary}">
+                        <label class="text-danger" th:if="${#fields.hasErrors('salary')}"
+                               th:errors="*{salary}"></label>
                     </label>
-                    <label class="col-sm-3 col-form-label" th:if="${#fields.hasErrors('salary')}" th:errors="*{salary}"></label>
+
                 </div>
                 <div class="form-group row">
-                    <label class="col-sm-1 col-form-label">Số điện thoại:</label>
-                    <label class="col-sm-4">
+                    <label class="col-3 col-form-label">Số điện thoại:</label>
+                    <label class="col-7 column">
                         <input class="form-control" type="text" th:field="*{phone}">
+                        <label class="text-danger" th:if="${#fields.hasErrors('phone')}"
+                               th:errors="*{phone}"></label>
                     </label>
-                    <label class="col-sm-3 col-form-label" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></label>
+
                 </div>
                 <div class="form-group row">
-                    <label class="col-sm-1 col-form-label">Email:</label>
-                    <label class="col-sm-4">
+                    <label class="col-3 col-form-label">Email:</label>
+                    <label class="col-7 column">
                         <input class="form-control" type="text" th:field="*{email}">
+                        <label class="text-danger" th:if="${#fields.hasErrors('email')}"
+                               th:errors="*{email}"></label>
                     </label>
-                    <label class="col-sm-3 col-form-label" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></label>
                 </div>
                 <div class="form-group row">
-                    <label class="col-sm-1 col-form-label">Địa chỉ:</label>
-                    <label class="col-sm-4">
+                    <label class="col-3 col-form-label">Địa chỉ:</label>
+                    <label class="col-7 column">
                         <input class="form-control" type="text" th:field="*{address}">
+                        <label class="text-danger" th:if="${#fields.hasErrors('address')}"
+                               th:errors="*{address}"></label>
                     </label>
-                    <label class="col-sm-3 col-form-label" th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></label>
                 </div>
                 <div class="form-group row">
-                    <label class="col-sm-1 col-form-label">Chức vụ:</label>
-                    <label class="col-sm-4">
+                    <label class="col-3 col-form-label">Chức vụ:</label>
+                    <label class="col-7 column-drag-header">
                         <select class="form-control" th:field="*{position}">
                             <option th:each="pos : ${positions}" th:value="${pos.id}"
                                     th:utext="${pos.name}"></option>
@@ -81,8 +93,8 @@
                     </label>
                 </div>
                 <div class="form-group row">
-                    <label class="col-sm-1 col-form-label">Bộ phận:</label>
-                    <label class="col-sm-4">
+                    <label class="col-3 col-form-label">Bộ phận:</label>
+                    <label class="col-7">
                         <select class="form-control" th:field="*{department}">
                             <option th:each="dep : ${departments}" th:value="${dep.id}"
                                     th:utext="${dep.name}"></option>
@@ -90,8 +102,8 @@
                     </label>
                 </div>
                 <div class="form-group row">
-                    <label class="col-sm-1 col-form-label">Trình độ học vấn:</label>
-                    <label class="col-sm-4" >
+                    <label class="col-3 col-form-label">Trình độ học vấn:</label>
+                    <label class="col-7">
                         <select class="form-control" th:field="*{educationDegree}">
                             <option th:each="edu : ${educationDegrees}" th:value="${edu.id}"
                                     th:utext="${edu.name}"></option>
@@ -99,12 +111,12 @@
                     </label>
                 </div>
                 <div class="form-group text-center">
-                    <label><input class="btn btn-primary" type="submit" value="Update"></label>
+                    <label><input class="btn btn-primary" type="submit" value="Cập nhật"></label>
                 </div>
             </form>
         </div>
     </div>
-    <div>
+    <div th:replace="~{/layout::footer}">
         <!--        footer-->
     </div>
 

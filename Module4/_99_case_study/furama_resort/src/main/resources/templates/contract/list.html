@@ -12,17 +12,17 @@
     <div th:insert="~{/layout::navbar}">
         <!--        navbar-->
     </div>
-    <div class="row">
+    <div class="website-body">
         <!--        main-->
         <div th:replace="~{/layout::contract-left-panel}">
             <!--            left panel-->
         </div>
-        <div class="col-sm-10">
+        <div class="main-content">
 <!--            content-->
-            <table class="table table-striped">
+            <table class="table table-striped mr-auto ml-auto">
                 <thead>
-                    <tr>
-                        <td>Mã Hợp đồng</td>
+                    <tr class="text-center font-weight-bold">
+                        <td>Mã HĐ</td>
                         <td>Tên khách hàng</td>
                         <td>Tên dịch vụ</td>
                         <td>Ngày bắt đầu</td>
@@ -37,7 +37,7 @@
                 <th:block th:if="${contracts != null}">
 
                     <tr th:each="contract : ${contracts}">
-                        <td th:text="${contract.id}"></td>
+                        <td class="text-center" th:text="${contract.id}"></td>
                         <td th:text="${contract.customer.name}"></td>
                         <td th:text="${contract.resortService.name}"></td>
                         <td th:text="${contract.startDate}"></td>
@@ -57,15 +57,15 @@
                 </th:block>
                 </tbody>
             </table>
-            <div>
+            <div class="mr-auto ml-auto">
                 <a th:href="@{/contract(search=${search},page=${contracts.number - 1})}" th:if="${contracts.hasPrevious()}">Previous</a>
                 <span th:text="${contracts.number + 1}"></span>/<span th:text="${contracts.totalPages}"></span>
                 <a th:href="@{/contract(search=${search},page=${contracts.number + 1})}" th:if="${contracts.hasNext()}">Next</a>
             </div>
         </div>
     </div>
-    <div>
-<!--        footer-->
+    <div th:replace="~{/layout::footer}">
+        <!--        footer-->
     </div>
 </div>
 </body>

@@ -1,46 +1,50 @@
-<div xmlns:th="http://www.thymeleaf.org">
-    <div th:if="${services != null}">
-        <input id="search" type="text" placeholder="Tìm kiếm" th:value="${search}">
-        <button id="search-button">Search</button>
+<div class="d-flex flex-column col-12" xmlns:th="http://www.thymeleaf.org">
+    <div>
+        <div class="d-flex flex-row justify-content-between mt-2 mb-2">
+            <input class="form-control" id="search" type="text" placeholder="Tìm kiếm" th:value="${search}">
+            <button class="btn btn-outline-secondary" id="search-button">Search</button>
+        </div>
+
         <th:block th:each="service : ${services}">
-            <div class="card" style="width: 18rem;">
+            <div class="card mt-3 mb-3" style="width: 100%">
                 <div class="card-body">
+                    <h5 class="card-title" th:text="${service.id}">Card title</h5>
                     <h5 class="card-title" th:text="${service.name}">Card title</h5>
                     <div class="card-text">
-                        <table>
+                        <table class="table">
                             <tr>
-                                <td>Mã</td>
-                                <td id="serviceId" th:text="${service.id}"></td>
-                            </tr>
-                            <tr>
-                                <td>Loại DV</td>
+                                <td>Loại DV:</td>
                                 <td th:text="${service.serviceType.name}"></td>
                             </tr>
                             <tr>
-                                <td>Giá</td>
+                                <td>Giá:</td>
                                 <td th:text="${#numbers.formatDecimal(service.cost, 0, 'POINT', 0, 'COMMA')}"></td>
                             </tr>
                             <tr>
-                                <td>Diện tích</td>
+                                <td>Diện tích:</td>
                                 <td th:text="${service.area}"></td>
                             </tr>
                             <tr>
-                                <td>SL Khách</td>
+                                <td>SL Khách:</td>
                                 <td th:text="${service.maxPeople}"></td>
+                            </tr>
+                            <tr>
+                                <td>Kiểu thuê:</td>
+                                <td th:text="${service.rentType.name}"></td>
                             </tr>
                         </table>
                     </div>
-                    <button type="button" class="selectService" th:value="${service.id}">Chọn</button>
+                    <button type="button" class="btn btn-outline-secondary selectService" th:value="${service.id}">Chọn</button>
                 </div>
             </div>
         </th:block>
     </div>
-    <div>
-        <button type="button" class="page-button" th:value="${services.number - 1}" th:if="${services.hasPrevious()}">
+    <div th:if="${services.totalPages > 0}" class="mr-auto ml-auto">
+        <button type="button" class="btn btn-secondary btn-sm service-page-button" th:value="${services.number - 1}" th:if="${services.hasPrevious()}">
             Previous
         </button>
         <span th:text="${services.number + 1}"></span>/<span th:text="${services.totalPages}"></span>
-        <button type="button" class="page-button" th:value="${services.number + 1}" th:if="${services.hasNext()}">Next
+        <button type="button" class="btn btn-secondary btn-sm service-page-button" th:value="${services.number + 1}" th:if="${services.hasNext()}">Next
         </button>
     </div>
 </div>
@@ -62,7 +66,7 @@
                 }
             })
         })
-        $(".page-button").click(function () {
+        $(".service-page-button").click(function () {
             let page = $(this).val();
             let search = $("#search").val();
             $.ajax({

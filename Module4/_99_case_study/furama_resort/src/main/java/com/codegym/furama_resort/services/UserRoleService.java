@@ -13,4 +13,5 @@ interface UserRoleService {
     List<UserRole> findAll();
     void save(UserRole userRole);
     Set<UserRole> findByAppUser(AppUser appUser);
+    void deleteAllByUsername(String username);
 }

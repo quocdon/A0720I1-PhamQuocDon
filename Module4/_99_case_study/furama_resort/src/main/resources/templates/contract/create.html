@@ -12,159 +12,161 @@
     <div th:insert="~{/layout::navbar}">
         <!--        navbar-->
     </div>
-    <div class="row">
+    <div class="website-body">
         <!--        main-->
         <div th:replace="~{/layout::contract-left-panel}">
             <!--            left panel-->
         </div>
-        <div class="col-sm-8">
-            <!--                        content--
-
-                               Modal-->
-            <div class="modal fade" id="serviceModelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
-                 aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">Dịch vụ</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body" id="service-modal-body">
-                            Body
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="modal fade" id="customerModelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
-                 aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">Khách hàng</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body" id="customer-modal-body">
-                            Body
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="d-flex flex-column w-100">
-                <h3 class="text-center bg-success text-white mr-auto ml-auto w-100">THÔNG TIN DỊCH VỤ</h3>
+        <form class="contract-content" th:action="@{/contract/save}" method="post" th:object="${contract}">
+            <!--            content-->
+            <h3 th:if="${contract.id != null}" class="text-center font-weight-bold text-primary ml-auto mr-auto mb-3 mt-3">HỢP ĐỒNG SỐ :
+                <th:block th:text="${contract.id}"></th:block></h3>
+            <input th:if="${contract.id != null}" type="text" th:field="*{id}" hidden>
+            <div class="contract-content mt-5 mr-auto ml-auto border rounded">
+                <h3 CLASS="text-center font-weight-bold text-success ml-auto mr-auto mb-3 mt-3">THÔNG TIN DỊCH VỤ</h3>
                 <button type="button" class="text-center btn btn-outline-success mr-auto ml-auto" id="btnModalService">
                     Chọn
                 </button>
                 <br>
+
+                <input th:if="${contract.id != null}" type="text" th:field="*{id}" th:value="${contract.id}" hidden>
+                <input id="service-id-form" type="text" th:field="*{resortService}" hidden>
+                <p class="text-center text-danger font-weight-bold font-italic ml-auto mr-auto mb-3 mt-3"
+                    th:if="${#fields.hasErrors('resortService')}" th:errors="*{resortService}"></p>
                 <div id="service-div">
-                    <table th:if="${contract.resortService != null}">
+                    <table class="table table-striped mr-auto ml-auto col-9" th:if="${contract.resortService != null}">
                         <tr>
-                            <td>Mã dịch vụ:</td>
-                            <td th:text="${contract.resortService.id}" id="selected-service-id"
+                            <td scope="col">Mã dịch vụ:</td>
+                            <td scope="col" th:text="${contract.resortService.id}" id="selected-service-id"
                                 th:value="${contract.resortService.id}"></td>
                         </tr>
                         <tr>
-                            <td>Tên dịch vụ:</td>
-                            <td th:text="${contract.resortService.name}"></td>
+                            <td scope="col">Tên dịch vụ:</td>
+                            <td scope="col" th:text="${contract.resortService.name}"></td>
                         </tr>
                         <tr>
-                            <td>Loại dịch vụ:</td>
-                            <td th:text="${contract.resortService.serviceType.name}"></td>
+                            <td scope="col">Loại dịch vụ:</td>
+                            <td scope="col" th:text="${contract.resortService.serviceType.name}"></td>
                         </tr>
                         <tr>
-                            <td>Giá:</td>
-                            <td th:text="${contract.resortService.cost}"></td>
+                            <td scope="col">Giá:</td>
+                            <td scope="col" th:text="${#numbers.formatDecimal(contract.resortService.cost, 0, 'POINT', 0, 'COMMA')}"></td>
                         </tr>
                     </table>
                 </div>
             </div>
 
-            <div class="d-flex flex-column w-100">
-                <h3 class="text-center bg-success text-white">THÔNG TIN KHÁCH HÀNG</h3>
+            <div class="contract-content mt-5 mr-auto ml-auto border rounded">
+                <h3 CLASS="text-center font-weight-bold text-success ml-auto mr-auto mb-3 mt-3">THÔNG TIN KHÁCH HÀNG</h3>
                 <button type="button" class="text-center btn btn-outline-success mr-auto ml-auto" id="btnModalCustomer">
                     Chọn
                 </button>
+                <br>
+                <input id="customer-id-form" type="text" th:field="*{customer}" hidden>
+                <p class="text-center text-danger font-weight-bold font-italic ml-auto mr-auto mb-3 mt-3"
+                    th:if="${#fields.hasErrors('customer')}" th:errors="*{customer}"></p>
                 <div id="customer-div">
-                    <table th:if="${contract.customer != null}">
+                    <table class="table table-striped  mr-auto ml-auto col-9" th:if="${contract.customer != null}">
                         <tr>
-                            <td>Mã khách hàng:</td>
-                            <td th:text="${contract.customer.id}"></td>
+                            <td scope="col">Mã khách hàng:</td>
+                            <td scope="col" th:text="${contract.customer.id}"></td>
                         </tr>
                         <tr>
-                            <td>Tên khách hàng:</td>
-                            <td th:text="${contract.customer.name}"></td>
+                            <td scope="col">Tên khách hàng:</td>
+                            <td scope="col" th:text="${contract.customer.name}"></td>
                         </tr>
                         <tr>
-                            <td>Loại khách hàng:</td>
-                            <td th:text="${contract.customer.customerType.name}"></td>
+                            <td scope="col">Loại khách hàng:</td>
+                            <td scope="col" th:text="${contract.customer.customerType.name}"></td>
                         </tr>
                         <tr>
-                            <td>Ngày sinh:</td>
-                            <td th:text="${contract.customer.birthday}"></td>
+                            <td scope="col">Ngày sinh:</td>
+                            <td scope="col" th:text="${contract.customer.birthday}"></td>
                         </tr>
                         <tr>
-                            <td>SĐT:</td>
-                            <td th:text="${contract.customer.phone}"></td>
+                            <td scope="col">SĐT:</td>
+                            <td scope="col" th:text="${contract.customer.phone}"></td>
                         </tr>
                         <tr>
-                            <td>Email:</td>
-                            <td th:text="${contract.customer.email}"></td>
+                            <td scope="col">Email:</td>
+                            <td scope="col" th:text="${contract.customer.email}"></td>
                         </tr>
                     </table>
                 </div>
             </div>
-            <h3 class="text-center bg-success text-white">THÔNG TIN LƯU TRÚ</h3>
-            <form class="w-100 mr-auto ml-auto" th:action="@{/contract/save}" method="post" th:object="${contract}">
-                <input type="text" th:field="*{id}" hidden>
-                <input id="service-id-form" type="text" th:field="*{resortService}" hidden>
-                <input id="customer-id-form" type="text" th:field="*{customer}" hidden>
-                <div class="form-group row">
-                    <label class="w-100 col-form-label" th:if="${#fields.hasErrors('resortService')}"
-                           th:errors="*{resortService}"></label>
+            <div class="contract-content mt-5 mr-auto ml-auto border rounded">
+                <h3 class="text-center font-weight-bold text-success ml-auto mr-auto mb-3 mt-3">THÔNG TIN LƯU TRÚ</h3>
+                <br>
+                <div class="col-9 mr-auto ml-auto" >
+                    <div class="form-group row">
+                        <label class="col-3 col-form-label">Ngày bắt đầu:</label>
+                        <label class="col-6">
+                            <input type="date" class="form-control" th:field="*{startDate}">
+                            <label class="text-danger" th:if="${#fields.hasErrors('startDate')}"
+                                   th:errors="*{startDate}"></label>
+                        </label>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-3 col-form-label">Ngày kết thúc:</label>
+                        <label class="col-6">
+                            <input type="date" class="form-control" th:field="*{endDate}">
+                            <label class="text-danger" th:if="${#fields.hasErrors('endDate')}"
+                                   th:errors="*{endDate}"></label>
+                        </label>
+                    </div>
+                    <div class="form-group text-center">
+                        <label><input class="btn btn-primary" type="submit" value="Lưu hợp đồng"></label>
+                    </div>
                 </div>
-                <div class="form-group row">
-                    <label class="col-sm-3 col-form-label" th:if="${#fields.hasErrors('customer')}"
-                           th:errors="*{customer}"></label>
-                </div>
+            </div>
 
-                <div class="form-group row">
-                    <label class="col-sm-3 col-form-label">Ngày bắt đầu:</label>
-                    <label class="col-sm-4">
-                        <input type="date" class="form-control" th:field="*{startDate}">
-                        <label class="col-sm-3 col-form-label" th:if="${#fields.hasErrors('startDate')}"
-                               th:errors="*{startDate}"></label>
-                    </label>
-                </div>
+        </form>
+    </div>
+    <div th:replace="~{/layout::footer}">
+        <!--        footer-->
+    </div>
 
-                <div class="form-group row">
-                    <label class="col-sm-3 col-form-label">Ngày kết thúc:</label>
-                    <label class="col-sm-4">
-                        <input type="date" class="form-control" th:field="*{endDate}">
-                        <label class="col-sm-3 col-form-label" th:if="${#fields.hasErrors('endDate')}"
-                               th:errors="*{endDate}"></label>
-                    </label>
+<!--    Modal-->
+    <div class="modal fade" id="serviceModelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Dịch vụ</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
-                <div class="form-group text-center">
-                    <label><input class="btn btn-primary" type="submit" value="Submit"></label>
+                <div class="modal-body" id="service-modal-body">
+                    Body
                 </div>
-            </form>
+<!--                <div class="modal-footer">-->
+<!--                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+<!--                    <button type="button" class="btn btn-primary">Save</button>-->
+<!--                </div>-->
+            </div>
         </div>
     </div>
-    <div>
-        <!--        footer-->
+
+    <div class="modal fade" id="customerModelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Khách hàng</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body col-12" id="customer-modal-body">
+                    Body
+                </div>
+<!--                <div class="modal-footer">-->
+<!--                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+<!--                    <button type="button" class="btn btn-primary">Save</button>-->
+<!--                </div>-->
+            </div>
+        </div>
     </div>
 
     <script language="JavaScript">
@@ -193,6 +195,14 @@
                 })
             })
         })
+        function loadServiceMessage() {
+            let serviceMessage = document.getElementById("service-message").textContent;
+            console.log(serviceMessage);
+            if (serviceMessage != null){
+                document.getElementById("service-message-alert").innerText = serviceMessage;
+            }
+
+        }
     </script>
 
 </div>

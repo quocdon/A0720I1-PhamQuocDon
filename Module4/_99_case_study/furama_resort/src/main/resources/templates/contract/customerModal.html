@@ -1,14 +1,16 @@
-<div xmlns:th="http://www.thymeleaf.org">
-    <div th:if="${customers != null}">
-        <input id="customer-search" type="text" placeholder="Tìm kiếm" th:value="${customerSearch}">
-        <button id="customer-search-button">Search</button>
+<div class="d-flex flex-column col-12" xmlns:th="http://www.thymeleaf.org">
+    <div>
+        <div class="d-flex flex-row justify-content-between mt-2 mb-2">
+            <input class="form-control" id="customer-search" type="text" placeholder="Tìm kiếm" th:value="${customerSearch}">
+            <button class="btn btn-outline-secondary" id="customer-search-button">Search</button>
+        </div>
         <th:block th:each="customer : ${customers}">
-            <div class="card" style="width: 18rem;">
+            <div class="card mt-3 mb-3" style="width: 100%">
                 <div class="card-body">
-                    <h5 class="card-text" th:text="${customer.id}">Card title</h5>
+                    <h5 class="card-title" th:text="${customer.id}">Card title</h5>
                     <h5 class="card-title" th:text="${customer.name}">Card title</h5>
                     <div class="card-text">
-                        <table>
+                        <table class="table">
                             <tr>
                                 <td>Hạng khách:</td>
                                 <td id="serviceId" th:text="${customer.customerType.name}"></td>
@@ -27,17 +29,17 @@
                             </tr>
                         </table>
                     </div>
-                    <button type="button" class="selectCustomer" th:value="${customer.id}">Chọn</button>
+                    <button type="button" class="btn btn-outline-secondary selectCustomer" th:value="${customer.id}">Chọn</button>
                 </div>
             </div>
         </th:block>
     </div>
-    <div>
-        <button type="button" class="customer-page-button" th:value="${customers.number - 1}" th:if="${customers.hasPrevious()}">
+    <div th:if="${customers.totalPages > 0}" class="mr-auto ml-auto">
+        <button type="button" class="btn btn-secondary btn-sm customer-page-button" th:value="${customers.number - 1}" th:if="${customers.hasPrevious()}">
             Previous
         </button>
         <span th:text="${customers.number + 1}"></span>/<span th:text="${customers.totalPages}"></span>
-        <button type="button" class="customer-page-button" th:value="${customers.number + 1}" th:if="${customers.hasNext()}">Next
+        <button type="button" class="btn btn-secondary btn-sm customer-page-button" th:value="${customers.number + 1}" th:if="${customers.hasNext()}">Next
         </button>
     </div>
 </div>

@@ -12,14 +12,15 @@
     <div th:insert="~{/layout::navbar}">
         <!--        navbar-->
     </div>
-    <div class="row">
+    <div class="website-body">
         <!--        main-->
         <div th:replace="~{/layout::customer-left-panel}">
             <!--            left panel-->
         </div>
-        <div class="col-sm-8">
+        <div class="main-content">
             <!--            content-->
-            <table class="table table-stripe">
+            <h3 CLASS="text-center font-weight-bold text-success ml-auto mr-auto mb-3 mt-3">THÔNG TIN KHÁCH HÀNG</h3>
+            <table class="table table-striped col-9 mr-auto ml-auto">
                 <tr>
                     <td>Mã khách hàng:</td>
                     <td th:text="${customer.id}"></td>
@@ -63,7 +64,7 @@
             </table>
         </div>
     </div>
-    <div>
+    <div th:replace="~{/layout::footer}">
         <!--        footer-->
     </div>
 

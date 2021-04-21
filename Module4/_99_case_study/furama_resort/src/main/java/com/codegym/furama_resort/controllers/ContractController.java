@@ -130,7 +130,7 @@ public class ContractController {
     @GetMapping("/edit/{id}")
     public String editContract(@PathVariable int id, Model model){
         model.addAttribute("contract", contractService.findById(id));
-        return "/contract/edit";
+        return "/contract/create";
     }
 
     @GetMapping("/view/{id}")

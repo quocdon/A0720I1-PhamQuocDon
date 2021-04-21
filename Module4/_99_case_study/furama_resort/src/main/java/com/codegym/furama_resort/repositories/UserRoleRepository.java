@@ -11,4 +11,5 @@ import java.util.Set;
 @Repository
 public interface UserRoleRepository extends JpaRepository<UserRole, UserRoleKey> {
     Set<UserRole> findByAppUser(AppUser appUser);
+    void deleteUserRolesByAppUser_Username(String username);
 }

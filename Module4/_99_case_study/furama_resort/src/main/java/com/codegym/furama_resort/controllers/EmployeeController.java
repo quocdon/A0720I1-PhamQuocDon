@@ -10,6 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.query.Param;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -17,8 +18,12 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.persistence.EmbeddedId;
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 @RequestMapping(value = "/employee")
@@ -48,61 +53,76 @@ public class EmployeeController {
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @ModelAttribute("appRoles")
-    public List<AppRole> getPathUri() {
+    public List<AppRole> getAppRoles() {
         return appRoleService.findAll();
     }
 
-//    @GetMapping(value = {"/",""})
-//    public ModelAndView list(@RequestParam(defaultValue = "0") int page) {
-////        ModelAndView modelAndView = new ModelAndView("employee/list");
-////        Pageable pageable = PageRequest.of(page, 5);
-////        modelAndView.addObject("employees", employeeService.findAll(pageable));
-////        modelAndView.addObject("currentUri", "employee");
-////        return modelAndView;
-//    }
+    @ModelAttribute("departments")
+    public List<Department> getDepartments(){
+        return departmentService.findAll();
+    }
+
+    @ModelAttribute("positions")
+    public List<Position> getPositions(){
+        return positionService.findAll();
+    }
+
+    @ModelAttribute("educationDegrees")
+    public List<EducationDegree> getEducationDegrees(){
+        return educationDegreeService.findAll();
+    }
 
     @GetMapping("/create")
     public ModelAndView create() {
-        ModelAndView modelAndView = new ModelAndView("employee/create");
+        ModelAndView modelAndView = new ModelAndView("/employee/create");
         modelAndView.addObject("employee", new Employee());
-        modelAndView.addObject("departments", departmentService.findAll());
-        modelAndView.addObject("positions", positionService.findAll());
-        modelAndView.addObject("educationDegrees", educationDegreeService.findAll());
-        modelAndView.addObject("roles", appRoleService.findAll());
         return modelAndView;
     }
 
     @PostMapping("/save")
     public String save(@Valid @ModelAttribute Employee employee, BindingResult bindingResult, @RequestParam String confirmPassword, Model model, RedirectAttributes attributes) {
         if (appUserService.existById(employee.getAppUser().getUsername())) {
-            bindingResult.addError(new FieldError("employee", "user.username", "Tên đăng nhập đã tồn tại"));
+            bindingResult.addError(new FieldError("employee", "appUser.username", "Tên đăng nhập đã tồn tại"));
         }
         if (!employee.getAppUser().getPassword().equals(confirmPassword)) {
-            bindingResult.addError(new FieldError("employee", "user.password", "Xác nhận mật khẩu không chính xác"));
+            bindingResult.addError(new FieldError("employee", "appUser.password", "Xác nhận mật khẩu không chính xác"));
         }
         if (bindingResult.hasFieldErrors()) {
-            model.addAttribute("departments", departmentService.findAll());
-            model.addAttribute("positions", positionService.findAll());
-            model.addAttribute("educationDegrees", educationDegreeService.findAll());
             return "employee/create";
         }
         employee.getAppUser().setPassword(bCryptPasswordEncoder.encode(employee.getAppUser().getPassword()));
         employeeService.save(employee);
+//        set user role default is ROLE_NHANVIEN
+        UserRole userRole = new UserRole();
+        userRole.setId(new UserRoleKey(employee.getAppUser().getUsername(), 3));
+        userRole.setAppUser(employee.getAppUser());
+        userRole.setAppRole(appRoleService.findById(3));
+        userRoleService.save(userRole);
+
+//        convert from UserRole to AppRole and add to appUserDto
+        Set<AppRole> currentRoles = new HashSet<>();
+        currentRoles.add(appRoleService.findById(3));
+
+//        Send user info to setRole page
         AppUserDto appUserDto = new AppUserDto();
         appUserDto.setAppUser(employee.getAppUser());
+        appUserDto.setRoles(currentRoles);
         model.addAttribute("appUserDto", appUserDto);
         return "/employee/setRole";
     }
+
     @PostMapping("/setRole")
-    public String setRole(@ModelAttribute AppUserDto appUserDto){
-        for (AppRole role : appUserDto.getRoles()){
+    @Transactional
+    public String setRole(@ModelAttribute AppUserDto appUserDto) {
+        userRoleService.deleteAllByUsername(appUserDto.getAppUser().getUsername());
+        for (AppRole role : appUserDto.getRoles()) {
             UserRole userRole = new UserRole();
             userRole.setAppUser(appUserDto.getAppUser());
             userRole.setAppRole(role);
             userRole.setId(new UserRoleKey(appUserDto.getAppUser().getUsername(), role.getId()));
             userRoleService.save(userRole);
         }
-        return "redirect:/employee/";
+        return "redirect:/employee/view/" + appUserDto.getAppUser().getEmployee().getId();
     }
 
     @GetMapping("/delete/{id}")
@@ -113,23 +133,28 @@ public class EmployeeController {
 
     @GetMapping("edit/{id}")
     public String edit(@PathVariable int id, Model model) {
+        Employee employee = employeeService.findById(id);
         model.addAttribute("employee", employeeService.findById(id));
-        model.addAttribute("departments", departmentService.findAll());
-        model.addAttribute("positions", positionService.findAll());
-        model.addAttribute("educationDegrees", educationDegreeService.findAll());
         return "employee/edit";
     }
 
     @PostMapping("/update")
     public String update(@Valid @ModelAttribute Employee employee, BindingResult bindingResult, Model model) {
         if (bindingResult.hasFieldErrors()) {
-            model.addAttribute("departments", departmentService.findAll());
-            model.addAttribute("positions", positionService.findAll());
-            model.addAttribute("educationDegrees", educationDegreeService.findAll());
             return "employee/edit";
         }
         employeeService.save(employee);
-        return "redirect:/employee/";
+        Set<AppRole> currentRoles = new HashSet<>();
+        if (employee.getAppUser().getUserRoles() != null){
+            for(UserRole userRole : employee.getAppUser().getUserRoles()){
+                currentRoles.add(userRole.getAppRole());
+            }
+        }
+        AppUserDto appUserDto = new AppUserDto();
+        appUserDto.setAppUser(employee.getAppUser());
+        appUserDto.setRoles(currentRoles);
+        model.addAttribute("appUserDto", appUserDto);
+        return "/employee/setRole";
     }
 
     @GetMapping("/view/{id}")
@@ -161,4 +186,5 @@ public class EmployeeController {
 //    public String viewErrorPage(){
 //        return "error-page";
 //    }
+
 }

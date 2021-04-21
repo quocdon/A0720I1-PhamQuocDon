@@ -12,33 +12,29 @@
     <div th:insert="~{/layout::navbar}">
         <!--        navbar-->
     </div>
-    <div class="row">
+    <div class="website-body">
         <!--        main-->
         <div th:replace="~{/layout::customer-left-panel}">
             <!--            left panel-->
         </div>
-        <div class="col-sm-10">
+        <div class="main-content">
 <!--            content-->
-            <table class="table table-stripe">
-                <thead>
-                    <tr>
+            <table class="table table-striped">
+                <thead class="text-center font-weight-bold">
                         <td>Mã khách hàng</td>
                         <td>Hạng khách</td>
                         <td>Họ tên</td>
-                        <td>Ngày sinh</td>
                         <td>Số điện thoại</td>
                         <td>Email</td>
                         <td>Chi tiết</td>
                         <td>Chỉnh sửa</td>
                         <td>Xóa</td>
-                    </tr>
                 </thead>
                 <tbody>
                     <tr th:each="customer : ${customers}">
                         <td th:text="${customer.id}"></td>
                         <td th:text="${customer.customerType.name}"></td>
                         <td th:text="${customer.name}"></td>
-                        <td th:text="${customer.birthday}"></td>
                         <td th:text="${customer.phone}"></td>
                         <td th:text="${customer.email}"></td>
                         <td><a th:href="@{/customer/view/{id}(id=${customer.id})}">Xem</a></td>
@@ -47,15 +43,15 @@
                     </tr>
                 </tbody>
             </table>
-            <div>
+            <div class="mr-auto ml-auto">
                 <a th:href="@{/customer(search=${search},page=${customers.number - 1})}" th:if="${customers.hasPrevious()}">Previous</a>
                 <span th:text="${customers.number + 1}"></span>/<span th:text="${customers.totalPages}"></span>
                 <a th:href="@{/customer(search=${search},page=${customers.number + 1})}" th:if="${customers.hasNext()}">Next</a>
             </div>
         </div>
     </div>
-    <div>
-<!--        footer-->
+    <div th:replace="~{/layout::footer}">
+        <!--        footer-->
     </div>
 </div>
 </body>

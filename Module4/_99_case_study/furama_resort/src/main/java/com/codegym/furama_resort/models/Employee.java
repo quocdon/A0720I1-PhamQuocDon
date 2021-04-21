@@ -4,10 +4,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.Valid;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
+import javax.validation.constraints.*;
 import java.time.LocalDate;
 
 @Entity
@@ -19,6 +16,7 @@ public class Employee {
     private String name;
     @NotNull(message = "Không để trống")
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    @Past(message = "Chỉ nhập ngày trong quá khứ")
     private LocalDate birthday;
     @Pattern(regexp = "^(\\d{9})|(\\d{12})$", message = "CMND gồm 9 hoặc 12 số")
     private String idCard;

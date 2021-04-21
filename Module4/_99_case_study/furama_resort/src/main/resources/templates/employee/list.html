@@ -12,23 +12,22 @@
     <div th:insert="~{/layout::navbar}">
 <!--        navbar-->
     </div>
-    <div class="row">
+    <div class="website-body">
 <!--        main-->
         <div th:replace="~{/layout::employee-left-panel}">
 <!--            left panel-->
         </div>
-        <div class="col-sm-10">
+        <div class="main-content">
 <!--            content-->
-            <table class="table table-stripe">
+            <table class="table table-striped">
                 <thead>
-                    <tr>
+                    <tr class="text-center font-weight-bold">
                         <td>ID</td>
                         <td>Họ tên</td>
                         <td>Ngày sinh</td>
                         <td>Email</td>
                         <td>Chức vụ</td>
                         <td>Bộ phận</td>
-                        <td>Tài khoản</td>
                         <td>Chi tiết</td>
                         <td>Chỉnh sửa</td>
                         <td>Xóa</td>
@@ -42,22 +41,21 @@
                         <td th:text="${employee.email}"></td>
                         <td th:text="${employee.position.name}"></td>
                         <td th:text="${employee.department.name}"></td>
-                        <td th:text="${employee.appUser.username}"></td>
                         <td><a th:href="@{/employee/view/{id}(id=${employee.id})}">Xem</a></td>
                         <td><a th:href="@{/employee/edit/{id}(id=${employee.id})}">Sửa</a></td>
                         <td><a th:href="@{/employee/delete/{id}(id=${employee.id})}" onclick="return confirm('Bạn muốn xóa nhân viên này không?')">Xóa</a></td>
                     </tr>
                 </tbody>
             </table>
-            <div>
+            <div class="mr-auto ml-auto">
                 <a th:href="@{/employee(search=${search},page=${employees.number - 1})}" th:if="${employees.hasPrevious()}">Previous</a>
                 <span th:text="${employees.number + 1}"></span>/<span th:text="${employees.totalPages}"></span>
                 <a th:href="@{/employee(search=${search},page=${employees.number + 1})}" th:if="${employees.hasNext()}">Next</a>
             </div>
         </div>
     </div>
-    <div>
-<!--        footer-->
+    <div th:replace="~{/layout::footer}">
+        <!--        footer-->
     </div>
 </div>
 </body>

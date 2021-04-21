@@ -1,26 +1,26 @@
-<table xmlns:th="http://www.thymeleaf.org" class="table table-striped">
+<table xmlns:th="http://www.thymeleaf.org" class="table table-striped mr-auto ml-auto col-9">
     <tr>
-        <td>Mã khách hàng:</td>
-        <td th:text="${customer.id}"></td>
+        <td scope="col">Mã khách hàng:</td>
+        <td scope="col" th:text="${customer.id}"></td>
     </tr>
     <tr>
-        <td>Tên khách hàng:</td>
-        <td th:text="${customer.name}"></td>
+        <td scope="col">Tên khách hàng:</td>
+        <td scope="col" th:text="${customer.name}"></td>
     </tr>
     <tr>
-        <td>Loại khách hàng:</td>
-        <td th:text="${customer.customerType.name}"></td>
+        <td scope="col">Loại khách hàng:</td>
+        <td scope="col" th:text="${customer.customerType.name}"></td>
     </tr>
     <tr>
-        <td>Ngày sinh:</td>
-        <td th:text="${customer.birthday}"></td>
+        <td scope="col" >Ngày sinh:</td>
+        <td scope="col" th:text="${customer.birthday}"></td>
     </tr>
     <tr>
-        <td>SĐT:</td>
-        <td th:text="${customer.phone}"></td>
+        <td scope="col">SĐT:</td>
+        <td scope="col" th:text="${customer.phone}"></td>
     </tr>
     <tr>
-        <td>Email:</td>
-        <td th:text="${customer.email}"></td>
+        <td scope="col">Email:</td>
+        <td scope="col" th:text="${customer.email}"></td>
     </tr>
 </table>

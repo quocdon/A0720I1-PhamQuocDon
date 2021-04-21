@@ -2,6 +2,7 @@ package com.codegym.furama_resort.controllers;
 
 import com.codegym.furama_resort.models.AppUser;
 import com.codegym.furama_resort.models.Customer;
+import com.codegym.furama_resort.models.CustomerType;
 import com.codegym.furama_resort.services.CustomerService;
 import com.codegym.furama_resort.services.CustomerTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 @RequestMapping("/customer")
@@ -25,11 +27,15 @@ public class CustomerController {
     @Autowired
     private CustomerTypeService customerTypeService;
 
+    @ModelAttribute("customerTypes")
+    public List<CustomerType> getCustomerTypes(){
+        return customerTypeService.findAll();
+    }
+
     @GetMapping("/create")
     public ModelAndView create() {
         ModelAndView modelAndView = new ModelAndView("customer/create");
         modelAndView.addObject("customer", new Customer());
-        modelAndView.addObject("customerTypes", customerTypeService.findAll());
         return modelAndView;
     }
 
@@ -40,7 +46,6 @@ public class CustomerController {
         }
 
         if (bindingResult.hasFieldErrors()) {
-            model.addAttribute("customerTypes", customerTypeService.findAll());
             return "customer/create";
         }
         customerService.save(customer);
@@ -56,14 +61,12 @@ public class CustomerController {
     @GetMapping("edit/{id}")
     public String edit(@PathVariable String id, Model model) {
         model.addAttribute("customer", customerService.findById(id));
-        model.addAttribute("customerTypes", customerTypeService.findAll());
         return "customer/edit";
     }
 //
     @PostMapping("/update")
     public String update(@Valid @ModelAttribute Customer customer, BindingResult bindingResult, Model model) {
         if (bindingResult.hasFieldErrors()) {
-            model.addAttribute("customerTypes", customerTypeService.findAll());
             return "customer/edit";
         }
         customerService.save(customer);
@@ -100,7 +103,8 @@ public class CustomerController {
     public String showCustomerListInModal(@RequestParam(defaultValue = "") String search,
                                           @RequestParam(defaultValue = "0") int page,
                                           Model model){
-        Pageable pageable = PageRequest.of(page, 1);
+        search = search.trim();
+        Pageable pageable = PageRequest.of(page, 4);
         if (search.equals("")){
             model.addAttribute("customers", customerService.findAll(pageable));
         } else {
