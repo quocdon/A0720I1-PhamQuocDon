@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -80,6 +81,10 @@ public class ContractController {
     @PostMapping("/save")
     public String saveContract(@Valid @ModelAttribute Contract contract, BindingResult bindingResult, Principal principal, Model model) {
         contract.setEmployee(employeeService.findByUsername(principal.getName()));
+        if (!contract.getEndDate().isAfter(contract.getStartDate())){
+            bindingResult.addError(new FieldError("employee", "appUser.username", "Tên đăng nhập đã tồn tại"));
+            bindingResult.addError(new FieldError("contract", "endDate", "Ngày kết thúc phải sau ngày bắt đầu"));
+        }
         if (bindingResult.hasFieldErrors()) {
             return "/contract/create";
         }
@@ -101,9 +106,7 @@ public class ContractController {
     }
 
     @PostMapping("/saveContractDetail")
-    public String saveDetailContract(@Valid @ModelAttribute(name = "contractDetailDto") ContractDetailDto contractDetailDto,
-                                     BindingResult bindingResult,
-                                     Model model){
+    public String saveDetailContract(@Valid @ModelAttribute(name = "contractDetailDto") ContractDetailDto contractDetailDto){
         Set<AttachService> keySet = contractDetailDto.getAttachServices().keySet();
         for(AttachService key : keySet){
             ContractDetail contractDetail = new ContractDetail();

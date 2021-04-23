@@ -5,6 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 
 @Service
@@ -14,6 +15,6 @@ public interface EmployeeService {
     Employee findByUsername(String username);
     Employee findById(int id);
     Employee save(Employee employee);
-    void delete(int id);
+    void delete (int id) throws SQLIntegrityConstraintViolationException;
     Page<Employee> findByName(String search, Pageable pageable);
 }

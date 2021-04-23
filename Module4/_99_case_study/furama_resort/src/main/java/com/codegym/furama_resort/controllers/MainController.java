@@ -10,9 +10,11 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
+import sun.security.mscapi.CPublicKey;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.sql.SQLIntegrityConstraintViolationException;
 
 @Controller
 public class MainController {
@@ -44,10 +46,20 @@ public class MainController {
 //        Edit after learning Spring security lesson
     }
 
-//    @ExceptionHandler(Exception.class)
-//    public String viewErrorPage() {
-//        return "error-page";
-//    }
+    @GetMapping("/accessDenied")
+    public String accessDenied(){
+        return "403-page";
+    }
+
+    @ExceptionHandler(SQLIntegrityConstraintViolationException.class)
+    public String sqlDeleteHandler(){
+        return "sql-error-page";
+    }
+
+    @ExceptionHandler(Exception.class)
+    public String viewErrorPage() {
+        return "error-page";
+    }
 
 
 }

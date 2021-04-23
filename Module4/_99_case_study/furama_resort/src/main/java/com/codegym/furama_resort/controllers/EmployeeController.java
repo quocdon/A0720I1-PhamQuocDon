@@ -5,6 +5,8 @@ import com.codegym.furama_resort.models.dto.AppUserDto;
 import com.codegym.furama_resort.services.*;
 import org.hibernate.annotations.Parameter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.Ordered;
+import org.springframework.core.annotation.Order;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.query.Param;
@@ -19,7 +21,9 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.persistence.EmbeddedId;
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -126,7 +130,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/delete/{id}")
-    public String delete(@PathVariable int id) {
+    public String delete(@PathVariable int id) throws SQLIntegrityConstraintViolationException {
         employeeService.delete(id);
         return "redirect:/employee/";
     }
@@ -182,9 +186,16 @@ public class EmployeeController {
             return modelAndView;
         }
     }
-//    @ExceptionHandler(Exception.class)
-//    public String viewErrorPage(){
-//        return "error-page";
-//    }
+    @ExceptionHandler(SQLIntegrityConstraintViolationException.class)
+    @Order(Ordered.HIGHEST_PRECEDENCE)
+    public String sqlDeleteHandler(){
+        return "sql-error-page";
+    }
+
+    @ExceptionHandler(Exception.class)
+    @Order(Ordered.LOWEST_PRECEDENCE)
+    public String viewErrorPage(HttpServletRequest request, Exception exception) {
+        return "error-page";
+    }
 
 }
