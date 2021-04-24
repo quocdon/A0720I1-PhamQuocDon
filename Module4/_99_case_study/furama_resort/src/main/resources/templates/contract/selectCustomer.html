@@ -13,7 +13,7 @@
     </tr>
     <tr>
         <td scope="col" >Ngày sinh:</td>
-        <td scope="col" th:text="${customer.birthday}"></td>
+        <td scope="col" th:text="${#temporals.format(customer.birthday, 'dd/MM/yyyy')}"></td>
     </tr>
     <tr>
         <td scope="col">SĐT:</td>

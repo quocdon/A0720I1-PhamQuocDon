@@ -37,7 +37,7 @@
                         <tr>
                             <td th:text="${attachService.key.id}"></td>
                             <td th:text="${attachService.key.name}"></td>
-                            <td th:text="${attachService.key.cost}"></td>
+                            <td th:text="${#numbers.formatDecimal(attachService.key.cost, 0, 'POINT', 0, 'COMMA')}"></td>
                             <td>
                                 <input min="0" type="number" th:field="*{attachServices[__${stat.index+1}__]}"
                                        th:value="${contractDetailDto.attachServices[__${stat.index+1}__]}" required>

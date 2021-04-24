@@ -81,7 +81,7 @@
                         </tr>
                         <tr>
                             <td scope="col">Ngày sinh:</td>
-                            <td scope="col" th:text="${contract.customer.birthday}"></td>
+                            <td scope="col" th:text="${#temporals.format(contract.customer.birthday, 'dd/MM/yyyy')}"></td>
                         </tr>
                         <tr>
                             <td scope="col">SĐT:</td>

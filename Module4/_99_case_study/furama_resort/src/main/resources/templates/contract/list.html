@@ -40,8 +40,8 @@
                         <td class="text-center" th:text="${contract.id}"></td>
                         <td th:text="${contract.customer.name}"></td>
                         <td th:text="${contract.resortService.name}"></td>
-                        <td th:text="${contract.startDate}"></td>
-                        <td th:text="${contract.endDate}"></td>
+                        <td th:text="${#temporals.format(contract.startDate, 'dd/MM/yyyy')}"></td>
+                        <td th:text="${#temporals.format(contract.endDate, 'dd/MM/yyyy')}"></td>
                         <td>
                             <th:block th:each="detail: ${contract.contractDetails}">
                                 <p>
@@ -50,17 +50,17 @@
                                 </p>
                             </th:block>
                         </td>
-                        <td><a th:href="@{/contract/view/{id}(id=${contract.id})}">Xem</a></td>
-                        <td><a th:href="@{/contract/edit/{id}(id=${contract.id})}">Sửa</a></td>
-                        <td><a th:href="@{/contract/delete/{id}(id=${contract.id})}" onclick="return confirm('Bạn muốn xóa hợp đồng này không?')">Xóa</a></td>
+                        <td class="text-center"><a class="btn btn-info btn-sm" th:href="@{/contract/view/{id}(id=${contract.id})}">Xem</a></td>
+                        <td class="text-center"><a class="btn btn-success btn-sm" th:href="@{/contract/edit/{id}(id=${contract.id})}">Sửa</a></td>
+                        <td class="text-center"><a class="btn btn-danger btn-sm" th:href="@{/contract/delete/{id}(id=${contract.id})}" onclick="return confirm('Bạn muốn xóa hợp đồng này không?')">Xóa</a></td>
                     </tr>
                 </th:block>
                 </tbody>
             </table>
             <div class="mr-auto ml-auto">
-                <a th:href="@{/contract(search=${search},page=${contracts.number - 1})}" th:if="${contracts.hasPrevious()}">Previous</a>
+                <a class="btn btn-secondary btn-sm" th:href="@{/contract(search=${search},page=${contracts.number - 1})}" th:if="${contracts.hasPrevious()}">Previous</a>
                 <span th:text="${contracts.number + 1}"></span>/<span th:text="${contracts.totalPages}"></span>
-                <a th:href="@{/contract(search=${search},page=${contracts.number + 1})}" th:if="${contracts.hasNext()}">Next</a>
+                <a class="btn btn-secondary btn-sm" th:href="@{/contract(search=${search},page=${contracts.number + 1})}" th:if="${contracts.hasNext()}">Next</a>
             </div>
         </div>
     </div>

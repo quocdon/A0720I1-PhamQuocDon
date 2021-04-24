@@ -37,16 +37,16 @@
                         <td th:text="${customer.name}"></td>
                         <td th:text="${customer.phone}"></td>
                         <td th:text="${customer.email}"></td>
-                        <td><a th:href="@{/customer/view/{id}(id=${customer.id})}">Xem</a></td>
-                        <td><a th:href="@{/customer/edit/{id}(id=${customer.id})}">Sửa</a></td>
-                        <td><a th:href="@{/customer/delete/{id}(id=${customer.id})}" onclick="return confirm('Bạn muốn xóa khách hàng này không?')">Xóa</a></td>
+                        <td class="text-center"><a class="btn btn-info btn-sm" th:href="@{/customer/view/{id}(id=${customer.id})}">Xem</a></td>
+                        <td class="text-center"><a class="btn btn-success btn-sm" th:href="@{/customer/edit/{id}(id=${customer.id})}">Sửa</a></td>
+                        <td class="text-center"><a class="btn btn-danger btn-sm" th:href="@{/customer/delete/{id}(id=${customer.id})}" onclick="return confirm('Bạn muốn xóa khách hàng này không?')">Xóa</a></td>
                     </tr>
                 </tbody>
             </table>
             <div class="mr-auto ml-auto">
-                <a th:href="@{/customer(search=${search},page=${customers.number - 1})}" th:if="${customers.hasPrevious()}">Previous</a>
+                <a class="btn btn-secondary btn-sm" th:href="@{/customer(search=${search},page=${customers.number - 1})}" th:if="${customers.hasPrevious()}">Previous</a>
                 <span th:text="${customers.number + 1}"></span>/<span th:text="${customers.totalPages}"></span>
-                <a th:href="@{/customer(search=${search},page=${customers.number + 1})}" th:if="${customers.hasNext()}">Next</a>
+                <a class="btn btn-secondary btn-sm" th:href="@{/customer(search=${search},page=${customers.number + 1})}" th:if="${customers.hasNext()}">Next</a>
             </div>
         </div>
     </div>

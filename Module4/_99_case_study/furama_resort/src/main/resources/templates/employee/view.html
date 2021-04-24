@@ -31,7 +31,7 @@
                 </tr>
                 <tr>
                     <td>Ngày sinh:</td>
-                    <td th:text="${employee.birthday}"></td>
+                    <td th:text="${#temporals.format(employee.birthday, 'dd/MM/yyyy')}"></td>
                 </tr>
                 <tr>
                     <td>Số CMND:</td>

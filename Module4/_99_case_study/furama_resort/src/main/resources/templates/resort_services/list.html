@@ -42,9 +42,9 @@
                 </tbody>
             </table>
             <div class="mr-auto ml-auto">
-                <a th:href="@{/service(search=${search},page=${services.number - 1})}" th:if="${services.hasPrevious()}">Previous</a>
+                <a class="btn btn-secondary btn-sm" th:href="@{/service(search=${search},page=${services.number - 1})}" th:if="${services.hasPrevious()}">Previous</a>
                 <span th:text="${services.number + 1}"></span>/<span th:text="${services.totalPages}"></span>
-                <a th:href="@{/service(search=${search},page=${services.number + 1})}" th:if="${services.hasNext()}">Next</a>
+                <a class="btn btn-secondary btn-sm" th:href="@{/service(search=${search},page=${services.number + 1})}" th:if="${services.hasNext()}">Next</a>
             </div>
         </div>
     </div>

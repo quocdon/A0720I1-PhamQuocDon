@@ -35,7 +35,7 @@
                 </tr>
                 <tr>
                     <td>Ngày sinh:</td>
-                    <td th:text="${customer.birthday}"></td>
+                    <td th:text="${#temporals.format(customer.birthday, 'dd/MM/yyyy')}"></td>
                 </tr>
                 <tr>
                     <td>Giới tính:</td>

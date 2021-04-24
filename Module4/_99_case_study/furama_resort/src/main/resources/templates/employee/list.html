@@ -37,20 +37,20 @@
                     <tr th:each="employee : ${employees}">
                         <td th:text="${employee.id}"></td>
                         <td th:text="${employee.name}"></td>
-                        <td th:text="${employee.birthday}"></td>
+                        <td th:text="${#temporals.format(employee.birthday, 'dd/MM/yyyy')}"></td>
                         <td th:text="${employee.email}"></td>
                         <td th:text="${employee.position.name}"></td>
                         <td th:text="${employee.department.name}"></td>
-                        <td><a th:href="@{/employee/view/{id}(id=${employee.id})}">Xem</a></td>
-                        <td><a th:href="@{/employee/edit/{id}(id=${employee.id})}">Sửa</a></td>
-                        <td><a th:href="@{/employee/delete/{id}(id=${employee.id})}" onclick="return confirm('Bạn muốn xóa nhân viên này không?')">Xóa</a></td>
+                        <td class="text-center"><a class="btn btn-info btn-sm" th:href="@{/employee/view/{id}(id=${employee.id})}">Xem</a></td>
+                        <td class="text-center"><a class="btn btn-success btn-sm" th:href="@{/employee/edit/{id}(id=${employee.id})}">Sửa</a></td>
+                        <td><a class="btn btn-danger btn-sm" th:href="@{/employee/delete/{id}(id=${employee.id})}" onclick="return confirm('Bạn muốn xóa nhân viên này không?')">Xóa</a></td>
                     </tr>
                 </tbody>
             </table>
             <div class="mr-auto ml-auto">
-                <a th:href="@{/employee(search=${search},page=${employees.number - 1})}" th:if="${employees.hasPrevious()}">Previous</a>
+                <a class="btn btn-secondary btn-sm" th:href="@{/employee(search=${search},page=${employees.number - 1})}" th:if="${employees.hasPrevious()}">Previous</a>
                 <span th:text="${employees.number + 1}"></span>/<span th:text="${employees.totalPages}"></span>
-                <a th:href="@{/employee(search=${search},page=${employees.number + 1})}" th:if="${employees.hasNext()}">Next</a>
+                <a class="btn btn-secondary btn-sm" th:href="@{/employee(search=${search},page=${employees.number + 1})}" th:if="${employees.hasNext()}">Next</a>
             </div>
         </div>
     </div>
