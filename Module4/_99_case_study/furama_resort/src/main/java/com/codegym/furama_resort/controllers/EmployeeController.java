@@ -10,6 +10,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.query.Param;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -187,13 +188,11 @@ public class EmployeeController {
         }
     }
     @ExceptionHandler(SQLIntegrityConstraintViolationException.class)
-    @Order(Ordered.HIGHEST_PRECEDENCE)
     public String sqlDeleteHandler(){
         return "sql-error-page";
     }
 
     @ExceptionHandler(Exception.class)
-    @Order(Ordered.LOWEST_PRECEDENCE)
     public String viewErrorPage(HttpServletRequest request, Exception exception) {
         return "error-page";
     }

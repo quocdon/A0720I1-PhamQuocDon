@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -17,6 +18,7 @@ import org.springframework.security.web.authentication.rememberme.PersistentToke
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     UserDetailsServiceImpl userDetailsService;
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         super.configure(auth);
@@ -28,9 +30,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests().antMatchers("/", "/login", "/logout", "/service", "/service/").permitAll();
 
-        http.authorizeRequests().antMatchers("/employee/", "/customer/**", "/service/**", "/contract/**").access("hasAnyRole('ROLE_QUANLY', 'ROLE_GIAMDOC', 'ROLE_NHANVIEN')");
+        http.authorizeRequests().antMatchers("/employee", "/employee/", "/customer/**", "/service/**", "/contract/**")
+                .access("hasAnyRole('ROLE_QUANLY', 'ROLE_GIAMDOC', 'ROLE_NHANVIEN')");
 
-        http.authorizeRequests().antMatchers("/employee/**").access("hasAnyRole('ROLE_QUANLY', 'ROLE_GIAMDOC')");
+        http.authorizeRequests().antMatchers("/employee/view/**").
+                access("hasAnyRole('ROLE_QUANLY', 'ROLE_GIAMDOC')");
+
+        http.authorizeRequests().antMatchers("/employee/**").access("hasRole('ROLE_GIAMDOC')");
 
         http.authorizeRequests().and().exceptionHandling().accessDeniedPage("/accessDenied");
 
@@ -43,15 +49,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .passwordParameter("password")
                 .and().logout().logoutUrl("/logout").logoutSuccessUrl("/");
         http.authorizeRequests().and()
-                .rememberMe().tokenRepository(this.persistentTokenRepository()).tokenValiditySeconds(24*60*60);
+                .rememberMe().tokenRepository(this.persistentTokenRepository()).tokenValiditySeconds(24 * 60 * 60);
     }
+
     @Bean
-    public PersistentTokenRepository persistentTokenRepository(){
+    public PersistentTokenRepository persistentTokenRepository() {
         return new InMemoryTokenRepositoryImpl();
     }
 
     @Bean
-    public BCryptPasswordEncoder passwordEncoder(){
+    public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 }

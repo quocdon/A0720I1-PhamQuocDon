@@ -17,6 +17,7 @@ import javax.validation.Valid;
 import java.security.Principal;
 import java.time.LocalDate;
 import java.time.Period;
+import java.time.temporal.ChronoUnit;
 import java.util.*;
 
 @Controller
@@ -143,7 +144,7 @@ public class ContractController {
         for (ContractDetail contractDetail : contract.getContractDetails()){
             attachServicesAmount += contractDetail.getQuantity()*contractDetail.getAttachService().getCost();
         }
-        double serviceAmount = Period.between(contract.getStartDate(), contract.getEndDate()).getDays()*contract.getResortService().getCost();
+        double serviceAmount = ChronoUnit.DAYS.between(contract.getStartDate(), contract.getEndDate()) *contract.getResortService().getCost();
         double totalAmount = serviceAmount + attachServicesAmount;
         model.addAttribute("serviceAmount", serviceAmount);
         model.addAttribute("attachServicesAmount", attachServicesAmount);
