@@ -131,8 +131,13 @@ public class EmployeeController {
     }
 
     @GetMapping("/delete/{id}")
-    public String delete(@PathVariable int id) throws SQLIntegrityConstraintViolationException {
-        employeeService.delete(id);
+    public String delete(@PathVariable int id) {
+        try {
+            employeeService.delete(id);
+        } catch (SQLIntegrityConstraintViolationException e){
+            return "redirect:/employee/delete-error";
+        }
+
         return "redirect:/employee/";
     }
 
@@ -187,7 +192,8 @@ public class EmployeeController {
             return modelAndView;
         }
     }
-    @ExceptionHandler(SQLIntegrityConstraintViolationException.class)
+
+    @GetMapping("/delete-error")
     public String sqlDeleteHandler(){
         return "sql-error-page";
     }
@@ -196,5 +202,7 @@ public class EmployeeController {
     public String viewErrorPage(HttpServletRequest request, Exception exception) {
         return "error-page";
     }
+
+
 
 }

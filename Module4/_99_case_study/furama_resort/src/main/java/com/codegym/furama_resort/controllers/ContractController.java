@@ -62,7 +62,7 @@ public class ContractController {
                                Model model) {
         Pageable pageable = PageRequest.of(page, 5);
         search = search.trim();
-        if (search.equals("")){
+        if (search.equals("")) {
             model.addAttribute("contracts", contractService.findAll(pageable));
         } else {
             model.addAttribute("contracts", contractService.findAllByIdOrCustomerName(search, pageable));
@@ -82,10 +82,13 @@ public class ContractController {
     @PostMapping("/save")
     public String saveContract(@Valid @ModelAttribute Contract contract, BindingResult bindingResult, Principal principal, Model model) {
         contract.setEmployee(employeeService.findByUsername(principal.getName()));
-        if (!contract.getEndDate().isAfter(contract.getStartDate())){
-            bindingResult.addError(new FieldError("employee", "appUser.username", "Tên đăng nhập đã tồn tại"));
-            bindingResult.addError(new FieldError("contract", "endDate", "Ngày kết thúc phải sau ngày bắt đầu"));
+        if (contract.getEndDate() != null && contract.getStartDate() != null){
+            if (!contract.getEndDate().isAfter(contract.getStartDate())) {
+                bindingResult.addError(new FieldError("employee", "appUser.username", "Tên đăng nhập đã tồn tại"));
+                bindingResult.addError(new FieldError("contract", "endDate", "Ngày kết thúc phải sau ngày bắt đầu"));
+            }
         }
+
         if (bindingResult.hasFieldErrors()) {
             return "/contract/create";
         }
@@ -95,7 +98,7 @@ public class ContractController {
         Map<AttachService, Integer> attachServicesMap = new LinkedHashMap<>();
         for (AttachService attachService : attachServiceService.findAll()) {
             ContractDetailKey id = new ContractDetailKey(contract.getId(), attachService.getId());
-            if (contractDetailService.findById(id) != null){
+            if (contractDetailService.findById(id) != null) {
                 attachServicesMap.put(attachService, contractDetailService.findById(id).getQuantity());
             } else {
                 attachServicesMap.put(attachService, 0);
@@ -107,44 +110,44 @@ public class ContractController {
     }
 
     @PostMapping("/saveContractDetail")
-    public String saveDetailContract(@Valid @ModelAttribute(name = "contractDetailDto") ContractDetailDto contractDetailDto){
+    public String saveDetailContract(@Valid @ModelAttribute(name = "contractDetailDto") ContractDetailDto contractDetailDto) {
         Set<AttachService> keySet = contractDetailDto.getAttachServices().keySet();
-        for(AttachService key : keySet){
+        for (AttachService key : keySet) {
             ContractDetail contractDetail = new ContractDetail();
             contractDetail.setAttachService(key);
             contractDetail.setContract(contractDetailDto.getContract());
             contractDetail.setQuantity(contractDetailDto.getAttachServices().get(key));
             contractDetail.setId(new ContractDetailKey(contractDetailDto.getContract().getId(), key.getId()));
-            if(contractDetailDto.getAttachServices().get(key) > 0){
+            if (contractDetailDto.getAttachServices().get(key) > 0) {
                 contractDetailService.save(contractDetail);
             }
-            if (contractDetailDto.getAttachServices().get(key) == 0){
+            if (contractDetailDto.getAttachServices().get(key) == 0) {
                 contractDetailService.delete(contractDetail);
             }
         }
-        return "redirect:/contract/view/" + contractDetailDto.getContract().getId() ;
+        return "redirect:/contract/view/" + contractDetailDto.getContract().getId();
     }
 
     @GetMapping("/delete/{id}")
-    public String deleteContract(@PathVariable int id){
+    public String deleteContract(@PathVariable int id) {
         contractService.delete(id);
         return "redirect:/contract";
     }
 
     @GetMapping("/edit/{id}")
-    public String editContract(@PathVariable int id, Model model){
+    public String editContract(@PathVariable int id, Model model) {
         model.addAttribute("contract", contractService.findById(id));
         return "/contract/create";
     }
 
     @GetMapping("/view/{id}")
-    public String viewContract(@PathVariable int id, Model model){
+    public String viewContract(@PathVariable int id, Model model) {
         double attachServicesAmount = 0;
         Contract contract = contractService.findById(id);
-        for (ContractDetail contractDetail : contract.getContractDetails()){
-            attachServicesAmount += contractDetail.getQuantity()*contractDetail.getAttachService().getCost();
+        for (ContractDetail contractDetail : contract.getContractDetails()) {
+            attachServicesAmount += contractDetail.getQuantity() * contractDetail.getAttachService().getCost();
         }
-        double serviceAmount = ChronoUnit.DAYS.between(contract.getStartDate(), contract.getEndDate()) *contract.getResortService().getCost();
+        double serviceAmount = ChronoUnit.DAYS.between(contract.getStartDate(), contract.getEndDate()) * contract.getResortService().getCost();
         double totalAmount = serviceAmount + attachServicesAmount;
         model.addAttribute("serviceAmount", serviceAmount);
         model.addAttribute("attachServicesAmount", attachServicesAmount);

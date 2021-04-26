@@ -1,0 +1,21 @@
+<div xmlns:th="http://www.thymeleaf.org">
+    <form th:object="${student}" th:method="POST" th:action="@{/create}">
+        <table>
+            <tr>
+                <td>Ten</td>
+                <td><input type="text" th:field="*{name}"></td>
+                <td> <label class="text-danger" th:if="${#fields.hasErrors('name')}"
+                            th:errors="*{name}"></label></td>
+            </tr>
+            <tr>
+                <td>Tuoi</td>
+                <td><input type="text" th:field="*{age}"></td>
+                <td> <label class="text-danger" th:if="${#fields.hasErrors('age')}"
+                            th:errors="*{age}"></label></td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="Submit"></td>
+            </tr>
+        </table>
+    </form>
+</div>
