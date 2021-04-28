@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:fragment="head">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Furama Resort</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+          integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/static/css/style.css" th:href="@{/css/style.css}">
+</head>
+<body>
+<!--<div id="head" class="d-flex flex-row justify-content-between align-items-center vh-15 mr-3 ml-3" th:fragment="header">-->
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark col-12" th:fragment="navbar">
+    <a class="navbar-brand" href="/">FURAMA RESORT</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="/employee/">Nhân viên</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/customer/">Khách hàng</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/service/">Dịch vụ</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/contract/">Hợp đồng</a>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0" method="get" th:action="${#request.getRequestURI()}">
+            <input class="form-control mr-sm-2" type="search" placeholder="Tìm kiếm" aria-label="Search" name="search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Tìm kiếm</button>
+        </form>
+    </div>
+</nav>
+<div class="left-panel" th:fragment="employee-left-panel">
+    <ul class="nav nav-pills flex-column">
+        <li class="nav-item">
+            <a class="nav-link" href="#" th:href="@{/employee/create}">Thêm mới nhân viên</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#" th:href="@{/employee/}">Danh sách nhân viên</a>
+        </li>
+    </ul>
+</div>
+
+<div class="left-panel" th:fragment="customer-left-panel">
+    <ul class="nav nav-pills flex-column">
+        <li class="nav-item">
+            <a class="nav-link" href="#" th:href="@{/customer/create}">Thêm mới khách hàng</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#" th:href="@{/customer/}">Danh sách khách hàng</a>
+        </li>
+    </ul>
+</div>
+
+<div class="left-panel" th:fragment="service-left-panel">
+    <ul class="nav nav-pills flex-column">
+        <li class="nav-item">
+            <a class="nav-link" href="#" th:href="@{/service/create}">Thêm mới dịch vụ</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#" th:href="@{/service}">Danh sách dịch vụ</a>
+        </li>
+    </ul>
+</div>
+
+<div class="left-panel" th:fragment="contract-left-panel">
+    <ul class="nav nav-pills flex-column">
+        <li class="nav-item">
+            <a class="nav-link" href="#" th:href="@{/contract/create}">Thêm mới hợp đồng</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#" th:href="@{/contract/}">Danh sách hợp đồng</a>
+        </li>
+    </ul>
+</div>
+
+<div class="website-footer" th:fragment="footer" id="footer">
+    <p CLASS="text-area">@Codegym.vn - 2021</p>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout::head}">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="container-fluid px-0">
+    <div th:replace="~{layout::header}">
+        <!--        header-->
+    </div>
+    <div th:insert="~{layout::navbar}">
+        <!--        navbar-->
+    </div>
+    <div class="website-body">
+        <!--        main-->
+        <div class="d-flex flex-column justify-content-start align-items-center mx-auto login-form">
+            <h4 class="text-center text-primary mt-5 mb-5">Đăng nhập</h4>
+            <form class="mr-auto ml-auto mb-3 mt-3" name='f' th:action="@{/j_spring_security_check}" method='POST'>
+                <div class="form-group row">
+                    <label class="col-3 col-form-label">Username: </label>
+                    <label class="col-9">
+                        <input class="form-control" type="text" name="username">
+                    </label>
+                </div>
+                <div class="form-group row">
+                    <label class="col-3 col-form-label">Password: </label>
+                    <label class="col-9">
+                        <input class="form-control" type="password" name="password">
+                    </label>
+                </div>
+                <div class="form-group row">
+                    <label class="col-3 col-form-label"></label>
+                    <label class="col-9">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="remember-me">
+                            <label class="form-check-label">Remember me </label>
+                        </div>
+                    </label>
+                </div>
+                <div class="form-group text-center mt-5">
+                    <label><input class="btn btn-primary" name="submit" type="submit" value="Login"></label>
+                </div>
+                <div th:if="${#request.getParameter('error') == 'true'}">
+                    <hr>
+                    <span class="font-weight-bold font-italic text-danger">Tên đăng nhập hoặc mật khẩu không chính xác</span>
+                </div>
+
+            </form>
+        </div>
+    </div>
+    <div th:replace="~{/layout::footer}">
+        <!--        footer-->
+    </div>
+</div>
+</body>
+</html>

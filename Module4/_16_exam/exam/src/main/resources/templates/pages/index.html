@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{/layout::head}">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="container-fluid px-0">
+    <div th:replace="~{layout::header}">
+        <!--        header-->
+    </div>
+    <div th:insert="~{layout::navbar}">
+        <!--        navbar-->
+    </div>
+    <div class="website-body">
+        <!--        main-->
+
+    </div>
+    <div th:replace="~{layout::footer}">
+        <!--        footer-->
+    </div>
+</div>
+</body>
+</html>

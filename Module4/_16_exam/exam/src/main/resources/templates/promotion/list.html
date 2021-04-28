@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout::head}">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="container-fluid">
+        <div class="column">
+            <div class="row">
+                <h2>Danh sách khuyến mãi</h2>
+                <a class="btn btn-primary" th:href="@{/create}">Thêm khuyến mãi</a>
+                <form class="form-inline my-2 my-lg-0" method="get" th:action="@{/search}">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Tìm kiếm" aria-label="Search" name="search">
+                    <select name="searchOption">
+                        <option value="1">Mức khuyến mãi</option>
+                        <option value="2">Ngày bắt đầu</option>
+                        <option value="3">Ngày kết thúc</option>
+                        <option value="4">Tất cả điều kiện</option>
+                    </select>
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Tìm kiếm</button>
+                </form>
+            </div>
+            <hr>
+<!--            content-->
+            <div id="promotion-list">
+                <table class="table table-striped mr-auto ml-auto">
+                    <thead>
+                    <tr class="text-center font-weight-bold">
+                        <td>Tiêu đề</td>
+                        <td>Thời gian bắt đầu</td>
+                        <td>Thời gian kết thúc</td>
+                        <td>Mức giảm giá</td>
+                        <td>Chi tiết</td>
+                        <td>Sửa</td>
+                        <td>Xóa</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <th:block th:if="${promotions != null}">
+
+                        <tr th:each="promotion : ${promotions}">
+                            <td th:id="${promotion.id}" th:text="${promotion.name}"></td>
+                            <td th:text="${promotion.startDate}"></td>
+                            <td th:text="${promotion.endDate}"></td>
+<!--                            <td th:text="${#temporals.format(promotion.startDate, 'dd/MM/yyyy')}"></td>-->
+<!--                            <td th:text="${#temporals.format(promotion.endDate, 'dd/MM/yyyy')}"></td>-->
+                            <td th:text="${promotion.discount}"></td>
+                            <td th:text="${promotion.detail}"></td>
+                            <td class="text-center"><a class="btn btn-info btn-sm" th:href="@{/edit/{id}(id=${promotion.id})}">Sửa</a></td>
+                            <td class="text-center"><button type="button" class="btn btn-danger btn-sm promotion" th:value="${promotion.id}">Xóa</button></td>
+                        </tr>
+                    </th:block>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $(".promotion").click(function (event) {
+            let id = $(this).val();
+            console.log(id)
+            let name = document.getElementById(id).textContent;
+            console.log(name)
+            let result = confirm("Bạn muốn xóa " + name + " không?")
+            if (result){
+                $.ajax({
+                    type: "GET",
+                    url: "/delete/" + id,
+                    dataType: "HTML",
+                    success: function (data) {
+                        alert("Xóa thành công")
+                        window.location = "http://localhost:8080/"
+                    }
+                })
+            } else {
+                event.preventDefault();
+            }
+        })
+    })
+</script>
+</body>
+</html>

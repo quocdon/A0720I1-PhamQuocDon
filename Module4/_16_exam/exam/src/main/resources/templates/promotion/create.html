@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout::head}">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="column">
+        <div class="row">
+            <h2>Danh sách khuyến mãi</h2>
+            <a class="btn btn-primary" th:href="@{/create}">Thêm khuyến mãi</a>
+            <form class="form-inline my-2 my-lg-0" method="get" th:action="@{/search}">
+                <input class="form-control mr-sm-2" type="search" placeholder="Tìm kiếm" aria-label="Search"
+                       name="search">
+                <select name="searchOption">
+                    <option value="1">Mức khuyến mãi</option>
+                    <option value="2">Ngày bắt đầu</option>
+                    <option value="3">Ngày kết thúc</option>
+                    <option value="4">Tất cả điều kiện</option>
+                </select>
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Tìm kiếm</button>
+            </form>
+        </div>
+        <hr>
+        <!--            content-->
+        <div id="promotion-list">
+            <form th:object="${promotion}" th:action="@{/create}" method="post">
+                <table class="table table-striped">
+                    <tr>
+                        <td>Tiêu đề</td>
+                        <td class="column">
+                            <input type="text" th:field="*{name}">
+
+                        </td>
+                        <td>
+                            <p class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Thời gian bắt đầu</td>
+                        <td class="column">
+                            <input type="text" th:field="*{startDate}">
+
+                        </td>
+                        <td><p class="text-danger" th:if="${#fields.hasErrors('startDate')}"
+                               th:errors="*{startDate}"></p></td>
+                    </tr>
+                    <tr>
+                        <td>Thời gian kết thúc</td>
+                        <td class="column">
+                            <input type="text" th:field="*{endDate}">
+                        </td>
+                        <td>
+                            <p class="text-danger" th:if="${#fields.hasErrors('endDate')}" th:errors="*{endDate}"></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Mức giảm giá</td>
+                        <td class="column">
+                            <input type="text" th:field="*{discount}">
+                        </td>
+                        <td>
+                            <p class="text-danger" th:if="${#fields.hasErrors('discount')}" th:errors="*{discount}"></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Chi tiết</td>
+                        <td class="column">
+                            <textarea th:field="*{detail}" cols="30" rows="10"></textarea>
+                        </td>
+                        <td>
+                            <p class="text-danger" th:if="${#fields.hasErrors('detail')}" th:errors="*{detail}"></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><input type="submit" value="Submit"></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

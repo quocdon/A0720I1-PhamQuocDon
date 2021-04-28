@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout::head}">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="container-fluid px-0">
+    <div th:replace="~{/layout::header}">
+        <!--        header-->
+    </div>
+    <div th:insert="~{/layout::navbar}">
+        <!--        navbar-->
+    </div>
+    <div class="website-body">
+        <!--        main-->
+        <div th:replace="~{/layout::contract-left-panel}">
+            <!--            left panel-->
+        </div>
+        <div class="main-content mr-auto ml-auto">
+            <div class="contract-content mr-auto ml-auto col-10">
+                <h2 class="text-center text-danger font-weight-bold">HỢP ĐỒNG SỐ
+                    <th:block th:text="${contract.id}"></th:block>
+                </h2>
+                <p class="text-center text-primary font-weight-bold font-italic">Tạo bởi
+                    <th:block th:text="${contract.employee.name}"></th:block>
+                    - Mã NV:
+                    <th:block th:text="${contract.employee.id}"></th:block>
+                </p>
+                <br>
+                <div id="customer-div">
+                    <h3 class="text-center bg-success text-white">THÔNG TIN KHÁCH HÀNG</h3>
+                    <table class="table table-striped">
+                        <tr>
+                            <td>Mã khách hàng:</td>
+                            <td th:text="${contract.customer.id}"></td>
+                        </tr>
+                        <tr>
+                            <td>Tên khách hàng:</td>
+                            <td class="text-danger font-weight-bold" th:text="${contract.customer.name}"></td>
+                        </tr>
+                        <tr>
+                            <td>Hạng khách:</td>
+                            <td th:text="${contract.customer.customerType.name}"></td>
+                        </tr>
+                        <tr>
+                            <td>Ngày sinh:</td>
+                            <td th:text="${#temporals.format(contract.customer.birthday,'dd/MM/yyyy')}"></td>
+                        </tr>
+                        <tr>
+                            <td>Số CMND:</td>
+                            <td th:text="${contract.customer.idCard}"></td>
+                        </tr>
+                        <tr>
+                            <td>SĐT:</td>
+                            <td th:text="${contract.customer.phone}"></td>
+                        </tr>
+                        <tr>
+                            <td>Email:</td>
+                            <td th:text="${contract.customer.email}"></td>
+                        </tr>
+                    </table>
+                </div>
+                <hr>
+                <div id="service-div">
+                    <h3 class="text-center bg-success text-white">THÔNG TIN DỊCH VỤ</h3>
+                    <table class="table table-striped">
+                        <tr>
+                            <td>Mã dịch vụ:</td>
+                            <td th:text="${contract.resortService.id}" id="selected-service-id"
+                                th:value="${contract.resortService.id}"></td>
+                        </tr>
+                        <tr>
+                            <td>Tên dịch vụ:</td>
+                            <td th:text="${contract.resortService.name}"></td>
+                        </tr>
+                        <tr>
+                            <td>Loại dịch vụ:</td>
+                            <td th:text="${contract.resortService.serviceType.name}"></td>
+                        </tr>
+                        <tr>
+                            <td>Giá:</td>
+                            <td th:text="${#numbers.formatDecimal(contract.resortService.cost, 0, 'POINT', 0, 'COMMA')}"></td>
+                        </tr>
+                        <tr>
+                            <td>Ngày bắt đầu:</td>
+                            <td th:text="${#temporals.format(contract.startDate, 'dd/MM/yyyy')}"></td>
+                        </tr>
+                        <tr>
+                            <td>Ngày kết thúc:</td>
+                            <td th:text="${#temporals.format(contract.endDate, 'dd/MM/yyyy')}"></td>
+                        </tr>
+                        <tr class="text-success font-weight-bold">
+                            <td>Tổng tiền thuê dịch vụ:</td>
+                            <td th:text="${#numbers.formatDecimal(serviceAmount, 0, 'POINT', 0, 'COMMA')}"></td>
+                        </tr>
+                    </table>
+                </div>
+                <hr>
+                <div id="attach-service-div">
+                    <h3 class="text-center bg-success text-white">DỊCH VỤ ĐI KÈM</h3>
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <td>Dịch vụ</td>
+                            <td>Đơn vị</td>
+                            <td>Số lượng</td>
+                            <td>Đơn giá</td>
+                            <td>Thành tiền</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="contractDetail : ${contract.contractDetails}">
+                            <td th:text="${contractDetail.attachService.name}"></td>
+                            <td th:text="${contractDetail.attachService.unit}"></td>
+                            <td th:text="${contractDetail.quantity}"></td>
+                            <td th:text="${#numbers.formatDecimal(contractDetail.attachService.cost, 0, 'POINT', 0, 'COMMA')}"></td>
+                            <td th:text="${#numbers.formatDecimal(contractDetail.attachService.cost * contractDetail.quantity, 0, 'POINT', 0, 'COMMA')}"></td>
+                        </tr>
+                        <tr class="text-success font-weight-bold">
+                            <td colspan="4">Tổng tiền dịch vụ đi kèm</td>
+                            <td th:text="${#numbers.formatDecimal(attachServicesAmount, 0, 'POINT', 0, 'COMMA')}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div id="total-amount">
+                    <h4 class="text-center text-danger font-weight-bold font-italic">Giá trị hợp đồng:
+                        <th:block th:text="${#numbers.formatDecimal(totalAmount, 0, 'POINT', 0, 'COMMA')}"></th:block>
+                        VND
+                    </h4>
+                </div>
+            </div>
+            <a class="btn btn-primary mr-auto ml-auto" th:href="@{/contract/}">Quay lại</a>
+        </div>
+    </div>
+    <div th:replace="~{/layout::footer}">
+        <!--        footer-->
+    </div>
+</div>
+</body>
+</html>
