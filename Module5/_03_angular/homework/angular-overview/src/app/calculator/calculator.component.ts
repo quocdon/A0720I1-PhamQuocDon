@@ -16,29 +16,7 @@ export class CalculatorComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onChangeNumber1(value){
-    this.number1 = Number(value);
-  }
-  onChangeNumber2(value){
-    this.number2 = Number(value);
-  }
-  onChangeOperator(value){
-    this.operator = value;
-  }
   calculate(){
-    switch (this.operator) {
-      case '+' :
-        this.result = this.number1 + this.number2;
-        break;
-      case '-':
-        this.result = this.number1 - this.number2;
-        break;
-      case '*':
-        this.result = this.number1 * this.number2;
-        break;
-      case '/':
-        this.result = this.number1 / this.number2;
-        break;
-    }
+    this.result = eval(this.number1 + this.operator + this.number2);
   }
 }

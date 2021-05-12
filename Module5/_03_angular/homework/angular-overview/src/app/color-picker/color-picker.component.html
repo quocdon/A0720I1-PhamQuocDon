@@ -2,7 +2,7 @@
 
 <label>
   Chọn màu:
-  <input type="color" [value]="background" (change)="onChange($event.target.value)">
+  <input type="color" [(ngModel)]="background">
   <br>
   <label>Output</label>
   <br>
