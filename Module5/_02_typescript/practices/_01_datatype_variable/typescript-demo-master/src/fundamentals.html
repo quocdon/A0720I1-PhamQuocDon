@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>
+    <%= htmlWebpackPlugin.options.title %>
+  </title>
+
+  <meta name="description" content="<%= htmlWebpackPlugin.options.title %>">
+
+</head>
+
+<body>
+  <h1>TypeScript Fundamentals</h1>
+  <p>Code demo: <code>"src/fundamentals.ts"</code></p>
+  <h2>
+    Variable
+  </h2>
+  <p>
+    Tham khảo <a target="_blank" href="https://www.tiepphan.com/es2015-var-let-const-keywords/">ES2015 var, let và const keywords</a>
+  </p>
+  <p>
+    <code>var vs let/const</code>
+  </p>
+
+  <div class="code-preview">
+    <!-- HTML generated using hilite.me -->
+    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+      <table>
+        <tr>
+          <td>
+            <pre style="margin: 0; line-height: 125%"> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13</pre>
+          </td>
+          <td>
+            <pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">function</span> main() {
+    console.log(<span style="background-color: #fff0f0">&#39;START&#39;</span>);
+    <span style="color: #008800; font-weight: bold">if</span> (<span style="color: #008800; font-weight: bold">true</span>) {
+        <span style="color: #008800; font-weight: bold">var</span> lang <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&#39;vi&#39;</span>;
+        <span style="color: #008800; font-weight: bold">let</span> target <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&#39;en-us&#39;</span>;
+        console.log(<span style="background-color: #fff0f0">&#39;inside block&#39;</span>);
+        console.log(target);
+    }
+    console.log(lang);
+    console.log(target);
+}
+
+main();
+</pre>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+  </div>
+
+  <div class="code-desc">
+    <strong>Dòng 10</strong> sẽ sinh ra lỗi: <code class="error-msg">Cannot find name 'target'.</code>
+  </div>
+  <hr>
+  <div class="code-preview">
+    <!-- HTML generated using hilite.me -->
+    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+      <table>
+        <tr>
+          <td>
+            <pre style="margin: 0; line-height: 125%"> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12</pre>
+          </td>
+          <td>
+            <pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">function</span> main() {
+    <span style="color: #008800; font-weight: bold">var</span> x <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">5</span>;
+    console.log(x);
+    <span style="color: #008800; font-weight: bold">var</span> x <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">10</span>;
+    console.log(x);
+
+    <span style="color: #008800; font-weight: bold">let</span> y <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">55</span>;
+    console.log(y);
+    <span style="color: #008800; font-weight: bold">let</span> y <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">100</span>;
+    console.log(y);
+}
+main();
+</pre>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+  </div>
+
+  <div class="code-desc">
+    <strong>Dòng 9</strong> sẽ sinh ra lỗi: <code class="error-msg">Cannot redeclare block-scoped variable 'y'.</code>
+  </div>
+
+  <hr>
+  <div class="code-preview">
+    <!-- HTML generated using hilite.me -->
+    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+      <table>
+        <tr>
+          <td>
+            <pre style="margin: 0; line-height: 125%">1
+2
+3
+4
+5
+6
+7
+8
+9</pre>
+          </td>
+          <td>
+            <pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">function</span> main() {
+    console.log(x);
+    <span style="color: #008800; font-weight: bold">var</span> x <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">5</span>;
+
+    console.log(y);
+    <span style="color: #008800; font-weight: bold">let</span> y <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">10</span>;
+}
+
+main();
+</pre>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+
+  </div>
+
+  <div class="code-desc">
+    <strong>Dòng 5</strong> sẽ sinh ra lỗi: <code class="error-msg">Block-scoped variable 'y' used before its declaration.</code>
+  </div>
+
+  <hr>
+  <h2>
+    Data Types
+  </h2>
+  <div class="code-preview">
+    <!-- HTML generated using hilite.me -->
+    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+      <table>
+        <tr>
+          <td>
+            <pre style="margin: 0; line-height: 125%"> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33</pre>
+          </td>
+          <td>
+            <pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">let</span> message: <span style="color: #333399; font-weight: bold">string</span>;
+<span style="color: #008800; font-weight: bold">let</span> total: <span style="color: #333399; font-weight: bold">number</span> <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">100</span>;
+<span style="color: #008800; font-weight: bold">let</span> isProduction <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">true</span>;
+<span style="color: #008800; font-weight: bold">let</span> prices: <span style="color: #333399; font-weight: bold">Array</span><span style="color: #333333">&lt;</span><span style="color: #333399; font-weight: bold">number</span><span style="color: #333333">&gt;</span> <span style="color: #333333">=</span> [<span style="color: #0000DD; font-weight: bold">120</span>, <span style="color: #0000DD; font-weight: bold">88</span>, <span style="color: #0000DD; font-weight: bold">60</span>];
+<span style="color: #008800; font-weight: bold">let</span> languages: <span style="color: #333399; font-weight: bold">string</span>[] <span style="color: #333333">=</span> [<span style="background-color: #fff0f0">&#39;vi&#39;</span>, <span style="background-color: #fff0f0">&#39;en-us&#39;</span>];
+<span style="color: #008800; font-weight: bold">let</span> now <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> <span style="color: #007020">Date</span>();
+<span style="color: #008800; font-weight: bold">let</span> unknown: <span style="color: #333399; font-weight: bold">any</span>;
+
+<span style="color: #008800; font-weight: bold">enum</span> Direction {
+    UP,
+    DOWN,
+    LEFT,
+    RIGHT
+};
+
+<span style="color: #008800; font-weight: bold">function</span> log(msg: <span style="color: #333399; font-weight: bold">string</span>)<span style="color: #333333">:</span> <span style="color: #008800; font-weight: bold">void</span> {
+    console.log(msg)
+}
+
+<span style="color: #008800; font-weight: bold">interface</span> IPost {
+    id: <span style="color: #333399; font-weight: bold">string</span>;
+    title: <span style="color: #333399; font-weight: bold">string</span>;
+    body?: <span style="color: #333399; font-weight: bold">string</span>;
+}
+
+isProduction <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">false</span>;
+unknown <span style="color: #333333">=</span> Direction.UP;
+unknown <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&#39;changed&#39;</span>;
+
+<span style="color: #008800; font-weight: bold">const</span> post: <span style="color: #333399; font-weight: bold">IPost</span> <span style="color: #333333">=</span> {
+
+};
+message <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">50</span>;
+</pre>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+  </div>
+
+
+  <div class="code-desc">
+    <p><strong>Dòng 1</strong> khởi tạo biến <code>message</code> kiểu <code>string</code></p>
+    <p>
+      <strong>Dòng 3</strong> khởi tạo biến <code>isProduction</code>, với việc TypeScript tự động tính toán kiểu dữ liệu
+      cho biến đó là <code>boolean</code> vì vế bên phải của phép gán là 1 giá trị kiểu <code>boolean</code>, quá trình này
+      gọi là <strong><em>type inference</em></strong>
+    </p>
+    <p><strong>Dòng 4 và 5</strong> là các cách tương đương để tạo 1 mảng</p>
+    <p>
+      <strong>Dòng 7</strong> khởi tạo biến <code>unknown</code> với kiểu <code>any</code> tức là biến này có thể được gán
+      với bất kỳ kiểu dữ liệu nào.
+      <br>
+      <strong><em>P/s: Nên hạn chế dùng <code>any</code></em></strong>
+    </p>
+    <p><strong>Dòng 9 đến 14</strong> khởi tạo 1 <code>enum</code> có thể coi như 1 object dạng <em>key-value</em></p>
+    <p>
+      <strong>Dòng 16</strong> khai báo function tên là log, <code>void</code> type có nghĩa rằng hàm này không return về
+      giá gì gì hay return về <code>undefined</code>
+    </p>
+    <p>
+      <strong>Dòng 20 đến 24</strong> khởi tạo một interface - một kiểu dữ liệu không có trong JavaScript, nhưng nó tồn tại
+      trong TypeScript. Được dùng để khởi tạo hình dạng cho một <code>object</code>, giúp quá trình development có thể dễ
+      đoán được trước lỗi, mà không generate ra phần code tương ứng ở JS, một phần nữa sẽ giúp các IDE/Editor gợi ý code
+      tốt hơn
+    </p>
+    <p>
+      <strong>Dòng 30 đến 32</strong> khởi tạo object có kiểu tương ứng với những gì <code>IPost</code> đã định nghĩa, nhưng
+      vì object được gán vào không phù hợp, nên sẽ sinh ra lỗi: <br>
+      <code class="error-msg">
+        Type '{}' is not assignable to type 'IPost'.<br>
+        Property 'id' is missing in type '{}'.
+      </code>
+    </p>
+    <p>
+      <strong>Dòng 33</strong> sẽ sinh ra lỗi: <code class="error-msg">Type '50' is not assignable to type 'string'.</code>
+    </p>
+  </div>
+</body>
+
+</html>
