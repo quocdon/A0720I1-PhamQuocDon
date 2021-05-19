@@ -1,0 +1,6 @@
+<h1 class="col-3 text-center text-light bg-info">{{remainingTime}}</h1>
+<p class="text-danger font-weight-bold font-italic mt-3" *ngIf="message != ''">{{message}}</p>
+<br>
+<button class="btn btn-sm btn-success mr-3" (click)="start()">Start</button>
+<button class="btn btn-sm btn-dark mr-3" (click)="pause()">Pause</button>
+<button class="btn btn-sm btn-danger" (click)="clear()">Clear</button>

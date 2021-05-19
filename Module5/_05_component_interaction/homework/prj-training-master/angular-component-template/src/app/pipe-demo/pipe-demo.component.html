@@ -1,0 +1,15 @@
+<h2>Pipes</h2>
+<code ngNonBindable>
+  Code:
+  <p>Today: {{ today | date:'fullDate'}}</p>
+  <p>Username: {{user.name | titlecase}}</p>
+</code>
+<p>Today: {{ today | date:'fullDate'}}</p>
+<p>Username: {{user.name | titlecase}}</p>
+
+<h3>Pipe chain</h3>
+<code ngNonBindable>
+  Code
+  <p>Price: {{ price | currency:symbol:'code' | lowercase}}</p>
+</code>
+<p>Price: {{ price | currency:symbol:'code' | lowercase}}</p>

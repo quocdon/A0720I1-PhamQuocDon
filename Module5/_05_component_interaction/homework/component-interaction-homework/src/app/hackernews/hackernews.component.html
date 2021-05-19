@@ -1,0 +1,9 @@
+<h3>Hacker news</h3>
+<app-hackernews-navbar (showOnchange)="showHackerNews($event)"></app-hackernews-navbar>
+<div  *ngIf="hackerNewsShow == 'create'; else elseBlock">
+  <app-hackernews-create [message]="message" (saveNewArticle)="saveNewArticle($event)"></app-hackernews-create>
+</div>
+<ng-template #elseBlock>
+  <app-hackernews-list [articles]="articles"></app-hackernews-list>
+</ng-template>
+<app-hackernews-footer></app-hackernews-footer>

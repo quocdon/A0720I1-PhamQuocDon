@@ -1,0 +1,9 @@
+<table class="table table-striped">
+  <tr *ngFor="let article of articles">
+    <td>{{article.id}}</td>
+    <td><a class="text-dark" href="{{article.url}}">{{article.title}}</a></td>
+    <td>
+    <app-hackernews-likes [article]="article" (likesOnchange)="updateArticle($event)"></app-hackernews-likes>
+    </td>
+  </tr>
+</table>

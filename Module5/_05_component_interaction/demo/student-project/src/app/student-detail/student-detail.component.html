@@ -1,0 +1,6 @@
+<h3>Student detail</h3>
+<p>ID : {{student.id}}</p>
+<p>Name : {{student.name}}</p>
+<p>Grade</p>
+<input type="number" [value]="student.grade" #newGrade>
+<button (click)="updateGrade(newGrade)">Update</button>

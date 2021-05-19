@@ -1,0 +1,17 @@
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Grade</th>
+    <th>Detail</th>
+  </tr>
+  <tr *ngFor="let student of students">
+    <td>{{student.id}}</td>
+    <td>{{student.name}}</td>
+    <td>{{student.grade}}</td>
+    <td><button (click)="view(student)">View</button></td>
+  </tr>
+</table>
+<app-student-detail [student] = student (changeGrade)="changeGradeHandler($event)">
+
+</app-student-detail>

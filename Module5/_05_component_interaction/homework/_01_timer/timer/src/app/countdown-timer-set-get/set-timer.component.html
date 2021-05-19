@@ -1,0 +1,8 @@
+<h3>Countdown timer</h3>
+<br>
+<div class="row">
+  <input class="form-control col-3" type="text" #time>
+  <button class="btn btn-sm btn-secondary" (click)="setRemainingTime(time)">Set Time</button>
+</div>
+<app-countdown-timer-process [remainingTime]="remainingTime"></app-countdown-timer-process>
+<hr>

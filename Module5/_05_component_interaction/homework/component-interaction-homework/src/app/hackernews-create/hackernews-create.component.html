@@ -1,0 +1,12 @@
+<h3>New Article</h3>
+<div class="form-group row">
+  <label class="col-form-label col-1">Title: </label>
+  <input class="col-4 form-control" type="text" #title>
+</div>
+<div class="form-group row">
+  <label class="col-form-label col-1">Url: </label>
+  <input class="col-4 form-control" type="text" #url>
+</div>
+<button class="btn btn-primary" (click)="save(title, url)">Save</button>
+<br>
+<label class="font-weight-bold text-danger">{{message}}</label>

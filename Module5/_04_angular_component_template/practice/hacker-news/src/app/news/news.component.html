@@ -1,0 +1,15 @@
+<h3>New Article</h3>
+<div class="form-group">
+  <label>Title:</label>
+  <input class="form-control col-4" type="text" id="article-title">
+</div>
+<div class="form-group">
+  <label>Url:</label>
+  <input class="form-control col-4" type="text" id="article-url">
+</div>
+<button class="btn btn-secondary" (click)="addNewArticle()">Add</button>
+<hr>
+<div *ngFor="let iArticle of articles">
+  <a href="{{iArticle.url}}">{{iArticle.title}}</a>
+  <app-likes></app-likes>
+</div>

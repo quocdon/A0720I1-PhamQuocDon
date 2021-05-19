@@ -1,0 +1,29 @@
+<!-- <app-countdown-timer [seconds]="6">
+</app-countdown-timer> -->
+
+<!-- <app-countdown-timer-get-set seconds="abc">
+</app-countdown-timer-get-set> -->
+
+<!-- <app-countdown-timer-onchanges seconds="str">
+</app-countdown-timer-onchanges> -->
+
+<!-- <app-countdown-timer-alias remaining-time="60">
+</app-countdown-timer-alias> -->
+
+<!-- <app-countdown-timer-event seconds="10" (finish)="finishCountdown()">
+</app-countdown-timer-event>
+<p>{{ countdownMsg }}</p> -->
+
+<app-countdown-timer-event-alias seconds="10" (timerEnd)="endCountdown()">
+</app-countdown-timer-event-alias>
+<p>{{ countdownAliasMsg }}</p>
+
+<app-rating-bar [max]="10" (rateChange)="onRateChange($event)"></app-rating-bar>
+
+<app-pipe-demo></app-pipe-demo>
+
+<app-view-encapsulation></app-view-encapsulation>
+
+<app-progress-bar width="65"></app-progress-bar>
+<br >
+<app-name-card cardName="Professional Dev" email="prodev@abc.xyz" phone="0123456789"></app-name-card>
