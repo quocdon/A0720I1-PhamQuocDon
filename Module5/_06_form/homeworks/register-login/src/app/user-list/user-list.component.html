@@ -1,0 +1,18 @@
+<table class="table table-striped">
+  <tr>
+    <th>Email</th>
+    <th>Mật khẩu</th>
+    <th>Ngày sinh</th>
+    <th>Giới tính</th>
+    <th>Quốc Gia</th>
+    <th>Số điện thoại</th>
+  </tr>
+  <tr *ngFor="let user of userList">
+    <td>{{user.email}}</td>
+    <td>{{user.password}}</td>
+    <td>{{user.birthday}}</td>
+    <td>{{user.gender}}</td>
+    <td>{{user.country}}</td>
+    <td>{{user.phone}}</td>
+  </tr>
+</table>

@@ -1,0 +1,92 @@
+<div class="col-6 mx-auto">
+  <h3 class="text-center">Đăng ký tài khoản</h3>
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="text" class="form-control" id="email" placeholder="Enter email" formControlName="email">
+      <ng-container *ngFor="let validation of validationMessage.email">
+        <small class="form-text text-danger"
+               *ngIf="registerForm.get('email').hasError(validation.type)&&(registerForm.get('email').dirty || registerForm.get('email').touched)">
+          {{validation.message}}
+        </small>
+      </ng-container>
+    </div>
+    <fieldset formGroupName="passwordGroup">
+      <div class="form-group">
+        <label for="password">Mật khẩu</label>
+        <input type="password" class="form-control" id="password" placeholder="Password" formControlName="password">
+        <ng-container *ngFor="let validation of validationMessage.password">
+          <small class="form-text text-danger" *ngIf="(registerForm.get('passwordGroup').hasError(validation.type,['passwordGroup'])
+          || registerForm.get('passwordGroup').get('password').hasError(validation.type))&&
+        (registerForm.get('passwordGroup').get('password').dirty || registerForm.get('passwordGroup').get('password').touched)">
+            {{validation.message}}
+          </small>
+        </ng-container>
+      </div>
+      <div class="form-group">
+        <label for="confirmPassword">Xác nhận mật khẩu</label>
+        <input type="password" class="form-control" id="confirmPassword" placeholder="Password"
+               formControlName="confirmPassword">
+        <ng-container *ngFor="let validation of validationMessage.confirmPassword">
+          <small class="form-text text-danger" *ngIf="(registerForm.hasError(validation.type, ['passwordGroup'])
+          || registerForm.get('passwordGroup').get('confirmPassword').hasError(validation.type))&&
+        (registerForm.get('passwordGroup').get('confirmPassword').dirty || registerForm.get('passwordGroup').get('confirmPassword').touched)">
+            {{validation.message}}
+          </small>
+        </ng-container>
+      </div>
+    </fieldset>
+    <div class="form-group">
+      <label for="birthday">Ngày sinh</label>
+      <input type="text" class="form-control" id="birthday" placeholder="Enter Birthday" formControlName="birthday">
+      <ng-container *ngFor="let validation of validationMessage.birthday">
+        <small class="form-text text-danger" *ngIf="registerForm.get('birthday').hasError(validation.type)&&
+        (registerForm.get('birthday').dirty || registerForm.get('birthday').touched)">
+          {{validation.message}}
+        </small>
+      </ng-container>
+    </div>
+    <div class="form-group">
+      <label for="country">Quốc Gia</label>
+      <select class="form-control" id="country" formControlName="country">
+        <option disabled selected>Vui lòng chọn</option>
+        <ng-container *ngFor="let country of countries">
+          <option value="{{country}}">{{country}}</option>
+        </ng-container>
+      </select>
+      <ng-container *ngFor="let validation of validationMessage.country">
+        <small class="form-text text-danger"
+               *ngIf="registerForm.get('country').hasError(validation.type)&&(registerForm.get('country').dirty || registerForm.get('country').touched)">
+          {{validation.message}}
+        </small>
+      </ng-container>
+    </div>
+    <div class="form-group">
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="gender" id="exampleRadios1" value="Nam" checked
+               formControlName="gender">
+        <label class="form-check-label" for="exampleRadios1">
+          Nam
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="gender" id="exampleRadios2" value="Nữ"
+               formControlName="gender">
+        <label class="form-check-label" for="exampleRadios2">
+          Nữ
+        </label>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="phone">Điện thoại</label>
+      <input type="text" class="form-control" id="phone" placeholder="Enter phone number" formControlName="phone">
+      <ng-container *ngFor="let validation of validationMessage.phone">
+        <small class="form-text text-danger"
+               *ngIf="registerForm.get('phone').hasError(validation.type)&&(registerForm.get('phone').dirty || registerForm.get('phone').touched)">
+          {{validation.message}}
+        </small>
+      </ng-container>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="registerForm.invalid">Submit</button>
+  </form>
+</div>

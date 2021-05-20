@@ -9,7 +9,6 @@ public class _07_Max_2D_Array {
             for (int j = 0; j < array[i].length; j++)
                 if (array[i][j] > max)
                     max = array[i][j];
-
         return max;
     }
 

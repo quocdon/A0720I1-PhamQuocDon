@@ -1,0 +1,12 @@
+<h2 class="text-center">
+  Todo App
+</h2>
+<div>
+  <input class="form-control" type="text" [formControl]="userInput" (change)="onChange()">
+</div>
+<ul>
+  <li (click)="toggleTodo(i)" [class.complete] = "todo.complete"
+      *ngFor="let todo of todos; index as i">
+    {{todo.content}}
+  </li>
+</ul>
