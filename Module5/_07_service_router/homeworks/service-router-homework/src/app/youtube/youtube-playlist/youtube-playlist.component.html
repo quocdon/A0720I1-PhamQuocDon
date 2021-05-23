@@ -1,0 +1,7 @@
+<h3>Youtube playlist</h3>
+<ul>
+  <li *ngFor="let item of youtubeService.playlist">
+    <a [routerLink]="['/youtube', item.id]">{{item.song}}</a>
+  </li>
+</ul>
+
