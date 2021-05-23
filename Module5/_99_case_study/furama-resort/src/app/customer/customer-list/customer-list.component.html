@@ -1,0 +1,23 @@
+<a class="btn btn-sm btn-primary mb-2" routerLink="/customer/create">Thêm mới khách hàng</a>
+<table class="table table-striped">
+  <tr>
+    <th>Mã KH</th>
+    <th>Tên KH</th>
+    <th>Ngày sinh</th>
+    <th>Giới tính</th>
+    <th>Hạng khách</th>
+    <th>Chi tiết</th>
+    <th>Sửa</th>
+    <th>Xóa</th>
+  </tr>
+  <tr *ngFor="let customer of customers">
+    <td>{{customer.cus_id}}</td>
+    <td>{{customer.name}}</td>
+    <td>{{customer.birthday}}</td>
+    <td>{{customer.gender}}</td>
+    <td>{{customer.cus_type.name}}</td>
+    <td><a class="btn btn-sm btn-info" [routerLink]="['view', customer.id]">Xem</a></td>
+    <td><a class="btn btn-sm btn-dark" [routerLink]="['edit', customer.id]">Sửa</a></td>
+    <td><a class="btn btn-sm btn-danger" [routerLink]="['delete', customer.id]">Xóa</a></td>
+  </tr>
+</table>

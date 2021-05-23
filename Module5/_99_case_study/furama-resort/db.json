@@ -1,0 +1,86 @@
+{
+  "customerTypes": [
+    {
+      "id": 1,
+      "name": "Diamond"
+    },
+    {
+      "id": 2,
+      "name": "Platinum"
+    },
+    {
+      "id": 3,
+      "name": "Gold"
+    },
+    {
+      "id": 4,
+      "name": "Silver"
+    },
+    {
+      "id": 5,
+      "name": "Member"
+    }
+  ],
+  "customers": [
+    {
+      "id": 1,
+      "cus_id": "KH-0001",
+      "name": "David Beckham",
+      "birthday": "04-05-1973",
+      "gender": "Nam",
+      "id_card": "123456789",
+      "phone": "0915038080",
+      "email": "beck@gmail.com",
+      "cus_type": {
+        "id": 1,
+        "name": "Diamond"
+      },
+      "address": "Manchester, England"
+    },
+    {
+      "id": 2,
+      "cus_id": "KH-0002",
+      "name": "Edison Cavani abc",
+      "birthday": "04-05-1987",
+      "gender": "Nam",
+      "id_card": "050523235",
+      "phone": "0914256363",
+      "email": "edison@gmail.com",
+      "cus_type": {
+        "id": 4,
+        "name": "Silver"
+      },
+      "address": "Uruguay"
+    },
+    {
+      "cus_id": "KH-0003",
+      "name": "Chicharito",
+      "birthday": "01/05/1999",
+      "gender": "Nam",
+      "id_card": "555888555",
+      "phone": "0905447447",
+      "email": "ch14@gmail.com",
+      "cus_type": {
+        "id": 4,
+        "name": "Silver"
+      },
+      "address": "Los Angeles, USA",
+      "id": 3
+    },
+    {
+      "cus_id": "KH-0004",
+      "name": "Cristina Dina",
+      "birthday": "05/04/2001",
+      "gender": "Nữ",
+      "id_card": "111222333444",
+      "phone": "0905888999",
+      "email": "dina@gmail.com",
+      "cus_type": {
+        "id": 5,
+        "name": "Member"
+      },
+      "address": "Tokyo, Japan",
+      "id": 4
+    }
+  ]
+}

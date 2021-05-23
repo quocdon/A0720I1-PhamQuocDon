@@ -1,3 +1,5 @@
+import {ICustomerType} from './customer-type';
+
 export interface ICustomer {
   id: number;
   cus_id: string;
@@ -7,6 +9,6 @@ export interface ICustomer {
   id_card: string;
   phone: string;
   email: string;
-  cus_type_id: number;
+  cus_type: ICustomerType;
   address: string;
 }

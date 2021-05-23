@@ -1,0 +1,110 @@
+<div class="col-6 mx-auto">
+  <h3 class="text-center">Tạo mới khách hàng</h3>
+  <form [formGroup]="createCustomer" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="cus-id">Mã khách hàng</label>
+      <input type="text" class="form-control" id="cus-id" placeholder="KH-XXXX" formControlName="cus_id">
+      <ng-container *ngFor="let validation of validationMessage.cus_id">
+        <small class="form-text text-danger"
+               *ngIf="createCustomer.get('cus_id').hasError(validation.type)&&(createCustomer.get('cus_id').dirty || createCustomer.get('cus_id').touched)">
+          {{validation.message}}
+        </small>
+      </ng-container>
+    </div>
+    <div class="form-group">
+      <label for="name">Tên khách hàng</label>
+      <input type="text" class="form-control" id="name" placeholder="Vui lòng nhập" formControlName="name">
+      <ng-container *ngFor="let validation of validationMessage.name">
+        <small class="form-text text-danger"
+               *ngIf="createCustomer.get('name').hasError(validation.type)&&(createCustomer.get('name').dirty || createCustomer.get('name').touched)">
+          {{validation.message}}
+        </small>
+      </ng-container>
+    </div>
+    <div class="form-group">
+      <label for="birthday">Ngày sinh</label>
+      <input type="text" class="form-control" id="birthday" placeholder="dd/MM/yyyy" formControlName="birthday">
+      <ng-container *ngFor="let validation of validationMessage.birthday">
+        <small class="form-text text-danger" *ngIf="createCustomer.get('birthday').hasError(validation.type)&&
+        (createCustomer.get('birthday').dirty || createCustomer.get('birthday').touched)">
+          {{validation.message}}
+        </small>
+      </ng-container>
+    </div>
+    <div class="form-group">
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="gender" id="exampleRadios1" value="Nam" checked
+               formControlName="gender">
+        <label class="form-check-label" for="exampleRadios1">
+          Nam
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="gender" id="exampleRadios2" value="Nữ"
+               formControlName="gender">
+        <label class="form-check-label" for="exampleRadios2">
+          Nữ
+        </label>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="id-card">Số CMND</label>
+      <input type="text" class="form-control" id="id-card" placeholder="Gồm 9 hoặc 12 số" formControlName="id_card">
+      <ng-container *ngFor="let validation of validationMessage.id_card">
+        <small class="form-text text-danger"
+               *ngIf="createCustomer.get('id_card').hasError(validation.type)&&(createCustomer.get('id_card').dirty || createCustomer.get('id_card').touched)">
+          {{validation.message}}
+        </small>
+      </ng-container>
+    </div>
+    <div class="form-group">
+      <label for="phone">Điện thoại</label>
+      <input type="text" class="form-control" id="phone" placeholder="Vui lòng nhập" formControlName="phone">
+      <ng-container *ngFor="let validation of validationMessage.phone">
+        <small class="form-text text-danger"
+               *ngIf="createCustomer.get('phone').hasError(validation.type)&&(createCustomer.get('phone').dirty || createCustomer.get('phone').touched)">
+          {{validation.message}}
+        </small>
+      </ng-container>
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="text" class="form-control" id="email" placeholder="abcd@xyz.com" formControlName="email">
+      <ng-container *ngFor="let validation of validationMessage.email">
+        <small class="form-text text-danger"
+               *ngIf="createCustomer.get('email').hasError(validation.type)&&(createCustomer.get('email').dirty || createCustomer.get('email').touched)">
+          {{validation.message}}
+        </small>
+      </ng-container>
+    </div>
+    <div class="form-group">
+      <label for="cus-type">Hạng khách</label>
+      <select class="form-control" id="cus-type" formControlName="cus_type" [compareWith]="compareWith">
+        <option value="" selected>Vui lòng chọn</option>
+        <ng-container *ngFor="let customerType of customerTypes">
+          <option [ngValue]="customerType">{{customerType.name}}</option>
+        </ng-container>
+      </select>
+      <ng-container *ngFor="let validation of validationMessage.cus_type">
+        <small class="form-text text-danger"
+               *ngIf="createCustomer.get('cus_type').hasError(validation.type)&&(createCustomer.get('cus_type').dirty || createCustomer.get('cus_type').touched)">
+          {{validation.message}}
+        </small>
+      </ng-container>
+    </div>
+    <div class="form-group">
+      <label for="address">Địa chỉ</label>
+      <input type="text" class="form-control" id="address" placeholder="Vui lòng nhập" formControlName="address">
+      <ng-container *ngFor="let validation of validationMessage.address">
+        <small class="form-text text-danger"
+               *ngIf="createCustomer.get('address').hasError(validation.type)&&(createCustomer.get('address').dirty || createCustomer.get('address').touched)">
+          {{validation.message}}
+        </small>
+      </ng-container>
+    </div>
+    <div class="col-6 ml-auto mr-auto mb-3 d-flex flex-row justify-content-around">
+      <button type="submit" class="btn btn-primary" [disabled]="createCustomer.invalid">Đồng ý</button>
+      <a class="btn btn-outline-primary" routerLink="/customer">Thoát</a>
+    </div>
+  </form>
+</div>
