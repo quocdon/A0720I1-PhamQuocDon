@@ -7,12 +7,11 @@ import { CustomerListComponent } from './customer-list/customer-list.component';
 import {HttpClientModule} from '@angular/common/http';
 import { CustomerDetailComponent } from './customer-detail/customer-detail.component';
 import { CustomerEditComponent } from './customer-edit/customer-edit.component';
-import { CustomerDeleteComponent } from './customer-delete/customer-delete.component';
 import {ReactiveFormsModule} from '@angular/forms';
 
 
 @NgModule({
-  declarations: [CustomerCreateComponent, CustomerListComponent, CustomerDetailComponent, CustomerEditComponent, CustomerDeleteComponent],
+  declarations: [CustomerCreateComponent, CustomerListComponent, CustomerDetailComponent, CustomerEditComponent],
   exports: [
     CustomerListComponent
   ],

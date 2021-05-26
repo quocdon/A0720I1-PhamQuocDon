@@ -23,63 +23,402 @@
   ],
   "customers": [
     {
-      "id": 1,
       "cus_id": "KH-0001",
-      "name": "David Beckham",
-      "birthday": "04-05-1973",
+      "name": "Phạm Quốc Đôn",
+      "birthday": "01/05/1991",
       "gender": "Nam",
-      "id_card": "123456789",
-      "phone": "0915038080",
-      "email": "beck@gmail.com",
+      "id_card": "555888999999",
+      "phone": "0915225252",
+      "email": "quocdon2991@gmail.com",
+      "cus_type": {
+        "id": 2,
+        "name": "Platinum"
+      },
+      "address": "Quảng Trị",
+      "id": 1
+    },
+    {
+      "cus_id": "KH-0002",
+      "name": "Nguyễn Thanh Nam",
+      "birthday": "01/05/1995",
+      "gender": "Nam",
+      "id_card": "555566667777",
+      "phone": "0903255255",
+      "email": "namthanh@gmaicx.com",
       "cus_type": {
         "id": 1,
         "name": "Diamond"
       },
-      "address": "Manchester, England"
-    },
-    {
-      "id": 2,
-      "cus_id": "KH-0002",
-      "name": "Edison Cavani abc",
-      "birthday": "04-05-1987",
-      "gender": "Nam",
-      "id_card": "050523235",
-      "phone": "0914256363",
-      "email": "edison@gmail.com",
-      "cus_type": {
-        "id": 4,
-        "name": "Silver"
-      },
-      "address": "Uruguay"
+      "address": "BÌnh định",
+      "id": 2
     },
     {
       "cus_id": "KH-0003",
-      "name": "Chicharito",
-      "birthday": "01/05/1999",
+      "name": "Hồ Ngọc Minh",
+      "birthday": "01/05/1991",
       "gender": "Nam",
-      "id_card": "555888555",
-      "phone": "0905447447",
-      "email": "ch14@gmail.com",
+      "id_card": "123123123",
+      "phone": "0912333655",
+      "email": "minhhongoc@gmail.com",
       "cus_type": {
-        "id": 4,
-        "name": "Silver"
+        "id": 1,
+        "name": "Diamond"
       },
-      "address": "Los Angeles, USA",
+      "address": "Huế",
+      "id": 3
+    }
+  ],
+  "employees": [
+    {
+      "id": 1,
+      "em_id": "NV-0001",
+      "name": "Phạm Văn Hai",
+      "birthday": "01/01/2002",
+      "position": "Giám sát",
+      "department": "Phục vụ",
+      "degree": "Đại học",
+      "id_card": "050544523",
+      "phone": "0918556556",
+      "email": "phamhai@nhanvien.com"
+    },
+    {
+      "em_id": "NV-0002",
+      "name": "Trần Thanh Hương",
+      "birthday": "01/05/1992",
+      "position": "Phục vụ",
+      "department": "Quản lý",
+      "degree": "Sau đại học",
+      "id_card": "111222333",
+      "phone": "0912334586",
+      "email": "thanhhuong@gmail.com",
+      "id": 2
+    }
+  ],
+  "resort-services": [
+    {
+      "id": 1,
+      "service_id": "DV-0001",
+      "name": "Codegym Villa",
+      "area": 50,
+      "price": 1500000,
+      "max_people": 5,
+      "rent_type": "Ngày"
+    },
+    {
+      "service_id": "DV-0002",
+      "name": "Happy House",
+      "area": "35",
+      "price": "1500000",
+      "max_people": "3",
+      "rent_type": "Tháng",
+      "id": 2
+    },
+    {
+      "service_id": "DV-0003",
+      "name": "Beach Villa",
+      "area": "120",
+      "price": "5000000",
+      "max_people": "4",
+      "rent_type": "Ngày",
+      "id": 3
+    }
+  ],
+  "attach-services": [
+    {
+      "id": 1,
+      "name": "Massage",
+      "unit": "Khách",
+      "price": 500000
+    },
+    {
+      "id": 2,
+      "name": "Karaoke",
+      "unit": "Giờ",
+      "price": 150000
+    },
+    {
+      "id": 3,
+      "name": "Thức ăn",
+      "unit": "Khách",
+      "price": 300000
+    },
+    {
+      "id": 4,
+      "name": "Nước uống",
+      "unit": "Khách",
+      "price": 50000
+    },
+    {
+      "id": 5,
+      "name": "Thuê xe",
+      "unit": "Ngày",
+      "price": 200000
+    }
+  ],
+  "contracts": [
+    {
+      "customer": {
+        "cus_id": "KH-0001",
+        "name": "Phạm Quốc Đôn",
+        "birthday": "01/05/1991",
+        "gender": "Nam",
+        "id_card": "555888999999",
+        "phone": "0915225252",
+        "email": "quocdon2991@gmail.com",
+        "cus_type": {
+          "id": 2,
+          "name": "Platinum"
+        },
+        "address": "Quảng Trị",
+        "id": 1
+      },
+      "service": {
+        "id": 1,
+        "service_id": "DV-0001",
+        "name": "Codegym Villa",
+        "area": 50,
+        "price": 1500000,
+        "max_people": 5,
+        "rent_type": "Ngày"
+      },
+      "employee": {
+        "em_id": "NV-0002",
+        "name": "Trần Thanh Hương",
+        "birthday": "01/05/1992",
+        "position": "Phục vụ",
+        "department": "Quản lý",
+        "degree": "Sau đại học",
+        "id_card": "111222333",
+        "phone": "0912334586",
+        "email": "thanhhuong@gmail.com",
+        "id": 2
+      },
+      "stay_period": {
+        "start_date": "01/05/2021",
+        "end_date": "02/05/2021"
+      },
+      "contract_detail": [
+        {
+          "attach_service": {
+            "id": 1,
+            "name": "Massage",
+            "unit": "Khách",
+            "price": 500000
+          },
+          "quantity": 1
+        },
+        {
+          "attach_service": {
+            "id": 2,
+            "name": "Karaoke",
+            "unit": "Giờ",
+            "price": 150000
+          },
+          "quantity": 2
+        },
+        {
+          "attach_service": {
+            "id": 3,
+            "name": "Thức ăn",
+            "unit": "Khách",
+            "price": 300000
+          },
+          "quantity": 3
+        },
+        {
+          "attach_service": {
+            "id": 4,
+            "name": "Nước uống",
+            "unit": "Khách",
+            "price": 50000
+          },
+          "quantity": 4
+        }
+      ],
+      "amount": 3400000,
+      "id": 1
+    },
+    {
+      "customer": {
+        "cus_id": "KH-0002",
+        "name": "Nguyễn Thanh Nam",
+        "birthday": "01/05/1995",
+        "gender": "Nam",
+        "id_card": "555566667777",
+        "phone": "0903255255",
+        "email": "namthanh@gmaicx.com",
+        "cus_type": {
+          "id": 1,
+          "name": "Diamond"
+        },
+        "address": "BÌnh định",
+        "id": 2
+      },
+      "service": {
+        "service_id": "DV-0002",
+        "name": "Happy House",
+        "area": "35",
+        "price": "1500000",
+        "max_people": "3",
+        "rent_type": "Tháng",
+        "id": 2
+      },
+      "employee": {
+        "em_id": "NV-0002",
+        "name": "Trần Thanh Hương",
+        "birthday": "01/05/1992",
+        "position": "Phục vụ",
+        "department": "Quản lý",
+        "degree": "Sau đại học",
+        "id_card": "111222333",
+        "phone": "0912334586",
+        "email": "thanhhuong@gmail.com",
+        "id": 2
+      },
+      "stay_period": {
+        "start_date": "04/05/2021",
+        "end_date": "07/05/2021"
+      },
+      "contract_detail": [
+        {
+          "attach_service": {
+            "id": 2,
+            "name": "Karaoke",
+            "unit": "Giờ",
+            "price": 150000
+          },
+          "quantity": 1
+        },
+        {
+          "attach_service": {
+            "id": 3,
+            "name": "Thức ăn",
+            "unit": "Khách",
+            "price": 300000
+          },
+          "quantity": 2
+        }
+      ],
+      "amount": 5250000,
+      "id": 2
+    },
+    {
+      "customer": {
+        "cus_id": "KH-0003",
+        "name": "Hồ Ngọc Minh",
+        "birthday": "01/05/1991",
+        "gender": "Nam",
+        "id_card": "123123123",
+        "phone": "0912333655",
+        "email": "minhhongoc@gmail.com",
+        "cus_type": {
+          "id": 1,
+          "name": "Diamond"
+        },
+        "address": "Huế",
+        "id": 3
+      },
+      "service": {
+        "service_id": "DV-0003",
+        "name": "Beach Villa",
+        "area": "120",
+        "price": "5000000",
+        "max_people": "4",
+        "rent_type": "Ngày",
+        "id": 3
+      },
+      "employee": {
+        "id": 1,
+        "em_id": "NV-0001",
+        "name": "Phạm Văn Hai",
+        "birthday": "01/01/2002",
+        "position": "Giám sát",
+        "department": "Phục vụ",
+        "degree": "Đại học",
+        "id_card": "050544523",
+        "phone": "0918556556",
+        "email": "phamhai@nhanvien.com"
+      },
+      "stay_period": {
+        "start_date": "08/10/2021",
+        "end_date": "10/10/2021"
+      },
+      "contract_detail": [
+        {
+          "attach_service": {
+            "id": 3,
+            "name": "Thức ăn",
+            "unit": "Khách",
+            "price": 300000
+          },
+          "quantity": 3
+        },
+        {
+          "attach_service": {
+            "id": 5,
+            "name": "Thuê xe",
+            "unit": "Ngày",
+            "price": 200000
+          },
+          "quantity": 1
+        }
+      ],
+      "amount": 11100000,
       "id": 3
     },
     {
-      "cus_id": "KH-0004",
-      "name": "Cristina Dina",
-      "birthday": "05/04/2001",
-      "gender": "Nữ",
-      "id_card": "111222333444",
-      "phone": "0905888999",
-      "email": "dina@gmail.com",
-      "cus_type": {
-        "id": 5,
-        "name": "Member"
+      "customer": {
+        "cus_id": "KH-0003",
+        "name": "Hồ Ngọc Minh",
+        "birthday": "01/05/1991",
+        "gender": "Nam",
+        "id_card": "123123123",
+        "phone": "0912333655",
+        "email": "minhhongoc@gmail.com",
+        "cus_type": {
+          "id": 1,
+          "name": "Diamond"
+        },
+        "address": "Huế",
+        "id": 3
       },
-      "address": "Tokyo, Japan",
+      "service": {
+        "id": 1,
+        "service_id": "DV-0001",
+        "name": "Codegym Villa",
+        "area": 50,
+        "price": 1500000,
+        "max_people": 5,
+        "rent_type": "Ngày"
+      },
+      "employee": {
+        "id": 1,
+        "em_id": "NV-0001",
+        "name": "Phạm Văn Hai",
+        "birthday": "01/01/2002",
+        "position": "Giám sát",
+        "department": "Phục vụ",
+        "degree": "Đại học",
+        "id_card": "050544523",
+        "phone": "0918556556",
+        "email": "phamhai@nhanvien.com"
+      },
+      "stay_period": {
+        "start_date": "08/10/2021",
+        "end_date": "10/10/2021"
+      },
+      "contract_detail": [
+        {
+          "attach_service": {
+            "id": 2,
+            "name": "Karaoke",
+            "unit": "Giờ",
+            "price": 150000
+          },
+          "quantity": 2
+        }
+      ],
+      "amount": 3300000,
       "id": 4
     }
   ]

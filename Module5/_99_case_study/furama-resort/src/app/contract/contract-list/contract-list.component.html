@@ -1,0 +1,38 @@
+<div class="d-flex flex-row justify-content-between mb-2">
+  <a class="btn btn-sm btn-primary" routerLink="/contract/create">Thêm mới hợp đồng</a>
+  <div class="d-flex flex-row">
+    <input class="form-control mr-2" type="text" #search>
+    <button class="btn btn-outline-primary btn-sm btn-search" (click)="doSearch(search)">Tìm kiếm</button>
+  </div>
+</div>
+<table class="table table-striped">
+  <tr>
+    <th>Mã HĐ</th>
+    <th>Tên khách hàng</th>
+    <th>Tên dịch vụ</th>
+    <th>Giá</th>
+    <th>Ngày bắt đầu</th>
+    <th>Ngày kết thúc</th>
+    <th>Dịch vụ đi kèm</th>
+    <th>Thành tiền</th>
+  </tr>
+  <tr *ngFor="let contract of contracts">
+    <td>{{contract.id}}</td>
+    <td>{{contract.customer.name}}</td>
+    <td>{{contract.service.name}}</td>
+    <td>{{contract.service.price}}</td>
+    <td>{{contract.stay_period.start_date}}</td>
+    <td>{{contract.stay_period.end_date}}</td>
+    <td>
+      <table>
+        <tr *ngFor="let detail of contract.contract_detail" class="text-sm-left">
+          <td>{{detail.attach_service.name}}</td>
+          <td>{{detail.attach_service.price}}</td>
+          <td>{{detail.quantity}}</td>
+        </tr>
+      </table>
+    </td>
+    <td>{{contract.amount}}</td>
+  </tr>
+</table>
+

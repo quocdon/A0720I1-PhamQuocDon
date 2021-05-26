@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {ICustomer} from './model/customer';
+import {ICustomer} from './models/customer';
 import {Observable} from 'rxjs';
 import {identifierModuleUrl} from '@angular/compiler';
 
@@ -18,13 +18,7 @@ export class CustomerService {
     return this.http.get<ICustomer[]>(this.baseUrl);
   }
 
-  getCustomer(cusId: string): Observable<ICustomer> {
-    console.log(this.baseUrl + '?cus_id=' + cusId);
-    return this.http.get<ICustomer>(this.baseUrl + '?cus_id=' + cusId);
-  }
-
   getCustomerById(id: string): Observable<ICustomer> {
-    console.log(this.baseUrl + '/' + id);
     return this.http.get<ICustomer>(this.baseUrl + '/' + id);
   }
 
@@ -38,5 +32,12 @@ export class CustomerService {
 
   deleteCustomer(id: string): Observable<any> {
     return this.http.delete(this.baseUrl + '/' + id);
+  }
+
+  search(search: string): Observable<ICustomer[]> {
+    return this.http.get<ICustomer[]>(this.baseUrl + '?name_like=' + search);
+  }
+  checkExist(element: string): Observable<ICustomer[]> {
+    return this.http.get<ICustomer[]>(this.baseUrl + '?q=' + element);
   }
 }

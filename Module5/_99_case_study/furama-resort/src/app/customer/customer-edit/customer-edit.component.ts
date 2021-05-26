@@ -3,8 +3,8 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {CustomerTypeService} from '../customer-type.service';
 import {CustomerService} from '../customer.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {ICustomerType} from '../model/customer-type';
-import {ICustomer} from '../model/customer';
+import {ICustomerType} from '../models/customer-type';
+import {ICustomer} from '../models/customer';
 
 @Component({
   selector: 'app-customer-edit',
@@ -85,7 +85,7 @@ export class CustomerEditComponent implements OnInit {
       gender: new FormControl('', Validators.required),
       id_card: new FormControl('', Validators.compose([
         Validators.required,
-        Validators.pattern(/^\d{9}|\d{12}$/)
+        Validators.pattern(/(^(\d{9})$)|(^(\d{12})$)/)
       ])),
       phone: new FormControl('', Validators.compose([
         Validators.required,
@@ -104,7 +104,7 @@ export class CustomerEditComponent implements OnInit {
     console.log(this.customerForm.value);
     if (this.customerForm.valid) {
       this.customerService.editCustomer(this.id, this.customerForm.value).subscribe(data => {
-        this.router.navigateByUrl('/view/' + data.id);
+        this.router.navigateByUrl('customer/view/' + data.id);
       });
     }
   }

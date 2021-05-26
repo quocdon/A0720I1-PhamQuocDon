@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
-import {ICustomerType} from '../model/customer-type';
+import {ICustomerType} from '../models/customer-type';
 import {CustomerTypeService} from '../customer-type.service';
 import {CustomerService} from '../customer.service';
 import {CustomerListComponent} from '../customer-list/customer-list.component';
-import {ICustomer} from '../model/customer';
+import {ICustomer} from '../models/customer';
 import {Router} from '@angular/router';
+import {of} from 'rxjs';
 
 @Component({
   selector: 'app-customer-create',
@@ -65,7 +66,8 @@ export class CustomerCreateComponent implements OnInit {
     this.createCustomer = new FormGroup({
       cus_id: new FormControl('', Validators.compose([
         Validators.required,
-        Validators.pattern(/^KH-\d{4}$/)
+        Validators.pattern(/^KH-\d{4}$/),
+        this.validateCustomerId
       ])),
       name: new FormControl('', Validators.compose([
         Validators.required
@@ -77,7 +79,7 @@ export class CustomerCreateComponent implements OnInit {
       gender: new FormControl('', Validators.required),
       id_card: new FormControl('', Validators.compose([
         Validators.required,
-        Validators.pattern(/^\d{9}|\d{12}$/)
+        Validators.pattern(/(^(\d{9})$)|(^(\d{12})$)/)
       ])),
       phone: new FormControl('', Validators.compose([
         Validators.required,
@@ -87,22 +89,28 @@ export class CustomerCreateComponent implements OnInit {
         Validators.required,
         Validators.email
       ])),
-      // cus_type: new FormGroup({
-      //   id: new FormControl('', Validators.required),
-      //   name: new FormControl('', Validators.required)
-      // }),
       cus_type: new FormControl('', Validators.required),
       address: new FormControl('', Validators.required)
       });
   }
 
   onSubmit() {
-    console.log(this.createCustomer.value);
     if (this.createCustomer.valid){
       this.customerService.createCustomer(this.createCustomer.value).subscribe(data => {
-        this.router.navigateByUrl('/view/' + data.id);
+        this.router.navigateByUrl('customer/view/' + data.id);
       });
     }
+  }
+  validateCustomerId = (formControl: AbstractControl): any => {
+    const cusId = formControl.value;
+    let result: any;
+    this.customerService.checkExist(cusId).subscribe(data => {
+      result = data;
+      if (data.length > 0) {
+        return of({exist: true});
+      }
+    });
+    return null;
   }
   compareWith(val1, val2){
     return val1.id === val2.id;

@@ -1,0 +1,30 @@
+<div class="d-flex flex-row justify-content-between mb-2">
+  <a class="btn btn-sm btn-primary" routerLink="/employee/create">Thêm mới nhân viên</a>
+  <div class="d-flex flex-row">
+    <input class="form-control mr-2" type="text" #search>
+    <button class="btn btn-outline-primary btn-sm btn-search" (click)="doSearch(search)">Tìm kiếm</button>
+  </div>
+</div>
+<table class="table table-striped">
+  <tr>
+    <th>Mã NV</th>
+    <th>Tên NV</th>
+    <th>Email</th>
+    <th>Chức vụ</th>
+    <th>Bộ phận</th>
+    <th>Chi tiết</th>
+    <th>Sửa</th>
+    <th>Xóa</th>
+  </tr>
+  <tr *ngFor="let employee of employees">
+    <td>{{employee.em_id}}</td>
+    <td>{{employee.name}}</td>
+    <td>{{employee.email}}</td>
+    <td>{{employee.position}}</td>
+    <td>{{employee.department}}</td>
+    <td><a class="btn btn-sm btn-info" [routerLink]="['view', employee.id]">Xem</a></td>
+    <td><a class="btn btn-sm btn-dark" [routerLink]="['edit', employee.id]">Sửa</a></td>
+    <td><a class="btn btn-sm btn-danger" (click)="deleteEmployee(employee.id)">Xóa</a></td>
+  </tr>
+</table>
+

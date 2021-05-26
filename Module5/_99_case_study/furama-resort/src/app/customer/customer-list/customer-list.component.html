@@ -1,4 +1,10 @@
-<a class="btn btn-sm btn-primary mb-2" routerLink="/customer/create">Thêm mới khách hàng</a>
+<div class="d-flex flex-row justify-content-between mb-2">
+  <a class="btn btn-sm btn-primary" routerLink="/customer/create">Thêm mới khách hàng</a>
+  <div class="d-flex flex-row">
+    <input class="form-control mr-2" type="text" #search>
+    <button class="btn btn-outline-primary btn-sm btn-search" (click)="doSearch(search)">Tìm kiếm</button>
+  </div>
+</div>
 <table class="table table-striped">
   <tr>
     <th>Mã KH</th>
@@ -18,6 +24,6 @@
     <td>{{customer.cus_type.name}}</td>
     <td><a class="btn btn-sm btn-info" [routerLink]="['view', customer.id]">Xem</a></td>
     <td><a class="btn btn-sm btn-dark" [routerLink]="['edit', customer.id]">Sửa</a></td>
-    <td><a class="btn btn-sm btn-danger" [routerLink]="['delete', customer.id]">Xóa</a></td>
+    <td><a class="btn btn-sm btn-danger" (click)="deleteCustomer(customer.id)">Xóa</a></td>
   </tr>
 </table>

@@ -1,0 +1,32 @@
+<div class="d-flex flex-row justify-content-between mb-2">
+  <a class="btn btn-sm btn-primary" routerLink="/service/create">Thêm mới dịch vụ</a>
+  <div class="d-flex flex-row">
+    <input class="form-control mr-2" type="text" #search>
+    <button class="btn btn-outline-primary btn-sm btn-search" (click)="doSearch(search)">Tìm kiếm</button>
+  </div>
+</div>
+<table class="table table-striped">
+  <tr>
+    <th>Mã Dịch vụ</th>
+    <th>Tên Dịch vụ</th>
+    <th>Diện tích</th>
+    <th>Giá</th>
+    <th>Số khách tối đa</th>
+    <th>Kiểu thuê</th>
+    <th>Chi tiết</th>
+    <th>Sửa</th>
+    <th>Xóa</th>
+  </tr>
+  <tr *ngFor="let resortService of resortServices">
+    <td>{{resortService.service_id}}</td>
+    <td>{{resortService.name}}</td>
+    <td>{{resortService.area}}</td>
+    <td>{{resortService.price}}</td>
+    <td>{{resortService.max_people}}</td>
+    <td>{{resortService.rent_type}}</td>
+    <td><a class="btn btn-sm btn-info" [routerLink]="['view', resortService.id]">Xem</a></td>
+    <td><a class="btn btn-sm btn-dark" [routerLink]="['edit', resortService.id]">Sửa</a></td>
+    <td><a class="btn btn-sm btn-danger" (click)="deleteService(resortService.id)">Xóa</a></td>
+  </tr>
+</table>
+

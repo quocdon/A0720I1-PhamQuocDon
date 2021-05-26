@@ -1,0 +1,75 @@
+<div class="col-6 mx-auto">
+  <h3 class="text-center">Tạo mới Dịch vụ</h3>
+  <form [formGroup]="serviceForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="service-id">Mã dịch vụ</label>
+      <input type="text" class="form-control" id="service-id" placeholder="DV-XXXX" formControlName="service_id">
+      <ng-container *ngFor="let validation of validationMessage.service_id">
+        <small class="form-text text-danger"
+               *ngIf="serviceForm.get('service_id').hasError(validation.type)&&(serviceForm.get('service_id').dirty || serviceForm.get('service_id').touched)">
+          {{validation.message}}
+        </small>
+      </ng-container>
+    </div>
+    <div class="form-group">
+      <label for="name">Tên dịch vụ</label>
+      <input type="text" class="form-control" id="name" placeholder="Vui lòng nhập" formControlName="name">
+      <ng-container *ngFor="let validation of validationMessage.name">
+        <small class="form-text text-danger"
+               *ngIf="serviceForm.get('name').hasError(validation.type)&&(serviceForm.get('name').dirty || serviceForm.get('name').touched)">
+          {{validation.message}}
+        </small>
+      </ng-container>
+    </div>
+    <div class="form-group">
+      <label for="area">Diện tích</label>
+      <input type="text" class="form-control" id="area" placeholder="Tối thiểu 15m2" formControlName="area">
+      <ng-container *ngFor="let validation of validationMessage.area">
+        <small class="form-text text-danger" *ngIf="serviceForm.get('area').hasError(validation.type)&&
+        (serviceForm.get('area').dirty || serviceForm.get('area').touched)">
+          {{validation.message}}
+        </small>
+      </ng-container>
+    </div>
+    <div class="form-group">
+      <label for="price">Giá tiền</label>
+      <input type="text" class="form-control" id="price" placeholder="Vui lòng nhập" formControlName="price">
+      <ng-container *ngFor="let validation of validationMessage.price">
+        <small class="form-text text-danger" *ngIf="serviceForm.get('price').hasError(validation.type)&&
+        (serviceForm.get('price').dirty || serviceForm.get('price').touched)">
+          {{validation.message}}
+        </small>
+      </ng-container>
+    </div>
+    <div class="form-group">
+      <label for="max-people">Số lượng khách tối đa</label>
+      <input type="text" class="form-control" id="max-people" placeholder="Vui lòng nhập" formControlName="max_people">
+      <ng-container *ngFor="let validation of validationMessage.max_people">
+        <small class="form-text text-danger" *ngIf="serviceForm.get('max_people').hasError(validation.type)&&
+        (serviceForm.get('max_people').dirty || serviceForm.get('max_people').touched)">
+          {{validation.message}}
+        </small>
+      </ng-container>
+    </div>
+    <div class="form-group">
+      <label for="rent-type">Kiểu thuê</label>
+      <select class="form-control" id="rent-type" formControlName="rent_type">
+        <option value="" selected>Vui lòng chọn</option>
+        <ng-container *ngFor="let rentType of rentTypes">
+          <option value="{{rentType}}">{{rentType}}</option>
+        </ng-container>
+      </select>
+      <ng-container *ngFor="let validation of validationMessage.rent_type">
+        <small class="form-text text-danger"
+               *ngIf="serviceForm.get('rent_type').hasError(validation.type)&&(serviceForm.get('rent_type').dirty || serviceForm.get('rent_type').touched)">
+          {{validation.message}}
+        </small>
+      </ng-container>
+    </div>
+    <div class="col-6 ml-auto mr-auto mb-3 d-flex flex-row justify-content-around">
+      <button type="submit" class="btn btn-primary" [disabled]="serviceForm.invalid">Đồng ý</button>
+      <a class="btn btn-outline-primary" routerLink="/employee">Thoát</a>
+    </div>
+  </form>
+</div>
+
