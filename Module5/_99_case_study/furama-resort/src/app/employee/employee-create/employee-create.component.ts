@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
 import {EmployeeService} from '../service/employee.service';
 import {Router} from '@angular/router';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-employee-create',
@@ -24,6 +25,7 @@ export class EmployeeCreateComponent implements OnInit {
     'birthday': [
       {type: 'required', message: 'Ngày sinh không để trống'},
       {type: 'pattern', message: 'Ngày sinh không đúng định dạng dd/MM/yyyy'},
+      {type: 'invalid', message: 'Ngày không hợp lệ'}
     ],
     'id_card': [
       {type: 'required', message: 'CMND không để trống'},
@@ -67,7 +69,8 @@ export class EmployeeCreateComponent implements OnInit {
       name: new FormControl('', Validators.required),
       birthday: new FormControl('', Validators.compose([
         Validators.required,
-        Validators.pattern(/^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/)
+        Validators.pattern(/^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/),
+        validateDate
       ])),
       position: new FormControl('', Validators.required),
       department: new FormControl('', Validators.required),
@@ -95,4 +98,12 @@ export class EmployeeCreateComponent implements OnInit {
       });
     }
   }
+}
+
+function validateDate(formControl: AbstractControl) {
+  const inputDate = formControl.value;
+  if (moment(inputDate, 'DD/MM/YYYY').isValid()) {
+    return null;
+  }
+  return {invalid: true};
 }

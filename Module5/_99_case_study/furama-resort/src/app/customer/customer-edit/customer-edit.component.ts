@@ -1,10 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
 import {CustomerTypeService} from '../customer-type.service';
 import {CustomerService} from '../customer.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ICustomerType} from '../models/customer-type';
 import {ICustomer} from '../models/customer';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-customer-edit',
@@ -25,6 +26,7 @@ export class CustomerEditComponent implements OnInit {
     'birthday': [
       {type: 'required', message: 'Ngày sinh không để trống'},
       {type: 'pattern', message: 'Ngày sinh không đúng định dạng dd/MM/yyyy'},
+      {type: 'invalid', message: 'Ngày không hợp lệ'}
     ],
     'gender': [
       {type: 'required', message: 'Ngày sinh không để trống'},
@@ -80,7 +82,8 @@ export class CustomerEditComponent implements OnInit {
       ])),
       birthday: new FormControl('', Validators.compose([
         Validators.required,
-        Validators.pattern(/^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/)
+        Validators.pattern(/^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/),
+        validateDate
       ])),
       gender: new FormControl('', Validators.required),
       id_card: new FormControl('', Validators.compose([
@@ -112,4 +115,11 @@ export class CustomerEditComponent implements OnInit {
   compareWith(val1, val2) {
     return val1.id === val2.id;
   }
+}
+function validateDate(formControl: AbstractControl) {
+  const inputDate = formControl.value;
+  if (moment(inputDate, 'DD/MM/YYYY').isValid()) {
+    return null;
+  }
+  return {invalid: true};
 }

@@ -34,10 +34,12 @@ export class ContractCreateComponent implements OnInit {
     'start_date': [
       {type: 'required', message: 'Ngày không để trống'},
       {type: 'pattern', message: 'Ngày không đúng định dạng dd/MM/yyyy'},
+      {type: 'invalid', message: 'Ngày không hợp lệ'}
     ],
     'end_date': [
       {type: 'required', message: 'Ngày không để trống'},
       {type: 'pattern', message: 'Ngày không đúng định dạng dd/MM/yyyy'},
+      {type: 'invalid', message: 'Ngày không hợp lệ'}
     ],
     'stay_period': [
       {type: 'period', message: 'Ngày kết thúc phải sau ngày bắt đầu'}
@@ -76,11 +78,13 @@ export class ContractCreateComponent implements OnInit {
       stay_period: new FormGroup({
         start_date: new FormControl('', Validators.compose([
           Validators.required,
-          Validators.pattern(/^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/)
+          Validators.pattern(/^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/),
+          validateDate
         ])),
         end_date: new FormControl('', Validators.compose([
           Validators.required,
           Validators.pattern(/^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/),
+          validateDate
         ]))
       }, {validators: checkPeriod})
     });
@@ -107,20 +111,20 @@ export class ContractCreateComponent implements OnInit {
     this.calculateAmount();
     this.contractService.createContract(this.contract).subscribe(data => {
       alert('Tạo mới thành công hợp đồng\r\n - Khách hàng: ' + data.customer.name + '\r\n - Dịch vụ: ' + data.service.name);
+      this.router.navigateByUrl('/contract');
     });
-    this.router.navigateByUrl('/contract');
   }
 
   initContractDetail(attachService, qty) {
     const index = this.contractDetails.findIndex(contractDetail => contractDetail.attach_service.id === attachService.id);
     if (index !== -1) {
-      if (qty.value !== '0') {
+      if ((+qty.value) !== 0) {
         this.contractDetails[index].quantity = +qty.value;
       } else {
         this.contractDetails.splice(index, 1);
       }
     } else {
-      if (qty.value !== '0') {
+      if ((+qty.value) !== 0) {
         this.contractDetails.push({
           attach_service: attachService,
           quantity: +qty.value
@@ -150,4 +154,11 @@ function checkPeriod(formControl: AbstractControl) {
   } else {
     return {period: true};
   }
+}
+function validateDate(formControl: AbstractControl) {
+  const inputDate = formControl.value;
+  if (moment(inputDate, 'DD/MM/YYYY').isValid()) {
+    return null;
+  }
+  return {invalid: true};
 }

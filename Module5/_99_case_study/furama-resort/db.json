@@ -365,61 +365,7 @@
       ],
       "amount": 11100000,
       "id": 3
-    },
-    {
-      "customer": {
-        "cus_id": "KH-0003",
-        "name": "Hồ Ngọc Minh",
-        "birthday": "01/05/1991",
-        "gender": "Nam",
-        "id_card": "123123123",
-        "phone": "0912333655",
-        "email": "minhhongoc@gmail.com",
-        "cus_type": {
-          "id": 1,
-          "name": "Diamond"
-        },
-        "address": "Huế",
-        "id": 3
-      },
-      "service": {
-        "id": 1,
-        "service_id": "DV-0001",
-        "name": "Codegym Villa",
-        "area": 50,
-        "price": 1500000,
-        "max_people": 5,
-        "rent_type": "Ngày"
-      },
-      "employee": {
-        "id": 1,
-        "em_id": "NV-0001",
-        "name": "Phạm Văn Hai",
-        "birthday": "01/01/2002",
-        "position": "Giám sát",
-        "department": "Phục vụ",
-        "degree": "Đại học",
-        "id_card": "050544523",
-        "phone": "0918556556",
-        "email": "phamhai@nhanvien.com"
-      },
-      "stay_period": {
-        "start_date": "08/10/2021",
-        "end_date": "10/10/2021"
-      },
-      "contract_detail": [
-        {
-          "attach_service": {
-            "id": 2,
-            "name": "Karaoke",
-            "unit": "Giờ",
-            "price": 150000
-          },
-          "quantity": 2
-        }
-      ],
-      "amount": 3300000,
-      "id": 4
     }
+
   ]
 }
