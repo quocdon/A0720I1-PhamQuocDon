@@ -1,0 +1,10 @@
+.gallery-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.gallery-item {
+  flex: 1;
+  max-width: 25%;
+  padding: 5px
+}

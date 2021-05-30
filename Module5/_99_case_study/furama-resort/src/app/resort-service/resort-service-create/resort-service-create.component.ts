@@ -23,7 +23,7 @@ export class ResortServiceCreateComponent implements OnInit {
     'area': [
       {type: 'required', message: 'Diện tích không để trống'},
       {type: 'min', message: 'Diên tích tối thiểu 15m2'},
-      {type: 'pattern', message: 'Số khách phải là số nguyên dương'}
+      {type: 'pattern', message: 'Diện tích phải là số nguyên dương'}
     ],
     'price': [
       {type: 'required', message: 'Giá tiền không để trống'},

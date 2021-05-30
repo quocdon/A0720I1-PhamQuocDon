@@ -1,0 +1,17 @@
+<h2>Todo App with HttpClient</h2>
+
+<div>
+  <input type="text" [formControl]="inputControl" (keydown.enter)="addTodo()">
+</div>
+
+<ul>
+  <li *ngFor="let todo of todoList; index as i" [class.completed]="todo.completed">
+    <div (click)="toggleTodo(i)">
+        Id: {{todo.id}}
+        <br>
+        {{todo.title}}
+    </div>
+
+    <button (click)="deleteTodo(i)">delete</button>
+  </li>
+</ul>
