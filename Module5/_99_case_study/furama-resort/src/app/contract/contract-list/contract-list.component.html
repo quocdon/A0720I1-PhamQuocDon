@@ -1,12 +1,13 @@
 <div class="d-flex flex-row justify-content-between mb-2">
-  <a class="btn btn-sm btn-primary" routerLink="/contract/create">Thêm mới hợp đồng</a>
+  <a class="btn btn-primary" routerLink="/contract/create"><i class="far fa-plus-square"></i> Thêm hợp đồng</a>
   <div class="d-flex flex-row">
     <input class="form-control mr-2" type="text" #search>
     <button class="btn btn-outline-primary btn-sm btn-search" (click)="doSearch(search)">Tìm kiếm</button>
   </div>
 </div>
 <table class="table table-striped">
-  <tr>
+  <thead>
+  <tr class="text-center">
     <th>Mã HĐ</th>
     <th>Tên khách hàng</th>
     <th>Tên dịch vụ</th>
@@ -16,23 +17,34 @@
     <th>Dịch vụ đi kèm</th>
     <th>Thành tiền</th>
   </tr>
+  </thead>
+  <tbody class="justify-content-center">
   <tr *ngFor="let contract of contracts">
-    <td>{{contract.id}}</td>
+    <td class="text-center">{{contract.id}}</td>
     <td>{{contract.customer.name}}</td>
     <td>{{contract.service.name}}</td>
-    <td>{{contract.service.price}}</td>
-    <td>{{contract.stay_period.start_date}}</td>
-    <td>{{contract.stay_period.end_date}}</td>
+    <td class="text-right">{{contract.service.price | number}}</td>
+    <td class="text-center">{{contract.stay_period.start_date}}</td>
+    <td class="text-center">{{contract.stay_period.end_date}}</td>
     <td>
-      <table>
+      <table class="text-decoration-none">
         <tr *ngFor="let detail of contract.contract_detail" class="text-sm-left">
-          <td>{{detail.attach_service.name}}</td>
-          <td>{{detail.attach_service.price}}</td>
-          <td>{{detail.quantity}}</td>
+          <td class="col">{{detail.attach_service.name}}</td>
+          <td class="col text-right">{{detail.attach_service.price | number}}</td>
+          <td class="col">{{detail.quantity}}</td>
         </tr>
       </table>
     </td>
-    <td>{{contract.amount}}</td>
+    <td class="text-right font-weight-bold">{{contract.amount | number}}</td>
   </tr>
+  </tbody>
 </table>
+<div class="d-flex flex-row justify-content-center">
+  <button class="btn btn-dark btn-sm mr-3" (click)="previous()" [disabled]="page == 1"><i
+    class="far fa-caret-square-left"></i> Trang trước
+  </button>
+  <span>{{page}}</span>
+  <button class="btn btn-dark btn-sm ml-3" (click)="next()" [disabled]="nextPage.length == 0">Trang sau <i
+    class="far fa-caret-square-right"></i></button>
+</div>
 

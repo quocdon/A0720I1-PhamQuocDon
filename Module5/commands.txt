@@ -1,0 +1,7 @@
+
+1. font-awesome version 5.15
+npm install --save @fortawesome/fontawesome-free
+
+style.scss
+@import "~font-awesome/css/font-awesome.css";
+$fa-font-path: "../node_modules/font-awesome/fonts";

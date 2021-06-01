@@ -1,32 +1,63 @@
 <div class="d-flex flex-row justify-content-between mb-2">
-  <a class="btn btn-sm btn-primary" routerLink="/service/create">Thêm mới dịch vụ</a>
+  <a class="btn btn-primary" routerLink="/service/create"><i class="far fa-plus-square"></i> Thêm dịch vụ</a>
   <div class="d-flex flex-row">
     <input class="form-control mr-2" type="text" #search>
     <button class="btn btn-outline-primary btn-sm btn-search" (click)="doSearch(search)">Tìm kiếm</button>
   </div>
 </div>
 <table class="table table-striped">
-  <tr>
+  <thead>
+  <tr class="text-center">
     <th>Mã Dịch vụ</th>
     <th>Tên Dịch vụ</th>
     <th>Diện tích</th>
     <th>Giá</th>
     <th>Số khách tối đa</th>
     <th>Kiểu thuê</th>
-    <th>Chi tiết</th>
-    <th>Sửa</th>
-    <th>Xóa</th>
+    <th></th>
   </tr>
+  </thead>
+  <tbody>
   <tr *ngFor="let resortService of resortServices">
-    <td>{{resortService.service_id}}</td>
+    <td class="text-center">{{resortService.service_id}}</td>
     <td>{{resortService.name}}</td>
-    <td>{{resortService.area}}</td>
-    <td>{{resortService.price}}</td>
-    <td>{{resortService.max_people}}</td>
-    <td>{{resortService.rent_type}}</td>
-    <td><a class="btn btn-sm btn-info" [routerLink]="['view', resortService.id]">Xem</a></td>
-    <td><a class="btn btn-sm btn-dark" [routerLink]="['edit', resortService.id]">Sửa</a></td>
-    <td><a class="btn btn-sm btn-danger" (click)="deleteService(resortService.id)">Xóa</a></td>
+    <td class="text-center">{{resortService.area | number}}</td>
+    <td class="text-right">{{resortService.price | number}}</td>
+    <td class="text-center">{{resortService.max_people}}</td>
+    <td class="text-center">{{resortService.rent_type}}</td>
+    <td class="d-flex flex-row justify-content-around">
+      <a class="btn btn-info" [routerLink]="['view', resortService.id]"><i class="far fa-file-alt"></i> Xem</a>
+      <a class="btn btn-success" [routerLink]="['edit', resortService.id]"><i class="far fa-edit"></i> Sửa</a>
+      <a class="btn btn-danger" data-toggle="modal" data-target="#delete-modal" (click)="selectService(resortService)"><i class="far fa-trash-alt"></i> Xóa</a>
+    </td>
   </tr>
+  </tbody>
 </table>
+<div *ngIf="!isSearch" class="d-flex flex-row justify-content-center">
+  <button class="btn btn-dark btn-sm mr-3" (click)="previous()" [disabled]="page == 1"><i
+    class="far fa-caret-square-left"></i> Trang trước
+  </button>
+  <span>{{page}}</span>
+  <button class="btn btn-dark btn-sm ml-3" (click)="next()" [disabled]="nextPage.length == 0">Trang sau <i
+    class="far fa-caret-square-right"></i></button>
+</div>
 
+<div class="modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cảnh báo</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Bạn có muốn xóa dịch vụ <label class="text-danger font-weight-bold">{{selectedService.name}}</label> không?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="deleteService(selectedService.id)">Xóa</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+      </div>
+    </div>
+  </div>
+</div>

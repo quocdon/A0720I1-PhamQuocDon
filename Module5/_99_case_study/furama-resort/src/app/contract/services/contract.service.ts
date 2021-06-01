@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {IEmployee} from '../../employee/models/IEmployee';
 import {IContract} from '../models/contract';
+import {ICustomer} from '../../customer/models/customer';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,10 @@ export class ContractService {
 
   getAllContracts(): Observable<IContract[]> {
     return this.http.get<IContract[]>(this.baseUrl);
+  }
+
+  getContractsPagination(page, limit): Observable<IContract[]> {
+    return this.http.get<IContract[]>(this.baseUrl + '?_page=' + page + '&_limit=' + limit);
   }
 
   getContractById(id): Observable<IContract> {

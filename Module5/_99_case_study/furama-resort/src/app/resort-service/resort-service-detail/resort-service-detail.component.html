@@ -10,7 +10,7 @@
   </tr>
   <tr>
     <td>Diện tích</td>
-    <td>{{service.area}}</td>
+    <td>{{service.area | number}}</td>
   </tr>
   <tr>
     <td>Số lượng khách tối đa</td>
@@ -22,9 +22,9 @@
   </tr>
   <tr>
     <td>Giá tiền</td>
-    <td>{{service.price}}</td>
+    <td>{{service.price | number}}</td>
   </tr>
 </table>
 <div class="col-3 mr-auto ml-auto mb-3 d-flex justify-content-around">
-  <a class="btn btn-sm btn-primary" routerLink="/service">Quay lại</a>
+  <a class="btn btn-sm btn-primary" routerLink="/service"><i class="fas fa-arrow-circle-left"></i> Quay lại</a>
 </div>

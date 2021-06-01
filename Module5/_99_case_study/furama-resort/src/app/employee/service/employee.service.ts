@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {IEmployee} from '../models/IEmployee';
-import {ICustomer} from '../../customer/models/customer';
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +29,10 @@ export class EmployeeService {
 
   getAllEmployees(): Observable<IEmployee[]> {
     return this.http.get<IEmployee[]>(this.baseUrl);
+  }
+
+  getEmployeesPagination(page, limit): Observable<IEmployee[]> {
+    return this.http.get<IEmployee[]>(this.baseUrl + '?_page=' + page + '&_limit=' + limit);
   }
 
   getEmployeeById(id): Observable<IEmployee> {

@@ -1,29 +1,61 @@
 <div class="d-flex flex-row justify-content-between mb-2">
-  <a class="btn btn-sm btn-primary" routerLink="/customer/create">Thêm mới khách hàng</a>
+  <a class="btn btn-primary" routerLink="/customer/create"><i class="far fa-plus-square"></i> Thêm khách hàng</a>
   <div class="d-flex flex-row">
     <input class="form-control mr-2" type="text" #search>
     <button class="btn btn-outline-primary btn-sm btn-search" (click)="doSearch(search)">Tìm kiếm</button>
   </div>
 </div>
 <table class="table table-striped">
+  <thead>
   <tr>
     <th>Mã KH</th>
     <th>Tên KH</th>
     <th>Ngày sinh</th>
     <th>Giới tính</th>
     <th>Hạng khách</th>
-    <th>Chi tiết</th>
-    <th>Sửa</th>
-    <th>Xóa</th>
+    <th></th>
   </tr>
+  </thead>
+  <tbody>
   <tr *ngFor="let customer of customers">
     <td>{{customer.cus_id}}</td>
     <td>{{customer.name}}</td>
     <td>{{customer.birthday}}</td>
     <td>{{customer.gender}}</td>
     <td>{{customer.cus_type.name}}</td>
-    <td><a class="btn btn-sm btn-info" [routerLink]="['view', customer.id]">Xem</a></td>
-    <td><a class="btn btn-sm btn-dark" [routerLink]="['edit', customer.id]">Sửa</a></td>
-    <td><a class="btn btn-sm btn-danger" (click)="deleteCustomer(customer.id)">Xóa</a></td>
+    <td class="d-flex flex-row justify-content-around">
+      <a class="btn btn-info" [routerLink]="['view', customer.id]"><i class="far fa-file-alt"></i> Xem</a>
+      <a class="btn btn-success" [routerLink]="['edit', customer.id]"><i class="far fa-edit"></i> Sửa</a>
+      <button class="btn btn-danger" data-toggle="modal" data-target="#delete-modal" (click)="selectCustomer(customer)"><i class="far fa-trash-alt"></i> Xóa</button>
+    </td>
   </tr>
+  </tbody>
 </table>
+<div *ngIf="!isSearch" class="d-flex flex-row justify-content-center">
+  <button class="btn btn-dark btn-sm mr-3" (click)="previous()" [disabled]="page == 1"><i
+    class="far fa-caret-square-left"></i> Trang trước
+  </button>
+  <span>{{page}}</span>
+  <button class="btn btn-dark btn-sm ml-3" (click)="next()" [disabled]="nextPage.length == 0">Trang sau <i
+    class="far fa-caret-square-right"></i></button>
+</div>
+
+<div class="modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cảnh báo</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Bạn có muốn xóa khách hàng <label class="text-danger font-weight-bold">{{selectedCustomer.name}}</label> không?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="deleteCustomer(selectedCustomer.id)">Xóa</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+      </div>
+    </div>
+  </div>
+</div>

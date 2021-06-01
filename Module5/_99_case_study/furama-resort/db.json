@@ -66,6 +66,51 @@
       },
       "address": "Huế",
       "id": 3
+    },
+    {
+      "cus_id": "KH-0004",
+      "name": "Nguyễn Văn Hoàng",
+      "birthday": "02/02/1995",
+      "gender": "Nam",
+      "id_card": "123455558",
+      "phone": "0914001002",
+      "email": "vanhoang@gmail.com",
+      "cus_type": {
+        "id": 3,
+        "name": "Gold"
+      },
+      "address": "Đà Nẵng",
+      "id": 4
+    },
+    {
+      "cus_id": "KH-0005",
+      "name": "Phạm Văn Tú",
+      "birthday": "05/02/1991",
+      "gender": "Nam",
+      "id_card": "555888999991",
+      "phone": "0904112558",
+      "email": "vantu@gmail.com",
+      "cus_type": {
+        "id": 2,
+        "name": "Platinum"
+      },
+      "address": "Huế",
+      "id": 7
+    },
+    {
+      "cus_id": "KH-0006",
+      "name": "Nguyễn Đức Cường",
+      "birthday": "01/05/1992",
+      "gender": "Nam",
+      "id_card": "123456789555",
+      "phone": "09135558669",
+      "email": "duccuong@gmail.com",
+      "cus_type": {
+        "id": 2,
+        "name": "Platinum"
+      },
+      "address": "Quảng Trị",
+      "id": 8
     }
   ],
   "employees": [
@@ -92,6 +137,54 @@
       "phone": "0912334586",
       "email": "thanhhuong@gmail.com",
       "id": 2
+    },
+    {
+      "em_id": "NV-0003",
+      "name": "Phạm Quốc Cường",
+      "birthday": "01/05/2002",
+      "position": "Phục vụ",
+      "department": "Hành chính",
+      "degree": "Cao đẳng",
+      "id_card": "123456789555",
+      "phone": "0912555666",
+      "email": "quoccuong@gmail.com",
+      "id": 3
+    },
+    {
+      "em_id": "NV-0004",
+      "name": "Nguyễn Lan Hương",
+      "birthday": "04/05/1988",
+      "position": "Lễ tân",
+      "department": "Phục vụ",
+      "degree": "Cao đẳng",
+      "id_card": "555888999991",
+      "phone": "0913555477",
+      "email": "lanhuong@gmail.com",
+      "id": 4
+    },
+    {
+      "em_id": "NV-0005",
+      "name": "Nguyễn Thị Thúy",
+      "birthday": "05/07/1995",
+      "position": "Lễ tân",
+      "department": "Hành chính",
+      "degree": "Cao đẳng",
+      "id_card": "555888999991",
+      "phone": "0908996963",
+      "email": "thuynguyen@gmail.com",
+      "id": 5
+    },
+    {
+      "em_id": "NV-0006",
+      "name": "Phạm Quốc Hoàng",
+      "birthday": "13/12/1993",
+      "position": "Giám sát",
+      "department": "Sales-Marketing",
+      "degree": "Đại học",
+      "id_card": "123444555",
+      "phone": "0913666555",
+      "email": "hoangpham2@gmail.com",
+      "id": 6
     }
   ],
   "resort-services": [
@@ -99,7 +192,7 @@
       "id": 1,
       "service_id": "DV-0001",
       "name": "Codegym Villa",
-      "area": 50,
+      "area": "54",
       "price": 1500000,
       "max_people": 5,
       "rent_type": "Tháng"
@@ -121,6 +214,42 @@
       "max_people": "4",
       "rent_type": "Ngày",
       "id": 3
+    },
+    {
+      "service_id": "DV-0004",
+      "name": "Heaven Room",
+      "area": "40",
+      "price": "500000",
+      "max_people": "2",
+      "rent_type": "Giờ",
+      "id": 4
+    },
+    {
+      "service_id": "DV-0005",
+      "name": "Beach Villa",
+      "area": "120",
+      "price": "5000000",
+      "max_people": "6",
+      "rent_type": "Ngày",
+      "id": 5
+    },
+    {
+      "service_id": "DV-0006",
+      "name": "Nam Hương Villa",
+      "area": "90",
+      "price": "3000000",
+      "max_people": "4",
+      "rent_type": "Tháng",
+      "id": 6
+    },
+    {
+      "service_id": "DV-0007",
+      "name": "Maia House",
+      "area": "120",
+      "price": "4000000",
+      "max_people": "8",
+      "rent_type": "Năm",
+      "id": 7
     }
   ],
   "attach-services": [
@@ -420,6 +549,70 @@
       ],
       "amount": 92000000,
       "id": 4
+    },
+    {
+      "customer": {
+        "cus_id": "KH-0005",
+        "name": "Phạm Văn Tú",
+        "birthday": "05/02/1991",
+        "gender": "Nam",
+        "id_card": "555888999991",
+        "phone": "0904112558",
+        "email": "vantu@gmail.com",
+        "cus_type": {
+          "id": 2,
+          "name": "Platinum"
+        },
+        "address": "Huế",
+        "id": 7
+      },
+      "service": {
+        "service_id": "DV-0007",
+        "name": "Maia House",
+        "area": "120",
+        "price": "4000000",
+        "max_people": "8",
+        "rent_type": "Năm",
+        "id": 7
+      },
+      "employee": {
+        "id": 1,
+        "em_id": "NV-0001",
+        "name": "Phạm Văn Hai",
+        "birthday": "01/01/2002",
+        "position": "Giám sát",
+        "department": "Phục vụ",
+        "degree": "Đại học",
+        "id_card": "050544523",
+        "phone": "0918556556",
+        "email": "phamhai@nhanvien.com"
+      },
+      "stay_period": {
+        "start_date": "01/07/2021",
+        "end_date": "02/07/2021"
+      },
+      "contract_detail": [
+        {
+          "attach_service": {
+            "id": 1,
+            "name": "Massage",
+            "unit": "Khách",
+            "price": 500000
+          },
+          "quantity": 1
+        },
+        {
+          "attach_service": {
+            "id": 2,
+            "name": "Karaoke",
+            "unit": "Giờ",
+            "price": 150000
+          },
+          "quantity": 1
+        }
+      ],
+      "amount": 4650000,
+      "id": 5
     }
   ]
 }

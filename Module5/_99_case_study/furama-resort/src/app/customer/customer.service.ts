@@ -18,6 +18,10 @@ export class CustomerService {
     return this.http.get<ICustomer[]>(this.baseUrl);
   }
 
+  getCustomerPagination(page, limit): Observable<ICustomer[]> {
+    return this.http.get<ICustomer[]>(this.baseUrl + '?_page=' + page + '&_limit=' + limit);
+  }
+
   getCustomerById(id: string): Observable<ICustomer> {
     return this.http.get<ICustomer>(this.baseUrl + '/' + id);
   }
@@ -37,6 +41,7 @@ export class CustomerService {
   search(search: string): Observable<ICustomer[]> {
     return this.http.get<ICustomer[]>(this.baseUrl + '?name_like=' + search);
   }
+
   checkExist(element: string): Observable<ICustomer[]> {
     return this.http.get<ICustomer[]>(this.baseUrl + '?q=' + element);
   }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ICustomer} from '../models/customer';
 import {CustomerService} from '../customer.service';
 import {Router} from '@angular/router';
+import {ICustomerType} from '../models/customer-type';
 
 @Component({
   selector: 'app-customer-list',
@@ -10,31 +11,67 @@ import {Router} from '@angular/router';
 })
 export class CustomerListComponent implements OnInit {
   customers: ICustomer[];
+  page = 1;
+  limit = 5;
+  nextPage: ICustomer[] = [];
+  isSearch = false;
+  selectedCustomer: ICustomer = {
+    id: 0,
+    cus_id: '',
+    name: '',
+    birthday: '',
+    gender: '',
+    id_card: '',
+    phone: '',
+    email: '',
+    cus_type: null,
+    address: ''
+  };
 
   constructor(private customerService: CustomerService,
               private router: Router) { }
 
   ngOnInit(): void {
-    this.customerService.getAll().subscribe(data => {
+    this.isSearch = false;
+    this.customerService.getCustomerPagination(this.page, this.limit).subscribe(data => {
       this.customers = data;
+    });
+    this.customerService.getCustomerPagination(this.page + 1, this.limit).subscribe(data => {
+      this.nextPage = data;
     });
   }
 
   doSearch(search) {
-    const searchValue = search.value;
-    this.customerService.search(searchValue).subscribe(data => {
-      this.customers = data;
-    });
+    this.isSearch = true;
+    const searchValue = search.value.trim();
+    if (searchValue !== ''){
+      this.customerService.search(searchValue).subscribe(data => {
+        this.customers = data;
+      });
+    } else {
+      this.ngOnInit();
+    }
   }
 
   deleteCustomer(id) {
     this.customerService.getCustomerById(id).subscribe(data => {
-      if (confirm('Bạn muốn xóa khách hàng ' + data.name + ' không?')){
         this.customerService.deleteCustomer(id).subscribe(deletedData => {
-          alert('Xóa thành công khách hàng ' + data.name);
           this.ngOnInit();
         });
-      }
     });
+  }
+
+  previous() {
+    this.page--;
+    this.ngOnInit();
+  }
+
+  next() {
+    this.page++;
+    this.ngOnInit();
+  }
+
+  selectCustomer(customer: ICustomer) {
+    this.selectedCustomer = customer;
   }
 }

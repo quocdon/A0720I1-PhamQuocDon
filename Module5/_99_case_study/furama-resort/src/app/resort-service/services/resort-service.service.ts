@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
-import {IEmployee} from '../../employee/models/IEmployee';
 import {HttpClient} from '@angular/common/http';
 import {IResortService} from '../models/resort-service';
 
@@ -20,6 +19,10 @@ export class ResortServiceService {
 
   getAllServices(): Observable<IResortService[]> {
     return this.http.get<IResortService[]>(this.baseUrl);
+  }
+
+  getServicesPagination(page, limit): Observable<IResortService[]> {
+    return this.http.get<IResortService[]>(this.baseUrl + '?_page=' + page + '&_limit=' + limit);
   }
 
   getServiceById(id): Observable<IResortService> {
