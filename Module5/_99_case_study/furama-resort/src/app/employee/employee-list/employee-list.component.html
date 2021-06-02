@@ -1,8 +1,8 @@
 <div class="d-flex flex-row justify-content-between mb-2">
   <a class="btn btn-primary" routerLink="/employee/create"><i class="far fa-plus-square"></i> Thêm nhân viên</a>
   <div class="d-flex flex-row">
-    <input class="form-control mr-2" type="text" #search>
-    <button class="btn btn-outline-primary btn-sm btn-search" (click)="doSearch(search)">Tìm kiếm</button>
+    <input class="form-control mr-2" type="text" placeholder="Tìm kiếm" [(ngModel)]="searchValue">
+    <button class="btn btn-outline-primary btn-sm btn-search" (click)="doSearch()">Tìm kiếm</button>
   </div>
 </div>
 <table class="table table-striped">
@@ -17,7 +17,7 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let employee of employees">
+  <tr *ngFor="let employee of employees | paginate: {itemsPerPage: 5, currentPage: page}">
     <td>{{employee.em_id}}</td>
     <td>{{employee.name}}</td>
     <td>{{employee.email}}</td>
@@ -31,15 +31,9 @@
   </tr>
   </tbody>
 </table>
-<div *ngIf="!isSearch" class="d-flex flex-row justify-content-center">
-  <button class="btn btn-dark btn-sm mr-3" (click)="previous()" [disabled]="page == 1"><i
-    class="far fa-caret-square-left"></i> Trang trước
-  </button>
-  <span>{{page}}</span>
-  <button class="btn btn-dark btn-sm ml-3" (click)="next()" [disabled]="nextPage.length == 0">Trang sau <i
-    class="far fa-caret-square-right"></i></button>
+<div class="d-flex flex-row justify-content-center">
+  <pagination-controls (pageChange)="page = $event"></pagination-controls>
 </div>
-
 <div class="modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">

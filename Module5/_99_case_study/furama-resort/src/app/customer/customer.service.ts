@@ -14,12 +14,8 @@ export class CustomerService {
 
   private baseUrl = 'http://localhost:3000/customers';
 
-  getAll(): Observable<ICustomer[]> {
+  getAllCustomers(): Observable<ICustomer[]> {
     return this.http.get<ICustomer[]>(this.baseUrl);
-  }
-
-  getCustomerPagination(page, limit): Observable<ICustomer[]> {
-    return this.http.get<ICustomer[]>(this.baseUrl + '?_page=' + page + '&_limit=' + limit);
   }
 
   getCustomerById(id: string): Observable<ICustomer> {

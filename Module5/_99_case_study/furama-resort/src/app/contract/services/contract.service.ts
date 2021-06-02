@@ -18,10 +18,6 @@ export class ContractService {
     return this.http.get<IContract[]>(this.baseUrl);
   }
 
-  getContractsPagination(page, limit): Observable<IContract[]> {
-    return this.http.get<IContract[]>(this.baseUrl + '?_page=' + page + '&_limit=' + limit);
-  }
-
   getContractById(id): Observable<IContract> {
     return this.http.get<IContract>(this.baseUrl + '/' + id);
   }
@@ -38,7 +34,15 @@ export class ContractService {
     return this.http.delete(this.baseUrl + '/' + id);
   }
 
-  search(search: string): Observable<IContract[]> {
-    return this.http.get<IContract[]>(this.baseUrl + '?id=' + search);
+  search(search: string, option: string): Observable<IContract[]> {
+    switch (option) {
+      case 'id' :
+        return this.http.get<IContract[]>(this.baseUrl + '?id=' + search);
+      case 'customer' :
+        return this.http.get<IContract[]>(this.baseUrl + '?customer.name_like=' + search);
+      case 'amount' :
+        return this.http.get<IContract[]>(this.baseUrl + '?amount=' + search);
+      default: return this.http.get<IContract[]>(this.baseUrl);
+    }
   }
 }

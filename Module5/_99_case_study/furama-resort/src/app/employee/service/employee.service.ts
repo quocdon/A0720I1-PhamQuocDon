@@ -31,10 +31,6 @@ export class EmployeeService {
     return this.http.get<IEmployee[]>(this.baseUrl);
   }
 
-  getEmployeesPagination(page, limit): Observable<IEmployee[]> {
-    return this.http.get<IEmployee[]>(this.baseUrl + '?_page=' + page + '&_limit=' + limit);
-  }
-
   getEmployeeById(id): Observable<IEmployee> {
     return this.http.get<IEmployee>(this.baseUrl + '/' + id);
   }

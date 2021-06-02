@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {CustomerModule} from './customer/customer.module';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -12,7 +13,8 @@ import {CustomerModule} from './customer/customer.module';
     imports: [
         BrowserModule,
         AppRoutingModule,
-        CustomerModule
+        CustomerModule,
+        NgxPaginationModule
     ],
   providers: [],
   bootstrap: [AppComponent]

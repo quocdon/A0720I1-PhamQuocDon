@@ -91,7 +91,7 @@ export class ContractCreateComponent implements OnInit {
   }
 
   getListOfInformation() {
-    this.customerService.getAll().subscribe(data => {
+    this.customerService.getAllCustomers().subscribe(data => {
       this.customers = data;
     });
     this.resortServiceService.getAllServices().subscribe(data => {

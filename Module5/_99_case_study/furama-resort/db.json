@@ -49,7 +49,7 @@
         "id": 1,
         "name": "Diamond"
       },
-      "address": "BÌnh định",
+      "address": "Bình định",
       "id": 2
     },
     {
@@ -99,17 +99,17 @@
     },
     {
       "cus_id": "KH-0006",
-      "name": "Nguyễn Đức Cường",
-      "birthday": "01/05/1992",
+      "name": "Trương Hải",
+      "birthday": "01/01/1999",
       "gender": "Nam",
       "id_card": "123456789555",
-      "phone": "09135558669",
-      "email": "duccuong@gmail.com",
+      "phone": "0915255255",
+      "email": "haitruong@gmail.com",
       "cus_type": {
-        "id": 2,
-        "name": "Platinum"
+        "id": 4,
+        "name": "Silver"
       },
-      "address": "Quảng Trị",
+      "address": "Quảng Nam",
       "id": 8
     }
   ],
@@ -168,7 +168,7 @@
       "birthday": "05/07/1995",
       "position": "Lễ tân",
       "department": "Hành chính",
-      "degree": "Cao đẳng",
+      "degree": "Đại học",
       "id_card": "555888999991",
       "phone": "0908996963",
       "email": "thuynguyen@gmail.com",
@@ -176,14 +176,14 @@
     },
     {
       "em_id": "NV-0006",
-      "name": "Phạm Quốc Hoàng",
-      "birthday": "13/12/1993",
-      "position": "Giám sát",
-      "department": "Sales-Marketing",
-      "degree": "Đại học",
-      "id_card": "123444555",
-      "phone": "0913666555",
-      "email": "hoangpham2@gmail.com",
+      "name": "Nguyễn Văn Hoàng",
+      "birthday": "02/02/1995",
+      "position": "Phục vụ",
+      "department": "Phục vụ",
+      "degree": "Trung cấp",
+      "id_card": "111222333444",
+      "phone": "0914001002",
+      "email": "vanhoang@gmail.com",
       "id": 6
     }
   ],
@@ -195,7 +195,7 @@
       "area": "54",
       "price": 1500000,
       "max_people": 5,
-      "rent_type": "Tháng"
+      "rent_type": "Ngày"
     },
     {
       "service_id": "DV-0002",
@@ -241,15 +241,6 @@
       "max_people": "4",
       "rent_type": "Tháng",
       "id": 6
-    },
-    {
-      "service_id": "DV-0007",
-      "name": "Maia House",
-      "area": "120",
-      "price": "4000000",
-      "max_people": "8",
-      "rent_type": "Năm",
-      "id": 7
     }
   ],
   "attach-services": [

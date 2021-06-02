@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {IContract} from '../models/contract';
 import {ContractService} from '../services/contract.service';
 import {ICustomer} from '../../customer/models/customer';
@@ -11,30 +11,23 @@ import {ICustomer} from '../../customer/models/customer';
 export class ContractListComponent implements OnInit {
   contracts: IContract[];
   page = 1;
-  limit = 3;
-  nextPage: IContract[];
+  searchValue = '';
 
-  constructor(private contractService: ContractService) { }
+  constructor(private contractService: ContractService) {
+  }
 
   ngOnInit(): void {
-    this.contractService.getContractsPagination(this.page, this.limit).subscribe(data => {
-      this.contracts = data;
-    });
-    this.contractService.getContractsPagination(this.page + 1, this.limit).subscribe(data => {
-      this.nextPage = data;
-    });
+    this.searchValue = '';
+    this.contractService.getAllContracts().subscribe(
+      data => this.contracts = data
+    );
   }
 
-  doSearch(search: HTMLInputElement) {
-  }
-
-  previous() {
-    this.page--;
-    this.ngOnInit();
-  }
-
-  next() {
-    this.page++;
-    this.ngOnInit();
+  doSearch(searchOption) {
+    this.page = 1;
+    const option = searchOption.value;
+    this.contractService.search(this.searchValue, option).subscribe(
+      data => this.contracts = data
+    );
   }
 }

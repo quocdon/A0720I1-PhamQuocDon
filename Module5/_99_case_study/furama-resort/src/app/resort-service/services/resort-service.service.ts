@@ -21,10 +21,6 @@ export class ResortServiceService {
     return this.http.get<IResortService[]>(this.baseUrl);
   }
 
-  getServicesPagination(page, limit): Observable<IResortService[]> {
-    return this.http.get<IResortService[]>(this.baseUrl + '?_page=' + page + '&_limit=' + limit);
-  }
-
   getServiceById(id): Observable<IResortService> {
     return this.http.get<IResortService>(this.baseUrl + '/' + id);
   }

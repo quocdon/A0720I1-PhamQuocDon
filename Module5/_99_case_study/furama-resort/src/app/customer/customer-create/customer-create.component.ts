@@ -61,7 +61,7 @@ export class CustomerCreateComponent implements OnInit {
     this.customerTypeService.getAll().subscribe(data => {
       this.customerTypes = data;
     });
-    this.customerService.getAll().subscribe((data) => {
+    this.customerService.getAllCustomers().subscribe((data) => {
       this.customers = data;
     });
     this.createCustomer = new FormGroup({

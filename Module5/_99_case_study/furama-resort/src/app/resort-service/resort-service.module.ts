@@ -4,9 +4,10 @@ import { CommonModule } from '@angular/common';
 import { ResortServiceRoutingModule } from './resort-service-routing.module';
 import { ResortServiceListComponent } from './resort-service-list/resort-service-list.component';
 import { ResortServiceCreateComponent } from './resort-service-create/resort-service-create.component';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { ResortServiceEditComponent } from './resort-service-edit/resort-service-edit.component';
 import { ResortServiceDetailComponent } from './resort-service-detail/resort-service-detail.component';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 
 @NgModule({
@@ -14,7 +15,9 @@ import { ResortServiceDetailComponent } from './resort-service-detail/resort-ser
   imports: [
     CommonModule,
     ResortServiceRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule,
+    NgxPaginationModule
   ]
 })
 export class ResortServiceModule { }

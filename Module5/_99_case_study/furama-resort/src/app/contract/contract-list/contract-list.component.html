@@ -1,8 +1,14 @@
 <div class="d-flex flex-row justify-content-between mb-2">
   <a class="btn btn-primary" routerLink="/contract/create"><i class="far fa-plus-square"></i> Thêm hợp đồng</a>
   <div class="d-flex flex-row">
-    <input class="form-control mr-2" type="text" #search>
-    <button class="btn btn-outline-primary btn-sm btn-search" (click)="doSearch(search)">Tìm kiếm</button>
+    <input class="form-control mr-2" type="text" [(ngModel)]="searchValue">
+    <select class="form-control mr-2" #searchOption>
+      <option value="all" selected>Vui lòng chọn</option>
+      <option value="id">Mã hợp đồng</option>
+      <option value="customer">Tên khách hàng</option>
+      <option value="amount">Giá trị hợp đồng</option>
+    </select>
+    <button class="btn btn-outline-primary btn-sm btn-search" (click)="doSearch(searchOption)">Tìm kiếm</button>
   </div>
 </div>
 <table class="table table-striped">
@@ -19,7 +25,7 @@
   </tr>
   </thead>
   <tbody class="justify-content-center">
-  <tr *ngFor="let contract of contracts">
+  <tr *ngFor="let contract of contracts | paginate: {itemsPerPage: 3, currentPage: page}">
     <td class="text-center">{{contract.id}}</td>
     <td>{{contract.customer.name}}</td>
     <td>{{contract.service.name}}</td>
@@ -40,11 +46,6 @@
   </tbody>
 </table>
 <div class="d-flex flex-row justify-content-center">
-  <button class="btn btn-dark btn-sm mr-3" (click)="previous()" [disabled]="page == 1"><i
-    class="far fa-caret-square-left"></i> Trang trước
-  </button>
-  <span>{{page}}</span>
-  <button class="btn btn-dark btn-sm ml-3" (click)="next()" [disabled]="nextPage.length == 0">Trang sau <i
-    class="far fa-caret-square-right"></i></button>
+  <pagination-controls (pageChange)="page = $event"></pagination-controls>
 </div>
 

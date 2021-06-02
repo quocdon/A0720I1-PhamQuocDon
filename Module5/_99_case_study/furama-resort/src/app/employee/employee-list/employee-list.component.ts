@@ -9,10 +9,7 @@ import {EmployeeService} from '../service/employee.service';
 })
 export class EmployeeListComponent implements OnInit {
   employees: IEmployee[];
-  page = 1;
-  limit = 5;
-  nextPage: IEmployee[] = [];
-  isSearch = false;
+  page: number = 1;
   selectedEmployee: IEmployee = {
     birthday: '',
     degree: '',
@@ -25,30 +22,25 @@ export class EmployeeListComponent implements OnInit {
     phone: '',
     position: ''
   };
+  searchValue = '';
 
   constructor(private employeeService: EmployeeService) {
   }
 
   ngOnInit(): void {
-    this.isSearch = false;
-    this.employeeService.getEmployeesPagination(this.page, this.limit).subscribe(data => {
-      this.employees = data;
-    });
-    this.employeeService.getEmployeesPagination(this.page + 1, this.limit).subscribe(data => {
-      this.nextPage = data;
-    });
+    this.searchValue = '';
+    this.employeeService.getAllEmployees().subscribe(
+      (data) => this.employees = data
+    );
   }
 
-  doSearch(search) {
-    this.isSearch = true;
-    const searchValue = search.value.trim();
-    if (searchValue !== '') {
-      this.employeeService.search(searchValue).subscribe(data => {
-        this.employees = data;
-      });
-    } else {
-      this.ngOnInit();
-    }
+  doSearch() {
+    this.page = 1;
+    this.searchValue = this.searchValue.trim();
+    this.employeeService.search(this.searchValue).subscribe(
+      data => {
+        this.employees = data;       }
+      );
   }
 
   deleteEmployee(id: number) {
@@ -60,17 +52,7 @@ export class EmployeeListComponent implements OnInit {
     );
   }
 
-  previous() {
-    this.page--;
-    this.ngOnInit();
-  }
-
-  next() {
-    this.page++;
-    this.ngOnInit();
-  }
-
   selectEmployee(employee: IEmployee) {
-  this.selectedEmployee = employee;
+    this.selectedEmployee = employee;
   }
 }
