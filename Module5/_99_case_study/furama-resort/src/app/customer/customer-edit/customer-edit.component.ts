@@ -82,7 +82,7 @@ export class CustomerEditComponent implements OnInit {
       ])),
       birthday: new FormControl('', Validators.compose([
         Validators.required,
-        Validators.pattern(/^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/),
+        Validators.pattern(/^[]$/),
         validateDate
       ])),
       gender: new FormControl('', Validators.required),

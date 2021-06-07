@@ -1,0 +1,61 @@
+<div class="col-6 mx-auto">
+  <h3 class="text-center">Edit receiving note</h3>
+  <form [formGroup]="createForm" (ngSubmit)="onSubmit()">
+    <!--    Item-->
+    <div class="form-group">
+      <label for="item">Item name:</label>
+      <select class="form-control" id="item" formControlName="item" [compareWith]="compareWith">
+        <ng-container *ngFor="let item of items">
+          <option [ngValue]="item">{{item.name}}</option>
+        </ng-container>
+      </select>
+      <ng-container *ngFor="let validation of validationMessage.item">
+        <small class="form-text text-danger"
+               *ngIf="createForm.get('item').hasError(validation.type)&&(createForm.get('item').dirty || createForm.get('item').touched)">
+          {{validation.message}}
+        </small>
+      </ng-container>
+    </div>
+
+    <!--    Quantity-->
+    <div class="form-group">
+      <label for="quantity">Quantity</label>
+      <input type="text" class="form-control" id="quantity" formControlName="quantity">
+      <ng-container *ngFor="let validation of validationMessage.quantity">
+        <small class="form-text text-danger"
+               *ngIf="createForm.get('quantity').hasError(validation.type)&&(createForm.get('quantity').dirty || createForm.get('quantity').touched)">
+          {{validation.message}}
+        </small>
+      </ng-container>
+    </div>
+
+    <!--  Price-->
+
+    <div class="form-group">
+      <label for="price">Price</label>
+      <input type="text" class="form-control" id="price" formControlName="price">
+      <ng-container *ngFor="let validation of validationMessage.price">
+        <small class="form-text text-danger"
+               *ngIf="createForm.get('price').hasError(validation.type)&&(createForm.get('price').dirty || createForm.get('price').touched)">
+          {{validation.message}}
+        </small>
+      </ng-container>
+    </div>
+
+    <!--  date-->
+    <div class="form-group">
+      <label for="date">Date</label>
+      <input type="text" class="form-control" id="date" formControlName="date">
+      <ng-container *ngFor="let validation of validationMessage.date">
+        <small class="form-text text-danger"
+               *ngIf="createForm.get('date').hasError(validation.type)&&(createForm.get('date').dirty || createForm.get('date').touched)">
+          {{validation.message}}
+        </small>
+      </ng-container>
+    </div>
+    <div class="col-6 ml-auto mr-auto mb-3 d-flex flex-row justify-content-around">
+      <button type="submit" class="btn btn-primary" [disabled]="createForm.invalid">Đồng ý</button>
+      <a class="btn btn-outline-primary" routerLink="/note">Thoát</a>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,94 @@
+{
+  "teachers": [
+    {
+      "id": 1,
+      "name": "Đoàn Phước Trung"
+    },
+    {
+      "id": 2,
+      "name": "Trương Hải"
+    },
+    {
+      "id": 3,
+      "name": "Đoàn Ngọc Lĩnh"
+    },
+    {
+      "id": 4,
+      "name": "Trần Chánh"
+    }
+  ],
+  "students": [
+    {
+      "id": 1,
+      "name": "Nam",
+      "group": "Nhóm 4",
+      "topic": "Website bán hàng",
+      "teacher": {
+        "id": 1,
+        "name": "Đoàn Phước Trung"
+      },
+      "email": "nam@gmail.com",
+      "phone": "091503080812"
+    },
+    {
+      "id": 2,
+      "name": "Hoàng Việt",
+      "group": "Nhóm 2",
+      "topic": "Website cá độ",
+      "teacher": {
+        "id": 2,
+        "name": "Trương Hải"
+      },
+      "email": "viethoang@gmail.com",
+      "phone": "0935030808"
+    },
+    {
+      "id": 3,
+      "name": "Hoàng Việt Cường",
+      "group": "Nhóm 3",
+      "topic": "Website xem phim ",
+      "teacher": {
+        "id": 1,
+        "name": "Đoàn Phước Trung"
+      },
+      "email": "viethoang@gmail.com",
+      "phone": "0935039999"
+    },
+    {
+      "id": 4,
+      "name": "Nguyễn Văn Cường",
+      "group": "Nhóm 1",
+      "topic": "Website cá độ bóng đá",
+      "teacher": {
+        "id": 1,
+        "name": "Đoàn Phước Trung"
+      },
+      "email": "cuongnguyen@gmail.com",
+      "phone": "0935030111"
+    },
+    {
+      "id": 6,
+      "name": "Nguyễn Thị Quý",
+      "group": "Nhóm 2",
+      "topic": "Website cá độ",
+      "teacher": {
+        "id": 4,
+        "name": "Trần Chánh"
+      },
+      "email": "quy95@gmail.com",
+      "phone": "0914444555"
+    },
+    {
+      "id": 7,
+      "name": "Nguyễn Hữu Tuấn",
+      "group": "Nhóm 10",
+      "topic": "Website sàn chứng khoán",
+      "teacher": {
+        "id": 4,
+        "name": "Trần Chánh"
+      },
+      "email": "huutuan@gmail.com",
+      "phone": "016747183651"
+    }
+  ]
+}

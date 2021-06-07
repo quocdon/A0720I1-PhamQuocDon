@@ -1,0 +1,76 @@
+<div class="col-6 mx-auto">
+  <h3 class="text-center mb-3">Thông tin Sinh viên</h3>
+  <form [formGroup]="studentForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="name">Tên Sinh viên</label>
+      <input type="text" class="form-control" id="name" placeholder="Vui lòng nhập" formControlName="name">
+      <ng-container *ngFor="let validation of validationMessage.name">
+        <small class="form-text text-danger"
+               *ngIf="studentForm.get('name').hasError(validation.type)&&(studentForm.get('name').dirty || studentForm.get('name').touched)">
+          {{validation.message}}
+        </small>
+      </ng-container>
+    </div>
+
+    <div class="form-group">
+      <label for="student-group">Nhóm</label>
+      <input type="text" class="form-control" id="student-group" placeholder="Vui lòng nhập" formControlName="group">
+      <ng-container *ngFor="let validation of validationMessage.group">
+        <small class="form-text text-danger"
+               *ngIf="studentForm.get('group').hasError(validation.type)&&(studentForm.get('group').dirty || studentForm.get('group').touched)">
+          {{validation.message}}
+        </small>
+      </ng-container>
+    </div>
+    <div class="form-group">
+      <label for="topic">Đề tài</label>
+      <input type="text" class="form-control" id="topic" placeholder="Vui lòng nhập" formControlName="topic">
+      <ng-container *ngFor="let validation of validationMessage.topic">
+        <small class="form-text text-danger" *ngIf="studentForm.get('topic').hasError(validation.type)&&
+        (studentForm.get('topic').dirty || studentForm.get('topic').touched)">
+          {{validation.message}}
+        </small>
+      </ng-container>
+    </div>
+    <div class="form-group">
+      <label for="teacher">Giáo viên hướng dẫn</label>
+      <select class="form-control" id="teacher" formControlName="teacher" [compareWith]="compareWith">
+        <option value="" selected>Vui lòng chọn</option>
+        <ng-container *ngFor="let teacher of teachers">
+          <option [ngValue]="teacher">{{teacher.name}}</option>
+        </ng-container>
+      </select>
+      <ng-container *ngFor="let validation of validationMessage.teacher">
+        <small class="form-text text-danger"
+               *ngIf="studentForm.get('teacher').hasError(validation.type)&&(studentForm.get('teacher').dirty || studentForm.get('teacher').touched)">
+          {{validation.message}}
+        </small>
+      </ng-container>
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="text" class="form-control" id="email" placeholder="Vui lòng nhập" formControlName="email">
+      <ng-container *ngFor="let validation of validationMessage.email">
+        <small class="form-text text-danger"
+               *ngIf="studentForm.get('email').hasError(validation.type)&&(studentForm.get('email').dirty || studentForm.get('email').touched)">
+          {{validation.message}}
+        </small>
+      </ng-container>
+    </div>
+    <div class="form-group">
+      <label for="phone">Số điện thoại</label>
+      <input type="text" class="form-control" id="phone" placeholder="Vui lòng nhập" formControlName="phone">
+      <ng-container *ngFor="let validation of validationMessage.phone">
+        <small class="form-text text-danger"
+               *ngIf="studentForm.get('phone').hasError(validation.type)&&(studentForm.get('phone').dirty || studentForm.get('phone').touched)">
+          {{validation.message}}
+        </small>
+      </ng-container>
+    </div>
+    <div class="col-6 ml-auto mr-auto mb-3 d-flex flex-row justify-content-around">
+      <button type="submit" class="btn btn-primary" [disabled]="studentForm.invalid">Đồng ý</button>
+      <a class="btn btn-outline-primary" routerLink="/student">Thoát</a>
+    </div>
+  </form>
+</div>
+
