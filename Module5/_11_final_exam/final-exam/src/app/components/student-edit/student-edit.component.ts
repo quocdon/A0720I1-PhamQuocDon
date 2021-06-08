@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Student} from '../../models/student';
 import {TeacherService} from '../../services/teacher.service';
@@ -20,7 +20,7 @@ export class StudentEditComponent implements OnInit {
       {type: 'required', message: 'Tên sinh viên không để trống'},
       {type: 'pattern', message: 'Tên sinh viên không bao gồm ký tự đặc biệt'}
     ],
-    'group': [
+    'groupName': [
       {type: 'required', message: 'Tên nhóm không để trống'},
       {type: 'pattern', message: 'Tên nhóm không đúng định dạng'}
     ],
@@ -45,7 +45,8 @@ export class StudentEditComponent implements OnInit {
     private studentService: StudentService,
     private activatedRoute: ActivatedRoute,
     private router: Router
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
     const id = this.activatedRoute.snapshot.params["id"];
@@ -65,7 +66,7 @@ export class StudentEditComponent implements OnInit {
         Validators.required,
         Validators.pattern(/^[^`|\~|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\+|\=|\[|\{|\]|\}|\||\\|\'|\<|\,|\.|\>|\?|\/|\""|\;|\:]*$/)
       ])),
-      group: new FormControl('', Validators.compose([
+      groupName: new FormControl('', Validators.compose([
         Validators.required,
         Validators.pattern(/^Nhóm [1-9][0-9]*$/),
 
@@ -86,7 +87,7 @@ export class StudentEditComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.studentForm.valid){
+    if (this.studentForm.valid) {
       this.studentService.editStudent(this.studentForm.value.id, this.studentForm.value).subscribe(data => {
         this.router.navigateByUrl('student');
       });

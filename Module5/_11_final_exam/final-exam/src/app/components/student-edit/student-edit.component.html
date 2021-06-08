@@ -14,10 +14,10 @@
 
     <div class="form-group">
       <label for="student-group">Nhóm</label>
-      <input type="text" class="form-control" id="student-group" placeholder="Vui lòng nhập" formControlName="group">
-      <ng-container *ngFor="let validation of validationMessage.group">
+      <input type="text" class="form-control" id="student-group" placeholder="Vui lòng nhập" formControlName="groupName">
+      <ng-container *ngFor="let validation of validationMessage.groupName">
         <small class="form-text text-danger"
-               *ngIf="studentForm.get('group').hasError(validation.type)&&(studentForm.get('group').dirty || studentForm.get('group').touched)">
+               *ngIf="studentForm.get('groupName').hasError(validation.type)&&(studentForm.get('groupName').dirty || studentForm.get('groupName').touched)">
           {{validation.message}}
         </small>
       </ng-container>

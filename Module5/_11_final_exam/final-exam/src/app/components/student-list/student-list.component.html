@@ -18,14 +18,16 @@
       <td>{{(page - 1)*5 + i+1}}</td>
       <td>{{student.id}}</td>
       <td>{{student.name}}</td>
-      <td>{{student.group}}</td>
+      <td>{{student.groupName}}</td>
       <td>{{student.topic}}</td>
       <td>{{student.teacher.name}}</td>
       <td>{{student.email}}</td>
       <td>{{student.phone}}</td>
       <td class="d-flex flex-row justify-content-around">
         <a class="btn btn-success btn-function mr-1" [routerLink]="['edit', student.id]"><i class="far fa-edit"></i> Sửa</a>
-        <button class="btn btn-danger btn-function" data-toggle="modal" data-target="#delete-modal" (click)="getStudent(student)"><i class="far fa-trash-alt"></i> Xóa</button>
+        <button class="btn btn-danger btn-function" data-toggle="modal" data-target="#delete-modal"
+                (click)="getStudent(student)"><i class="far fa-trash-alt"></i> Xóa
+        </button>
       </td>
     </tr>
     </tbody>
@@ -45,10 +47,13 @@
         </button>
       </div>
       <div class="modal-body">
-        <p>Bạn có muốn xóa sinh viên <label class="text-danger font-weight-bold">{{selectedStudent.name}}</label> không?</p>
+        <p>Bạn có muốn xóa sinh viên <label class="text-danger font-weight-bold">{{selectedStudent.name}}</label> không?
+        </p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="deleteStudent(selectedStudent.id)">Xóa</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="deleteStudent(selectedStudent.id)">
+          Xóa
+        </button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
       </div>
     </div>

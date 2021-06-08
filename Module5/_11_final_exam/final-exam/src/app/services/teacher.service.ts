@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Teacher} from '../models/teacher';
@@ -7,9 +7,10 @@ import {Teacher} from '../models/teacher';
   providedIn: 'root'
 })
 export class TeacherService {
-  API_URL = 'http://localhost:3000/teachers';
+  API_URL = 'http://localhost:8080/teachers';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   getAllTeachers(): Observable<Teacher[]> {
     return this.http.get<Teacher[]>(this.API_URL);

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {StudentService} from '../../services/student.service';
 import {Student} from '../../models/student';
 
@@ -10,9 +10,9 @@ import {Student} from '../../models/student';
 export class StudentListComponent implements OnInit {
   page = 1;
   students: Student[];
-  selectedStudent: Student =  {
+  selectedStudent: Student = {
     email: '',
-    group: '',
+    groupName: '',
     id: 0,
     name: '',
     phone: '',
@@ -20,16 +20,13 @@ export class StudentListComponent implements OnInit {
     topic: '',
   };
 
-  constructor(private studentService: StudentService) { }
+  constructor(private studentService: StudentService) {
+  }
 
   ngOnInit(): void {
     this.studentService.getAllStudents().subscribe(
       data => this.students = data
     );
-  }
-
-  doSearch() {
-
   }
 
   getStudent(student: Student) {

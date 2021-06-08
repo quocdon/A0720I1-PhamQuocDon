@@ -1,14 +1,14 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { HomePageComponent } from './components/home-page/home-page.component';
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
+import {HomePageComponent} from './components/home-page/home-page.component';
 import {NgxPaginationModule} from 'ngx-pagination';
 import {HttpClientModule} from '@angular/common/http';
-import { StudentListComponent } from './components/student-list/student-list.component';
+import {StudentListComponent} from './components/student-list/student-list.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { StudentEditComponent } from './components/student-edit/student-edit.component';
+import {StudentEditComponent} from './components/student-edit/student-edit.component';
 
 @NgModule({
   declarations: [
@@ -28,4 +28,5 @@ import { StudentEditComponent } from './components/student-edit/student-edit.com
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
