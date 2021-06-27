@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description"
+          content="Be-one is a clean HTML5/CSS3 template suitable for Business, Corporate, Taxes, Broker, Ad...">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Title -->
+    <title>Trường TH Nghĩa Tân</title>
+    <!-- CSS Here -->
+    <!-- Style.css -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<style>
+    label {
+        font-weight: bold;
+    }
+</style>
+<body class="mat-typography">
+<!--start navbar-->
+<nav class="navbar navbar-expand-lg navbar-light bg-info">
+    <div class="container">
+        <div class="col-md-6">
+            <a class="navbar-brand" href="#">TRƯỜNG TIỂU HỌC NGHĨA TÂN</a>
+        </div>
+        <div class="collapse navbar-collapse col-md-6 justify-content-end" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto justify-content-end">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle mb-0 mt-0 pb-0 pt-0" href="#" id="navbarDropdown" role="button"
+                       data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        Admin
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/teacher">Quản lý giáo viên</a>
+                        <a class="dropdown-item" href="/student">Quản lý học sinh</a>
+                        <a class="dropdown-item" href="/class">Quản lý lớp</a>
+                        <a class="dropdown-item" href="/schedule">Thời khóa biểu</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle mb-0 mt-0 pb-0 pt-0" href="#" id="navbarDropdown" role="button"
+                       data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        Giáo viên
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Lớp chủ nhiệm</a>
+                        <a class="dropdown-item" href="#">Quản lý điểm học sinh</a>
+                        <a class="dropdown-item" href="#">Thời khóa biểu</a>
+                        <a class="dropdown-item" href="#">Lịch giảng dạy</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle mb-0 mt-0 pb-0 pt-0" href="#" id="navbarDropdown" role="button"
+                       data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        Học sinh
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Thời khóa biểu</a>
+                        <a class="dropdown-item" href="#">Kết quả học tập</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link mb-0 mt-0 pb-0 pt-0" href="/login">Đăng nhập</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle mb-0 mt-0 pb-0 pt-0" href="#" id="navbarDropdown" role="button"
+                       data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        Tên TK
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Thông tin cá nhân</a>
+                        <a class="dropdown-item" href="#">Đăng xuất</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!--end navbar-->
+<!--start main content-->
+<br>
+<div class="container">
+<div class="row">
+    <div class="col-md-3">
+      <div class="card-user border-shadow">
+        <div class="card-body">
+          <div class="author">
+            <div class="mx-auto">
+              <img class="col-md-12" src="assets/img/blog_01.jpg" alt="card image">
+            </div>
+            <hr>
+            <div class="text-center">
+              <p class="description font-weight-bold" disabled>
+                Nguyễn Huỳnh Thành Đạt
+              </p>
+              <p class="description">
+                Chức vụ: Giáo Viên Chính Thức
+              </p>
+              <p class="description">
+                Chủ Nhiệm: Lớp 1A2
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--End table information-->
+  
+    <!--Start table edit teacher-->
+    <div class="col-md-9">
+      <div class="card-user border-shadow">
+        <div class="card-header card-background-color">
+          <div class="d-flex justify-content-between">
+          <h4 class="card-title card-header-text-bold text-light">Thông tin giáo viên</h4>
+          <div>
+            <a class="btn btn-primary text-light">Đổi mật khẩu</a>
+          </div>
+        </div>
+        </div>
+        <div class="card-body card-body-text-bold">
+          <form>
+            <div class="row">
+              <div class="col-md-12 pr-1">
+                <div class="form-group">
+                  <label>Họ và tên</label>
+                  <input type="text" class="form-control" placeholder="Company"
+                         value="Nguyen Huynh Thanh Dat" disabled>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 pr-1">
+                <div class="form-group">
+                  <label for="gender">Giới tính</label>
+                  <input type="text" class="form-control" placeholder="Company"
+                         value="Nam" disabled>
+                </div>
+              </div>
+              <div class="col-md-6 pr-1">
+                <div class="form-group">
+                  <label>Ngày Sinh</label>
+                  <input type="date" class="form-control" value="11-03-1998" disabled>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 pr-1">
+                <div class="form-group">
+                  <label>Trình độ</label>
+                  <input type="text" class="form-control" placeholder="Company" value="Đại học sư phạm" disabled>
+                </div>
+              </div>
+              <div class="col-md-6 pr-1">
+                <div class="form-group">
+                  <label>Chức vụ</label>
+                  <input type="text" class="form-control" placeholder="Company"
+                         value="Giáo viên chính thức" disabled>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 pr-1">
+                <div class="form-group">
+                  <label>Địa Chỉ</label>
+                  <input type="text" class="form-control" placeholder="Company" value="Đà Nẵng">
+                </div>
+              </div>
+              <div class="col-md-6 pr-1">
+                <div class="form-group">
+                  <label>Quê Quán</label>
+                  <input type="text" class="form-control" placeholder="Company"
+                         value="Đà Nẵng">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 pr-1">
+                <div class="form-group">
+                  <label class="required">Số Điện Thoại</label>
+                  <input type="text" class="form-control" placeholder="Company"
+                         value="0964646852">
+                </div>
+              </div>
+              <div class="col-md-6 pr-1">
+                <div class="form-group">
+                  <label class="required">Email</label>
+                  <input type="text" class="form-control" placeholder="email@.com" value="Email@.com">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 pr-1">
+                  <div class="form-group">
+                    <label>Ảnh đại diện</label>
+                    <input type="file" class="form-control" placeholder="Company"
+                           value="Nguyen Huynh Thanh Dat">
+                  </div>
+                </div>
+              </div>
+            <div class="row">
+              <div class="update mt-3 mb-3 ml-auto mr-auto">
+                <button type="submit" class="btn btn-warning mr-3">Xác Nhận</button>
+                <button type="submit" class="btn btn-primary">Quay Lại</button>
+              </div>
+            </div>
+            
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <br><br>
+<footer class="footer-area bg-dark" id="contact-us">
+    <div class="container d-flex flex-row justify-content-around p-3 text-light">
+        <div class="col-md-6">
+            <div class="footer-widget">
+                <div class="widget-title">
+                    <h5>LIÊN HỆ</h5>
+                </div>
+                <div class="address-line">
+                    <p>Địa chỉ: 295 Nguyễn Tất Thành, Quận Hải Châu, TP Đà Nẵng</p>
+                    <p>Phone: +(84) 236 3916999</p>
+                    <p>Fax: +(84) 236 3918999</p>
+                    <p>Email: contact@codegym.vn</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <h5>BẢN ĐỒ</h5>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3833.822847904214!2d108.15073694912486!3d16.074680088822923!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31421933529f8d8d%3A0xb9ff1958e3e9d3d2!2zQ29kZWd5bSDEkMOgIE7hurVuZw!5e0!3m2!1svi!2s!4v1624087889226!5m2!1svi!2s"
+                    width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+    </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+</html>

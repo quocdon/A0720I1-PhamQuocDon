@@ -1,0 +1,26 @@
+/* You can add global styles to this file, and also import other style files */
+@import "prebuilt-themes/pink-bluegrey.css";
+@import "sass/paper-kit";
+@import "css/demo.css";
+@import "css/nucleo-icons.css";
+.card-header-text-bold{
+  font-weight: bold;
+  color: #646262;
+  margin-top: 7px;
+  margin-bottom: 7px;
+  font-size: 18px;
+}
+.card-body-text-bold{
+  font-weight: bold;
+  color: #646262;
+  margin-top: 7px;
+  margin-bottom: 7px;
+}
+.card-background-color{
+  background-color: #969494;
+}
+.border-shadow{
+  box-shadow: 1px 1px 5px #868686;
+  border-radius: 5px;
+}
+

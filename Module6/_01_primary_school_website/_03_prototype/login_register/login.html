@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>ProjectFe</title>
+    <base href="/">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="assets/sass/paper-kit.scss">
+    <link rel="stylesheet" href="assets/css/demo.css">
+    <link rel="stylesheet" href="assets/css/nucleo-icons.css">
+    <link rel="stylesheet" href="assets/styles.scss">
+</head>
+<body class="mat-typography">
+<!--start navbar-->
+<nav class="navbar navbar-expand-lg navbar-light bg-info">
+    <div class="container">
+        <div class="col-md-6">
+            <a class="navbar-brand" href="#">TRƯỜNG TIỂU HỌC NGHĨA TÂN</a>
+        </div>
+        <div class="collapse navbar-collapse col-md-6 justify-content-end" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto justify-content-end">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle mb-0 mt-0 pb-0 pt-0" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        Admin
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" routerLink="/teacher">Quản lý giáo viên</a>
+                        <a class="dropdown-item" routerLink="/student">Quản lý học sinh</a>
+                        <a class="dropdown-item" routerLink="/class">Quản lý lớp</a>
+                        <a class="dropdown-item" routerLink="/schedule">Thời khóa biểu</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle mb-0 mt-0 pb-0 pt-0" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        Giáo viên
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Lớp chủ nhiệm</a>
+                        <a class="dropdown-item" href="#">Quản lý điểm học sinh</a>
+                        <a class="dropdown-item" href="#">Thời khóa biểu</a>
+                        <a class="dropdown-item" href="#">Lịch giảng dạy</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle mb-0 mt-0 pb-0 pt-0" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        Học sinh
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Thời khóa biểu</a>
+                        <a class="dropdown-item" href="#">Kết quả học tập</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link mb-0 mt-0 pb-0 pt-0" routerLink="/login">Đăng nhập</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle mb-0 mt-0 pb-0 pt-0" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        Tên TK
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Thông tin cá nhân</a>
+                        <a class="dropdown-item" href="#">Đăng xuất</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!--end navbar-->
+<!--start main content-->
+<div class="container mt-5 mb-5">
+    <div class="col-lg-4 col-sm-8 mx-auto">
+        <div class="card-register bg-login border-shadow">
+            <h3 class="title text-dark mt-1 mb-1">Đăng nhập</h3>
+            <form class="card-body-text-bold">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Tên đăng nhập</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                           placeholder="Username">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Mật khẩu</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                </div>
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="checkbox" value="">
+                        Ghi nhớ tài khoản
+                        <span class="form-check-sign">
+                                        <span class="check"></span>
+                                        </span>
+                    </label>
+                </div>
+                <div class="row">
+                    <div class="update ml-auto mr-auto">
+                        <button type="submit" class="btn btn-success mr-3">Đăng nhập</button>
+                        <button type="submit" class="btn btn-primary">Trở về</button>
+                    </div>
+                </div>
+            </form>
+            <div class="forgot mx-0">
+                <a href="#" class="btn btn-link btn-danger">Quên mật khẩu?</a>
+            </div>
+        </div>
+    </div>
+<!--end main content-->
+</div>
+<footer class="footer-area bg-dark" id="contact-us">
+    <div class="container d-flex flex-row justify-content-around p-3 text-light">
+        <div class="col-md-6">
+            <div class="footer-widget">
+                <div class="widget-title">
+                    <h5>LIÊN HỆ</h5>
+                </div>
+                <div class="address-line">
+                    <p>Địa chỉ: 295 Nguyễn Tất Thành, Quận Hải Châu, TP Đà Nẵng</p>
+                    <p>Phone: +(84) 236 3916999</p>
+                    <p>Fax: +(84) 236 3918999</p>
+                    <p>Email: contact@codegym.vn</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <h5>BẢN ĐỒ</h5>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3833.822847904214!2d108.15073694912486!3d16.074680088822923!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31421933529f8d8d%3A0xb9ff1958e3e9d3d2!2zQ29kZWd5bSDEkMOgIE7hurVuZw!5e0!3m2!1svi!2s!4v1624087889226!5m2!1svi!2s"
+                    width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+    </div>
+</footer>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description"
+          content="Be-one is a clean HTML5/CSS3 template suitable for Business, Corporate, Taxes, Broker, Ad...">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Title -->
+    <title>A0720I1</title>
+
+    <!-- CSS Here -->
+    <!-- Style.css -->
+    <link rel="stylesheet" href="assets/css/style.css">
+<!--    <link rel="stylesheet" href="assets/css/theme-colors/listStudent.css">-->
+
+</head>
+<body class="container">
+<!-- Start Header Area -->
+<div class="header-area">
+    <div class="container">
+        <div class="header-wrapper">
+            <div class="row">
+                <div class="col-lg-3 col-6">
+                    <div class="site-footer">
+                        <h2 class="text-primary mt-0">A0720I1</h2>
+                        <a data-toggle="tooltip" title="Be-one" href="listStudent.html"></a>
+                    </div>
+                </div>
+                <div class="col-lg-9 col-6 d-lg-none static text-right">
+                    <div class="show-mobile-menu"></div>
+                </div>
+                <div class="col-lg-9 text-right d-none d-lg-block">
+                    <nav class="menu-wrapper">
+                        <ul class="main-menu" id="mobile-menu">
+                            <li class="active"><h5><a class='text-primary typography-line' href="#">Home</a></h5></li>
+                            <li><h5><a class="nav-link" href="#teacher">Teacher</a></h5></li>
+                            <li><h5><a href="#Student">Student</a></h5></li>
+                            <li><h5><a href="#Class">Class</a></h5></li>
+                            <li><h5><a href="#Schedule">Schedule</a></h5></li>
+                            <li class="search-trigger d-none d-lg-inline-block"><a href="javascript:void(0)"><i
+                                    class="fas fa-search"></i></a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Header Area -->
+
+<!--------------------------------------------Bắt đầu code template ở đây-------------------------------------------------->
+
+
+<div>
+    <div style="display: flex">
+        <div class="col-md-4 row">
+            <label for="exampleFormControlSelect1" class="col-sm-6 pt-2 text-center">Chọn khóa học</label>
+            <select class="form-control col-sm-6" id="exampleFormControlSelect1">
+                <option>Khóa 2021</option>
+                <option>Khóa 2022</option>
+                <option>Khóa 2023</option>
+                <option>Khóa 2024</option>
+                <option>Khóa 2025</option>
+            </select>
+        </div>
+
+        <!--Chọn khối lớp--------------->
+        <div class="col-md-3 row">
+            <label for="exampleFormControlSelect2" class="col-sm-5 pt-2 text-center">Chọn</label>
+            <select class="form-control col-sm-7" id="exampleFormControlSelect2">
+                <option>Khối Lớp 1</option>
+                <option>Khối Lớp 2</option>
+                <option>Khối Lớp 3</option>
+                <option>Khối Lớp 4</option>
+                <option>Khối Lớp 5</option>
+            </select>
+        </div>
+
+        <!--chọn lớp-------------->
+
+        <div class="col-md-3 row">
+            <label for="exampleFormControlSelect3" class="col-sm-5 pt-2 text-center">Chọn</label>
+            <select class="form-control col-sm-7" id="exampleFormControlSelect3">
+                <optgroup label="Lớp 1">
+                    <option value="Lớp 1A">Lớp 1A</option>
+                    <option value="Lớp 1B">Lớp 1B</option>
+                    <option value="Lớp 1C">Lớp 1C</option>
+                </optgroup>
+                <optgroup label="Lớp 2">
+                    <option value="Lớp 2A">Lớp 2A</option>
+                    <option value="Lớp 2B">Lớp 2B</option>
+                    <option value="Lớp 2C">Lớp 2C</option>
+                </optgroup>
+                <optgroup label="Lớp 3">
+                    <option value="Lớp 3A">Lớp 3A</option>
+                    <option value="Lớp 3B">Lớp 3B</option>
+                    <option value="Lớp 3C">Lớp 3C</option>
+                </optgroup>
+                <optgroup label="Lớp 4">
+                    <option value="Lớp 4A">Lớp 4A</option>
+                    <option value="Lớp 4B">Lớp 4B</option>
+                    <option value="Lớp 4C">Lớp 4C</option>
+                </optgroup>
+                <optgroup label="Lớp 5">
+                    <option value="Lớp 5A">Lớp 5A</option>
+                    <option value="Lớp 5B">Lớp 5B</option>
+                    <option value="Lớp 5C">Lớp 5C</option>
+                </optgroup>
+            </select>
+        </label>
+    </div>
+        <div class="col-md-2 row">
+            <input type="submit" class="btn btn-success ml-3" value="Hiển Thị">
+        </div>
+</div>
+</div>
+
+<br>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title"> Danh Sách Học Sinh</h4>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead class=" text-primary">
+                        <th>STT</th>
+                        <th>Tên Học Sinh</th>
+                        <th>Lớp Đang Học</th>
+                        <th>Quê Quán</th>
+                        <th>Khác</th>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Trần Lê Viết Vũ</td>
+                            <td>5A</td>
+                            <td>Tam Kỳ ,Quảng Nam</td>
+                            <td>
+                                <button type="button" class="btn btn-info btn-sm">Chi tiết</button>
+                                <button type="button" class="btn btn-warning btn-sm">Sửa</button>
+                                <button type="button" class="btn btn-danger btn-sm">Xóa</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Đỗ Thành Phát</td>
+                            <td>5B</td>
+                            <td>Đà Nẵng</td>
+                            <td>
+                                <button type="button" class="btn btn-info btn-sm">Chi tiết</button>
+                                <button type="button" class="btn btn-warning btn-sm">Sửa</button>
+                                <button type="button" class="btn btn-danger btn-sm">Xóa</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Nguyễn Huỳnh Thành Đạt</td>
+                            <td>4A</td>
+                            <td>Đà Lạt</td>
+                            <td>
+                                <button type="button" class="btn btn-info btn-sm">Chi tiết</button>
+                                <button type="button" class="btn btn-warning btn-sm">Sửa</button>
+                                <button type="button" class="btn btn-danger btn-sm">Xóa</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>Tô Thanh Nam</td>
+                            <td>5A</td>
+                            <td>Phú Yên</td>
+                            <td>
+                                <button type="button" class="btn btn-info btn-sm">Chi tiết</button>
+                                <button type="button" class="btn btn-warning btn-sm">Sửa</button>
+                                <button type="button" class="btn btn-danger btn-sm">Xóa</button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div style="margin-left: 40%">
+<button type="button" class="btn btn-success ">Thêm mới học sinh</button>
+<br>
+<br>
+</div>
+<!--------------------------------------------Kết thúc code template ở đây-------------------------------------------------->
+
+
+<!-- Start Footer Area -->
+<footer class="footer-area pt-60 pb-60 black-bg" id="contact-us">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-6">
+                <div class="footer-widget">
+                    <div class="footer-logo">
+                        <a class='text-primary' href="listStudent.html">A0720I1</a>
+                    </div>
+                    <div class="footer-dec">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi similique est molestiae et
+                            debitis. Odio quisquam nostrum magni libero vel, aut assumenda, earum autem quasi quos
+                            repellendus, enim reiciendis accusamus.</p>
+                    </div>
+                    <ul class="social-links">
+                        <li><a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+                        <li><a href="#" target="_blank"><i class="fab fa-twitter"></i></a></li>
+                        <li><a href="#" target="_blank"><i class="fab fa-google-plus-g"></i></a></li>
+                        <li><a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="footer-widget">
+                    <div class="widget-title">
+                        <h6>Features</h6>
+                    </div>
+                    <ul class="footer-menu">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Our Story</a></li>
+                        <li><a href="#">Terms &and; Condition</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Site Map</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="footer-widget">
+                    <div class="widget-title">
+                        <h6>Contact us</h6>
+                    </div>
+                    <div class="address-line">
+                        <p>Address: 379 5th Ave New York, NYC 10018, United States</p>
+                        <p>Phone: <a href="tel:+112345 6999">+(112) 345 6999</a></p>
+                        <p>Fax: +(112) 345 8999</p>
+                        <p>Email: <a href="mailto:contact@be-one.com">contact@be-one.com</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="footer-widget">
+                    <div class="widget-title">
+                        <h6>Newsletter</h6>
+                    </div>
+                    <div class="newsletter-text">
+                        <p>Subscribe to Newsletters and Stay informed about our news and events</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- End Footer Area -->
+<!-- Copyright Area -->
+<div class="copyright-area black-bg">
+    <div class="container">
+        <div class="row ">
+            <div class="col-12 text-center">
+                <div class="copyright-area ">
+                    <p>Copyright © 2021 Designed by <a href="#">wpfreecloud.com</a>. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Copyright Area -->
+
+<!-- JS -->
+<!-- Jquery -->
+<script src="assets/js/jquery-3.4.1.min.js"></script>
+<!-- Popper.js -->
+<script src="assets/js/popper.min.js"></script>
+<!-- Bootstrap.js -->
+<script src="assets/js/bootstrap-4.3.1.min.js"></script>
+
+</body>
+</html>
