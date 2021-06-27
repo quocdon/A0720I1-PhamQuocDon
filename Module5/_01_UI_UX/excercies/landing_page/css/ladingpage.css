@@ -1,0 +1,40 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.header-container {
+    background-color: #272882;
+    height: 80px;
+    align-content: center;
+}
+
+.content {
+    width: 1080px;
+    max-width: 1080px;
+    margin: auto;
+
+}
+
+.main-navbar {
+    color: whitesmoke;
+    font-size: 16px;
+    font-weight: bold;
+    height: 50px;
+}
+
+.banner {
+    color: whitesmoke;
+    margin-top: 50px;
+    background-image: url("https://codegym.vn/wp-content/uploads/2018/07/office_2.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 15px 15px;
+    text-align: justify;
+    height: 550px;
+}
+
+.banner p {
+    font-size: 22px;
+}

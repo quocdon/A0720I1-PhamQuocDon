@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="1f6e330a-2ea2-44f1-9a2f-9472254f32a9" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/css/ladingpage.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/landing-page.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/gradlew" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/gradlew.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/settings.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/src/main/java/com/codegym/furama_resort/FuramaResortApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/src/main/java/com/codegym/furama_resort/config/WebConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/src/main/java/com/codegym/furama_resort/controllers/CustomerController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/src/main/java/com/codegym/furama_resort/controllers/MainController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/src/main/java/com/codegym/furama_resort/controllers/ResortServiceController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/src/main/java/com/codegym/furama_resort/models/AppRole.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/src/main/java/com/codegym/furama_resort/models/AppUser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/src/main/java/com/codegym/furama_resort/models/AttachService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/src/main/java/com/codegym/furama_resort/models/Contract.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/src/main/java/com/codegym/furama_resort/models/ContractDetail.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/src/main/java/com/codegym/furama_resort/models/ContractDetailKey.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/src/main/java/com/codegym/furama_resort/models/Customer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/src/main/java/com/codegym/furama_resort/models/CustomerType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/src/main/java/com/codegym/furama_resort/models/Department.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/src/main/java/com/codegym/furama_resort/models/EducationDegree.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/src/main/java/com/codegym/furama_resort/models/Employee.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/src/main/java/com/codegym/furama_resort/models/Position.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/src/main/java/com/codegym/furama_resort/models/RentType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/src/main/java/com/codegym/furama_resort/models/ResortService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/src/main/java/com/codegym/furama_resort/models/ServiceType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/src/main/java/com/codegym/furama_resort/models/UserRole.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/src/main/java/com/codegym/furama_resort/models/UserRoleKey.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/src/main/java/com/codegym/furama_resort/models/dto/AppUserDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/src/main/java/com/codegym/furama_resort/models/dto/ContractDetailDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/src/main/java/com/codegym/furama_resort/repositories/AppRoleRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/src/main/java/com/codegym/furama_resort/repositories/AppUserRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/src/main/java/com/codegym/furama_resort/repositories/AttachServiceRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/src/main/java/com/codegym/furama_resort/repositories/ContractDetailRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/src/main/java/com/codegym/furama_resort/repositories/ContractRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/src/main/java/com/codegym/furama_resort/repositories/CustomerRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/src/main/java/com/codegym/furama_resort/repositories/CustomerTypeRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/src/main/java/com/codegym/furama_resort/repositories/DepartmentRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/src/main/java/com/codegym/furama_resort/repositories/EducationDegreeRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/src/main/java/com/codegym/furama_resort/repositories/EmployeeRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/src/main/java/com/codegym/furama_resort/repositories/PositionRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/src/main/java/com/codegym/furama_resort/repositories/RentTypeRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/src/main/java/com/codegym/furama_resort/repositories/ResortServiceRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/src/main/java/com/codegym/furama_resort/repositories/ServiceTypeRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/src/main/java/com/codegym/furama_resort/repositories/UserRoleRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/src/main/java/com/codegym/furama_resort/services/AppRoleService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/src/main/java/com/codegym/furama_resort/services/AppUserService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/src/main/java/com/codegym/furama_resort/services/AttachServiceService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/src/main/java/com/codegym/furama_resort/services/ContractDetailService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/src/main/java/com/codegym/furama_resort/services/ContractService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/src/main/java/com/codegym/furama_resort/services/CustomerService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/src/main/java/com/codegym/furama_resort/services/CustomerTypeService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/src/main/java/com/codegym/furama_resort/services/DepartmentService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/src/main/java/com/codegym/furama_resort/services/EducationDegreeService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/src/main/java/com/codegym/furama_resort/services/EmployeeService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/src/main/java/com/codegym/furama_resort/services/PositionService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/src/main/java/com/codegym/furama_resort/services/RentTypeService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/src/main/java/com/codegym/furama_resort/services/ResortServiceService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/src/main/java/com/codegym/furama_resort/services/ServiceTypeService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/src/main/java/com/codegym/furama_resort/services/UserRoleService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/src/main/java/com/codegym/furama_resort/services/impl/AppRoleServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/src/main/java/com/codegym/furama_resort/services/impl/AppUserServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/src/main/java/com/codegym/furama_resort/services/impl/AttachServiceServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/src/main/java/com/codegym/furama_resort/services/impl/ContractDetailServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/src/main/java/com/codegym/furama_resort/services/impl/ContractServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/src/main/java/com/codegym/furama_resort/services/impl/CustomerServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/src/main/java/com/codegym/furama_resort/services/impl/CustomerTypeServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/src/main/java/com/codegym/furama_resort/services/impl/DepartmentServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/src/main/java/com/codegym/furama_resort/services/impl/EducationDegreeServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/src/main/java/com/codegym/furama_resort/services/impl/EmployeeServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/src/main/java/com/codegym/furama_resort/services/impl/PositionServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/src/main/java/com/codegym/furama_resort/services/impl/RentTypeServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/src/main/java/com/codegym/furama_resort/services/impl/ResortServiceServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/src/main/java/com/codegym/furama_resort/services/impl/ServiceTypeServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/src/main/java/com/codegym/furama_resort/services/impl/UserDetailsServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/src/main/java/com/codegym/furama_resort/services/impl/UserRoleServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/src/main/resources/static/img/access-denied.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/src/main/resources/static/img/database-alert.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/src/main/resources/static/img/mark-timberlake-V6q7nH2h3jk-unsplash.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/src/main/resources/static/img/pexels-pixabay-533971.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/src/main/resources/static/img/riley-JZzkyOHa1ts-unsplash.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/src/main/resources/static/img/sad-icon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/src/main/resources/static/img/sandbeach.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/src/main/resources/static/img/yTkrejxnc.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/src/main/resources/static/js/furama.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/src/main/resources/templates/contract/customerModal.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/src/main/resources/templates/contract/selectCustomer.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/src/main/resources/templates/contract/selectService.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/src/main/resources/templates/contract/serviceModal.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/src/main/resources/validate.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Module4/_99_case_study/furama_resort/src/test/java/com/codegym/furama_resort/FuramaResortApplicationTests.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="CSS File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../../.." />
+  </component>
+  <component name="ProjectId" id="1s7LUosvuP2EqlAzumEPD3gsAga" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="1f6e330a-2ea2-44f1-9a2f-9472254f32a9" name="Default Changelist" comment="" />
+      <created>1620218699452</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1620218699452</updated>
+      <workItem from="1620218701057" duration="5180000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+</project>
